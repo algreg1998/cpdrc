@@ -1,0 +1,186 @@
+.navbar-dark{
+    background-color: #333333;
+    border-color: #222222;
+}
+
+.navbar-dark .nav.navbar-top-links > li > a{
+	color: #ffffff;
+}
+
+.navbar-dark .navbar-top-links> li > a:hover,
+.navbar-dark .navbar-top-links > li > a:focus{
+	background-color: #090909;
+}
+
+.navbar-dark .navbar-brand{
+	color: #fff;
+}
+
+.navbar-dark .navbar-toggle .icon-bar {
+    background-color: #fff;
+}
+
+.navbar-dark .navbar-toggle {
+    border-color: #444444;
+}
+
+/*Login*/
+.login-logo{
+	margin-top: 5%;
+}
+
+.login-panel{
+	margin-top:15%;
+}
+
+input.form-control,
+select.form-control,
+textarea.form-control,
+.btn {
+	border-radius: 0 !important;
+}
+
+#table-population thead tr th{
+    text-align: center;
+}
+
+#table-population thead tr th:first-child{
+    text-align: left;
+}
+
+#table-population tbody tr td{
+    text-align: center;
+}
+
+#table-current-month-population thead tr th{
+    text-align: center;
+}
+
+#table-current-month-population thead tr th:first-child{
+    text-align: left;
+}
+
+#table-current-month-population tbody tr td{
+    text-align: center;
+}
+
+#table-population tbody tr td:first-child{
+    text-align: left !important;
+}
+
+#table-current-month-population tbody tr td:first-child{
+	text-align: left !important;
+}
+
+#table-population,
+#table-crime,
+#table-releases,
+#table-current-month-population,
+#table-table-schedule {
+	margin-bottom: 0;
+}
+
+.navbar-brand > img {
+    display: inline-block;
+    margin-right: 5px;
+    margin-top: -6px;
+}
+
+a:focus {
+    outline: none;
+}
+
+.notification-counter {
+    font-size: 8px;
+    margin: 0 -5px;
+    position: absolute;
+}
+
+.pagination{
+    margin: 0;
+}
+
+#info_content {
+    border-bottom: 1px solid #ddd;
+    border-color: #ddd;
+    border-left: 1px solid #ddd;
+    border-right: 1px solid #ddd;
+}
+
+#table-inmaterecords tbody tr{
+    cursor: pointer;
+}
+
+#table-inmaterecords tbody tr:hover{
+    /*font-weight: bold;*/
+    /*text-decoration: underline;*/
+    color: #337AB7;
+}
+
+#profile-info .form-group div > span{
+    border: 1px solid #fff;
+    box-shadow: none;
+}
+
+#overview #s2id_selectYear .select2-choice{
+    height: 30px !important;
+}
+
+#overview #s2id_selectYear #select2-chosen-1{
+    margin-top: 3px;
+}
+#table-inmateslist-modal tbody tr td{
+    vertical-align: middle;
+}
+#table-inmateslist-modal tbody tr td:last-child{
+    text-align: center;
+}
+
+#addCase .select2-container .select2-choice{
+    height: 32px;
+    line-height: 32px;
+}
+/*#s2id_violations .select2-choice{
+    height: 32px !important;
+}
+
+.select2-container .select2-choice > .select2-chosen{
+    height: 32px;
+}
+
+.select2-container .select2-choice{
+    line-height: 32px;
+}*/
+.notificationsWrapper table tbody tr{
+    cursor: pointer;
+}
+
+#changepic {
+    background: none repeat scroll 0 0 #fff;
+    left: 8px;
+    position: absolute;
+    top: 8px;
+}
+
+.dataTable_wrapper .unread{
+    background: none repeat scroll 0 0 #e8e8e8;
+}
+
+.dataTable_wrapper .read{
+
+}
+
+.panel-heading .accordion-toggle{
+    text-decoration: none;
+}
+.panel-heading .accordion-toggle:after {
+    /* symbol for "opening" panels */
+    font-family: 'Glyphicons Halflings';  /* essential for enabling glyphicon */
+    content: "\e114";    /* adjust as needed, taken from bootstrap.css */
+    float: right;        /* adjust as needed */
+    color: grey;         /* adjust as needed */
+}
+.panel-heading .accordion-toggle.collapsed:after {
+    /* symbol for "collapsed" panels */
+    content: "\e080";    /* adjust as needed, taken from bootstrap.css */
+}
