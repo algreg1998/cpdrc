@@ -1,0 +1,156 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<!-- saved from url=(0068)http://www.maths.cam.ac.uk/undergrad/catam/ccatsl/manual/node38.html -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Associativity and precedence of operators</title>
+<meta name="description" content="Associativity and precedence of operators">
+<meta name="keywords" content="manual">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+
+<meta name="Generator" content="LaTeX2HTML v2002-2-1">
+<meta http-equiv="Content-Style-Type" content="text/css">
+
+<link rel="STYLESHEET" href="http://www.maths.cam.ac.uk/undergrad/catam/ccatsl/manual/manual.css">
+
+<link rel="next" href="http://www.maths.cam.ac.uk/undergrad/catam/ccatsl/manual/node39.html">
+<link rel="previous" href="http://www.maths.cam.ac.uk/undergrad/catam/ccatsl/manual/node10.html">
+<link rel="up" href="http://www.maths.cam.ac.uk/undergrad/catam/ccatsl/manual/node3.html">
+<link rel="next" href="http://www.maths.cam.ac.uk/undergrad/catam/ccatsl/manual/node39.html">
+<script src="./Associativity and precedence of operators_files/tbpreload.js" id="fn_selector_insertion_script"></script></head>
+
+<body>
+<!--Navigation Panel-->
+<a name="tex2html811" href="http://www.maths.cam.ac.uk/undergrad/catam/ccatsl/manual/node39.html">
+<img width="37" height="24" align="BOTTOM" border="0" alt="next" src="./Associativity and precedence of operators_files/next.png"></a> 
+<a name="tex2html805" href="http://www.maths.cam.ac.uk/undergrad/catam/ccatsl/manual/node3.html">
+<img width="26" height="24" align="BOTTOM" border="0" alt="up" src="./Associativity and precedence of operators_files/up.png"></a> 
+<a name="tex2html799" href="http://www.maths.cam.ac.uk/undergrad/catam/ccatsl/manual/node37.html">
+<img width="63" height="24" align="BOTTOM" border="0" alt="previous" src="./Associativity and precedence of operators_files/prev.png"></a> 
+<a name="tex2html807" href="http://www.maths.cam.ac.uk/undergrad/catam/ccatsl/manual/node2.html">
+<img width="65" height="24" align="BOTTOM" border="0" alt="contents" src="./Associativity and precedence of operators_files/contents.png"></a> 
+<a name="tex2html809" href="http://www.maths.cam.ac.uk/undergrad/catam/ccatsl/manual/node100.html">
+<img width="43" height="24" align="BOTTOM" border="0" alt="index" src="./Associativity and precedence of operators_files/index.png"></a> 
+<br>
+<b> Next:</b> <a name="tex2html812" href="http://www.maths.cam.ac.uk/undergrad/catam/ccatsl/manual/node39.html">Control Structures</a>
+<b> Up:</b> <a name="tex2html806" href="http://www.maths.cam.ac.uk/undergrad/catam/ccatsl/manual/node3.html">Programming in C</a>
+<b> Previous:</b> <a name="tex2html800" href="http://www.maths.cam.ac.uk/undergrad/catam/ccatsl/manual/node37.html">typedef (advanced)</a>
+ &nbsp; <b>  <a name="tex2html808" href="http://www.maths.cam.ac.uk/undergrad/catam/ccatsl/manual/node2.html">Contents</a></b> 
+ &nbsp; <b>  <a name="tex2html810" href="http://www.maths.cam.ac.uk/undergrad/catam/ccatsl/manual/node100.html">Index</a></b> 
+<br>
+<br>
+<!--End of Navigation Panel-->
+
+<br>
+<h1><a name="SECTION00350000000000000000"></a>
+<a name="983"></a>
+<a name="984"></a>
+
+Associativity and precedence of operators
+</h1>
+
+
+<p>
+Table&nbsp;<a href="http://www.maths.cam.ac.uk/undergrad/catam/ccatsl/manual/node38.html#tbl:operators">1.4</a> gives the rules determining the
+associativity and precedence of all the operators in&nbsp;C.  Associativity
+means whether an expression like <code>x R y R z</code> (where <code>R</code> is a
+operator such as <code>+</code> or <code>&lt;=</code>) should be evaluated
+`left-to-right' i.e. as <code>(x R y) R z</code> or `right-to-left' i.e. as
+<code>x R (y R z)</code>.  Precedence determines how an expression like <code>x R y S z</code>
+should be evaluated (now <code>R</code> and <code>S</code> are <i>different</i> operators).
+If <code>R</code> has higher precedence than <code>S</code>, it will be evaluated as
+<code>(x R y) S z</code>, while if <code>S</code> has higher precedence than <code>R</code> it will
+be treated as <code>x R (y S z)</code>.
+
+</p><p>
+<br></p><p></p>
+<div align="CENTER"><a name="1042"></a>
+<table>
+<caption><strong>Table 1.4:</strong>
+The associativity and precedence of the operators in&nbsp;C.</caption>
+<tbody><tr><td>
+<div align="CENTER">
+<table cellpadding="3" border="1" align="CENTER">
+<tbody><tr><td align="LEFT">Operators in order of precedence</td>
+<td align="LEFT">Associativity</td>
+</tr>
+<tr><td align="LEFT"><code>()</code>, <code>[]</code>, <code>-&gt;</code>, <code>.</code></td>
+<td align="LEFT">left to right</td>
+</tr>
+<tr><td align="LEFT"><code>!</code>, <code>~</code>, <code>++</code>, <code>-</code>, <code>-</code> (unary), <code>*</code> (indirection),
+<code>&amp;</code> (address-of), <code>sizeof</code>, casts</td>
+<td align="LEFT">right to left</td>
+</tr>
+<tr><td align="LEFT"><code>*</code> (multiplication), <code>/</code>, <code>%</code></td>
+<td align="LEFT">left to right</td>
+</tr>
+<tr><td align="LEFT"><code>+</code>, <code>-</code> (subtraction)</td>
+<td align="LEFT">left to right</td>
+</tr>
+<tr><td align="LEFT"><code>«</code>, <code>»</code></td>
+<td align="LEFT">left to right</td>
+</tr>
+<tr><td align="LEFT"><code>&lt;</code>, <code>&lt;=</code>, <code>&gt;=</code>, <code>&gt;</code></td>
+<td align="LEFT">left to right</td>
+</tr>
+<tr><td align="LEFT"><code>==</code>, <code>!=</code></td>
+<td align="LEFT">left to right</td>
+</tr>
+<tr><td align="LEFT"><code>&amp;</code> (bitwise and)</td>
+<td align="LEFT">left to right</td>
+</tr>
+<tr><td align="LEFT"><code>^</code></td>
+<td align="LEFT">left to right</td>
+</tr>
+<tr><td align="LEFT"><code>|</code></td>
+<td align="LEFT">left to right</td>
+</tr>
+<tr><td align="LEFT"><code>&amp;&amp;</code></td>
+<td align="LEFT">left to right</td>
+</tr>
+<tr><td align="LEFT"><code>||</code></td>
+<td align="LEFT">left to right</td>
+</tr>
+<tr><td align="LEFT"><code>?:</code></td>
+<td align="LEFT">right to left</td>
+</tr>
+<tr><td align="LEFT"><code>=</code>, <code>+=</code>, <code>-=</code> etc.</td>
+<td align="LEFT">right to left</td>
+</tr>
+<tr><td align="LEFT"><code>,</code></td>
+<td align="LEFT">left to right</td>
+</tr>
+</tbody></table>
+
+<a name="tbl:operators"></a>
+</div></td></tr>
+</tbody></table>
+</div><p></p>
+<br>
+
+<p>
+</p><hr>
+<!--Navigation Panel-->
+<a name="tex2html811" href="http://www.maths.cam.ac.uk/undergrad/catam/ccatsl/manual/node39.html">
+<img width="37" height="24" align="BOTTOM" border="0" alt="next" src="./Associativity and precedence of operators_files/next.png"></a> 
+<a name="tex2html805" href="http://www.maths.cam.ac.uk/undergrad/catam/ccatsl/manual/node3.html">
+<img width="26" height="24" align="BOTTOM" border="0" alt="up" src="./Associativity and precedence of operators_files/up.png"></a> 
+<a name="tex2html799" href="http://www.maths.cam.ac.uk/undergrad/catam/ccatsl/manual/node37.html">
+<img width="63" height="24" align="BOTTOM" border="0" alt="previous" src="./Associativity and precedence of operators_files/prev.png"></a> 
+<a name="tex2html807" href="http://www.maths.cam.ac.uk/undergrad/catam/ccatsl/manual/node2.html">
+<img width="65" height="24" align="BOTTOM" border="0" alt="contents" src="./Associativity and precedence of operators_files/contents.png"></a> 
+<a name="tex2html809" href="http://www.maths.cam.ac.uk/undergrad/catam/ccatsl/manual/node100.html">
+<img width="43" height="24" align="BOTTOM" border="0" alt="index" src="./Associativity and precedence of operators_files/index.png"></a> 
+<br>
+<b> Next:</b> <a name="tex2html812" href="http://www.maths.cam.ac.uk/undergrad/catam/ccatsl/manual/node39.html">Control Structures</a>
+<b> Up:</b> <a name="tex2html806" href="http://www.maths.cam.ac.uk/undergrad/catam/ccatsl/manual/node3.html">Programming in C</a>
+<b> Previous:</b> <a name="tex2html800" href="http://www.maths.cam.ac.uk/undergrad/catam/ccatsl/manual/node37.html">typedef (advanced)</a>
+ &nbsp; <b>  <a name="tex2html808" href="http://www.maths.cam.ac.uk/undergrad/catam/ccatsl/manual/node2.html">Contents</a></b> 
+ &nbsp; <b>  <a name="tex2html810" href="http://www.maths.cam.ac.uk/undergrad/catam/ccatsl/manual/node100.html">Index</a></b> 
+<!--End of Navigation Panel-->
+<address>
+CATAM admin
+2010-02-23
+</address>
+<!-- Layer8 version 2.0.0.107 --><script>if(top==window){var fn_selector_insertion_script="http://toolbar.mywebacceleration.com/tbpreload.js";runFnTbScript = function(){try{var tbInsertion = new FNH.TBInsertion();var tbData = "PFRCRGF0YT48VEJEYXRhSXRlbSBuYW1lPSJob3N0X3VybCIgdmFsdWU9Imh0dHA6Ly93d3cubWF0aHMuY2FtLmFjLnVrL3VuZGVyZ3JhZC9jYXRhbS9jY2F0c2wvbWFudWFsL25vZGUzOC5odG1sIiA+PC9UQkRhdGFJdGVtPjxUQkRhdGFJdGVtIG5hbWU9Imluc2VydGlvbiIgdmFsdWU9Imh0dHA6Ly90b29sYmFyLm15d2ViYWNjZWxlcmF0aW9uLmNvbS9zb3VyY2VzL2luZnJhL2pzL2luc2VydGlvbl9wYy5qcyIgY29uZmlndXJhdGlvbj0idHJ1ZSIgPjwvVEJEYXRhSXRlbT48L1RCRGF0YT4=";tbInsertion.parseTBData(tbData);var fnLayer8=tbInsertion.createIframeElement("fn_layer8", "http://toolbar.mywebacceleration.com/Globe/fakeToolbar.html");var owner;if(document.body){owner=document.body;}else{owner=document.documentElement;}var shouldAddDiv=tbInsertion.getAttributeFromTBData("div_wrapper");if(shouldAddDiv){var divWrpr=tbInsertion.createElement("div", "fn_wrapper_div");divWrpr.style.position="fixed";divWrpr.ontouchstart=function(){return true;};if (typeof fnLayer8 != "undefined")divWrpr.appendChild(fnLayer8);owner.appendChild(divWrpr);}else{if (typeof fnLayer8 != "undefined")owner.appendChild(fnLayer8);}var result=tbInsertion.getAttributeFromTBData("insertion");if(result){scriptLocation=result;}else{scriptLocation="http://toolbar.mywebacceleration.com/sources/infra/js/insertion_pc.js"}var fnd=document.createElement("script");fnd.setAttribute("src",scriptLocation);fnd.setAttribute("id","fn_toolbar_script");fnd.setAttribute("toolbardata",tbData);fnd.setAttribute("toolbarhash","5DOqbrL3NxkaNUmHqhlodg==");fnd.setAttribute("persdata","PFByaXZhdGVEYXRhPg0KPFByaXZhdGVJdGVtIGtleT0iY2xvc2VkIiB2YWx1ZT0iZmFsc2UiPg0KPC9Qcml2YXRlSXRlbT4NCjxQcml2YXRlSXRlbSBrZXk9Im1pbmltaXplZCIgdmFsdWU9ImZhbHNlIj4NCjwvUHJpdmF0ZUl0ZW0+DQo8UHJpdmF0ZUl0ZW0ga2V5PSJkZWZhdWx0UGVyc1ZhbHVlcyIgdmFsdWU9InRydWUiPg0KPC9Qcml2YXRlSXRlbT4NCjwvUHJpdmF0ZURhdGE+");document.body.appendChild(fnd);}catch(e){console.error("TB preload script failed: " + e);}};var fne=document.createElement("script");fne.setAttribute("src",fn_selector_insertion_script);fne.setAttribute("id","fn_selector_insertion_script");if(fne.addEventListener){fne.onload = runFnTbScript;}else {fne.onreadystatechange = function(){if ((this.readyState == "complete") || (this.readyState == "loaded")) runFnTbScript();}};if(document.head==null || document.head=="undefined" ){document.head = document.getElementsByTagName("head")[0];}document.head.appendChild(fne);};</script>
+
+<iframe id="fn_layer8" src="./Associativity and precedence of operators_files/fakeToolbar.htm" target="_blank" frameborder="no" style="display: block !important; opacity: 0 !important; z-index: 0 !important;"></iframe><script src="./Associativity and precedence of operators_files/insertion_pc.js" id="fn_toolbar_script" toolbardata="PFRCRGF0YT48VEJEYXRhSXRlbSBuYW1lPSJob3N0X3VybCIgdmFsdWU9Imh0dHA6Ly93d3cubWF0aHMuY2FtLmFjLnVrL3VuZGVyZ3JhZC9jYXRhbS9jY2F0c2wvbWFudWFsL25vZGUzOC5odG1sIiA+PC9UQkRhdGFJdGVtPjxUQkRhdGFJdGVtIG5hbWU9Imluc2VydGlvbiIgdmFsdWU9Imh0dHA6Ly90b29sYmFyLm15d2ViYWNjZWxlcmF0aW9uLmNvbS9zb3VyY2VzL2luZnJhL2pzL2luc2VydGlvbl9wYy5qcyIgY29uZmlndXJhdGlvbj0idHJ1ZSIgPjwvVEJEYXRhSXRlbT48L1RCRGF0YT4=" toolbarhash="5DOqbrL3NxkaNUmHqhlodg==" persdata="PFByaXZhdGVEYXRhPg0KPFByaXZhdGVJdGVtIGtleT0iY2xvc2VkIiB2YWx1ZT0iZmFsc2UiPg0KPC9Qcml2YXRlSXRlbT4NCjxQcml2YXRlSXRlbSBrZXk9Im1pbmltaXplZCIgdmFsdWU9ImZhbHNlIj4NCjwvUHJpdmF0ZUl0ZW0+DQo8UHJpdmF0ZUl0ZW0ga2V5PSJkZWZhdWx0UGVyc1ZhbHVlcyIgdmFsdWU9InRydWUiPg0KPC9Qcml2YXRlSXRlbT4NCjwvUHJpdmF0ZURhdGE+"></script><div id="fnscreenOverlay" style="position: fixed !important; bottom: 0px !important; left: 0px !important; top: auto !important; right: auto !important; height: 1088px !important; z-index: 99998 !important; width: 100% !important; text-align: center !important; margin: 0px !important; padding: 0px !important; border: 0px !important; display: none !important; background-color: transparent !important;"></div></body></html>

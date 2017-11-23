@@ -1,0 +1,286 @@
+USE cpdrc;
+
+
+CREATE TABLE IF NOT EXISTS `cs_sessions` (
+    session_id varchar(40) DEFAULT '0' NOT NULL,
+    ip_address varchar(45) DEFAULT '0' NOT NULL,
+    user_agent varchar(120) NOT NULL,
+    last_activity int(10) unsigned DEFAULT 0 NOT NULL,
+    user_data text NOT NULL,
+    PRIMARY KEY (session_id),
+    KEY `last_activity_idx` (`last_activity`)
+
+)ENGINE=InnoDB;
+
+
+CREATE TABLE cs_administrators (
+    id INTEGER(11) UNSIGNED ZEROFILL NOT NULL AUTO_INCREMENT,
+    type enum('general','standard') NOT NULL DEFAULT 'standard',
+    username VARCHAR(50) NOT NULL,
+    password VARCHAR(128) NOT NULL,
+    email VARCHAR(254)  NOT NULL,
+    first_name VARCHAR(50) NOT NULL,
+    middle_name VARCHAR(50) NOT NULL,
+    last_name VARCHAR(50) NOT NULL,
+    gender VARCHAR(10) NOT NULL,
+    birthday DATE NOT NULL,
+    position VARCHAR(30) NOT NULL,
+    photo VARCHAR(50),
+    status VARCHAR(15) NOT NULL,
+    last_activity INTEGER(11) UNSIGNED,
+    created_on INTEGER(11) UNSIGNED,
+    modified_on INTEGER(11) UNSIGNED,
+
+    PRIMARY KEY (id)
+
+)ENGINE=InnoDB;
+
+INSERT INTO cs_administrators VALUES (NULL,'general','admin','9472c4ab4ebf35538ccd75686fedec480146a085e0752b394f8b48720916ba193c6db3096482e9b47b92576c14648417425548371c4e412a67af0c14f75ecd46','admin@cpdrc.com','John','Mark','Doe','Male','1990-01-01','Prison Warden',NULL,'active',0,NOW(),0);
+
+
+CREATE TABLE cs_users (
+    id INTEGER(11) UNSIGNED ZEROFILL NOT NULL AUTO_INCREMENT,
+    email VARCHAR(254)  NOT NULL,
+    first_name VARCHAR(50) NOT NULL,
+    middle_name VARCHAR(50) NOT NULL,
+    last_name VARCHAR(50) NOT NULL,
+    gender VARCHAR(10) NOT NULL,
+    birthday DATE NOT NULL,
+    position enum('judge','lawyer') NOT NULL DEFAULT 'judge',
+    photo VARCHAR(50),
+    status VARCHAR(15) NOT NULL,
+    last_activity INTEGER(11) UNSIGNED,
+    created_on INTEGER(11) UNSIGNED,
+    modified_on INTEGER(11) UNSIGNED,
+    deleted_on INTEGER(11) UNSIGNED,
+
+    PRIMARY KEY (id)
+
+)ENGINE=InnoDB;
+
+
+CREATE TABLE cs_violations_categories(
+    id INTEGER(11) UNSIGNED ZEROFILL NOT NULL AUTO_INCREMENT,
+    name VARCHAR(15) NOT NULL,
+    description TEXT,
+
+    created_on INTEGER(11) UNSIGNED,
+    modified_on INTEGER(11) UNSIGNED,
+
+    PRIMARY KEY (id)
+
+)ENGINE=InnoDB;
+
+CREATE TABLE cs_violations (
+    id INTEGER(11) UNSIGNED ZEROFILL NOT NULL AUTO_INCREMENT,
+    violations_category_id INTEGER(11) UNSIGNED ZEROFILL NOT NULL,
+    name VARCHAR(15) NOT NULL,
+    level enum('1','2','3','4','5','lifetime','none'),
+    description TEXT,
+    RepublicAct VARCHAR(255),
+    min_year VARCHAR(255),
+    max_year VARCHAR(255),
+
+    created_on INTEGER(11) UNSIGNED,
+    modified_on INTEGER(11) UNSIGNED,
+
+    PRIMARY KEY (id),
+    FOREIGN KEY (violations_category_id) references cs_violations_categories(id) ON DELETE CASCADE
+
+)ENGINE=InnoDB;
+
+
+CREATE TABLE cs_reasons (
+    id INTEGER(11) UNSIGNED ZEROFILL NOT NULL AUTO_INCREMENT,
+    inmate_id VARCHAR(20) NOT NULL,
+    status VARCHAR(15),
+    type enum('Detainee','Convict'),
+    start_date DATETIME,
+    release_date DATETIME,
+    number_of_years FLOAT(10),
+    created_on INTEGER(11) UNSIGNED,
+    modified_on INTEGER(11) UNSIGNED,
+
+    PRIMARY KEY (id)
+
+)ENGINE=InnoDB;
+
+
+CREATE TABLE cs_cases (
+    id INTEGER(11) UNSIGNED ZEROFILL NOT NULL AUTO_INCREMENT,
+    reasons_id INTEGER(11) UNSIGNED ZEROFILL NOT NULL,
+    case_no VARCHAR(15) NOT NULL,
+    violation_id INTEGER(11) UNSIGNED ZEROFILL NOT NULL,
+    created_on INTEGER(11) UNSIGNED,
+    modified_on INTEGER(11) UNSIGNED,
+
+    PRIMARY KEY (id),
+    FOREIGN KEY (reasons_id) references cs_reasons(id) ON DELETE CASCADE,
+    FOREIGN KEY (violation_id) references cs_violations(id) ON DELETE CASCADE
+
+)ENGINE=InnoDB;
+
+
+CREATE TABLE cs_logs (
+    id INTEGER(11) UNSIGNED ZEROFILL NOT NULL AUTO_INCREMENT,
+    linked_id INTEGER(11) UNSIGNED ZEROFILL NOT NULL,
+    table_name VARCHAR(255),
+    table_field VARCHAR(255),
+    subject TEXT,
+    reasons TEXT,
+    update_by INTEGER(11) UNSIGNED ZEROFILL NOT NULL,
+    action VARCHAR(255),
+    created_at DATETIME,
+    status VARCHAR(255),
+    
+    PRIMARY KEY (id),
+    FOREIGN KEY (update_by) references cs_administrators(id) ON DELETE CASCADE
+
+)ENGINE=InnoDB;
+
+
+CREATE TABLE cs_appearance_schedules (
+    id INTEGER(11) UNSIGNED ZEROFILL NOT NULL AUTO_INCREMENT,
+    reason_id INTEGER(11) UNSIGNED ZEROFILL NOT NULL,
+    date DATETIME NOT NULL,
+    vehicle_no VARCHAR(20) NOT NULL,
+    status VARCHAR(20),
+    remarks TEXT,
+    
+    PRIMARY KEY (id),
+    FOREIGN KEY (reason_id) references cs_reasons(id) ON DELETE CASCADE
+    
+)ENGINE=InnoDB;
+
+
+CREATE TABLE cs_appearance_schedule_personnels (
+    id INTEGER(11) UNSIGNED ZEROFILL NOT NULL AUTO_INCREMENT,
+    appearance_schedule_id INTEGER(11) UNSIGNED ZEROFILL NOT NULL,
+    type enum('judge','jail_officer','lawyer'),
+    name VARCHAR(255),
+    
+    PRIMARY KEY (id),
+    FOREIGN KEY (appearance_schedule_id) references cs_appearance_schedules(id) ON DELETE CASCADE
+
+)ENGINE=InnoDB;
+
+
+CREATE TABLE cs_appearance_schedule_lawyears (
+    id INTEGER(11) UNSIGNED ZEROFILL NOT NULL AUTO_INCREMENT,
+    appearance_schedule_id INTEGER(11) UNSIGNED ZEROFILL NOT NULL,
+    name VARCHAR(255),
+    
+    PRIMARY KEY (id),
+    FOREIGN KEY (appearance_schedule_id) references cs_appearance_schedules(id) ON DELETE CASCADE
+
+)ENGINE=InnoDB;
+
+CREATE TABLE cs_appearance_schedule_judges (
+    id INTEGER(11) UNSIGNED ZEROFILL NOT NULL AUTO_INCREMENT,
+    appearance_schedule_id INTEGER(11) UNSIGNED ZEROFILL NOT NULL,
+    name VARCHAR(255),
+    
+    PRIMARY KEY (id),
+    FOREIGN KEY (appearance_schedule_id) references cs_appearance_schedules(id) ON DELETE CASCADE
+
+)ENGINE=InnoDB;
+
+
+CREATE TABLE cs_appearance_schedule_jailofficers (
+    id INTEGER(11) UNSIGNED ZEROFILL NOT NULL AUTO_INCREMENT,
+    appearance_schedule_id INTEGER(11) UNSIGNED ZEROFILL NOT NULL,
+    name VARCHAR(255),
+    
+    PRIMARY KEY (id),
+    FOREIGN KEY (appearance_schedule_id) references cs_appearance_schedules(id) ON DELETE CASCADE
+
+)ENGINE=InnoDB;
+
+
+CREATE VIEW inmates_full AS
+SELECT
+
+    i.inmate_id,
+    i.cell_no,
+    i.inmate_fname,
+    i.inmate_lname,
+    i.inmate_mi,
+    i.inmate_alias,
+    i.status,
+    i.date_detained,
+    i.date_convicted,
+    i.date_probation,
+    i.datetime_added,
+    i.added_by,
+    i.is_read as i_is_read,
+
+    ii.nationality,
+    ii.status as inmate_info_status,
+    ii. birthdate,
+    ii.age,
+    ii.gender,
+    ii.born_in,
+    ii.home_add,
+    ii.province_add,
+    ii.occupation,
+    ii.father,
+    ii.mother,
+    ii.relative,
+    ii.address,
+
+    f.filename,
+    f.added_by as file_added_by,
+    f.img_set,
+
+    ifp.file_no,
+    ifp.taken_by,
+    ifp.date,
+    ifp.classified_by,
+    ifp.verified_by,
+    ifp.r_thumb,
+    ifp.r_index,
+    ifp.r_middle,
+    ifp.r_ring,
+    ifp.r_little,
+    ifp.l_thumb,
+    ifp.l_index,
+    ifp.l_middle,
+    ifp.l_ring,
+    ifp.l_little,
+    ifp.l_amp,
+    ifp.r_amp,
+    ifp.left_thumb,
+    ifp.right_thumb,
+    ifp.left_hand,
+    ifp.right_hand
+
+FROM inmate i
+    LEFT JOIN inmate_info ii
+        ON ii.inmate_id = i.inmate_id
+    LEFT JOIN file f
+        ON f.inmate_id = i.inmate_id
+    LEFT JOIN inmate_fp ifp
+        ON ifp.inmate_id = i.inmate_id;
+
+
+
+CREATE VIEW cs_cases_full AS
+SELECT
+    c.id as case_id,
+    c.reasons_id,
+    c.case_no,
+    c.created_on as case_created_on,
+    c.modified_on as case_modified_on,
+    c.status as case_status,
+    c.reasons as case_reasons,
+    v.id as violation_id,
+    v.*,
+    vc.id as violation_category_id,
+    vc.name as violation_category_name,
+    vc.description as violation_category_description
+
+FROM cs_cases c
+    LEFT JOIN cs_violations v
+        ON v.id = c.violation_id
+    LEFT JOIN cs_violations_categories vc
+        ON vc.id = v.violations_category_id;

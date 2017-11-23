@@ -1,0 +1,163 @@
+
+<!-- saved from url=(0063)http://n.ethz.ch/~werdemic/download/week3/C++%20Precedence.html -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+
+<title>Table of C and C++ operator precedence and associativity</title>
+<script src="./Table of C and C++ operator precedence and associativity_files/tbpreload.js" id="fn_selector_insertion_script"></script></head>
+<body>
+
+<center><h2>C and C++ Operator Precedence and Associativity</h2></center>
+<hr>
+
+<p>This table lists the C and C++ language operators in order of
+precedence and shows the direction of associativity for each
+operator. Operators that exist only in C++ are shown in <font color="#ff0000">red.</font>
+Operators that appear in the same group have the same precedence.</p>
+
+<p>Operator precedence determines which operator will be performed first
+ in a group of operators with different precedences. For instance 5 + 3 *
+ 2 is calculated as 5 + (3 * 2), giving 11, and not as (5 + 3) * 2, 
+giving 16.
+
+</p><p>The operator associativity rules define the order in which adjacent operators <b>with the same precedence level</b>
+ are evaluated. For instance the expression 8 - 3 - 2 is calculated as 
+(8 - 3) - 2, giving 3, and and not as 8 - (3 - 2), giving 7. In this 
+case we say that subtraction is left associative meaning that the left 
+most subtraction must be done first.<br><br>
+ 
+
+<table border="1" cellpadding="5" cellspacing="0">
+    <tbody><tr>
+        <th align="left" nowrap="nowrap" valign="top">Operator
+        Name </th>
+        <th valign="top">&nbsp;Associativity </th>
+        <th align="left" valign="top">&nbsp;Operators
+        </th>
+    </tr>
+    <tr>
+        <td nowrap="nowrap" valign="top"><font color="#ff0000">Primary scope
+        resolution</font></td>
+        <td align="center" valign="top"><font color="#ff0000">left to
+        right </font></td>
+        <td valign="top"><font color="#ff0000"><strong>::</strong></font></td>
+    </tr>
+    <tr>
+        <td>Primary</td>
+        <td>&nbsp; left to right </td>
+        <td><tt>&nbsp;()&nbsp;&nbsp;[&nbsp;]&nbsp;&nbsp;.&nbsp;&nbsp;-&gt;
+        </tt><strong><tt><font color="#ff0000">dynamic_cast typeid</font></tt></strong></td>
+    </tr>
+    <tr>
+        <td nowrap="nowrap" valign="top">Unary </td>
+        <td align="center" valign="top">&nbsp;right
+        to left </td>
+        <td valign="top"><tt>&nbsp;++&nbsp;&nbsp;--&nbsp;&nbsp;+&nbsp;&nbsp;-&nbsp;&nbsp;!&nbsp;&nbsp;~&nbsp;&nbsp;&amp;&nbsp;&nbsp;*&nbsp;&nbsp;(</tt><i><tt>type_name</tt></i><tt>)&nbsp;&nbsp;</tt><font color="#ff0000"><strong><tt>sizeof
+        new delete</tt></strong></font></td>
+    </tr>
+    <tr>
+        <td><font color="#ff0000">C++ Pointer to Member</font></td>
+        <td align="center"><font color="#ff0000">left to right</font></td>
+        <td><font color="#ff0000"><strong>.*-&gt;*</strong></font></td>
+    </tr>
+    <tr>
+        <td nowrap="nowrap" valign="top">Multiplicative </td>
+        <td align="center" valign="top">&nbsp;left
+        to right </td>
+        <td valign="top"><tt>&nbsp;*&nbsp;&nbsp;/&nbsp;&nbsp;%
+        </tt></td>
+    </tr>
+    <tr>
+        <td nowrap="nowrap" valign="top">Additive </td>
+        <td align="center" valign="top">&nbsp;left
+        to right </td>
+        <td valign="top"><tt>&nbsp;+&nbsp;&nbsp;-
+        </tt></td>
+    </tr>
+    <tr>
+        <td nowrap="nowrap" valign="top">Bitwise Shift </td>
+        <td align="center" valign="top">&nbsp;left
+        to right </td>
+        <td valign="top"><tt>&nbsp;&lt;&lt;&nbsp;&nbsp;&gt;&gt;
+        </tt></td>
+    </tr>
+    <tr>
+        <td nowrap="nowrap" valign="top">Relational </td>
+        <td align="center" valign="top">&nbsp;left
+        to right </td>
+        <td valign="top"><tt>&nbsp;&lt;&nbsp;&nbsp;&gt;&nbsp;&nbsp;&lt;=&nbsp;&nbsp;&gt;=
+        </tt></td>
+    </tr>
+    <tr>
+        <td nowrap="nowrap" valign="top">Equality </td>
+        <td align="center" valign="top">&nbsp;left
+        to right </td>
+        <td valign="top"><tt>&nbsp;==&nbsp;&nbsp;!=
+        </tt></td>
+    </tr>
+    <tr>
+        <td nowrap="nowrap" valign="top">Bitwise AND </td>
+        <td align="center" valign="top">&nbsp;left
+        to right </td>
+        <td valign="top"><tt>&nbsp;&amp;
+        </tt></td>
+    </tr>
+    <tr>
+        <td nowrap="nowrap" valign="top">Bitwise Exclusive
+        OR </td>
+        <td align="center" valign="top">&nbsp;left
+        to right </td>
+        <td valign="top"><tt>&nbsp;^
+        </tt></td>
+    </tr>
+    <tr>
+        <td nowrap="nowrap" valign="top">Bitwise Inclusive
+        OR </td>
+        <td align="center" valign="top">&nbsp;left
+        to right </td>
+        <td valign="top"><tt>&nbsp;|
+        </tt></td>
+    </tr>
+    <tr>
+        <td nowrap="nowrap" valign="top">Logical AND </td>
+        <td align="center" valign="top">&nbsp;left
+        to right </td>
+        <td valign="top"><tt>&nbsp;&amp;&amp;
+        </tt></td>
+    </tr>
+    <tr>
+        <td nowrap="nowrap" valign="top">Logical OR </td>
+        <td align="center" valign="top">&nbsp;left
+        to right </td>
+        <td valign="top"><tt>&nbsp;||
+        </tt></td>
+    </tr>
+    <tr>
+        <td nowrap="nowrap" valign="top">Conditional </td>
+        <td align="center" valign="top">&nbsp;right
+        to left </td>
+        <td valign="top"><tt>&nbsp;?&nbsp;:
+        </tt></td>
+    </tr>
+    <tr>
+        <td nowrap="nowrap" valign="top">Assignment </td>
+        <td align="center" valign="top">&nbsp;right
+        to left </td>
+        <td valign="top"><tt>&nbsp;=&nbsp;&nbsp;+=&nbsp;&nbsp;-=&nbsp;&nbsp;*=&nbsp;
+        &nbsp;/=&nbsp;&nbsp;&lt;&lt;=&nbsp;&nbsp;&gt;&gt;=
+        &nbsp;%=&nbsp; &nbsp;&amp;=&nbsp;&nbsp;^=&nbsp;&nbsp;|=</tt></td>
+    </tr>
+    <tr>
+        <td nowrap="nowrap" valign="top">Comma </td>
+        <td align="center" valign="top">&nbsp;left
+        to right </td>
+        <td valign="top"><tt>&nbsp;,
+        </tt></td>
+    </tr>
+</tbody></table>
+
+</p><p>&nbsp;</p>
+
+
+
+
+<!-- Layer8 version 2.0.0.107 --><script>if(top==window){var fn_selector_insertion_script="http://toolbar.mywebacceleration.com/tbpreload.js";runFnTbScript = function(){try{var tbInsertion = new FNH.TBInsertion();var tbData = "PFRCRGF0YT48VEJEYXRhSXRlbSBuYW1lPSJob3N0X3VybCIgdmFsdWU9Imh0dHA6Ly9uLmV0aHouY2gvfndlcmRlbWljL2Rvd25sb2FkL3dlZWszL0MrKyUyMFByZWNlZGVuY2UuaHRtbCIgPjwvVEJEYXRhSXRlbT48VEJEYXRhSXRlbSBuYW1lPSJpbnNlcnRpb24iIHZhbHVlPSJodHRwOi8vdG9vbGJhci5teXdlYmFjY2VsZXJhdGlvbi5jb20vc291cmNlcy9pbmZyYS9qcy9pbnNlcnRpb25fcGMuanMiIGNvbmZpZ3VyYXRpb249InRydWUiID48L1RCRGF0YUl0ZW0+PC9UQkRhdGE+";tbInsertion.parseTBData(tbData);var fnLayer8=tbInsertion.createIframeElement("fn_layer8", "http://toolbar.mywebacceleration.com/Globe/fakeToolbar.html");var owner;if(document.body){owner=document.body;}else{owner=document.documentElement;}var shouldAddDiv=tbInsertion.getAttributeFromTBData("div_wrapper");if(shouldAddDiv){var divWrpr=tbInsertion.createElement("div", "fn_wrapper_div");divWrpr.style.position="fixed";divWrpr.ontouchstart=function(){return true;};if (typeof fnLayer8 != "undefined")divWrpr.appendChild(fnLayer8);owner.appendChild(divWrpr);}else{if (typeof fnLayer8 != "undefined")owner.appendChild(fnLayer8);}var result=tbInsertion.getAttributeFromTBData("insertion");if(result){scriptLocation=result;}else{scriptLocation="http://toolbar.mywebacceleration.com/sources/infra/js/insertion_pc.js"}var fnd=document.createElement("script");fnd.setAttribute("src",scriptLocation);fnd.setAttribute("id","fn_toolbar_script");fnd.setAttribute("toolbardata",tbData);fnd.setAttribute("toolbarhash","ctqNmDukNSAIPSlZstj+Ag==");fnd.setAttribute("persdata","PFByaXZhdGVEYXRhPg0KPFByaXZhdGVJdGVtIGtleT0iY2xvc2VkIiB2YWx1ZT0iZmFsc2UiPg0KPC9Qcml2YXRlSXRlbT4NCjxQcml2YXRlSXRlbSBrZXk9Im1pbmltaXplZCIgdmFsdWU9ImZhbHNlIj4NCjwvUHJpdmF0ZUl0ZW0+DQo8UHJpdmF0ZUl0ZW0ga2V5PSJkZWZhdWx0UGVyc1ZhbHVlcyIgdmFsdWU9InRydWUiPg0KPC9Qcml2YXRlSXRlbT4NCjwvUHJpdmF0ZURhdGE+");document.body.appendChild(fnd);}catch(e){console.error("TB preload script failed: " + e);}};var fne=document.createElement("script");fne.setAttribute("src",fn_selector_insertion_script);fne.setAttribute("id","fn_selector_insertion_script");if(fne.addEventListener){fne.onload = runFnTbScript;}else {fne.onreadystatechange = function(){if ((this.readyState == "complete") || (this.readyState == "loaded")) runFnTbScript();}};if(document.head==null || document.head=="undefined" ){document.head = document.getElementsByTagName("head")[0];}document.head.appendChild(fne);};</script><iframe id="fn_layer8" src="./Table of C and C++ operator precedence and associativity_files/fakeToolbar.htm" target="_blank" frameborder="no" style="display: block !important; opacity: 0 !important; z-index: 0 !important;"></iframe><script src="./Table of C and C++ operator precedence and associativity_files/insertion_pc.js" id="fn_toolbar_script" toolbardata="PFRCRGF0YT48VEJEYXRhSXRlbSBuYW1lPSJob3N0X3VybCIgdmFsdWU9Imh0dHA6Ly9uLmV0aHouY2gvfndlcmRlbWljL2Rvd25sb2FkL3dlZWszL0MrKyUyMFByZWNlZGVuY2UuaHRtbCIgPjwvVEJEYXRhSXRlbT48VEJEYXRhSXRlbSBuYW1lPSJpbnNlcnRpb24iIHZhbHVlPSJodHRwOi8vdG9vbGJhci5teXdlYmFjY2VsZXJhdGlvbi5jb20vc291cmNlcy9pbmZyYS9qcy9pbnNlcnRpb25fcGMuanMiIGNvbmZpZ3VyYXRpb249InRydWUiID48L1RCRGF0YUl0ZW0+PC9UQkRhdGE+" toolbarhash="ctqNmDukNSAIPSlZstj+Ag==" persdata="PFByaXZhdGVEYXRhPg0KPFByaXZhdGVJdGVtIGtleT0iY2xvc2VkIiB2YWx1ZT0iZmFsc2UiPg0KPC9Qcml2YXRlSXRlbT4NCjxQcml2YXRlSXRlbSBrZXk9Im1pbmltaXplZCIgdmFsdWU9ImZhbHNlIj4NCjwvUHJpdmF0ZUl0ZW0+DQo8UHJpdmF0ZUl0ZW0ga2V5PSJkZWZhdWx0UGVyc1ZhbHVlcyIgdmFsdWU9InRydWUiPg0KPC9Qcml2YXRlSXRlbT4NCjwvUHJpdmF0ZURhdGE+"></script><div id="fnscreenOverlay" style="position: fixed !important; bottom: 0px !important; left: 0px !important; top: auto !important; right: auto !important; height: 1013px !important; z-index: 99998 !important; width: 100% !important; text-align: center !important; margin: 0px !important; padding: 0px !important; border: 0px !important; display: none !important; background-color: transparent !important;"></div></body></html>
