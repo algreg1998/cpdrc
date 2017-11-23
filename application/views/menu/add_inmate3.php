@@ -64,7 +64,7 @@
 				</div>			
 					<?php 
 						$attr = array('class' => 'form_horizontal');
-						if(isset($info)){
+						if($info!=null){
 							echo form_open('cpdrc/editinmate/edit3', $attr);
 						}else{
 							echo form_open('cpdrc/addinmate/add3', $attr);
@@ -82,21 +82,21 @@
 
 								<div class="col-md-6">
 									<label><i class="fa fa-arrows-v"></i> <b>Height in centimeters</b></label>
-									<input type="number" name="height" class="form-control" required autofocus  value="<?php if(isset($info)){echo $info->height;}?>">
+									<input type="number" name="height" class="form-control" required autofocus  value="<?php if($info!=null){echo $info->height;}?>">
 								</div>
 								<div class="col-md-6">
 									<label><i class="fa fa-tachometer"></i> <b>Weight in pounds</b></label>
-									<input type="number" name="weight" class="form-control" required value="<?php if(isset($info)){echo $info->weight;}?>">		
+									<input type="number" name="weight" class="form-control" required value="<?php if($info!=null){echo $info->weight;}?>">		
 								</div>
 							</div><br>
 							<label><i class="fa fa-user-md"></i> <b>Body Build</b></label>
-							<input type="text" name="build" class="form-control" required value="<?php if(isset($info)){echo $info->build;}?>">
+							<input type="text" name="build" class="form-control" required value="<?php if($info!=null){echo $info->build;}?>">
 							<label><i class="fa fa-user"></i> <b>Body Complexion</b></label>
-							<textarea rows="3" type="text" name="complexion" class="form-control" required ><?php if(isset($info)){echo $info->complexion;}?></textarea>
+							<textarea rows="3" type="text" name="complexion" class="form-control" required ><?php if($info!=null){echo $info->complexion;}?></textarea>
 							<label><i class="fa fa-crosshairs"></i> <b>Hair</b></label>
-							<input type="text" name="hair" class="form-control" required value="<?php if(isset($info)){echo $info->hair;}?>">
+							<input type="text" name="hair" class="form-control" required value="<?php if($info!=null){echo $info->hair;}?>">
 							<label><i class="fa fa-info"></i> <b>Hair Peculiarities</b></label>
-							<textarea rows="3" type="text" name="hairp" class="form-control" required ><?php if(isset($info)){echo $info->hair_peculiarities;}?></textarea><br>
+							<textarea rows="3" type="text" name="hairp" class="form-control" required ><?php if($info!=null){echo $info->hair_peculiarities;}?></textarea><br>
 							<button class="form-control btn btn-warning" type="submit">Submit Form</button>
 
 			    	</div>

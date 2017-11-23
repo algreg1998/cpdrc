@@ -75,6 +75,7 @@ session_start();
 					$info['id'] = $user_id;
 					$info['name'] = $info['inmate_lname'].", ".$info['inmate_fname']." ".$info['inmate_mi'];
 					$info['filename'] = $filename;
+					$info['info'] = null;
 
 						$this->data['title']    = 'Manage Inmate';
                         $this->data['css']      = array();
@@ -169,6 +170,7 @@ session_start();
 		    		$data['formid'] = $this->input->post('formid');
 		    		$data['name'] = $this->input->post('name');
 		    		$data['filename'] = $filename;
+		    		$data['info'] = null;
 		    		
 		    		$this->data['title']    = 'Manage Inmate';
 		    		$this->data['css']      = array();
