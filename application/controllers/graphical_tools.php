@@ -137,6 +137,8 @@ class Graphical_tools extends Admin_Controller {
 		$this->data['js_bottom']= array('vendor/highcharts/highcharts.js','vendor/highcharts/modules/exporting.js');
 		$this->data['custom_js']= "<script type='text/javascript'>
 										var monthname = 'November'
+										$('.nav-graphical').addClass('active');
+											$('.nav-graphical-addReleased a').addClass('active');
 									</script>";
 		$this->load->view('templates',$this->data);
 	}

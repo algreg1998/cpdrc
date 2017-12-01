@@ -3,8 +3,12 @@
 
     <div class="row">
         <div class="col-lg-12">
-            <h3 class="page-header">Historical Graphical Tools
+            <h3 class="page-header">Historical Graphical Tools 
             </h3>
+            <h1>
+            	Static DATA.... Not yet dynamic
+            	prepared for the reports
+            </h1>
         </div>
     </div>
    
@@ -71,7 +75,7 @@
         },
 	    series: [{
 	        type: "spline",
-	        name: "Remained",
+	        name: "Remand",
 	        data: [1, 5, 1, 2,1, 2, 1,5,1, 2, 1, 12,1, 1, 1, 2]
 	    },{
 	        type: "spline",
