@@ -47,15 +47,15 @@
                                                 <?php }?>
                                                         <?php if($d->status =="pending"){?>
                                                         <label class="label label-default" style="font-size: 100%;"><?php echo ucwords($d->status); ?>
-                                                            ></label>
+                                                            </label>
                                                 <?php }?>
                                                             <?php if($d->status =="rejected"){?>
                                                             <label class="label label-danger" style="font-size: 100%;"><?php echo ucwords($d->status); ?>
-                                                                ></label>
+                                                                </label>
                                                 <?php }?>
                                                                 <?php if($d->status =="finished"){?>
                                                                 <label class="label label-primary" style="font-size: 100%;"><?php echo ucwords($d->status); ?>
-                                                                    ></label>
+                                                                    </label>
                                                 <?php }?>
                                                 </td>
                                                 <?php if($d->status =="pending"){?>
