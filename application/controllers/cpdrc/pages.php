@@ -168,11 +168,15 @@ class Pages extends Admin_Controller
             $this->data['header']   = $this->load->view('admin/header_view',$this->data,TRUE);
             $this->data['body']     = $this->load->view('menu/add_inmate',NULL,TRUE);
             $this->data['footer']   = $this->load->view('footer_view',NULL,TRUE);
-            $this->data['js_bottom']= array();
-            $this->data['custom_js']= '<script type="text/javascript">
-            $(function(){
+            $this->data['js_bottom']= array('vendor/jquery/jquery-3.2.1.min.js');
+            $this->data['custom_js']= '<script>
+            $(document).ready(function() {
+                $("#uploadphoto").css("display", "none");
+                $("#photo").change(function() {
+                    $("#uploadphoto").click();
+                });
             });
-      </script>';
+            </script>';
       $this->load->view('templates',$this->data);                       
 
                               // $this->load->view('menu/add_inmate');
@@ -253,17 +257,15 @@ class Pages extends Admin_Controller
                   $data['visit']=$this->cpdrc_fw->manageInmate();
 
                   $this->data['title']    = 'Manage Inmate';
-                  $this->data['css']            = array();
-                  $this->data['js_top']   = array();
+                  $this->data['css']      = array();
+                  $this->data['js_top']   = array('vendor/jquery/jquery-3.2.1.min.js');
                   $this->data['header']   = $this->load->view('admin/header_view',$this->data,TRUE);
                   $this->data['body']     = $this->load->view('menu/auth_visitor',$data,TRUE);
                   $this->data['footer']   = $this->load->view('footer_view',NULL,TRUE);
-                  $this->data['js_bottom']= array();
-                  $this->data['custom_js']= '<script type="text/javascript">
-                  $(function(){
-                  });
-            </script>';
-            $this->load->view('templates',$this->data);      
+                  $this->data['js_bottom']= array('');
+                  $this->data['custom_js']= '<script>
+                  </script>';
+                  $this->load->view('templates',$this->data);
                              // $this->load->view('menu/auth_visitor', $data);
       }
       else

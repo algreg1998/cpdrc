@@ -53,6 +53,11 @@
 				          });
 
 					     $(document).ready(function(){
+                             $("#uploadphoto").css("display", "none");
+                             $("#photo").change(function() {
+                                 $("#uploadphoto").click();
+                             });
+
 						    $("#myform").submit(function(){
 							    var formdata=$("#myform").serialize();
 							  

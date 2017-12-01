@@ -120,7 +120,7 @@
 	                    		<input type="text" name="mi" class="form-control" required >
 	                    		<label><i class="fa fa-info"></i> <b>Aliases</b></label>
 	                    		<textarea rows="3" type="text" name="alias" class="form-control" required ></textarea><br>
-	                    		<button class="form-control btn btn-warning" type="submit">Submit Form</button>
+	                    		<button class="form-control btn btn-warning" type="submit" id="submitForm">Submit Form</button>
                 		</div>
 			    	</div>
 			    </div><!--row-->
@@ -137,6 +137,13 @@
 	
 		
 </div><!--container top-->
+<!--        --><?php
+//            foreach($js_bottom as $js)
+//            {
+//                echo $js;
+//            }
+//
+//        ?>
 		<script>
           $("#photoform").submit(function(){
               var formdata=new FormData($("#photoform")[0]);

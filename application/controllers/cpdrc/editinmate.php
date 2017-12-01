@@ -16,19 +16,20 @@ session_start();
 			$data['data'] = $this->admin_model->getAllEditReqs();
 			// echo $this->admin_model->db->last_query();
 	   		$this->data['title']    = 'Manage Inmate';
-            $this->data['css']      = array();
+            $this->data['css']      = array('');
             $this->data['js_top']   = array();
             $this->data['header']   = $this->load->view('admin/header_view',$this->data,TRUE);
             $this->data['body']     = $this->load->view('admin/editRequest_view',$data,TRUE);
             $this->data['footer']   = $this->load->view('footer_view',NULL,TRUE);
             $this->data['js_bottom']= array(
 							'vendor/datatables/media/js/jquery.dataTables.min.js',
-							'vendor/datatables-plugins/integration/boolval(var)tstrap/3/dataTables.bootstrap.js',
+							'vendor/datatables-plugins/integration/bootstrap/3/dataTables.bootstrap.js',
 						);
             $this->data['custom_js']= '<script type="text/javascript">
-                  $(function(){
-                  });
-            </script>';
+                                            $(function(){
+                                                $(".nav-editReq").addClass("active");
+                                            });
+									    </script>';
             $this->load->view('templates',$this->data); 
 	   	}	
 
