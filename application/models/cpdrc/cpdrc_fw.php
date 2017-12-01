@@ -259,13 +259,21 @@ class cpdrc_fw extends CI_Model
 
 			return $ins['count'];
 	 	}
-	 	public function getMunicipalityReport($where){
-	 		$place='';
-	 		$query = $this->db->query("
+	 	public function getMunicipalityReport($where,$gender){
+	 		if($gender != "both"){
+	 			$query = $this->db->query("
+	 				SELECT IFNULL(place,'') AS place, COUNT(inmate_id) as count
+	 				FROM inmate_info
+	 				WHERE place = '".$where."' AND inmate_info.gender ='".$gender."'	
+	 			");
+	 		}else{
+	 			$query = $this->db->query("
 	 				SELECT IFNULL(place,'') AS place, COUNT(inmate_id) as count
 	 				FROM inmate_info
 	 				WHERE place = '".$where."'	
 	 			");
+	 		}
+	 		
 	 		$ins = array();
 
 				foreach ($query->result() as $key) {

@@ -7,6 +7,7 @@ class Pages extends Admin_Controller
             parent::__construct();
             $this->load->model('cpdrc/cpdrc_fw','',TRUE);
             $this->load->library('session');
+            $this->load->library('form_validation');
       }			
 
       public function index()
@@ -515,7 +516,7 @@ public function getPrisonStrength($year,$month,$day){
 public function reportsDaily()
 {
       $user=$this->session->userdata('logged_in');
-      $this->load->library('form_validation');
+      
       if(!empty($user['user_id'])){
 
        if ($this->form_validation->run() != TRUE )
@@ -1043,116 +1044,127 @@ return $ret;
 }
 public function municipality()
 {
+      if ($this->form_validation->run() != TRUE ) 
+      {
+            $gender = $this->input->post('gender');
+      }
+
+      if($gender == '')
+      {
+            $gender = "both";
+      }
+      $data['gender'] = $gender;
 
       $municipalities = array();
 
-      $a = $this->cpdrc_fw->getMunicipalityReport("Alcantara");
+      $a = $this->cpdrc_fw->getMunicipalityReport("Alcantara",$gender);
       $municipalities [] = $a;
-      $a = $this->cpdrc_fw->getMunicipalityReport("Alcoy");
+      $a = $this->cpdrc_fw->getMunicipalityReport("Alcoy",$gender);
       $municipalities [] = $a;
-      $a = $this->cpdrc_fw->getMunicipalityReport("Alegria");
+      $a = $this->cpdrc_fw->getMunicipalityReport("Alegria",$gender);
       $municipalities [] = $a;
-      $a = $this->cpdrc_fw->getMunicipalityReport("Aloguinsan");
+      $a = $this->cpdrc_fw->getMunicipalityReport("Aloguinsan",$gender);
       $municipalities [] = $a;
-      $a = $this->cpdrc_fw->getMunicipalityReport("Argao");
+      $a = $this->cpdrc_fw->getMunicipalityReport("Argao",$gender);
       $municipalities [] = $a;
-      $a = $this->cpdrc_fw->getMunicipalityReport("Asturias");
+      $a = $this->cpdrc_fw->getMunicipalityReport("Asturias",$gender);
       $municipalities [] = $a;
-      $a = $this->cpdrc_fw->getMunicipalityReport("Badian");
+      $a = $this->cpdrc_fw->getMunicipalityReport("Badian",$gender);
       $municipalities [] = $a;
-      $a = $this->cpdrc_fw->getMunicipalityReport("Balamban");
+      $a = $this->cpdrc_fw->getMunicipalityReport("Balamban",$gender);
       $municipalities [] = $a;
-      $a = $this->cpdrc_fw->getMunicipalityReport("Bantayan");
+      $a = $this->cpdrc_fw->getMunicipalityReport("Bantayan",$gender);
       $municipalities [] = $a;
-      $a = $this->cpdrc_fw->getMunicipalityReport("Barili");
+      $a = $this->cpdrc_fw->getMunicipalityReport("Barili",$gender);
       $municipalities [] = $a;
-      $a = $this->cpdrc_fw->getMunicipalityReport("Bogo");
+      $a = $this->cpdrc_fw->getMunicipalityReport("Bogo",$gender);
       $municipalities [] = $a;
-      $a = $this->cpdrc_fw->getMunicipalityReport("Boljoon");
+      $a = $this->cpdrc_fw->getMunicipalityReport("Boljoon",$gender);
       $municipalities [] = $a;
-      $a = $this->cpdrc_fw->getMunicipalityReport("Borbon");
+      $a = $this->cpdrc_fw->getMunicipalityReport("Borbon",$gender);
       $municipalities [] = $a;
-      $a = $this->cpdrc_fw->getMunicipalityReport("Carcar");
+      $a = $this->cpdrc_fw->getMunicipalityReport("Carcar",$gender);
       $municipalities [] = $a;
-      $a = $this->cpdrc_fw->getMunicipalityReport("Carmen");
+      $a = $this->cpdrc_fw->getMunicipalityReport("Carmen",$gender);
       $municipalities [] = $a;
-      $a = $this->cpdrc_fw->getMunicipalityReport("Catmon");
+      $a = $this->cpdrc_fw->getMunicipalityReport("Catmon",$gender);
       $municipalities [] = $a;
-      $a = $this->cpdrc_fw->getMunicipalityReport("Cebu City");
+      $a = $this->cpdrc_fw->getMunicipalityReport("Cebu City",$gender);
       $municipalities [] = $a;
-      $a = $this->cpdrc_fw->getMunicipalityReport("Compostela");
+      $a = $this->cpdrc_fw->getMunicipalityReport("Compostela",$gender);
       $municipalities [] = $a;
-      $a = $this->cpdrc_fw->getMunicipalityReport("Consolacion");
+      $a = $this->cpdrc_fw->getMunicipalityReport("Consolacion",$gender);
       $municipalities [] = $a;
-      $a = $this->cpdrc_fw->getMunicipalityReport("Cordova");
+      $a = $this->cpdrc_fw->getMunicipalityReport("Cordova",$gender);
       $municipalities [] = $a;
-      $a = $this->cpdrc_fw->getMunicipalityReport("Daanbantayan");
+      $a = $this->cpdrc_fw->getMunicipalityReport("Daanbantayan",$gender);
       $municipalities [] = $a;
-      $a = $this->cpdrc_fw->getMunicipalityReport("Dalaguete");
+      $a = $this->cpdrc_fw->getMunicipalityReport("Dalaguete",$gender);
       $municipalities [] = $a;
-      $a = $this->cpdrc_fw->getMunicipalityReport("Danao City");
+      $a = $this->cpdrc_fw->getMunicipalityReport("Danao City",$gender);
       $municipalities [] = $a;
-      $a = $this->cpdrc_fw->getMunicipalityReport("Dumanjug");
+      $a = $this->cpdrc_fw->getMunicipalityReport("Dumanjug",$gender);
       $municipalities [] = $a;
-      $a = $this->cpdrc_fw->getMunicipalityReport("Ginatilan");
+      $a = $this->cpdrc_fw->getMunicipalityReport("Ginatilan",$gender);
       $municipalities [] = $a;
-      $a = $this->cpdrc_fw->getMunicipalityReport("Lapu-Lapu City");
+      $a = $this->cpdrc_fw->getMunicipalityReport("Lapu-Lapu City",$gender);
       $municipalities [] = $a;
-      $a = $this->cpdrc_fw->getMunicipalityReport("Liloan");
+      $a = $this->cpdrc_fw->getMunicipalityReport("Liloan",$gender);
       $municipalities [] = $a;
-      $a = $this->cpdrc_fw->getMunicipalityReport("Madridejos");
+      $a = $this->cpdrc_fw->getMunicipalityReport("Madridejos",$gender);
       $municipalities [] = $a;
-      $a = $this->cpdrc_fw->getMunicipalityReport("Malabuyoc");
+      $a = $this->cpdrc_fw->getMunicipalityReport("Malabuyoc",$gender);
       $municipalities [] = $a;
-      $a = $this->cpdrc_fw->getMunicipalityReport("Mandaue City");
+      $a = $this->cpdrc_fw->getMunicipalityReport("Mandaue City",$gender);
       $municipalities [] = $a;
-      $a = $this->cpdrc_fw->getMunicipalityReport("Medellin");
+      $a = $this->cpdrc_fw->getMunicipalityReport("Medellin",$gender);
       $municipalities [] = $a;
-      $a = $this->cpdrc_fw->getMunicipalityReport("Minglanilla");
+      $a = $this->cpdrc_fw->getMunicipalityReport("Minglanilla",$gender);
       $municipalities [] = $a;
-      $a = $this->cpdrc_fw->getMunicipalityReport("Moalboal");
+      $a = $this->cpdrc_fw->getMunicipalityReport("Moalboal",$gender);
       $municipalities [] = $a;
-      $a = $this->cpdrc_fw->getMunicipalityReport("Naga");
+      $a = $this->cpdrc_fw->getMunicipalityReport("Naga",$gender);
       $municipalities [] = $a;
-      $a = $this->cpdrc_fw->getMunicipalityReport("Oslob");
+      $a = $this->cpdrc_fw->getMunicipalityReport("Oslob",$gender);
       $municipalities [] = $a;
-      $a = $this->cpdrc_fw->getMunicipalityReport("Pilar");
+      $a = $this->cpdrc_fw->getMunicipalityReport("Pilar",$gender);
       $municipalities [] = $a;
-      $a = $this->cpdrc_fw->getMunicipalityReport("Pinamungahan");
+      $a = $this->cpdrc_fw->getMunicipalityReport("Pinamungahan",$gender);
       $municipalities [] = $a;
-      $a = $this->cpdrc_fw->getMunicipalityReport("Poro");
+      $a = $this->cpdrc_fw->getMunicipalityReport("Poro",$gender);
       $municipalities [] = $a;
-      $a = $this->cpdrc_fw->getMunicipalityReport("Ronda");
+      $a = $this->cpdrc_fw->getMunicipalityReport("Ronda",$gender);
       $municipalities [] = $a;
-      $a = $this->cpdrc_fw->getMunicipalityReport("Samboan");
+      $a = $this->cpdrc_fw->getMunicipalityReport("Samboan",$gender);
       $municipalities [] = $a;
-      $a = $this->cpdrc_fw->getMunicipalityReport("San Fernando");
+      $a = $this->cpdrc_fw->getMunicipalityReport("San Fernando",$gender);
       $municipalities [] = $a;
-      $a = $this->cpdrc_fw->getMunicipalityReport("San Francisco");
+      $a = $this->cpdrc_fw->getMunicipalityReport("San Francisco",$gender);
       $municipalities [] = $a;
-      $a = $this->cpdrc_fw->getMunicipalityReport("San Remigio");
+      $a = $this->cpdrc_fw->getMunicipalityReport("San Remigio",$gender);
       $municipalities [] = $a;
-      $a = $this->cpdrc_fw->getMunicipalityReport("Santa Fe");
+      $a = $this->cpdrc_fw->getMunicipalityReport("Santa Fe",$gender);
       $municipalities [] = $a;
-      $a = $this->cpdrc_fw->getMunicipalityReport("Santander");
+      $a = $this->cpdrc_fw->getMunicipalityReport("Santander",$gender);
       $municipalities [] = $a;
-      $a = $this->cpdrc_fw->getMunicipalityReport("Sibonga");
+      $a = $this->cpdrc_fw->getMunicipalityReport("Sibonga",$gender);
       $municipalities [] = $a;
-      $a = $this->cpdrc_fw->getMunicipalityReport("Sogod");
+      $a = $this->cpdrc_fw->getMunicipalityReport("Sogod",$gender);
       $municipalities [] = $a;
-      $a = $this->cpdrc_fw->getMunicipalityReport("Tabogon");
+      $a = $this->cpdrc_fw->getMunicipalityReport("Tabogon",$gender);
       $municipalities [] = $a;
-      $a = $this->cpdrc_fw->getMunicipalityReport("Tabuelan");
+      $a = $this->cpdrc_fw->getMunicipalityReport("Tabuelan",$gender);
       $municipalities [] = $a;
-      $a = $this->cpdrc_fw->getMunicipalityReport("Talisay City");
+      $a = $this->cpdrc_fw->getMunicipalityReport("Talisay City",$gender);
       $municipalities [] = $a;
-      $a = $this->cpdrc_fw->getMunicipalityReport("Tuburan");
+      $a = $this->cpdrc_fw->getMunicipalityReport("Tuburan",$gender);
       $municipalities [] = $a;
-      $a = $this->cpdrc_fw->getMunicipalityReport("Tudela");
+      $a = $this->cpdrc_fw->getMunicipalityReport("Tudela",$gender);
       $municipalities [] = $a;
-      $a = $this->cpdrc_fw->getMunicipalityReport("Toledo");
+      $a = $this->cpdrc_fw->getMunicipalityReport("Toledo",$gender);
       $municipalities [] = $a;
-
+            
+            
 
       $data['municipalities'] = $municipalities;
       $this->data['title']    = 'Manage Inmate';
@@ -1323,121 +1335,121 @@ public function crimeIndexTabulated()
                      
                   $pdf->Output();
             }
-      public function getMuniRep(){
+      public function getMuniRep($gender){
                   $municipalities = array();
 
-                  $a = $this->cpdrc_fw->getMunicipalityReport("Alcantara");
+                  $a = $this->cpdrc_fw->getMunicipalityReport("Alcantara",$gender);
                   $municipalities [] = $a;
-                  $a = $this->cpdrc_fw->getMunicipalityReport("Alcoy");
+                  $a = $this->cpdrc_fw->getMunicipalityReport("Alcoy",$gender);
                   $municipalities [] = $a;
-                  $a = $this->cpdrc_fw->getMunicipalityReport("Alegria");
+                  $a = $this->cpdrc_fw->getMunicipalityReport("Alegria",$gender);
                   $municipalities [] = $a;
-                  $a = $this->cpdrc_fw->getMunicipalityReport("Aloguinsan");
+                  $a = $this->cpdrc_fw->getMunicipalityReport("Aloguinsan",$gender);
                   $municipalities [] = $a;
-                  $a = $this->cpdrc_fw->getMunicipalityReport("Argao");
+                  $a = $this->cpdrc_fw->getMunicipalityReport("Argao",$gender);
                   $municipalities [] = $a;
-                  $a = $this->cpdrc_fw->getMunicipalityReport("Asturias");
+                  $a = $this->cpdrc_fw->getMunicipalityReport("Asturias",$gender);
                   $municipalities [] = $a;
-                  $a = $this->cpdrc_fw->getMunicipalityReport("Badian");
+                  $a = $this->cpdrc_fw->getMunicipalityReport("Badian",$gender);
                   $municipalities [] = $a;
-                  $a = $this->cpdrc_fw->getMunicipalityReport("Balamban");
+                  $a = $this->cpdrc_fw->getMunicipalityReport("Balamban",$gender);
                   $municipalities [] = $a;
-                  $a = $this->cpdrc_fw->getMunicipalityReport("Bantayan");
+                  $a = $this->cpdrc_fw->getMunicipalityReport("Bantayan",$gender);
                   $municipalities [] = $a;
-                  $a = $this->cpdrc_fw->getMunicipalityReport("Barili");
+                  $a = $this->cpdrc_fw->getMunicipalityReport("Barili",$gender);
                   $municipalities [] = $a;
-                  $a = $this->cpdrc_fw->getMunicipalityReport("Bogo");
+                  $a = $this->cpdrc_fw->getMunicipalityReport("Bogo",$gender);
                   $municipalities [] = $a;
-                  $a = $this->cpdrc_fw->getMunicipalityReport("Boljoon");
+                  $a = $this->cpdrc_fw->getMunicipalityReport("Boljoon",$gender);
                   $municipalities [] = $a;
-                  $a = $this->cpdrc_fw->getMunicipalityReport("Borbon");
+                  $a = $this->cpdrc_fw->getMunicipalityReport("Borbon",$gender);
                   $municipalities [] = $a;
-                  $a = $this->cpdrc_fw->getMunicipalityReport("Carcar");
+                  $a = $this->cpdrc_fw->getMunicipalityReport("Carcar",$gender);
                   $municipalities [] = $a;
-                  $a = $this->cpdrc_fw->getMunicipalityReport("Carmen");
+                  $a = $this->cpdrc_fw->getMunicipalityReport("Carmen",$gender);
                   $municipalities [] = $a;
-                  $a = $this->cpdrc_fw->getMunicipalityReport("Catmon");
+                  $a = $this->cpdrc_fw->getMunicipalityReport("Catmon",$gender);
                   $municipalities [] = $a;
-                  $a = $this->cpdrc_fw->getMunicipalityReport("Cebu City");
+                  $a = $this->cpdrc_fw->getMunicipalityReport("Cebu City",$gender);
                   $municipalities [] = $a;
-                  $a = $this->cpdrc_fw->getMunicipalityReport("Compostela");
+                  $a = $this->cpdrc_fw->getMunicipalityReport("Compostela",$gender);
                   $municipalities [] = $a;
-                  $a = $this->cpdrc_fw->getMunicipalityReport("Consolacion");
+                  $a = $this->cpdrc_fw->getMunicipalityReport("Consolacion",$gender);
                   $municipalities [] = $a;
-                  $a = $this->cpdrc_fw->getMunicipalityReport("Cordova");
+                  $a = $this->cpdrc_fw->getMunicipalityReport("Cordova",$gender);
                   $municipalities [] = $a;
-                  $a = $this->cpdrc_fw->getMunicipalityReport("Daanbantayan");
+                  $a = $this->cpdrc_fw->getMunicipalityReport("Daanbantayan",$gender);
                   $municipalities [] = $a;
-                  $a = $this->cpdrc_fw->getMunicipalityReport("Dalaguete");
+                  $a = $this->cpdrc_fw->getMunicipalityReport("Dalaguete",$gender);
                   $municipalities [] = $a;
-                  $a = $this->cpdrc_fw->getMunicipalityReport("Danao City");
+                  $a = $this->cpdrc_fw->getMunicipalityReport("Danao City",$gender);
                   $municipalities [] = $a;
-                  $a = $this->cpdrc_fw->getMunicipalityReport("Dumanjug");
+                  $a = $this->cpdrc_fw->getMunicipalityReport("Dumanjug",$gender);
                   $municipalities [] = $a;
-                  $a = $this->cpdrc_fw->getMunicipalityReport("Ginatilan");
+                  $a = $this->cpdrc_fw->getMunicipalityReport("Ginatilan",$gender);
                   $municipalities [] = $a;
-                  $a = $this->cpdrc_fw->getMunicipalityReport("Lapu-Lapu City");
+                  $a = $this->cpdrc_fw->getMunicipalityReport("Lapu-Lapu City",$gender);
                   $municipalities [] = $a;
-                  $a = $this->cpdrc_fw->getMunicipalityReport("Liloan");
+                  $a = $this->cpdrc_fw->getMunicipalityReport("Liloan",$gender);
                   $municipalities [] = $a;
-                  $a = $this->cpdrc_fw->getMunicipalityReport("Madridejos");
+                  $a = $this->cpdrc_fw->getMunicipalityReport("Madridejos",$gender);
                   $municipalities [] = $a;
-                  $a = $this->cpdrc_fw->getMunicipalityReport("Malabuyoc");
+                  $a = $this->cpdrc_fw->getMunicipalityReport("Malabuyoc",$gender);
                   $municipalities [] = $a;
-                  $a = $this->cpdrc_fw->getMunicipalityReport("Mandaue City");
+                  $a = $this->cpdrc_fw->getMunicipalityReport("Mandaue City",$gender);
                   $municipalities [] = $a;
-                  $a = $this->cpdrc_fw->getMunicipalityReport("Medellin");
+                  $a = $this->cpdrc_fw->getMunicipalityReport("Medellin",$gender);
                   $municipalities [] = $a;
-                  $a = $this->cpdrc_fw->getMunicipalityReport("Minglanilla");
+                  $a = $this->cpdrc_fw->getMunicipalityReport("Minglanilla",$gender);
                   $municipalities [] = $a;
-                  $a = $this->cpdrc_fw->getMunicipalityReport("Moalboal");
+                  $a = $this->cpdrc_fw->getMunicipalityReport("Moalboal",$gender);
                   $municipalities [] = $a;
-                  $a = $this->cpdrc_fw->getMunicipalityReport("Naga");
+                  $a = $this->cpdrc_fw->getMunicipalityReport("Naga",$gender);
                   $municipalities [] = $a;
-                  $a = $this->cpdrc_fw->getMunicipalityReport("Oslob");
+                  $a = $this->cpdrc_fw->getMunicipalityReport("Oslob",$gender);
                   $municipalities [] = $a;
-                  $a = $this->cpdrc_fw->getMunicipalityReport("Pilar");
+                  $a = $this->cpdrc_fw->getMunicipalityReport("Pilar",$gender);
                   $municipalities [] = $a;
-                  $a = $this->cpdrc_fw->getMunicipalityReport("Pinamungahan");
+                  $a = $this->cpdrc_fw->getMunicipalityReport("Pinamungahan",$gender);
                   $municipalities [] = $a;
-                  $a = $this->cpdrc_fw->getMunicipalityReport("Poro");
+                  $a = $this->cpdrc_fw->getMunicipalityReport("Poro",$gender);
                   $municipalities [] = $a;
-                  $a = $this->cpdrc_fw->getMunicipalityReport("Ronda");
+                  $a = $this->cpdrc_fw->getMunicipalityReport("Ronda",$gender);
                   $municipalities [] = $a;
-                  $a = $this->cpdrc_fw->getMunicipalityReport("Samboan");
+                  $a = $this->cpdrc_fw->getMunicipalityReport("Samboan",$gender);
                   $municipalities [] = $a;
-                  $a = $this->cpdrc_fw->getMunicipalityReport("San Fernando");
+                  $a = $this->cpdrc_fw->getMunicipalityReport("San Fernando",$gender);
                   $municipalities [] = $a;
-                  $a = $this->cpdrc_fw->getMunicipalityReport("San Francisco");
+                  $a = $this->cpdrc_fw->getMunicipalityReport("San Francisco",$gender);
                   $municipalities [] = $a;
-                  $a = $this->cpdrc_fw->getMunicipalityReport("San Remigio");
+                  $a = $this->cpdrc_fw->getMunicipalityReport("San Remigio",$gender);
                   $municipalities [] = $a;
-                  $a = $this->cpdrc_fw->getMunicipalityReport("Santa Fe");
+                  $a = $this->cpdrc_fw->getMunicipalityReport("Santa Fe",$gender);
                   $municipalities [] = $a;
-                  $a = $this->cpdrc_fw->getMunicipalityReport("Santander");
+                  $a = $this->cpdrc_fw->getMunicipalityReport("Santander",$gender);
                   $municipalities [] = $a;
-                  $a = $this->cpdrc_fw->getMunicipalityReport("Sibonga");
+                  $a = $this->cpdrc_fw->getMunicipalityReport("Sibonga",$gender);
                   $municipalities [] = $a;
-                  $a = $this->cpdrc_fw->getMunicipalityReport("Sogod");
+                  $a = $this->cpdrc_fw->getMunicipalityReport("Sogod",$gender);
                   $municipalities [] = $a;
-                  $a = $this->cpdrc_fw->getMunicipalityReport("Tabogon");
+                  $a = $this->cpdrc_fw->getMunicipalityReport("Tabogon",$gender);
                   $municipalities [] = $a;
-                  $a = $this->cpdrc_fw->getMunicipalityReport("Tabuelan");
+                  $a = $this->cpdrc_fw->getMunicipalityReport("Tabuelan",$gender);
                   $municipalities [] = $a;
-                  $a = $this->cpdrc_fw->getMunicipalityReport("Talisay City");
+                  $a = $this->cpdrc_fw->getMunicipalityReport("Talisay City",$gender);
                   $municipalities [] = $a;
-                  $a = $this->cpdrc_fw->getMunicipalityReport("Tuburan");
+                  $a = $this->cpdrc_fw->getMunicipalityReport("Tuburan",$gender);
                   $municipalities [] = $a;
-                  $a = $this->cpdrc_fw->getMunicipalityReport("Tudela");
+                  $a = $this->cpdrc_fw->getMunicipalityReport("Tudela",$gender);
                   $municipalities [] = $a;
-                  $a = $this->cpdrc_fw->getMunicipalityReport("Toledo");
+                  $a = $this->cpdrc_fw->getMunicipalityReport("Toledo",$gender);
                   $municipalities [] = $a;
                   return $municipalities;
             }
-            public function printMunicipality(){
+            public function printMunicipality($gender){
                   $this->load->library('GODpdf');
 
-                  $muni = $this->getMuniRep();
+                  $muni = $this->getMuniRep($gender);
                   //echo json_encode($muni);
                   // $a = json_decode(json_encode($muni));
                   // $b =  json_decode(json_encode($a[0]));
