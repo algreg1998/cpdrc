@@ -13,6 +13,7 @@ class cpdrc_fw extends CI_Model
 	   		parent::__construct();
 
 	 	}
+	 	
 	 	public function getCrimeName($id){
 	 		$query = $this->db->query("SELECT name
 	 									FROM cs_violations as cs

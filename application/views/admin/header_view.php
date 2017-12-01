@@ -99,19 +99,22 @@
                         </li>
 
                         <li class="nav-graphical-populations">
-                            <a href="<?php echo base_url('historical-graphical-tools/population') ?>">&nbsp;<i></i>&nbsp;Population</a>
+                            <a href="<?php echo base_url('historical-graphical-tools/population') ?>">&nbsp;&nbsp;&nbsp;Population</a>
                         </li>
                         <li class="nav-graphical-Daily">
-                            <a href="<?php echo base_url('cpdrc/pages/reportsDaily') ?>">Daily</a>
+                            <a href="<?php echo base_url('cpdrc/pages/reportsDaily') ?>">&nbsp;&nbsp;&nbsp;Daily</a>
                         </li>
                         <li class="nav-graphical-releases">
-                            <a href="<?php echo base_url('cpdrc/pages/releases') ?>">Releases</a>
+                            <a href="<?php echo base_url('cpdrc/pages/releases') ?>">&nbsp;&nbsp;&nbsp;Releases</a>
                         </li>
                         <li class="nav-graphical-municipality">
-                            <a href="<?php echo base_url('cpdrc/pages/municipality') ?>">Municipality</a>
+                            <a href="<?php echo base_url('cpdrc/pages/municipality') ?>">&nbsp;&nbsp;&nbsp;Municipality</a>
                         </li>
                         <li class="nav-graphical-addReleased">
-                            <a href="<?php echo base_url('historical-graphical-tools/addReleased') ?>">Remand and Released</a>
+                            <a href="<?php echo base_url('historical-graphical-tools/addReleased') ?>">&nbsp;&nbsp;&nbsp;Remand and Released</a>
+                        </li>
+                        <li class="nav-graphical-popuPie">
+                            <a href="<?php echo base_url('historical-graphical-tools/popuPie') ?>">&nbsp;&nbsp;&nbsp;Population Pie Chart</a>
                         </li>
                         
                     </ul>

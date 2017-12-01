@@ -5,7 +5,18 @@ class Admin_model extends MY_Model {
     public function lastquery () {
         echo $this->db->last_query();
     }
-   
+   public function getMaleFemalCnt(){
+            $query = $this->db->query("SELECT Sum(CASE WHEN inmate_info.gender= 'Male'
+                                        THEN 1 Else 0 End) maleCnt,Sum(CASE WHEN inmate_info.gender= 'Female'
+                                        THEN 1 Else 0 End) femaleCnt,
+                                        COUNT(i.inmate_id) as 'cnt'  
+                                        from inmate as i
+                                        LEFT JOIN inmate_info 
+                                        on i.inmate_id = inmate_info.inmate_id
+                                        WHERE i.status != 'Released' AND i.status = 'Active' 
+                                        ");
+            return $query->result();
+        }
     public function getEditReqStatus($reqBy ,$inmateId){
         $res = $this->db->query('
                 SELECT status
