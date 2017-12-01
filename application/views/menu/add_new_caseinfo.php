@@ -34,7 +34,6 @@
 							<label><i class="fa fa-info"></i> <strong>Court Name</strong></label>
 							<!--input type="text" name="court" class="form-control" required --> <!--Original -->
 							<select name="court" class="form-control" required >
-								
 								<?php 
 									foreach ($courts as $row) {
 									 echo '<option value="'.$row->court_name.'">'.$row->court_name.'</option>';
@@ -43,21 +42,48 @@
 							</select> 
 							<label><i class="fa fa-file"></i> <strong>Crime/Violation</strong></label>
 							<!--textarea rows="3" type="text" name="crime" class="form-control" required ></textarea--><!-- Original -->
+							<?php 
+							if(count($violations) != 0){ 
+
+										echo form_dropdown('crime', $violations, '',' onChange="getViolation();" id="crime"  class="form-control" ');
+									}else{
+										echo '<select  disabled id="crime" onchange="getViolation()" name="crime" class="form-control" >
+												<option>No Crimes</option>
+											</select>';
+										}  ?> <!-- 
 							<select id="crime" name="crime" class="form-control" onchange="getViolation()" required>
 								
 								<?php 
 									foreach ($violations as $row) {
 									 echo '<option value="'.$row->id.'">'.$row->name.'</option>';
 									}
-								?>
+								?> -->
 							</select>
 							<!-- <label><i class="fa fa-file"></i> <b>Crime</b></label>
 							<textarea rows="3" type="text" name="crime" class="form-control" required ></textarea> -->
-							<label><i class="fa fa-file-o"></i> <b>Sentence</b></label>
-							<textarea rows="3" type="text" name="sentence" class="form-control" required ></textarea>
+							<div style="background-color: hsl(0, 100%, 90%); padding: 10px; opacity:0.6; margin-bottom: 10px;"> 
+								<div class="row">
+									<div class="row"><div class="col-md-12" align="center"><h4 >MAX</h4></div></div>
+									<div class="col-md-4" align="center"><label>DAY:</label>&nbsp;<span id="mad"></span></div>
+									<div class="col-md-4" align="center"><label>MONTH:</label>&nbsp;<span id="mam"></span></div>
+									<div class="col-md-4" align="center"><label>YEAR:</label>&nbsp;<span id="may"></span></div>
+								</div>
+								<br>
+								<div class="row">
+									<div class="row"><div class="col-md-12" align="center"><h4 >MINIMUM</h4></div></div>
+									<div class="col-md-4" align="center"><label>DAY:</label>&nbsp;<span id="mid"></span></div>
+									<div class="col-md-4" align="center"><label>MONTH:</label>&nbsp;<span id="mim"></span></div>
+									<div class="col-md-4" align="center"><label>YEAR:</label>&nbsp;<span id="miy"></span></div>
+								</div>
+							</div>
+							<label><i class="fa fa-info"></i> Period of Preventive Imprisonment</label><br>
+							<label>Date Received</label>&nbsp;&nbsp;&nbsp;<input type="date" name="dor"><br>
+							<label>Date Commence</label>&nbsp;&nbsp;&nbsp;<input type="date" name="doc"><br>
+							<!-- <label><i class="fa fa-file-o"></i> <b>Sentence</b></label>
+							<textarea rows="3" type="text" name="sentence" class="form-control" required ></textarea> -->
 							<label><i class="fa fa-info"></i> <b>Commencing</b></label>						
 							<textarea rows="3" type="text" name="commencing" class="form-control" placeholder="Commencing" required ></textarea><br>
-							<label><i class="fa fa-calendar"></i> <b>Expected Date of Release</b></label>
+							<!-- <label><i class="fa fa-calendar"></i> <b>Expected Date of Release</b></label>
 							<div class="row">
 								<div class="col-md-6">
 									<label class="text-muted">With good records</label><input type="date" id="dategood" name="dategood" class="form-control" placeholder="Date of Released(with good record)" required ><br>
@@ -91,7 +117,7 @@
 								<div class="col-md-6">			
 									<label class="text-muted">With misconduct records</label><input type="date" id="datebad" name="datebad" class="form-control" placeholder="Date of Released(with bad record)" required ><br>
 								</div>
-							</div>
+							</div> -->
 							<input type="submit" name="submit" value="Add case information" class="btn btn-warning btn-lg form-control">
 						</form>
 							
@@ -330,5 +356,47 @@ $(function(){
      });
 });
 
+		function getViolation(){
+			var data = null;
+			data = $('#crime').find(':selected').val();
+			
+			$.post('<?php echo site_url();?>cpdrc/addinmate/getViolation/'+data,
+				{},
+				function(data)
+				{
+					var test = JSON.parse(data);
+					
+					if(test['max_day']==""){
+							test['max_day'] =0;
+					}
+					if(test['max_month']==""){
+							test['max_month'] =0;
+					}
+					if(test['max_year']==""){
+							test['max_year'] =0;
+					}
+					$("#mad").text(test['max_day']);
+					$("#mam").text(test['max_month']);
+					$("#may").text(test['max_year']);
+					
+					if(test['min_day']==""){
+							test['min_day'] =0;
+					}
+					if(test['min_month']==""){
+							test['min_month'] =0;
+					}
+					if(test['min_year']==""){
+							test['min_year'] =0;
+					}
+					$("#mid").text(test['min_day']);
+					$("#mim").text(test['min_month']);
+					$("#miy").text(test['min_year']);
+					
 
+				});
+		}
+		$( document ).ready(function() {
+		   getViolation();
+		});
+	
 </script>

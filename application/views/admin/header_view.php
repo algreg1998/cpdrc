@@ -110,6 +110,9 @@
                         <li class="nav-graphical-municipality">
                             <a href="<?php echo base_url('cpdrc/pages/municipality') ?>">Municipality</a>
                         </li>
+                        <li class="nav-graphical-addReleased">
+                            <a href="<?php echo base_url('historical-graphical-tools/addReleased') ?>">Municipality</a>
+                        </li>
                         
                     </ul>
                 </li>

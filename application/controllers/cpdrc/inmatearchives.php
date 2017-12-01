@@ -76,15 +76,37 @@ session_start();
 			$inmate['gos'] = $this->cpdrc_fw->inmateinfo($id);
 			$inmate['id']=$id;
 			// Retrieve violation data from database
-	    	$this->db->select('id,name');
-	    	$query = $this->db->get('cs_violations');
-	    	$inmate['violations'] = $query->result();
+	    	$violations = $this->admin_model->get('cs_violations',null,FALSE,'name ASC');
+
+			$vio = array();
+
+			foreach ($violations as $violation) {
+				if ( in_array($violation->level, array('1','2','3','4','5')) )
+				{
+					$vio[$violation->id] = $violation->name.' (level '.$violation->level.') ' . $violation->RepublicAct;
+				}
+				else
+				{
+					$vio[$violation->id] = $violation->name.' ('.$violation->level.') ' . $violation->RepublicAct;
+				}
+			}
+			$inmate['violations'] = $vio;
+			if (count($vio)==0) {
+				$data['error'] = "<b>Warning!</b> No more violations to choose from! ";
+			}
+
+	    	// $this->db->select('id,name');
+	    	// $query = $this->db->get('cs_violations');
+	    	// $inmate['violations'] = $query->result();
 
 	    	// Retrieve court list from db
-	    	$query = $this->db->get('view_court');
+	    	// $query = $this->db->get('view_court');
 	    	//$this->db->from('court');
+	    	$query = $this->db->get_where('court','court_mun NOT in (SELECT municipality.mun_id FROM municipality WHERE municipality.status ="deleted")AND court.status ="active"');
+			    	//$this->db->from('court');
 	    	$inmate['courts'] = $query->result();
-
+// echo  $this->db->last_query();		    		
+				// die();
 			$this->load->view('menu/add_new_caseinfo', $inmate);	 		
 	 	}
 	 	//w/o case info.. from pending to active again..
@@ -109,10 +131,10 @@ session_start();
 				$e['court_name']=$this->input->post('court');
 				$e['date_confinment']=$this->input->post('confine');
 				$e['crime']=$this->input->post('crime');
-				$e['sentence']=$this->input->post('sentence');
+				// $e['sentence']=$this->input->post('sentence');
 				$e['commencing']=$this->input->post('commencing');
-				$e['expire_good']=$this->input->post('dategood');
-				$e['expire_bad']=$this->input->post('datebad');
+				// $e['expire_good']=$this->input->post('dategood');
+				// $e['expire_bad']=$this->input->post('datebad');
 
 				$this->db->select('*');
 				$this->db->from('inmate_case_info');
@@ -133,15 +155,33 @@ session_start();
 				$inmate['id']=$id;
 
 				// Retrieve violation data from database
-		    	$this->db->select('id,name');
-		    	$query = $this->db->get('cs_violations');
-		    	$inmate['violations'] = $query->result();
+		    	$violations = $this->admin_model->get('cs_violations',null,FALSE,'name ASC');
+
+				$vio = array();
+				
+				foreach ($violations as $violation) {
+					if ( in_array($violation->level, array('1','2','3','4','5')) )
+					{
+						$vio[$violation->id] = $violation->name.' (level '.$violation->level.') ' . $violation->RepublicAct;
+					}
+					else
+					{
+						$vio[$violation->id] = $violation->name.' ('.$violation->level.') ' . $violation->RepublicAct;
+					}
+				}
+				$inmate['violations'] = $vio;
+				if (count($vio)==0) {
+					$data['error'] = "<b>Warning!</b> No more violations to choose from! ";
+				}
+		    	// $this->db->select('id,name');
+		    	// $query = $this->db->get('cs_violations');
+		    	// $inmate['violations'] = $query->result();
 
 		    	// Retrieve court list from db
 		    	$query = $this->db->get('view_court');
 		    	//$this->db->from('court');
 		    	$inmate['courts'] = $query->result();
-
+				
 				$this->load->view('menu/add_new_caseinfo', $inmate);
 
 	 	}

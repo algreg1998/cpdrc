@@ -122,6 +122,24 @@ class Graphical_tools extends Admin_Controller {
 									</script>';
 		$this->load->view('templates',$this->data);
 	}
+	public function addReleased()
+	{	
+
+
+		$data['number'] = cal_days_in_month(CAL_GREGORIAN, date('m'), date('Y')); // 31
+		
+		$this->data['title']	= 'Population';
+		$this->data['css']		= array('vendor/select2/select2.css','vendor/select2/select2-bootstrap.css');
+		$this->data['js_top']	= array();
+		$this->data['header'] 	= $this->load->view('admin/header_view',$this->data,TRUE);
+		$this->data['body'] 	= $this->load->view('graphical_tools_addedReleased_view',$data,TRUE);
+		$this->data['footer'] 	= $this->load->view('footer_view',NULL,TRUE);
+		$this->data['js_bottom']= array('vendor/highcharts/highcharts.js','vendor/highcharts/modules/exporting.js');
+		$this->data['custom_js']= "<script type='text/javascript'>
+										var monthname = 'November'
+									</script>";
+		$this->load->view('templates',$this->data);
+	}
 
 	public function filename_safe($filename) {
 		$temp = $filename;
