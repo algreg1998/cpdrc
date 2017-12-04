@@ -66,7 +66,7 @@
 			    			<div class="row">
 			    				<div class="col-md-6">
 			    					<label><i class="fa fa-list-alt"></i> <b>Reference Form ID</b></label>
-			    					<input type="text" name="formid" class="form-control" required autofocus>
+			    					<input type="number" name="formid" class="form-control" required autofocus>
 			    				</div>
 			    			</div>
 				    		<div class="row">
