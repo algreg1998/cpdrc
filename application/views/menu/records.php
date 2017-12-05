@@ -152,6 +152,9 @@ table.table thead .sorting_desc_disabled { background: url('<?php echo base_url(
   
 /* Table initialisation */
 $(document).ready(function() {
+    $("#myform").submit(function() {
+        $("#genModalButton").prop("disabled", true);
+    });
        var row;
 	oTable=$('#theGrid').dataTable( {
 		//"sDom": "<'row'<'span6'l><'span6'f>r>t<'row'<'span6'i><'span6'p>>",
