@@ -23,22 +23,27 @@ class Login extends User_Controller {
 			$chkr = $this->user_model->get('user_account',array('password'=>$password,'username'=>$username),TRUE);
 		
 			if (!empty($chkr)) {
-				$sess_array = array(
-                      'username' => $chkr->username,
-                      'password' => $chkr->password,
-                      'fname' => $chkr->user_fname,
-                      'lname' => $chkr->user_lname,
-                      'type' => $chkr->type,
-                      'user_id' =>$chkr->user_id
-                    );
-				$sess_data = array(
-						'is_logged_in' => true,
-						'user_type' => $chkr->type,
-						'user_id' => $chkr->user_id
-					);
-				$this->session->set_userdata($sess_data);
-				$this->session->set_userdata('logged_in', $sess_array);
-				redirect(base_url());
+				$chkr = $this->user_model->get('user_account',array('username'=>$username,'status'=>'Active'),TRUE);
+				if(!empty($chkr)){
+					$sess_array = array(
+	                      'username' => $chkr->username,
+	                      'password' => $chkr->password,
+	                      'fname' => $chkr->user_fname,
+	                      'lname' => $chkr->user_lname,
+	                      'type' => $chkr->type,
+	                      'user_id' =>$chkr->user_id
+	                    );
+					$sess_data = array(
+							'is_logged_in' => true,
+							'user_type' => $chkr->type,
+							'user_id' => $chkr->user_id
+						);
+					$this->session->set_userdata($sess_data);
+					$this->session->set_userdata('logged_in', $sess_array);
+					redirect(base_url());
+				}else{
+					$this->session->set_flashdata('error_msg','User Deactivated please contact Administrator.');
+				}
 			}else{
 				$this->session->set_flashdata('error_msg','Username or Password does not matched.');
 			}

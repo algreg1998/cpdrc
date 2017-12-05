@@ -13,7 +13,9 @@ session_start();
 	   		
 	    public function index() //from inmate 
 	    {
-	    	
+	    	if($this->input->post('id')== NULL){
+	    			redirect("search1");
+	    		}
 	    	$actor=$this->session->userdata('logged_in');
 	    	$user_id=$this->input->post('id');
 	    	$form = $this->input->post('formid');
@@ -139,7 +141,11 @@ session_start();
 	    }
 	    
 	    public function add2() //from inmate info with inmate
-	    {		$id =$this->input->post('id');
+	    {		
+	    		if($this->input->post('id') == NULL){
+	    			redirect("search1");
+	    		}
+	    		$id =$this->input->post('id');
 	    		$filename = $this->input->post('filename');
 
 				//to inmate_info
@@ -235,6 +241,9 @@ session_start();
 	    }
 	    public function add3() // from inmate, inmate info and inmate body
 	    {
+	    	if($this->input->post('id')== NULL){
+	    			redirect("search1");
+	    		}
 	    	$actor=$this->session->userdata('logged_in');
 	    	$user_id=$this->input->post('id');
 
@@ -339,6 +348,9 @@ session_start();
 	    }
 	    public function add4()
 	    {
+	    	if($this->input->post('id')== NULL){
+	    			redirect("search1");
+	    		}
 				#$cs_reasons['type']=$this->input->post('sentence');
 				#$cs_cases['crime']=$this->input->post('crime'); // Original;
 				$id = $this->input->post('id');
@@ -554,6 +566,9 @@ session_start();
 	    }
 	  public function add5() //for the passing of inmate id to 2d model view
 	    {
+	    	if($this->input->post('id')== NULL){
+	    			redirect("search1");
+	    		}
 	    	$filename = $this->input->post('filename');
 
 			$data['id'] = $this->input->post('id');
