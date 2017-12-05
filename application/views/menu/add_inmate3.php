@@ -82,11 +82,11 @@
 
 								<div class="col-md-6">
 									<label><i class="fa fa-arrows-v"></i> <b>Height in centimeters</b></label>
-									<input type="number" name="height" class="form-control" required autofocus  value="<?php if($info!=null){echo $info->height;}?>">
+									<input type="number" name="height" min="0" class="form-control" required autofocus  value="<?php if($info!=null){echo $info->height;}?>">
 								</div>
 								<div class="col-md-6">
 									<label><i class="fa fa-tachometer"></i> <b>Weight in pounds</b></label>
-									<input type="number" name="weight" class="form-control" required value="<?php if($info!=null){echo $info->weight;}?>">		
+									<input type="number" name="weight" min="0" class="form-control" required value="<?php if($info!=null){echo $info->weight;}?>">		
 								</div>
 							</div><br>
 							<label><i class="fa fa-user-md"></i> <b>Body Build</b></label>

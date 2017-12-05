@@ -98,6 +98,9 @@ session_start();
 	    	$user_id = $this->input->post('id');
 	    	$form = $this->input->post('formid');
 	    	
+	    	//getting the filename of the inmates photo
+			$filename = $this->cpdrc_fw->getFilename($user_id);
+	    	
 	    	$info['ref_formid'] = $form;
 			$info['inmate_id']=$user_id;
 			$info['cell_no']=$this->input->post('cell');
@@ -105,8 +108,11 @@ session_start();
 			$info['inmate_lname']= ucwords($this->input->post('lname'));
 			$info['inmate_mi']= ucwords($this->input->post('mi'));
 			$info['inmate_alias']= ucwords($this->input->post('alias'));
-			$info['added_by']=$actor['user_id'];
+			
 
+	    	
+	    		
+			
 
 			
 	    	//double checking to avoid duplicate value in the database

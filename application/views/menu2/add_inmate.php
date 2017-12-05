@@ -41,6 +41,7 @@
 					{
 						echo "<div class='alert alert-danger alert-dismissible' align='center'> <button type='button' class='close' data-dismiss='alert'><span aria-hidden='true'>&times;</span><span class='sr-only'>Close</span></button>$error</div>";
 					}
+					foreach($data as $d ){}
 					?>
 					</div>
 				</div>
@@ -53,11 +54,12 @@
 			    		</div>
 			    			<form id="photoform" enctype="multipart/form-data">
 							  <input  required type="file" name="userfile" id="photo">
+							  <input type="text"  name="id" class="form-control hidden" required readonly value="<?php echo $d->inmate_id?>">
 							  <button class="btn btn-warning btn-xs" style="margin-top:15px;" type="submit" id="uploadphoto">Upload Photo</button>
 							</form> 
 			    	</div>
 					<?php 
-				 		foreach($data as $d ){}
+				 		
 				 		$attr = array('class' => 'form_horizontal');
 						echo form_open('cpdrc/editinmate/edit1', $attr);
 					?>
@@ -143,10 +145,11 @@
 		<script>
           $("#photoform").submit(function(){
               var formdata=new FormData($("#photoform")[0]);
+              // alert($(document).find("#photo").val())
               var loader="<i class='fa fa-spinner fa-spin'></i> Uploading photo...";
               $("#photodiv").html(loader);
                  $.ajax({data:formdata,cache: false,contentType: false,
-                    processData: false, type:'POST' ,url: '<?php echo site_url(); ?>cpdrc/upload',
+                    processData: false, type:'POST' ,url: '<?php echo site_url(); ?>cpdrc/upload/editpic',
                                           success:function(e){                 
                                               $("#photodiv").html(e);
                                           }

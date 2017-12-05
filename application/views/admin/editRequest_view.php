@@ -43,7 +43,7 @@
                                                 <td id="stat-<?php echo $d->editRequestID; ?>">
                                                     <?php if($d->status =="approved"){?>
                                                     <label class="label label-success" style="font-size: 100%;"><?php echo ucwords($d->status); ?>
-                                                        ></label>
+                                                        </label>
                                                 <?php }?>
                                                         <?php if($d->status =="pending"){?>
                                                         <label class="label label-default" style="font-size: 100%;"><?php echo ucwords($d->status); ?>

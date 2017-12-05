@@ -231,8 +231,8 @@ session_start();
 		    		$this->data['footer']   = $this->load->view('footer_view',NULL,TRUE);
 		    		$this->data['js_bottom']= array();
 		    		$this->data['custom_js']= '<script type="text/javascript">
-			    		$(function(){
-			    		});
+								    		$(function(){
+								    		});
 			    	</script>';
 		    		$this->load->view('templates',$this->data);
 
@@ -258,7 +258,8 @@ session_start();
 		    	$w['hair_peculiarities']=$this->input->post('hairp');
 
 
-		    	if($w['height'] > 0 && $w['weight'] > 0){
+		    	// if($w['height'] > 0 && $w['weight'] > 0){
+		    		
 		    	
 			    	$this->db->insert('inmate_build', $w);
 					//Step 3 --update temporary
@@ -313,38 +314,38 @@ session_start();
 
 
 			    	// $this->load->view('menu/add_inmate4', $inmate);		    		
-		    	}
-		    	elseif($w['height'] < 0){ //validate height
+		    	// }
+		    	// elseif($w['height'] < 0){ //validate height
 
-		    		$info['data'] = "<b>Warning!</b> Invalid value for Height.";
-		    		$info['id'] = $user_id;
-		    		$info['formid'] = $this->input->post('formid');
-			    	$info['name'] = $this->input->post('name');
-			    	$info['filename'] = $this->input->post('filename');
+		    	// 	$info['data'] = "<b>Warning!</b> Invalid value for Height.";
+		    	// 	$info['id'] = $user_id;
+		    	// 	$info['formid'] = $this->input->post('formid');
+			    // 	$info['name'] = $this->input->post('name');
+			    // 	$info['filename'] = $this->input->post('filename');
 
-			    	$this->data['title']    = 'Manage Inmate';
-		    		$this->data['css']      = array();
-		    		$this->data['js_top']   = array();
-		    		$this->data['header']   = $this->load->view('admin/header_view',$this->data,TRUE);
-		    		$this->data['body']     = $this->load->view('menu/add_inmate3',$info,TRUE);
-		    		$this->data['footer']   = $this->load->view('footer_view',NULL,TRUE);
-		    		$this->data['js_bottom']= array();
-		    		$this->data['custom_js']= '<script type="text/javascript">
-			    		$(function(){
-			    		});
-			    	</script>';
-		    		$this->load->view('templates',$this->data);
-		    		// $this->load->view('menu/add_inmate3', $info);		    		
-		    	}
-		    	elseif($w['weight'] < 0){ //validate weight
-			    	$info['id']=$user_id;
-			    	$info['formid'] = $this->input->post('formid');
-			    	$info['name'] = $this->input->post('name');
-			    	$info['filename'] = $this->input->post('filename');
+			    // 	$this->data['title']    = 'Manage Inmate';
+		    	// 	$this->data['css']      = array();
+		    	// 	$this->data['js_top']   = array();
+		    	// 	$this->data['header']   = $this->load->view('admin/header_view',$this->data,TRUE);
+		    	// 	$this->data['body']     = $this->load->view('menu/add_inmate3',$info,TRUE);
+		    	// 	$this->data['footer']   = $this->load->view('footer_view',NULL,TRUE);
+		    	// 	$this->data['js_bottom']= array();
+		    	// 	$this->data['custom_js']= '<script type="text/javascript">
+			    // 		$(function(){
+			    // 		});
+			    // 	</script>';
+		    	// 	$this->load->view('templates',$this->data);
+		    	// 	// $this->load->view('menu/add_inmate3', $info);		    		
+		    	// }
+		    	// elseif($w['weight'] < 0){ //validate weight
+			    // 	$info['id']=$user_id;
+			    // 	$info['formid'] = $this->input->post('formid');
+			    // 	$info['name'] = $this->input->post('name');
+			    // 	$info['filename'] = $this->input->post('filename');
 
-		    		$info['data'] = "<b>Warning!</b> Invalid value for Weight.";
-		    		$this->load->view('menu/add_inmate3', $info);		    		
-		    	}			    		
+		    	// 	$info['data'] = "<b>Warning!</b> Invalid value for Weight.";
+		    	// 	$this->load->view('menu/add_inmate3', $info);		    		
+		    	// }			    		
 	    }
 	    public function add4()
 	    {
