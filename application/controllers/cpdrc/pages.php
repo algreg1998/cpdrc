@@ -175,6 +175,7 @@ class Pages extends Admin_Controller
                 $("#uploadphoto").css("display", "none");
                 $("#photo").change(function() {
                     $("#uploadphoto").click();
+                    $("#photo").hide();
                 });
             });
             </script>';

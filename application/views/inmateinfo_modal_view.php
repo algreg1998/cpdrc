@@ -125,7 +125,7 @@
       </div>
       <div class="modal-body">
         <h2>Reason</h2>
-         <textarea style="width:auto; resize: none; overflow: auto;" name="reason" id="reason"></textarea>
+         <textarea style="width:auto; resize: none; overflow: auto;" name="reason" id="reason" required></textarea>
     </div>
     <div class="modal-footer">
         <button type="button"  class="btn btn-success btn-sm" id="sub">Submit</button>
