@@ -896,9 +896,6 @@ court.status ="active"');
 			}
 		}
 
-		foreach ($cases as $case) {
-			unset($vio[$case->violation_id]);
-		}
 
 
 		//$this->form_validation->set_rules('case_no','case number','trim|xss_clean|strip_tags|required|is_unique[cs_cases.case_no]');
@@ -919,7 +916,9 @@ court.status ="active"');
 			$data['s_max_month'] = $violation_info->max_month;
 			$data['s_max_day'] = $violation_info->max_day;
 
-			$checker = $this->admin_model->get('cs_cases_full',array('violation_id'=>$data['violation_id'],'reasons_id'=>$reason->id,'case_status'=>'active'),TRUE);
+			$checker = $this->admin_model->get('cs_cases_full',array('violation_id'=>$data['violation_id'],'case_no'=>$data['case_no'],'reasons_id'=>$reason->id,'case_status'=>'active'),TRUE);
+			// echo  $this->admin_model->db->last_query();
+			// die();
 			if (!empty($checker)) {
 				$this->session->set_flashdata('error_msg','You have already added that violation.');
 				redirect(current_url_full());
