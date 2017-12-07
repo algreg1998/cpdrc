@@ -19,147 +19,147 @@
           </div>
           <br>
           <div class="row">
-				<div class="bs-example">
-					  <ul class="nav nav-tabs nav-pills" style="margin-bottom: 15px;">
-						  <li class="active"><a href="#user" data-toggle="tab"><i class="fa fa-users"></i> User Accounts</a></li>
+        <div class="bs-example">
+            <ul class="nav nav-tabs nav-pills" style="margin-bottom: 15px;">
+              <li class="active"><a href="#user" data-toggle="tab"><i class="fa fa-users"></i> User Accounts</a></li>
               <li><a href="#add" data-toggle="tab"><i class="fa fa-user"></i> Add user account</a></li>
-					  </ul>
-					<div id="myTabContent" class="tab-content">
-							<div class="tab-pane fade active in" id="user">
-	                            <div class="col-lg-12">
-	                            	<div id="title">
-                									<table cellpadding="0" cellspacing="0" border="0" class="table table-hover table-bordered" id="theGrid">
-                									  			<thead>
-                									  				<tr>
-                									          <?php
-                									              //checking whether the user is a admin or not
-                									              $id=$this->session->userdata('logged_in');  
-                									          ?>
-                									  					
-                									  					<th>Username</th>
-                									  					<th>First Name</th>
-                									  					<th>Last Name</th>
-                									  					<th>User Type</th>
-                									  					<th>Account Status</th>
-                														<th>&nbsp;</th>
-                														<th>&nbsp;</th>
-                									  				</tr>
-                									  			</thead>
-                									  			<tbody id="gridBody">
-                									  	        <?php
+            </ul>
+          <div id="myTabContent" class="tab-content">
+              <div class="tab-pane fade active in" id="user">
+                              <div class="col-lg-12">
+                                <div id="title">
+                                  <table cellpadding="0" cellspacing="0" border="0" class="table table-hover table-bordered" id="theGrid">
+                                          <thead>
+                                            <tr>
+                                            <?php
+                                                //checking whether the user is a admin or not
+                                                $id=$this->session->userdata('logged_in');  
+                                            ?>
+                                              
+                                              <th>Username</th>
+                                              <th>First Name</th>
+                                              <th>Last Name</th>
+                                              <th>User Type</th>
+                                              <th>Account Status</th>
+                                            <th>&nbsp;</th>
+                                            <th>&nbsp;</th>
+                                            </tr>
+                                          </thead>
+                                          <tbody id="gridBody">
+                                              <?php
 
-                  												foreach ($user as $key) {
-                  													//changing the type num to desc.
-                	  													if ($key['type'] == 1) {
-                	  														$type='Chief Warden';
-                	  													}
-                	  													else
-                	  													{
-                	  														$type='Warden';
-                	  													}
+                                          foreach ($user as $key) {
+                                            //changing the type num to desc.
+                                              if ($key['type'] == 1) {
+                                                $type='Chief Warden';
+                                              }
+                                              else
+                                              {
+                                                $type='Warden';
+                                              }
 
-                									  		         echo "<tr>";
-                									  			       echo "<td>".$key['username']."</td>";
-                									  			       echo "<td id='owner'>".$key['user_fname']."</td>";
-                									  			       echo "<td>".$key['user_lname']."</td>";
-                									  			       echo "<td>".$type."</td>";
-                									  			       echo "<td>".$key['status']."</td>";
+                                                 echo "<tr>";
+                                                 echo "<td>".$key['username']."</td>";
+                                                 echo "<td id='owner'>".$key['user_fname']."</td>";
+                                                 echo "<td>".$key['user_lname']."</td>";
+                                                 echo "<td>".$type."</td>";
+                                                 echo "<td>".$key['status']."</td>";
 
-                	
-                									  			    if($key['status'] == 'Active')
-                									  			    {
+                  
+                                              if($key['status'] == 'Active')
+                                              {
 
-                											                 echo "<td>";
-                											                 echo "<a  class=\"col-lg-12 viewSingle btn btn-primary btn-xs\" id=\"{$key['user_id']}\" href=\"#\"><i class='fa fa-search'></i> View Details</a> ";
-                        															 echo "</td>";
-                        															 echo "<td>";
-                															         echo "<a  class=\"col-lg-12 deactiveSingle btn btn-danger btn-xs\" id=\"{$key['user_id']}\" href=\"#\"><i class='fa fa-times-circle-o'></i> Deactivate</a> ";
-                											                 echo "</td>";										  			    		
+                                                       echo "<td>";
+                                                       echo "<a  class=\"col-lg-12 viewSingle btn btn-primary btn-xs\" id=\"{$key['user_id']}\" href=\"#\"><i class='fa fa-search'></i> View Details</a> ";
+                                                       echo "</td>";
+                                                       echo "<td>";
+                                                       echo "<a  class=\"col-lg-12 deactiveSingle btn btn-danger btn-xs\" id=\"{$key['user_id']}\" href=\"#\"><i class='fa fa-times-circle-o'></i> Deactivate</a> ";
+                                                       echo "</td>";                                    
 
 
-                									  			    }
+                                              }
 
-                									  			    else
-                									  			    {
-                										                 echo "<td>";
-                										                 echo "<a  class=\"col-lg-12 viewSingle btn btn-primary btn-xs\" id=\"{$key['user_id']}\" href=\"#\"><i class='fa fa-search'></i> View Details</a> ";
-                        														 echo "</td>";
-                        														 echo "<td>";
-                										                 echo "<a  class=\"col-lg-12 activeSingle btn btn-warning btn-xs\" id=\"{$key['user_id']}\" href=\"#\"><i class='fa fa-check-square-o'></i> Activate</a> ";
-                										                 echo "</td>";									  			    	
-                									  			    }
-                									  			echo "</tr>";
-                												}    
-                									  			
-                									  	        ?>			
-                									  			</tbody>
-                									  		</table>
-                            	       </div><!--id tittle-->	
-	                            </div>                               
-							</div>
-							<div class="tab-pane fade in" id="add">
-							<div class="container">
-								<div class="row">
-									<div class="row">
-										<div class="col-md-5" align="center" id="append">
-											<!--THIS IS FOR THE FORM-->
-										</div>
-									</div>
-									<div class="col-lg-4 col-md-4" align="center">
-							    		<div id="photodiv">
-							    			<img src="<?=base_url()?>uploads/users/source/192x192.jpg" width="300" height="300"/>
-							    		</div>
-							    			<form id="photoform" enctype="multipart/form-data">
-											  <input  required type="file" name="userfile" id="photo">
-											  <button class="btn btn-warning btn-xs" style="margin-top:15px;" type="submit" id="uploadphoto">Upload Photo</button>
-											</form> 									
-									</div>
-									<div class="col-lg-6 col-md-6">
-										<?php 
-									 		$attr = array('class' => 'form_horizontal',
-									 						'id' => 'myform');
-											echo form_open('cpdrc/useraccounts', $attr);
-										?>
-										<div class="row">
-											<div class="col-md-6">
-												<label><b>User account type</b></label><select type="text" name="type" class="form-control" required >
-													<option value="0">Please select a account type</option>
-													<option value="Warden Administrator">Warden Administrator</option>
-													<option value="Warden">Warden</option>
-												</select>
-												<br>
+                                              else
+                                              {
+                                                     echo "<td>";
+                                                     echo "<a  class=\"col-lg-12 viewSingle btn btn-primary btn-xs\" id=\"{$key['user_id']}\" href=\"#\"><i class='fa fa-search'></i> View Details</a> ";
+                                                     echo "</td>";
+                                                     echo "<td>";
+                                                     echo "<a  class=\"col-lg-12 activeSingle btn btn-warning btn-xs\" id=\"{$key['user_id']}\" href=\"#\"><i class='fa fa-check-square-o'></i> Activate</a> ";
+                                                     echo "</td>";                                
+                                              }
+                                          echo "</tr>";
+                                        }    
+                                          
+                                              ?>      
+                                          </tbody>
+                                        </table>
+                                     </div><!--id tittle--> 
+                              </div>                               
+              </div>
+              <div class="tab-pane fade in" id="add">
+              <div class="container">
+                <div class="row">
+                  <div class="row">
+                    <div class="col-md-5" align="center" id="append">
+                      <!--THIS IS FOR THE FORM-->
+                    </div>
+                  </div>
+                  <div class="col-lg-4 col-md-4" align="center">
+                      <div id="photodiv">
+                        <img src="<?=base_url()?>uploads/users/source/192x192.jpg" width="300" height="300"/>
+                      </div>
+                        <form id="photoform" enctype="multipart/form-data">
+                        <input  required type="file" name="userfile" id="photo">
+                        <button class="btn btn-warning btn-xs" style="margin-top:15px;" type="submit" id="uploadphoto">Upload Photo</button>
+                      </form>                   
+                  </div>
+                  <div class="col-lg-6 col-md-6">
+                    <?php 
+                      $attr = array('class' => 'form_horizontal',
+                              'id' => 'myform');
+                      echo form_open('cpdrc/useraccounts', $attr);
+                    ?>
+                    <div class="row">
+                      <div class="col-md-6">
+                        <label><b>User account type</b></label><select type="text" name="type" class="form-control" required >
+                          <option value="0">Please select a account type</option>
+                          <option value="Warden Administrator">Warden Administrator</option>
+                          <option value="Warden">Warden</option>
+                        </select>
+                        <br>
                         <label><i class="fa fa-info"></i> <b>First Name</b></label>
-												<input type="text" name="fname" class="form-control" required >
+                        <input type="text" name="fname" class="form-control" required >
                         <label><i class="fa fa-info"></i> <b>Last Name</b></label>
-												<input type="text" name="lname" class="form-control" required >
+                        <input type="text" name="lname" class="form-control" required >
                         <label><i class="fa fa-info"></i> <b>Middle Name</b></label>
-												<input type="text" name="mi" class="form-control" required >
+                        <input type="text" name="mi" class="form-control" required >
                         <label><i class="fa fa-home"></i> <b>Current Address</b></label>
-												<input type="text" name="address" class="form-control" required ><br>
-											</div>
+                        <input type="text" name="address" class="form-control" required ><br>
+                      </div>
 
-											<div class="col-md-6">
-												<label><i class="fa fa-phone"></i> <b>Contact number</b></label>
-												<input type="text" name="contact" class="form-control" required ><br>
-												<label><i class="fa fa-info"></i> <b>Username</b></label>
-												<input type="text" name="username" class="form-control" required >
+                      <div class="col-md-6">
+                        <label><i class="fa fa-phone"></i> <b>Contact number</b></label>
+                        <input type="text" name="contact" class="form-control" required ><br>
+                        <label><i class="fa fa-info"></i> <b>Username</b></label>
+                        <input type="text" name="username" class="form-control" required >
                         <label><i class="fa fa-lock"></i> <b>Password</b></label>
-												<input type="password" name="password" class="form-control" placeholder="**********" required >
+                        <input type="password" name="password" class="form-control" placeholder="**********" required >
                         <label><i class="fa fa-lock"></i> <b>Confirm Password</b></label>
                         <input type="password" name="confirm" class="form-control" placeholder="**********" required ><br><br>
-											</div>
-										</div>
-										<div class="row" align="right">
-											<input type="submit" name="submit" class="btn btn-warning btn-lg form-control" value="Add user account" ><br><br>
-											</form>
-										</div>
-									</div>
-								</div>
-							</div>
-							</div>
-					</div><!--tab content-->
-				</div><!--bs example end-->
-			</div>
+                      </div>
+                    </div>
+                    <div class="row" align="right">
+                      <input type="submit" name="submit" class="btn btn-warning btn-lg form-control" value="Add user account" ><br><br>
+                      </form>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              </div>
+          </div><!--tab content-->
+        </div><!--bs example end-->
+      </div>
 
     </div>
           <?php $this->load->view('cpdrc/footer'); ?>
@@ -221,13 +221,13 @@ table.table thead .sorting_desc_disabled { background: url('<?php echo base_url(
 /* Table initialisation */
 $(document).ready(function() {
        var row;
-	oTable=$('#theGrid').dataTable( {
-		//"sDom": "<'row'<'span6'l><'span6'f>r>t<'row'<'span6'i><'span6'p>>",
-		"sPaginationType": "bootstrap",
-		"oLanguage": {
-			"sLengthMenu": "_MENU_ records per page"
-		}
-	} );
+  oTable=$('#theGrid').dataTable( {
+    //"sDom": "<'row'<'span6'l><'span6'f>r>t<'row'<'span6'i><'span6'p>>",
+    "sPaginationType": "bootstrap",
+    "oLanguage": {
+      "sLengthMenu": "_MENU_ records per page"
+    }
+  } );
 
       /* ACTIVE */   
         $('#theGrid').on('click',".activeSingle",function(){
@@ -255,6 +255,7 @@ $(document).ready(function() {
                                               $("#genModal").modal("toggle");
                                               $('body').removeClass('modal-open');
                                               $('.modal-backdrop').remove();
+                                              location.reload(true),
                                               setTimeout(function()
                                               {  $('#haha').html(e).fadeIn('slow');  
                                               },200);
@@ -306,6 +307,7 @@ $(document).ready(function() {
                                               $("#genModal").modal("toggle");
                                               $('body').removeClass('modal-open');
                                               $('.modal-backdrop').remove();
+                                              location.reload(true),
                                               setTimeout(function()
                                               {  $('#haha').html(e).fadeIn('slow');  
                                               },200);
@@ -380,22 +382,22 @@ $(function(){
                 return false;
           });
  
-					     $(document).ready(function(){
-						    $("#myform").submit(function(){
-							    var formdata=$("#myform").serialize();
-							  
-							   $.ajax({ url:'<?php echo site_url();?>cpdrc/useraccounts',
-							            type:"POST",
-										data: formdata,
-										success: function(e){
-										  $("#append").html(e);
-										}
-							   });
-							   
-							  return false;
-							}); 
-						 
-						 });       
+               $(document).ready(function(){
+                $("#myform").submit(function(){
+                  var formdata=$("#myform").serialize();
+                
+                 $.ajax({ url:'<?php echo site_url();?>cpdrc/useraccounts',
+                          type:"POST",
+                    data: formdata,
+                    success: function(e){
+                      $("#append").html(e);
+                    }
+                 });
+                 
+                return false;
+              }); 
+             
+             });       
 
 
 </script>

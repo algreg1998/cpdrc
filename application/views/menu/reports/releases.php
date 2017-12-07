@@ -105,10 +105,6 @@
 						 								<td><?php echo $a[$i]->dateRel;?></td>
 						 							</tr>
 						 							<?php }
-						 							}else{
-						 								echo "<tr>";
-                                            echo "<td colspan='9' class='text-center'> No data to show. For the on ".$monthName." ". $year." </td>";
-                                        echo "</tr>";
 						 							}?>
 						 							
 						 						</tbody>

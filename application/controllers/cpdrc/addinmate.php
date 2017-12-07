@@ -280,13 +280,15 @@ session_start();
 
 					$vio = array();
 					foreach ($violations as $violation) {
-						if ( in_array($violation->level, array('1','2','3','4','5')) )
-						{
-							$vio[$violation->id] = $violation->name.' (level '.$violation->level.') ' . $violation->RepublicAct;
-						}
-						else
-						{
-							$vio[$violation->id] = $violation->name.' ('.$violation->level.') ' . $violation->RepublicAct;
+						if($violation->status == 'active'){
+							if ( in_array($violation->level, array('1','2','3','4','5')) )
+							{
+								$vio[$violation->id] = $violation->name.' (level '.$violation->level.') ' . $violation->RepublicAct;
+							}
+							else
+							{
+								$vio[$violation->id] = $violation->name.' ('.$violation->level.') ' . $violation->RepublicAct;
+							}	
 						}
 					}
 					$inmate['violations'] = $vio;
@@ -400,7 +402,7 @@ session_start();
 				$e['date_confinment']=$this->input->post('confine');
 				$e['sentence']="";
 				
-				$e['expire_good']=$this->input->post('dategood');
+				// $e['expire_good']=$this->input->post('dategood');
 				
 				$e['case_no']=$this->input->post('casenum');
 				$e['crime']=$this->input->post('crime');
@@ -408,10 +410,11 @@ session_start();
 				// To determine which tables should $e be stored
 				$e['commencing']=$this->input->post('commencing');
 				
-				$e['expire_bad']=$this->input->post('datebad');
+				// $e['expire_bad']=$this->input->post('datebad');
 				
 				#echo('{reasons}'.print_r($cs_reasons));
 				#echo('{case}'.print_r($cs_cases));
+				
 				$data = array('inmate_id'=>$id,
 							  'date_confinment'=>$this->input->post('confine'),
 							  'sentence'=>$this->input->post('sentence'),
@@ -423,17 +426,18 @@ session_start();
 							  'expire_bad'=>$this->input->post('datebad'));
 				/**/
 				//commented out to enable many violations for 1 case
-				//$res = $this->cpdrc_fw->checkcaseinfo($e);
+				$res = $this->cpdrc_fw->checkcaseinfo($e);
 				//commented out to enable many violations for 1 case end
 				// Debugging only
 				#print_r($res);
-				#echo $this->db->last_query();
+				echo $this->db->last_query();
 				//
 
 				#if($res == FALSE) // original
-				
-				// if(!$res)
-				// {
+				print_r($res);
+				// die();
+				if($res == 0)
+				{
 				//commented out to enable many violations for 1 case end
 					$this->db->insert('inmate_case_info', $data); // for insertion
 					$query = $this->db->insert('cs_reasons',$cs_reasons);
@@ -464,13 +468,15 @@ session_start();
 
 					$vio = array();
 					foreach ($violations as $violation) {
-						if ( in_array($violation->level, array('1','2','3','4','5')) )
-						{
-							$vio[$violation->id] = $violation->name.' (level '.$violation->level.') ' . $violation->RepublicAct;
-						}
-						else
-						{
-							$vio[$violation->id] = $violation->name.' ('.$violation->level.') ' . $violation->RepublicAct;
+						if($violation->status == 'active'){
+							if ( in_array($violation->level, array('1','2','3','4','5')) )
+							{
+								$vio[$violation->id] = $violation->name.' (level '.$violation->level.') ' . $violation->RepublicAct;
+							}
+							else
+							{
+								$vio[$violation->id] = $violation->name.' ('.$violation->level.') ' . $violation->RepublicAct;
+							}	
 						}
 					}
 
@@ -501,67 +507,69 @@ session_start();
 					// $this->load->view('menu/add_inmate4', $inmate);
 					/**/
 					//commented out to enable many violations for 1 case
-				// }else{
-				// 	$inmate['case']=$this->cpdrc_fw->getcaseinfolimit($id);
-				// 	// echo $this->cpdrc_fw->db->last_query();
+				}else{
+					$inmate['case']=$this->cpdrc_fw->getcaseinfolimit($id);
+					// echo $this->cpdrc_fw->db->last_query();
 					
-				// 	$inmate['id']=$id;
-				// 	$inmate['formid'] = $this->input->post('formid');
-			 //    	$inmate['name'] = $this->input->post('name');
-			 //    	$inmate['filename'] = $this->input->post('filename');
-			 //    	$inmate['error'] = "<b>Warning!</b> Case information already exist. Please check the information in the table below";
+					$inmate['id']=$id;
+					$inmate['formid'] = $this->input->post('formid');
+			    	$inmate['name'] = $this->input->post('name');
+			    	$inmate['filename'] = $this->input->post('filename');
+			    	$inmate['error'] = "<b>Warning!</b> Case information already exist. Please check the information in the table below";
 
-			 //    	$query = $this->db->get_where('cs_reasons',array("inmate_id"=>$id));
-			 //    	//$this->db->from('court');
-			 //    	$data['cs_reasons'] = $query->result();
-			 //    	$cs_res = json_decode(json_encode($data['cs_reasons']));
-			 //    	if($cs_res){
-				// 		$cases = $this->admin_model->get('cs_cases_full',array('reasons_id'=>$cs_res[0]->id,'case_status'=>'active'),FALSE,'name ASC, level ASC');
-			 //    	}
+			    	$query = $this->db->get_where('cs_reasons',array("inmate_id"=>$id));
+			    	//$this->db->from('court');
+			    	$data['cs_reasons'] = $query->result();
+			    	$cs_res = json_decode(json_encode($data['cs_reasons']));
+			    	if($cs_res){
+						$cases = $this->admin_model->get('cs_cases_full',array('reasons_id'=>$cs_res[0]->id,'case_status'=>'active'),FALSE,'name ASC, level ASC');
+			    	}
 					
-			 //    	// // Retrieve violation data from database
-			 //    	// $this->db->select('id,name');
-			 //    	// $query = $this->db->get('cs_violations');
-			 //    	// $inmate['violations'] = $query->result();
-			 //    	$violations = $this->admin_model->get('cs_violations',null,FALSE,'name ASC');
+			    	// // Retrieve violation data from database
+			    	// $this->db->select('id,name');
+			    	// $query = $this->db->get('cs_violations');
+			    	// $inmate['violations'] = $query->result();
+			    	$violations = $this->admin_model->get('cs_violations',null,FALSE,'name ASC');
 
-				// 	$vio = array();
-				// 	foreach ($violations as $violation) {
-				// 		if ( in_array($violation->level, array('1','2','3','4','5')) )
-				// 		{
-				// 			$vio[$violation->id] = $violation->name.' (level '.$violation->level.') ' . $violation->RepublicAct;
-				// 		}
-				// 		else
-				// 		{
-				// 			$vio[$violation->id] = $violation->name.' ('.$violation->level.') ' . $violation->RepublicAct;
-				// 		}
-				// 	}
-				// 	if($cs_res){
-				// 		foreach ($cases as $case) {
-				// 			unset($vio[$case->violation_id]);
-				// 		}
-				// 	}
-				// 	$inmate['violations'] = $vio;
+					$vio = array();
+					foreach ($violations as $violation) {
+						if($violation->status == 'active'){
+							if ( in_array($violation->level, array('1','2','3','4','5')) )
+							{
+								$vio[$violation->id] = $violation->name.' (level '.$violation->level.') ' . $violation->RepublicAct;
+							}
+							else
+							{
+								$vio[$violation->id] = $violation->name.' ('.$violation->level.') ' . $violation->RepublicAct;
+							}	
+						}
+					}
+					// if($cs_res){
+					// 	foreach ($cases as $case) {
+					// 		unset($vio[$case->violation_id]);
+					// 	}
+					// }
+					$inmate['violations'] = $vio;
 
-			 //    	// Retrieve court list from db
-			 //    	$query = $this->db->get_where('court','court_mun NOT in (SELECT municipality.mun_id FROM municipality WHERE municipality.status ="deleted")AND court.status ="active"');
-			 //    	$inmate['courts'] = $query->result();
+			    	// Retrieve court list from db
+			    	$query = $this->db->get_where('court','court_mun NOT in (SELECT municipality.mun_id FROM municipality WHERE municipality.status ="deleted")AND court.status ="active"');
+			    	$inmate['courts'] = $query->result();
 
-			 //    	$this->data['title']    = 'Manage Inmate';
-		  //   		$this->data['css']      = array();
-		  //   		$this->data['js_top']   = array();
-		  //   		$this->data['header']   = $this->load->view('admin/header_view',$this->data,TRUE);
-		  //   		$this->data['body']     = $this->load->view('menu/add_inmate4',$inmate,TRUE);
-		  //   		$this->data['footer']   = $this->load->view('footer_view',NULL,TRUE);
-		  //   		$this->data['js_bottom']= array();
-		  //   		$this->data['custom_js']= '<script type="text/javascript">
-			 //    		$(function(){
-			 //    		});
-			 //    	</script>';
-		  //   		$this->load->view('templates',$this->data);
+			    	$this->data['title']    = 'Manage Inmate';
+		    		$this->data['css']      = array();
+		    		$this->data['js_top']   = array();
+		    		$this->data['header']   = $this->load->view('admin/header_view',$this->data,TRUE);
+		    		$this->data['body']     = $this->load->view('menu/add_inmate4',$inmate,TRUE);
+		    		$this->data['footer']   = $this->load->view('footer_view',NULL,TRUE);
+		    		$this->data['js_bottom']= array();
+		    		$this->data['custom_js']= '<script type="text/javascript">
+			    		$(function(){
+			    		});
+			    	</script>';
+		    		$this->load->view('templates',$this->data);
 
-				// 	// $this->load->view('menu/add_inmate4', $inmate);
-				// }
+					// $this->load->view('menu/add_inmate4', $inmate);
+				}
 				/**/
 				//commented out to enable many violations for 1 case end
 	    }
@@ -708,13 +716,15 @@ if($step == 3){
 
 					$vio = array();
 					foreach ($violations as $violation) {
-						if ( in_array($violation->level, array('1','2','3','4','5')) )
-						{
-							$vio[$violation->id] = $violation->name.' (level '.$violation->level.') ' . $violation->RepublicAct;
-						}
-						else
-						{
-							$vio[$violation->id] = $violation->name.' ('.$violation->level.') ' . $violation->RepublicAct;
+						if($violation->status == 'active'){
+							if ( in_array($violation->level, array('1','2','3','4','5')) )
+							{
+								$vio[$violation->id] = $violation->name.' (level '.$violation->level.') ' . $violation->RepublicAct;
+							}
+							else
+							{
+								$vio[$violation->id] = $violation->name.' ('.$violation->level.') ' . $violation->RepublicAct;
+							}	
 						}
 					}
 					$data['violations'] = $vio;

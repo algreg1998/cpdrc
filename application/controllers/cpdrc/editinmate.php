@@ -271,13 +271,15 @@ session_start();
 
 					$vio = array();
 					foreach ($violations as $violation) {
-						if ( in_array($violation->level, array('1','2','3','4','5')) )
-						{
-							$vio[$violation->id] = $violation->name.' (level '.$violation->level.') ' . $violation->RepublicAct;
-						}
-						else
-						{
-							$vio[$violation->id] = $violation->name.' ('.$violation->level.') ' . $violation->RepublicAct;
+						if($violation->status == 'active'){
+							if ( in_array($violation->level, array('1','2','3','4','5')) )
+							{
+								$vio[$violation->id] = $violation->name.' (level '.$violation->level.') ' . $violation->RepublicAct;
+							}
+							else
+							{
+								$vio[$violation->id] = $violation->name.' ('.$violation->level.') ' . $violation->RepublicAct;
+							}	
 						}
 					}
 					$inmate['violations'] = $vio;
@@ -306,37 +308,37 @@ session_start();
 
 			    	// $this->load->view('menu/add_inmate4', $inmate);		    		
 		    	}
-		    	elseif($w['height'] < 0){ //validate height
+		    	// elseif($w['height'] < 0){ //validate height
 
-		    		$info['data'] = "<b>Warning!</b> Invalid value for Height.";
-		    		$info['id'] = $user_id;
-		    		$info['formid'] = $this->input->post('formid');
-			    	$info['name'] = $this->input->post('name');
-			    	$info['filename'] = $this->input->post('filename');
+		    	// 	$info['data'] = "<b>Warning!</b> Invalid value for Height.";
+		    	// 	$info['id'] = $user_id;
+		    	// 	$info['formid'] = $this->input->post('formid');
+			    // 	$info['name'] = $this->input->post('name');
+			    // 	$info['filename'] = $this->input->post('filename');
 
-			    	$this->data['title']    = 'Manage Inmate';
-		    		$this->data['css']      = array();
-		    		$this->data['js_top']   = array();
-		    		$this->data['header']   = $this->load->view('admin/header_view',$this->data,TRUE);
-		    		$this->data['body']     = $this->load->view('menu/add_inmate3',$info,TRUE);
-		    		$this->data['footer']   = $this->load->view('footer_view',NULL,TRUE);
-		    		$this->data['js_bottom']= array();
-		    		$this->data['custom_js']= '<script type="text/javascript">
-			    		$(function(){
-			    		});
-			    	</script>';
-		    		$this->load->view('templates',$this->data);
-		    		// $this->load->view('menu/add_inmate3', $info);		    		
-		    	}
-		    	elseif($w['weight'] < 0){ //validate weight
-			    	$info['id']=$user_id;
-			    	$info['formid'] = $this->input->post('formid');
-			    	$info['name'] = $this->input->post('name');
-			    	$info['filename'] = $this->input->post('filename');
+			    // 	$this->data['title']    = 'Manage Inmate';
+		    	// 	$this->data['css']      = array();
+		    	// 	$this->data['js_top']   = array();
+		    	// 	$this->data['header']   = $this->load->view('admin/header_view',$this->data,TRUE);
+		    	// 	$this->data['body']     = $this->load->view('menu/add_inmate3',$info,TRUE);
+		    	// 	$this->data['footer']   = $this->load->view('footer_view',NULL,TRUE);
+		    	// 	$this->data['js_bottom']= array();
+		    	// 	$this->data['custom_js']= '<script type="text/javascript">
+			    // 		$(function(){
+			    // 		});
+			    // 	</script>';
+		    	// 	$this->load->view('templates',$this->data);
+		    	// 	// $this->load->view('menu/add_inmate3', $info);		    		
+		    	// }
+		    	// elseif($w['weight'] < 0){ //validate weight
+			    // 	$info['id']=$user_id;
+			    // 	$info['formid'] = $this->input->post('formid');
+			    // 	$info['name'] = $this->input->post('name');
+			    // 	$info['filename'] = $this->input->post('filename');
 
-		    		$info['data'] = "<b>Warning!</b> Invalid value for Weight.";
-		    		$this->load->view('menu/add_inmate3', $info);		    		
-		    	}			    		
+		    	// 	$info['data'] = "<b>Warning!</b> Invalid value for Weight.";
+		    	// 	$this->load->view('menu/add_inmate3', $info);		    		
+		    	// }			    		
 	    }
 	    public function getViolation($data = 'default'){
 	    	if($data == 'default'){
@@ -398,13 +400,15 @@ session_start();
 
 					$vio = array();
 					foreach ($violations as $violation) {
-						if ( in_array($violation->level, array('1','2','3','4','5')) )
-						{
-							$vio[$violation->id] = $violation->name.' (level '.$violation->level.') ' . $violation->RepublicAct;
-						}
-						else
-						{
-							$vio[$violation->id] = $violation->name.' ('.$violation->level.') ' . $violation->RepublicAct;
+						if($violation->status == 'active'){
+							if ( in_array($violation->level, array('1','2','3','4','5')) )
+							{
+								$vio[$violation->id] = $violation->name.' (level '.$violation->level.') ' . $violation->RepublicAct;
+							}
+							else
+							{
+								$vio[$violation->id] = $violation->name.' ('.$violation->level.') ' . $violation->RepublicAct;
+							}	
 						}
 					}
 					$data['violations'] = $vio;
