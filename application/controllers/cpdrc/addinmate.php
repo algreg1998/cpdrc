@@ -466,13 +466,15 @@ session_start();
 
 					$vio = array();
 					foreach ($violations as $violation) {
-						if ( in_array($violation->level, array('1','2','3','4','5')) )
-						{
-							$vio[$violation->id] = $violation->name.' (level '.$violation->level.') ' . $violation->RepublicAct;
-						}
-						else
-						{
-							$vio[$violation->id] = $violation->name.' ('.$violation->level.') ' . $violation->RepublicAct;
+						if($violation->status == 'active'){
+							if ( in_array($violation->level, array('1','2','3','4','5')) )
+							{
+								$vio[$violation->id] = $violation->name.' (level '.$violation->level.') ' . $violation->RepublicAct;
+							}
+							else
+							{
+								$vio[$violation->id] = $violation->name.' ('.$violation->level.') ' . $violation->RepublicAct;
+							}	
 						}
 					}
 
