@@ -16,6 +16,19 @@
           </div>
           <br>
 	<div id="title">
+        <?php if ($this->session->flashdata('success_msg')): ?>
+            <div class="alert alert-success">
+                <button class="close" aria-hidden="true" data-dismiss="alert" type="button">×</button>
+                <?php echo $this->session->flashdata('success_msg') ?>
+            </div>
+        <?php endif ?>
+
+        <?php if ($this->session->flashdata('error_msg')): ?>
+            <div class="alert alert-danger">
+                <button class="close" aria-hidden="true" data-dismiss="alert" type="button">×</button>
+                <?php echo $this->session->flashdata('error_msg') ?>
+            </div>
+        <?php endif ?>
   		<table cellpadding="0" cellspacing="0" border="0" class="table table-hover table-bordered" id="theGrid">
   			<thead>
   				<tr>
