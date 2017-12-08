@@ -1286,7 +1286,7 @@ class Manage extends Admin_Controller {
 			// 	$this->session->set_flashdata('error_msg','Court is already existing.');
 			// 	redirect(base_url('manage/editcell/'.$id));
 			// }
-			$this->session->set_flashdata('success_msg','Court was successfully saved.');
+			$this->session->set_flashdata('success_msg','Court was successfully updated.');
 			//echo $this->input->post('court_mun');
 			$save = $this->admin_model->update('cell',array('cellId'=>$this->input->post('cellId')),$court_data);
 			$cell_info = $this->admin_model->get('cell',array('cellId' => $id),true);
