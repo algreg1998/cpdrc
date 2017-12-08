@@ -961,7 +961,7 @@ class Manage extends Admin_Controller {
 						);
 			if ($this->cpdrc_fw->checkmunicipality($data['mun_name']) == FALSE) {
 				$save=$this->admin_model->save('municipality', $data);
-				$this->session->set_flashdata('success_msg','Court was successfully saved.');
+				$this->session->set_flashdata('success_msg','Municipality was successfully saved.');
 				//logs
 				
 				$logData = array(
