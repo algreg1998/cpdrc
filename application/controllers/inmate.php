@@ -886,18 +886,16 @@ court.status ="active"');
 
 		$vio = array();
 		foreach ($violations as $violation) {
-			if ( in_array($violation->level, array('1','2','3','4','5')) )
-			{
-				$vio[$violation->id] = $violation->name.' (level '.$violation->level.') ' . $violation->RepublicAct;
+			if($violation->status == 'active'){
+				if ( in_array($violation->level, array('1','2','3','4','5')) )
+				{
+					$vio[$violation->id] = $violation->name.' (level '.$violation->level.') ' . $violation->RepublicAct;
+				}
+				else
+				{
+					$vio[$violation->id] = $violation->name.' ('.$violation->level.') ' . $violation->RepublicAct;
+				}	
 			}
-			else
-			{
-				$vio[$violation->id] = $violation->name.' ('.$violation->level.') ' . $violation->RepublicAct;
-			}
-		}
-
-		foreach ($cases as $case) {
-			unset($vio[$case->violation_id]);
 		}
 
 
@@ -919,7 +917,7 @@ court.status ="active"');
 			$data['s_max_month'] = $violation_info->max_month;
 			$data['s_max_day'] = $violation_info->max_day;
 
-			$checker = $this->admin_model->get('cs_cases_full',array('violation_id'=>$data['violation_id'],'reasons_id'=>$reason->id,'case_status'=>'active'),TRUE);
+			$checker = $this->admin_model->get('cs_cases_full',array('case_no'=>$data['case_no'],'violation_id'=>$data['violation_id'],'reasons_id'=>$reason->id,'case_status'=>'active'),TRUE);
 			if (!empty($checker)) {
 				$this->session->set_flashdata('error_msg','You have already added that violation.');
 				redirect(current_url_full());
