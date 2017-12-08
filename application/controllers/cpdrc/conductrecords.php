@@ -26,8 +26,7 @@ session_start();
 	 		if ($save)
 			{
 				$this->session->set_flashdata('success_msg','Conduct Record was successfully created. Inmate Id: <strong>'.$rec['inmate_id'].'</strong> was added a  <strong>'.$rec['rec_type'].'</strong>');
-            }
-            else
+            }else
             {
 				$this->session->set_flashdata('error_msg','Oops, Something went wrong!');
 			}
