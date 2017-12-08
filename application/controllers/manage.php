@@ -1357,7 +1357,7 @@ class Manage extends Admin_Controller {
 				);
 		$this->admin_model->save('cs_logs',$logData);
 
-		$this->session->set_flashdata('success_msg','Court was successfully deleted.');
+		$this->session->set_flashdata('success_msg','Cell was successfully deleted.');
 		redirect(base_url('manage/cells'));
 	}
 	
