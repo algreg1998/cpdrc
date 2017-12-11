@@ -5,7 +5,9 @@ class Graphical_tools extends Admin_Controller {
 	public function __construct()
 	{
 		parent::__construct();
+		$this->load->model('cpdrc/cpdrc_fw','',TRUE);
 		$this->load->helper('date');
+		$this->load->library('form_validation');
 	}
 	
 	public function violations()
@@ -165,10 +167,67 @@ class Graphical_tools extends Admin_Controller {
 									</script>";
         $this->load->view('templates',$this->data);   
 	}
+	public function getPopuonDate($month,$day,$year){
+		$pStren = $this->cpdrc_fw->getReportsDailyPreviousPStren($year,$month,$day);
+	    $a = json_decode(json_encode($pStren));
+		$cnt =0;
+		for($i = 0; $i< count($a); $i++) {								
+		    $cnt+=  $a[$i]->count;
+		}
+
+		$pStren1 = $this->cpdrc_fw->getReportsDailyPreviousReleased($year,$month,$day);
+		$b = json_decode(json_encode($pStren1));
+		$cntRes = 0;
+		for($i = 0; $i < count($b); $i++) {
+		    $cntRes+=  $b[$i]->count;
+		}
+		return $cnt - $cntRes;
+	}
+	public function getHighestMonthOfYear1($i)
+	{
+	$res = $this->cpdrc_fw->getHighestMonthOfYear($i);
+	 $res = json_decode(json_encode($res));
+	 $ret ='<select name="month" id="months">';
+	 for($i = 1 ; $i <= $res[0]->month; $i++ ){
+	      $dateObj   = DateTime::createFromFormat('!m', $i);
+	      $monthName = $dateObj->format('F'); // March
+	      $ret.="<option value='".$i."'>".$monthName."</option>";
+	 }
+	 $ret .="</select>";
+	return $ret;
+	}
 	public function popuBar()
 	{	
-		
-		$data['popu'] = $this->admin_model->getMaleFemalCnt();
+		if ($this->form_validation->run() != TRUE )
+       {
+            if (!empty( $this->input->post('year')) && !empty( $this->input->post('month'))) {
+                 $year = $this->input->post('year');
+                 $month = $this->input->post('month');     
+           }else{
+	            $year =date("Y");
+	            $month =date("m");
+	      }
+
+	      }else{
+	            $data['day'] = NULL;
+	      }
+
+		$day = cal_days_in_month(CAL_GREGORIAN,$month,$year);
+		$a = array();
+		$days= array();
+
+		for ($i =1; $i <= $day; $i++) { 
+			$a[$i] =  $this->getPopuonDate($month,$i,$year);
+			$days[]=$i;
+		}
+		$data["data"]=$a;
+		$data["days"]=$days;
+		$data['year']=$year;
+      	$data['month']=$month;
+		$dateObj   = DateTime::createFromFormat('!m', $month);
+								$monthName = $dateObj->format('F'); // March
+								// echo $monthName;
+		$data['monthName']	=$monthName;							
         $this->data['title']    = 'Masterlist';
         $this->data['css']      = array(
                                 'vendor/datatables-plugins/integration/bootstrap/3/dataTables.bootstrap.css',
@@ -178,7 +237,7 @@ class Graphical_tools extends Admin_Controller {
                                 );
         $this->data['js_top']   = array();
         $this->data['header']   = $this->load->view('admin/header_view',$this->data,TRUE);
-        $this->data['body']     = $this->load->view('graphical_tools_populationPieChart_view', $data,TRUE);
+        $this->data['body']     = $this->load->view('graphical_tools_populationBarGraph_view', $data,TRUE);
         $this->data['footer']   = $this->load->view('footer_view',NULL,TRUE);
         $this->data['js_bottom']= array('vendor/highcharts/highcharts.js','vendor/highcharts/modules/exporting.js');
         $this->data['custom_js']= "<script type='text/javascript'>
