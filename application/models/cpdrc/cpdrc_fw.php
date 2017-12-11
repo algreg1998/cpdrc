@@ -302,6 +302,7 @@ class cpdrc_fw extends CI_Model
 	 			FROM inmate
 	 			WHERE month(inmate.datetime_added) = ".$month." AND
 	 				  year(inmate.datetime_added) = ".$year." AND
+	 				 	inmate.status='Active' AND
 	 				  inmate.inmate_id NOT IN (SELECT inmate_released.inmate_id FROM inmate_released )
 	 			");
 	 		// $inmates=$this->db->q();
@@ -345,6 +346,7 @@ class cpdrc_fw extends CI_Model
 	 			WHERE month(inmate.datetime_added) =".$month." AND
 	 				  year(inmate.datetime_added) = ".$year." AND
 	 				   day(inmate.datetime_added) = ".$day." AND
+	 				   AND inmate.status ='Active' 
 	 				  inmate.inmate_id NOT IN (SELECT inmate_released.inmate_id FROM inmate_released ) 
 	 			");
 	 		// $inmates=$this->db->q();
@@ -361,7 +363,7 @@ class cpdrc_fw extends CI_Model
 	 	}
 	 	public function getReportsDailyPreviousPStren($year,$month,$day){
 	 		$query=$this->db->query('
-	 			SELECT cast(inmate.datetime_added as DATE) as datetime_added FROM inmate ORDER by inmate.datetime_added asc LIMIT 1
+	 			SELECT cast(inmate.datetime_added as DATE) as datetime_added FROM inmate WHERE inmate.status ="Active"  ORDER by inmate.datetime_added asc LIMIT 1
 				');
 	 		$a = $query->result();
 	 		
@@ -372,7 +374,7 @@ class cpdrc_fw extends CI_Model
 	 		$query=$this->db->query('
 	 			SELECT MONTH(inmate.datetime_added) as "month" , DAY(inmate.datetime_added) "day", YEAR(inmate.datetime_added) "year", COUNT(inmate.inmate_id) "count"
 				FROM inmate 
-				WHERE ( CAST(inmate.datetime_added AS DATE) BETWEEN ('.$a[0]->datetime_added .') AND "'.$year.'-'.$month.'-'.$day.'") AND status = "Active"
+				WHERE ( CAST(inmate.datetime_added AS DATE) BETWEEN ('.$a[0]->datetime_added .') AND "'.$year.'-'.$month.'-'.$day.'") AND inmate.status ="Active" 
 				GROUP by MONTH(inmate.datetime_added) , DAY(inmate.datetime_added), YEAR(inmate.datetime_added) asc
 				');
 	 		// echo $this->db->last_query();
@@ -419,7 +421,8 @@ class cpdrc_fw extends CI_Model
 				FROM `inmate` 
 				WHERE month(inmate.datetime_added) = '.$month.' AND
 						day(inmate.datetime_added) = '.$day.' AND
-				        year(inmate.datetime_added)= '.$year.'
+				        year(inmate.datetime_added)= '.$year.' AND
+				        status ="Active"
 				');
 	 		
 	 		$ins = array();
@@ -475,8 +478,8 @@ class cpdrc_fw extends CI_Model
 	 			SELECT COUNT(inmate.inmate_id) as cnt
 				FROM inmate
 				WHERE MONTH(inmate.datetime_added) = '.$month.' AND
-					  YEAR(inmate.datetime_added) = '.$year.' 
-
+					  YEAR(inmate.datetime_added) = '.$year.'  AND
+					  inmate.status = "Active"
 				');
 	 		
 	 		$ins = array();

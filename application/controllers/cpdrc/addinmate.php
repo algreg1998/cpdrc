@@ -429,12 +429,12 @@ session_start();
 				$res = $this->cpdrc_fw->checkcaseinfo($e);
 				//commented out to enable many violations for 1 case end
 				// Debugging only
-				#print_r($res);
-				echo $this->db->last_query();
-				//
+				// print_r($res);
+				// echo $this->db->last_query();
+				
 
-				#if($res == FALSE) // original
-				print_r($res);
+				// if($res == FALSE) // original
+				// print_r($res);
 				// die();
 				if($res == 0)
 				{
