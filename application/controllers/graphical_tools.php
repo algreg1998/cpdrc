@@ -167,6 +167,20 @@ class Graphical_tools extends Admin_Controller {
 									</script>";
         $this->load->view('templates',$this->data);   
 	}
+	public function getPopuonDate1($year){
+		$reports = $this->admin_model->getPopulationReport($year);
+	   	// var_dump($reports);
+	   	foreach ($reports as $key => $report)
+		{
+			$a = $report->detainee+$report->convict+$report->probation;
+
+			 // var_dump($report);
+			$months[$report->monthname] = $a ;
+		}
+		var_dump($months);
+	   	die();
+		return $cnt - $cntRes;
+	}
 	public function getPopuonDate($month,$day,$year){
 		$pStren = $this->cpdrc_fw->getReportsDailyPreviousPStren($year,$month,$day);
 	    $a = json_decode(json_encode($pStren));
@@ -207,6 +221,10 @@ class Graphical_tools extends Admin_Controller {
 			$a[$i] =  $this->getPopuonDate($month,$i,$year);
 			$days[]=$i;
 		}
+		// for ($i =1; $i <= $day; $i++) { 
+		// 	$a[$i] =  $this->getPopuonDate1($year);
+		// 	$days[]=$i;
+		// }
 		$data["data"]=$a;
 		$data["days"]=$days;
 		$data['year']=$year;

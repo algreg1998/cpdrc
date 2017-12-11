@@ -372,10 +372,11 @@ class cpdrc_fw extends CI_Model
 	 		$query=$this->db->query('
 	 			SELECT MONTH(inmate.datetime_added) as "month" , DAY(inmate.datetime_added) "day", YEAR(inmate.datetime_added) "year", COUNT(inmate.inmate_id) "count"
 				FROM inmate 
-				WHERE ( CAST(inmate.datetime_added AS DATE) BETWEEN ('.$a[0]->datetime_added .') AND "'.$year.'-'.$month.'-'.$day.'") 
+				WHERE ( CAST(inmate.datetime_added AS DATE) BETWEEN ('.$a[0]->datetime_added .') AND "'.$year.'-'.$month.'-'.$day.'") AND status = "Active"
 				GROUP by MONTH(inmate.datetime_added) , DAY(inmate.datetime_added), YEAR(inmate.datetime_added) asc
 				');
-	 		
+	 		// echo $this->db->last_query();
+	 		// die();
 	 		$ins = array();
 
 				foreach ($query->result() as $key) {
