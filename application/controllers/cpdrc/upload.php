@@ -15,7 +15,7 @@ session_start();
 	 			$config['file_name'] = $this->input->post('userfile');
 		 		$config['upload_path'] = './uploads/inmate';
 		 		$config['allowed_types'] = 'gif|jpg|jpeg|png';
-		 		$config['max_size']='400';
+		 		$config['max_size']='5000';
 		 		$config['max_width']='2000';
 		 		$config['max_height'] = '2000';
 
@@ -52,7 +52,7 @@ session_start();
 	 			$config['file_name'] = $this->input->post('userfile');
 		 		$config['upload_path'] = './uploads/inmate';
 		 		$config['allowed_types'] = 'gif|jpg|jpeg|png';
-		 		$config['max_size']='400';
+		 		$config['max_size']='5000';
 		 		$config['max_width']='2000';
 		 		$config['max_height'] = '2000';
 		 		echo $this->input->post('userfile');

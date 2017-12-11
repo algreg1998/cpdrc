@@ -147,7 +147,6 @@
 		<script>
           $("#photoform").submit(function(){
               var formdata=new FormData($("#photoform")[0]);
-              alert($(document).find("#photo").val());
               var loader="<i class='fa fa-spinner fa-spin'></i> Uploading photo...";
               $("#photodiv").html(loader);
                  $.ajax({data:formdata,cache: false,contentType: false,
