@@ -183,19 +183,6 @@ class Graphical_tools extends Admin_Controller {
 		}
 		return $cnt - $cntRes;
 	}
-	public function getHighestMonthOfYear1($i)
-	{
-	$res = $this->cpdrc_fw->getHighestMonthOfYear($i);
-	 $res = json_decode(json_encode($res));
-	 $ret ='<select name="month" id="months">';
-	 for($i = 1 ; $i <= $res[0]->month; $i++ ){
-	      $dateObj   = DateTime::createFromFormat('!m', $i);
-	      $monthName = $dateObj->format('F'); // March
-	      $ret.="<option value='".$i."'>".$monthName."</option>";
-	 }
-	 $ret .="</select>";
-	return $ret;
-	}
 	public function popuBar()
 	{	
 		if ($this->form_validation->run() != TRUE )
