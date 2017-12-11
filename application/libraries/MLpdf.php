@@ -198,7 +198,7 @@ class MLpdf extends FPDF
                     $this->Cell(60,10,$a[$b-1]->nameOfInmate,1,0,'C');
                     $this->Cell(60,10,$crimes[$x],1,0,'C');
                     $this->Cell(40,10,$cases[$x],1,0,'C');
-                    $this->Cell(20,10,$a[$b-1]->cell,1,0,'C');
+                    $this->Cell(20,10,$a[$b-1]->cellNumber,1,0,'C');
                     // $this->Cell(30,10,$courts[$x],1,0,'C');
                     $this->Cell(30,10,$courts[$x],1,0,'C');
                     // $this->Ln(0);
