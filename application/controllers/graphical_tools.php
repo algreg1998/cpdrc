@@ -161,7 +161,30 @@ class Graphical_tools extends Admin_Controller {
         $this->data['custom_js']= "<script type='text/javascript'>
 										var monthname = 'November'
 										$('.nav-graphical').addClass('active');
-											$('.nav-graphical-addReleased a').addClass('active');
+											$('.nav-graphical-popuPie a').addClass('active');
+									</script>";
+        $this->load->view('templates',$this->data);   
+	}
+	public function popuBar()
+	{	
+		
+		$data['popu'] = $this->admin_model->getMaleFemalCnt();
+        $this->data['title']    = 'Masterlist';
+        $this->data['css']      = array(
+                                'vendor/datatables-plugins/integration/bootstrap/3/dataTables.bootstrap.css',
+                                'vendor/colorbox/css/colorbox.css',
+                                'vendor/alertify/css/alertify.core.css',
+                                'vendor/alertify/css/alertify.default.css'
+                                );
+        $this->data['js_top']   = array();
+        $this->data['header']   = $this->load->view('admin/header_view',$this->data,TRUE);
+        $this->data['body']     = $this->load->view('graphical_tools_populationPieChart_view', $data,TRUE);
+        $this->data['footer']   = $this->load->view('footer_view',NULL,TRUE);
+        $this->data['js_bottom']= array('vendor/highcharts/highcharts.js','vendor/highcharts/modules/exporting.js');
+        $this->data['custom_js']= "<script type='text/javascript'>
+										var monthname = 'November'
+										$('.nav-graphical').addClass('active');
+											$('.nav-graphical-popuBar a').addClass('active');
 									</script>";
         $this->load->view('templates',$this->data);   
 	}

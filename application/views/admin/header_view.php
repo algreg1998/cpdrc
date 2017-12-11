@@ -113,9 +113,13 @@
                         <li class="nav-graphical-addReleased">
                             <a href="<?php echo base_url('historical-graphical-tools/addReleased') ?>">&nbsp;&nbsp;&nbsp;Remand and Released</a>
                         </li>
+                        <li class="nav-graphical-popuBar">
+                            <a href="<?php echo base_url('historical-graphical-tools/popuBar') ?>">&nbsp;&nbsp;&nbsp;Population Bar</a>
+                        </li>
                         <li class="nav-graphical-popuPie">
                             <a href="<?php echo base_url('historical-graphical-tools/popuPie') ?>">&nbsp;&nbsp;&nbsp;Population Pie Chart</a>
                         </li>
+
                         
                     </ul>
                 </li>
