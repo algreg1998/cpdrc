@@ -15,7 +15,7 @@
             <div class="panel panel-green">
                 
                 <div class="panel-heading">
-                    Courts
+                    Cells
                 </div>
                 <div class="panel-body">
                     <?php if (validation_errors()): ?>

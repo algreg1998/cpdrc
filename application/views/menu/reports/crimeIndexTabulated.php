@@ -17,7 +17,7 @@
 								<div class="panel panel-primary">
 									<div class="panel-heading">
 										<h3 class="panel-title" id="paneltitle">
-											Releases
+											Crime Index Tabulated
 										</h3>
 									</div>
 									<div class="panel-body">
