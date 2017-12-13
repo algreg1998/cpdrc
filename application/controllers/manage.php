@@ -294,7 +294,7 @@ class Manage extends Admin_Controller {
 				$this->session->set_flashdata('error_msg','Category is already exists.');
 				redirect(base_url('manage/addviolationcategories'));
 			}
-			$this->session->set_flashdata('success_msg','Violation was successfully saved.');
+			$this->session->set_flashdata('success_msg','Category was successfully saved.');
 			$save = $this->admin_model->save('cs_violations_categories',$vio_data);
 			redirect(base_url('manage/addviolationcategories'));
 		}
