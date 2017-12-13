@@ -14,7 +14,12 @@
 
   												foreach ($view as $key2) {
   													if($key2['id'] != NULL){
-									  		         	echo "<tr>";
+									  		         	echo '<tr  ';
+                                  if($key2['type'] == 'Bad Conduct')
+                                  {
+                                      echo 'style="background-color: #ffc180"';
+                                  }
+                                  echo'>';
 									  			        echo "<td>".$key2['date']."</td>";
                                   echo "<td>".$key2['type']."</td>";
 									  			        echo "<td>".$key2['cause']."</td>";

@@ -1262,7 +1262,7 @@ class cpdrc_fw extends CI_Model
 	 	/------------------------------------------*/
 	 	public function viewconrec($id)
 	 	{
-	 		$this->db->select('*')->from('inmate_conduct_rec')->join('user_account', 'inmate_conduct_rec.warden_id=user_account.user_id')->where('inmate_conduct_rec.inmate_id', $id);
+	 		$this->db->select('*')->from('inmate_conduct_rec')->join('user_account', 'inmate_conduct_rec.warden_id=user_account.user_id')->where('inmate_conduct_rec.inmate_id', $id)->where('inmate_conduct_rec.status = "1"');
 	 		$getall = $this->db->get();
 
 	 		if($getall->num_rows() > 0)
@@ -1288,10 +1288,13 @@ class cpdrc_fw extends CI_Model
 
 	 	}
 	 	public function viewconrec2($id)
-	 	{
-	 		$this->db->select('*')->from('inmate_conduct_rec')->join('user_account', 'inmate_conduct_rec.warden_id=user_account.user_id')->where('inmate_conduct_rec.inmate_id !=', $id);
+	 	{	$this->db->select('*')->from('inmate_conduct_rec')->where('inmate_conduct_rec.id ="'.$id.'"');
 	 		$getall = $this->db->get();
-
+			$getall = $getall->result();
+	 		
+	 		$this->db->select('*')->from('inmate_conduct_rec')->join('user_account', 'inmate_conduct_rec.warden_id=user_account.user_id')->where('inmate_conduct_rec.status = "1"')->where('inmate_conduct_rec.inmate_id = "'.$getall[0]->inmate_id.'"');
+	 		$getall = $this->db->get();
+	 		
 	 		if($getall->num_rows() > 0)
 	 		{
 	 			foreach ($getall->result() as $key2) {

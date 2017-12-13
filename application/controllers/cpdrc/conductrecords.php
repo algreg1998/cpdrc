@@ -43,9 +43,9 @@ session_start();
 	 	public function delete()
 	 	{
 	 		$id = $this->input->post('id');
-
-	 		$this->db->where('id', $id);
-	 		$this->db->delete('inmate_conduct_rec');
+	 		$update = array("status"=>'0');
+	 		// $this->db->where('id', $id);
+	 		$this->admin_model->update('inmate_conduct_rec',array("id"=>$id),$update);
 	 		
 	 		$data['view']=$this->cpdrc_fw->viewconrec2($id);
 	 		$this->load->view('menu/view_conrec2', $data);
