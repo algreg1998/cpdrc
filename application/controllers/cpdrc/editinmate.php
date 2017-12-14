@@ -109,11 +109,6 @@ session_start();
 			$info['inmate_alias']= ucwords($this->input->post('alias'));
 			
 
-	    	
-	    		
-			
-
-			
 	    	//double checking to avoid duplicate value in the database
 	    	$get=$this->cpdrc_fw->checkinmate($user_id);
 	    	$this->data["cells"] = $this->cpdrc_fw->getAvailableCells();
@@ -122,7 +117,24 @@ session_start();
 	   		//to db inmate
 	   		$this->db->where('inmate_id', $this->input->post('old'));
 			$this->db->update('inmate', $info); 
+			
+			$editReq = array('inmate_id', $info['inmate_id']);
 
+			$this->db->where('inmate_id', $this->input->post('old'));
+			$this->db->update('inmate', $info); 
+			//logs
+			$logData = array(
+					'linked_id' => $user_id,
+					'table_name' => 'inmate',
+					'table_field' => 'inmate_id',
+					'subject' => 'Edit Inmate Information Step 1 ',
+					'reasons' => 'Inmate Information of "'.$info['inmate_fname'].' '.$info['inmate_lname'].')" was updated',
+					'update_by' => $this->session->userdata('user_id'),
+					'action' => 'update',
+					'created_at' => date("Y-m-d h:i:sa"),
+					'status' => 'active'
+				);
+			$this->admin_model->save('cs_logs',$logData);
 //getting the filename of the inmates photo
 			$filename = $this->cpdrc_fw->getFilename($user_id);
 
@@ -158,7 +170,7 @@ session_start();
 
 			//getting the filename of the inmates photo
 			$filename = $this->cpdrc_fw->getFilename($user_id);
-	echo $this->cpdrc_fw->db->last_query();
+	// echo $this->cpdrc_fw->db->last_query();
 			//pass all data to the next step
 			$info['formid'] = $info['ref_formid'];
 			$info['id'] = $user_id;
@@ -212,6 +224,22 @@ session_start();
 		    	
 		    		$this->db->where('inmate_id', $id);
 		    		$this->db->update('inmate_info', $info);
+		    		
+		    		//logs
+					$logData = array(
+							'linked_id' => $user_id,
+							'table_name' => 'inmate',
+							'table_field' => 'inmate_id',
+							'subject' => 'Edit Inmate Information Step 2 ',
+							'reasons' => 'Inmate Information of "'.$info['inmate_fname'].' '.$info['inmate_lname'].')" was updated',
+							'update_by' => $this->session->userdata('user_id'),
+							'action' => 'update',
+							'created_at' => date("Y-m-d h:i:sa"),
+							'status' => 'active'
+						);
+					$this->admin_model->save('cs_logs',$logData);
+
+
 		    		//Step 2 --update temporary
 		    		$affectedFields['step'] = 2;
 		    		$this->cpdrc_fw->update($id,$affectedFields);
@@ -254,9 +282,23 @@ session_start();
 		    	$w['hair_peculiarities']=$this->input->post('hairp');
 
 
-		    	if($w['height'] > 0 && $w['weight'] > 0){
+		    	// if($w['height'] > 0 && $w['weight'] > 0){
+
 		    		$this->db->where('inmate_id', $user_id);
 			    	$this->db->update('inmate_build', $w);
+			    	//logs
+					$logData = array(
+							'linked_id' => $user_id,
+							'table_name' => 'inmate',
+							'table_field' => 'inmate_id',
+							'subject' => 'Edit Inmate Information Step 3 ',
+							'reasons' => 'Inmate Information of "'.$info['inmate_fname'].' '.$info['inmate_lname'].')" was updated',
+							'update_by' => $this->session->userdata('user_id'),
+							'action' => 'update',
+							'created_at' => date("Y-m-d h:i:sa"),
+							'status' => 'active'
+						);
+					$this->admin_model->save('cs_logs',$logData);
 
 					//Step 3 --update temporary
 		    		$affectedFields['step'] = 3;
@@ -312,7 +354,7 @@ session_start();
 
 
 			    	// $this->load->view('menu/add_inmate4', $inmate);		    		
-		    	}
+		    	// }
 		    	// elseif($w['height'] < 0){ //validate height
 
 		    	// 	$info['data'] = "<b>Warning!</b> Invalid value for Height.";
@@ -357,118 +399,5 @@ session_start();
 	    	// return $query->row();
 	    }
 
-	    public function continue(){
-	    	
-	    	$query = $this->db->get_where('temp',array('inmate_id'=>$this->input->post('inmate_id')));
-	    	$get = $query->row();
-	    	//echo 'menu/add_inmate'.$get->step;
-	    	$step = $get->step;
-			
-			
-			$query = $this->db->get_where('inmates_full',array('inmate_id'=>$this->input->post('inmate_id')));
-	    	$get = $query->row();
-	    	
-
-	    	
-	    	$file = $this->cpdrc_fw->getFilename($this->input->post('inmate_id'));
-	    	
-	    	if(isset($file)){
-	    		$data['filename'] = $file;
-	    	}else{
-	    		$data['filename'] = "asd8.png";
-	    	}
-	    	$data['id'] = $this->input->post('inmate_id');
-			$data['name'] = $get->inmate_lname.", ".$get->inmate_fname." ".$get->inmate_mi;
-
-			$gender =$get->gender;
-
-			$query = $this->db->get_where('inmate',array('inmate_id'=>$this->input->post('inmate_id')));
-	    	$get = $query->row();
-	    	
-			$data['formid'] = $get->ref_formid;
-
-
-			if($step == 4){
-				$query = $this->db->get_where('cs_reasons',array("inmate_id"=>$this->input->post('inmate_id')));
-			    	//$this->db->from('court');
-			    	$data['cs_reasons'] = $query->result();
-			    	$cs_res = json_decode(json_encode($data['cs_reasons']));
-			    	if($cs_res){
-						$cases = $this->admin_model->get('cs_cases_full',array('reasons_id'=>$cs_res[0]->id,'case_status'=>'active'),FALSE,'name ASC, level ASC');
-			    	}
-					
-			    	// // Retrieve violation data from database
-			    	// $this->db->select('id,name');
-			    	// $query = $this->db->get('cs_violations');
-			    	// $inmate['violations'] = $query->result();
-			    	$violations = $this->admin_model->get('cs_violations',null,FALSE,'name ASC');
-
-					$vio = array();
-					foreach ($violations as $violation) {
-						if($violation->status == 'active'){
-							if ( in_array($violation->level, array('1','2','3','4','5')) )
-							{
-								$vio[$violation->id] = $violation->name.' (level '.$violation->level.') ' . $violation->RepublicAct;
-							}
-							else
-							{
-								$vio[$violation->id] = $violation->name.' ('.$violation->level.') ' . $violation->RepublicAct;
-							}	
-						}
-					}
-					$data['violations'] = $vio;
-					if (count($vio)==0) {
-						$data['error'] = "<b>Warning!</b> No more violations to choose from! ";
-					}
-			    	// Retrieve court list from db
-			    	$query = $this->db->get_where('court','court_mun NOT in (SELECT municipality.mun_id FROM municipality WHERE municipality.status ="deleted")AND court.status ="active"');
-			    	//$this->db->from('court');
-			    	$data['courts'] = $query->result();
-
-					$data['case']=$this->cpdrc_fw->getcaseinfolimit($data['id']);
-					
-			    	
-			}else if($step == 5){
-				$data['marks'] = $this->cpdrc_fw->getMarks($this->input->post('inmate_id'));
-			}
-			
-			$this->data['title']    = 'Manage Inmate';
-			$this->data['css']      = array();
-			$this->data['js_top']   = array();
-			$this->data['header']   = $this->load->view('admin/header_view',$this->data,TRUE);
-			
-
-			switch ($step) {
-				case 2:
-					$this->data['body']     = $this->load->view('menu/add_inmate2',$data,TRUE);		    		
-					//$this->load->view("menu/add_inmate2", $data);
-					break;
-				case 3:
-					$this->data['body']     = $this->load->view('menu/add_inmate3',$data,TRUE);		    		
-					//$this->load->view("menu/add_inmate3", $data);
-					break;
-				case 4:
-					$this->data['body']     = $this->load->view('menu/add_inmate4',$data,TRUE);		    		
-					//$this->load->view("menu/add_inmate4", $data);
-					break;
-				case 5:
-					if($gender =="Male"){
-						$this->data['body']     = $this->load->view('menu/2d/2dmark',$data,TRUE);		    		
-						//$this->load->view("menu/2d/2dmark", $data);
-					}else if($gender =="Female"){
-						$this->data['body']     = $this->load->view('menu/2d/2dmark2',$data,TRUE);		    		
-						//$this->load->view("menu/2d/2dmark2", $data);
-					}
-					break;
-			}
-			$this->data['footer']   = $this->load->view('footer_view',NULL,TRUE);
-		    		$this->data['js_bottom']= array();
-		    		$this->data['custom_js']= '<script type="text/javascript">
-			    		$(function(){
-			    		});
-			    	</script>';
-		    		$this->load->view('templates',$this->data);
-			
-	    }
 	}
 ?>
