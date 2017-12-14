@@ -225,20 +225,20 @@ session_start();
 		    		$this->db->where('inmate_id', $id);
 		    		$this->db->update('inmate_info', $info);
 		    		
-		    		//logs
+		    		$data = $this->admin_model->get("inmate",array("inmate_id"=>$id));
 					$logData = array(
-							'linked_id' => $user_id,
+							'linked_id' => $id,
 							'table_name' => 'inmate',
 							'table_field' => 'inmate_id',
 							'subject' => 'Edit Inmate Information Step 2 ',
-							'reasons' => 'Inmate Information of "'.$info['inmate_fname'].' '.$info['inmate_lname'].'" was updated',
+							'reasons' => 'Inmate Information of "'.$data[0]->inmate_fname.' '.$data[0]->inmate_lname.'" was updated',
 							'update_by' => $this->session->userdata('user_id'),
 							'action' => 'update',
 							'created_at' => date("Y-m-d h:i:sa"),
 							'status' => 'active'
 						);
 					$this->admin_model->save('cs_logs',$logData);
-
+					
 
 		    		//Step 2 --update temporary
 		    		$affectedFields['step'] = 2;
@@ -286,19 +286,21 @@ session_start();
 
 		    		$this->db->where('inmate_id', $user_id);
 			    	$this->db->update('inmate_build', $w);
-			    	//logs
+			    	
+			    	$data = $this->admin_model->get("inmate",array("inmate_id"=>$user_id));
+					//logs
 					$logData = array(
 							'linked_id' => $user_id,
 							'table_name' => 'inmate',
 							'table_field' => 'inmate_id',
 							'subject' => 'Edit Inmate Information Step 3 ',
-							'reasons' => 'Inmate Information of "'.$info['inmate_fname'].' '.$info['inmate_lname'].'" was updated',
+							'reasons' => 'Inmate Information of "'.$data[0]->inmate_fname.' '.$data[0]->inmate_lname.'" was updated',
 							'update_by' => $this->session->userdata('user_id'),
 							'action' => 'update',
 							'created_at' => date("Y-m-d h:i:sa"),
 							'status' => 'active'
 						);
-					$this->admin_model->save('cs_logs',$logData);
+					$this->admin_model->save('cs_logs',$logData);$this->admin_model->save('cs_logs',$logData);
 
 					//Step 3 --update temporary
 		    		$affectedFields['step'] = 3;
