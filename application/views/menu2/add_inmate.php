@@ -70,19 +70,20 @@
 			    			<div class="row">
 			    				<div class="col-md-6">
 			    					<label><i class="fa fa-list-alt"></i> <b>Reference Form ID</b></label>
-			    					<input type="number" name="formid" class="form-control" required autofocus readonly value="<?php echo $d->ref_formid?>">
+			    					<input type="number" name="formid" class="form-control" required autofocus  value="<?php echo $d->ref_formid?>">
 			    				</div>
 			    			</div>
 				    		<div class="row">
 				    		<br>
 				    			<div class="col-md-6">
 				    				<label><i class="fa fa-user"></i> <b>Inmate Number</b></label>
-	                    			<input type="text" name="id" class="form-control" required readonly value="<?php echo $d->inmate_id?>">
+	                    			<input type="text" name="id" class="form-control" required  value="<?php echo $d->inmate_id?>">
+	                    			<input type="text" name="old" class="form-control hidden" viewonly required  value="<?php echo $d->inmate_id?>">
 	                    		</div>		
 	                    		<div class="col-md-6">
 	                    			<label><i class="fa fa-home"></i> <b>Cell Number</b></label>
 	                    			<!-- <input type="text" name="cell" class="form-control" required> -->
-	                    			<select name="cell" class="form-control" readonly required>
+	                    			<select name="cell" class="form-control"  required>
 	                    			<?php
 	                    				foreach ($cells as $cell) {
 	                    					

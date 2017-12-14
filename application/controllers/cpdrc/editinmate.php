@@ -98,8 +98,7 @@ session_start();
 	    	$user_id = $this->input->post('id');
 	    	$form = $this->input->post('formid');
 	    	
-	    	//getting the filename of the inmates photo
-			$filename = $this->cpdrc_fw->getFilename($user_id);
+	    	
 	    	
 	    	$info['ref_formid'] = $form;
 			$info['inmate_id']=$user_id;
@@ -121,17 +120,22 @@ session_start();
 	    
     		
 	   		//to db inmate
-	   		$this->db->where('inmate_id', $user_id);
+	   		$this->db->where('inmate_id', $this->input->post('old'));
 			$this->db->update('inmate', $info); 
+
+//getting the filename of the inmates photo
+			$filename = $this->cpdrc_fw->getFilename($user_id);
 
 	    	//Step 1 here
 	    	$ar['inmate_id'] = $user_id;
 	    	$ar['step'] = 1;
 	    	$this->cpdrc_fw->insert($ar);
-	    	//setting the image of the inmate..
-	    	$this->db->select('*')->from('file')->where('added_by', $actor['user_id'])->where('img_set', '0');
 
-	    	$cnt = $this->db->get();
+	
+	    	//setting the image of the inmate..
+	    	// $this->db->select('*')->from('file')->where('added_by', $actor['user_id'])->where('img_set', '0');
+
+	    	// $cnt = $this->db->get();
 	    	
 
 		 //    if($cnt->num_rows() == 0)
@@ -154,6 +158,7 @@ session_start();
 
 			//getting the filename of the inmates photo
 			$filename = $this->cpdrc_fw->getFilename($user_id);
+	echo $this->cpdrc_fw->db->last_query();
 			//pass all data to the next step
 			$info['formid'] = $info['ref_formid'];
 			$info['id'] = $user_id;
