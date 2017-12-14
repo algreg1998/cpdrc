@@ -440,6 +440,21 @@ session_start();
 				{
 				//commented out to enable many violations for 1 case end
 					$this->db->insert('inmate_case_info', $data); // for insertion
+					$primarykey = $this->db->insert_id();
+					$data = $this->admin_model->get("inmate",array("inmate_id"=>$id));
+					$logData = array(
+							'linked_id' => $primarykey,
+							'table_name' => 'inmate_case_info',
+							'table_field' => 'id',
+							'subject' => 'Add Case Information',
+							'reasons' => 'A Case Information of "'.$data[0]->inmate_fname.' '.$data[0]->inmate_lname.'" was added',
+							'update_by' => $this->session->userdata('user_id'),
+							'action' => 'insert',
+							'created_at' => date("Y-m-d h:i:sa"),
+							'status' => 'active'
+						);
+					$this->admin_model->save('cs_logs',$logData);
+
 					$query = $this->db->insert('cs_reasons',$cs_reasons);
 					if($query && ! $this->session->flashdata('update_token')){
 						$reason = $this->db->get_where('cs_reasons',array('inmate_id'=>$cs_reasons['inmate_id']));//temp placement, should be transferred to MODEL
