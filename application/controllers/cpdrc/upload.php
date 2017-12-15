@@ -40,7 +40,10 @@ session_start();
 					
 			 		else{
 			 			echo "<img src='".base_url()."uploads/inmate/source/192x192.jpg' width='300' height='300'/>
-			 			<div class='alert alert-danger alert-dismissible' align='center'> <button type='button' class='close' data-dismiss='alert'><span aria-hidden='true'>&times;</span><span class='sr-only'>Close</span></button>".$this->upload->display_errors()."</div>";
+			 			<div class='alert alert-danger alert-dismissible' align='center'> <button type='button' class='close' data-dismiss='alert'><span aria-hidden='true'>&times;</span><span class='sr-only'>Close</span></button>".$this->upload->display_errors()."</div>
+			 			<input type='hidden' id='error' value='1'>
+			 			
+			 	";
 			 		} 				
 	 	}
 	 	public function editpic()
@@ -73,8 +76,10 @@ session_start();
 					
 			 		else{
 			 			echo "<img src='".base_url()."uploads/inmate/source/192x192.jpg' width='300' height='300'/>
-			 			<div class='alert alert-danger alert-dismissible' align='center'> <button type='button' class='close' data-dismiss='alert'><span aria-hidden='true'>&times;</span><span class='sr-only'>Close</span></button>".$this->upload->display_errors()."</div>";
-			 		} 				
+			 			<div class='alert alert-danger alert-dismissible' align='center'> <button type='button' class='close' data-dismiss='alert'><span aria-hidden='true'>&times;</span><span class='sr-only'>Close</span></button>".$this->upload->display_errors()."</div>
+			 			<input type='hidden' id='error' value='1'>";
+
+				 	}
 	 	}
 	 	public function changepic()
 	 	{
@@ -104,7 +109,8 @@ session_start();
 				 }
 				 else{
 			 		echo "<img src='".base_url()."uploads/inmate/source/192x192.jpg' width='250' height='250'/>
-			 			<div class='alert alert-danger alert-dismissible' align='center'> <button type='button' class='close' data-dismiss='alert'><span aria-hidden='true'>&times;</span><span class='sr-only'>Close</span></button>".$this->upload->display_errors()."</div>";
+			 			<div class='alert alert-danger alert-dismissible' align='center'> <button type='button' class='close' data-dismiss='alert'><span aria-hidden='true'>&times;</span><span class='sr-only'>Close</span></button>".$this->upload->display_errors()."</div>
+			 			<input type='hidden' id='error' value='1'>";
 			 	} 		
 	 	}
 	 	public function userpic()
@@ -197,7 +203,8 @@ session_start();
 			}
 			else{
 			 		echo "<img src='".base_url()."uploads/visitors/source/error.jpg' width='300' height='300'/>
-			 			<div class='alert alert-danger alert-dismissible' align='center'> <button type='button' class='close' data-dismiss='alert'><span aria-hidden='true'>&times;</span><span class='sr-only'>Close</span></button>".$this->upload->display_errors()."</div>";
+			 			<div class='alert alert-danger alert-dismissible' align='center'> <button type='button' class='close' data-dismiss='alert'><span aria-hidden='true'>&times;</span><span class='sr-only'>Close</span></button>".$this->upload->display_errors()."</div>
+			 			<input type='hidden' id='error' value='1'>";
 			} 	
 	 	}
 	 	public function changeVisitorPic()

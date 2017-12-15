@@ -124,11 +124,13 @@
         <h4 class="modal-title" id="myModalLabel"><i class="fa fa-exclamation-circle"></i> Edit Request Reason</h4>
       </div>
       <div class="modal-body">
-        <h2>Reason</h2>
-         <textarea style="width:auto; resize: none; overflow: auto;" name="reason" id="reason" required></textarea>
+        <form>
+            <h2>Reason</h2>
+             <textarea style="width:auto; resize: none; overflow: auto;" name="reason" id="reason" required></textarea>
     </div>
     <div class="modal-footer">
-        <button type="button"  class="btn btn-success btn-sm" id="sub">Submit</button>
+            <button type="button"  class="btn btn-success btn-sm" id="sub">Submit</button>
+        </form>
         <button type="button" class="btn btn-default btn-sm" data-dismiss="modal">Close</button>
       </div>
   </div>
@@ -138,21 +140,30 @@
      $("#rfe").click(function(){
         $("#myModal4").modal("toggle");
     });
-    $("#sub").click(function(){
-    var inmate_id = $(document).find('#inmate_id').html();
-    var reason = $(document).find('#reason').val();
 
-  $.ajax({ url:'<?php echo site_url();?>cpdrc/editinmate/addRequest',
-                          type:"POST",
-                    data: {"inmate_id":inmate_id ,"reason":reason},
-                    dataType:"text",
-                    success: function(e){
-                        $("#myModal4").modal("toggle");
-                        $("#some").toggle(500);
-                        $(document).find("#rfe").attr("disabled", true);
-                        $(document).find("#rfe").text("Request sent");
-                    }
-                  });
+     $("#sub").prop("disabled", true);
+     $("#reason").keyup(function() {
+         $("#sub").prop("disabled", false);
+     });
+
+     $("#sub").click(function(){
+         var inmate_id = $(document).find('#inmate_id').html();
+         var reason = $(document).find('#reason').val();
+
+         $.ajax({
+             url:'<?php echo site_url();?>cpdrc/editinmate/addRequest',
+             type:"POST",
+             data: {"inmate_id":inmate_id ,"reason":reason},
+             dataType:"text",
+             success: function(e)
+             {
+                 $("#myModal4").modal("toggle");
+                 $("#some").toggle(500);
+                 $(document).find("#rfe").attr("disabled", true);
+                 $(document).find("#rfe").text("Request sent");
+             }
+         });
+
 
     });
 </script>

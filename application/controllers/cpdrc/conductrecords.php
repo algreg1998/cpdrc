@@ -20,7 +20,8 @@ session_start();
 	 					'cause' => $this->input->post('cause'),
 	 					'warden_id' => $user['user_id'],
 	 					'pointValue' => $this->input->post('pointValue'),
-	 					'pointUnit' => $this->input->post('pointUnit'), );
+	 					'pointUnit' => $this->input->post('pointUnit'),
+                        'status' => 1);
 
 	 		$save = $this->db->insert('inmate_conduct_rec', $rec);
 	 		if ($save)

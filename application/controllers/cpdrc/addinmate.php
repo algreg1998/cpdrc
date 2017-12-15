@@ -156,7 +156,7 @@ session_start();
 		    	$info['age']=$this->input->post('age');
 		    	$info['gender']=$this->input->post('gender');
 		    	$info['born_in']=$this->input->post('birthplace');
-		    	$info['home_add']=$this->input->post('homeStreet').' '.$this->input->post('homeBrgy').', '.$this->input->post('homeCity');
+		    	$info['home_add']=$this->input->post('homeStreet').', '.$this->input->post('homeBrgy').', '.$this->input->post('homeCity');
 		    	$info['place'] = $this->input->post('homeCity');
 		    	$info['province_add']=$this->input->post('province');
 		    	$info['occupation']=$this->input->post('occupation');
@@ -164,7 +164,7 @@ session_start();
 		    	$info['mother']=$this->input->post('mother');
 		    	$info['relative']=$this->input->post('relative');
 		    	$info['relation']=$this->input->post('relation');
-		    	$info['address']=$this->input->post('currentStreet').' '.$this->input->post('currentBrgy').', '.$this->input->post('currentCity');
+		    	$info['address']=$this->input->post('currentStreet').', '.$this->input->post('currentBrgy').', '.$this->input->post('currentCity');
 
 		    	if($info['age'] < 100 && $info['age'] > 17){
 		    		$this->db->insert('inmate_info', $info);

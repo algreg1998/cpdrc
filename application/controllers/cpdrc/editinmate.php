@@ -35,8 +35,8 @@ session_start();
 
 	   	public function editInmate(){
 	   		$inmate_id = $this->input->post("inmate_id");
-
 	   		$data['data'] = $this->admin_model->get('inmate', array('inmate_id' => $inmate_id));
+            $data['picture'] = $this->admin_model->get('file', array('inmate_id' => $inmate_id));
 	   		$data['cells']= $this->cpdrc_fw->getAvailableCells();
 
 	   		$this->data['title']    = 'Manage Inmate';
@@ -50,9 +50,14 @@ session_start();
 							'vendor/datatables-plugins/integration/bootstrap/3/dataTables.bootstrap.js',
 						'js/editRequest.js'
 						);
-            $this->data['custom_js']= '<script type="text/javascript">
-                  $(function(){
-                  });
+            $this->data['custom_js']= '<script>
+                $(document).ready(function() {
+                    $("#uploadphoto").css("display", "none");
+                    $("#photo").change(function() {
+                        $("#uploadphoto").click();
+                        $("#photo").hide();
+                    });
+                });
             </script>';
             $this->load->view('templates',$this->data); 
 	   	}
@@ -135,7 +140,7 @@ session_start();
 					'status' => 'active'
 				);
 			$this->admin_model->save('cs_logs',$logData);
-//getting the filename of the inmates photo
+            //getting the filename of the inmates photo
 			$filename = $this->cpdrc_fw->getFilename($user_id);
 
 	    	//Step 1 here
@@ -179,7 +184,7 @@ session_start();
 
 			$query = $this->db->get_where('inmate_info',array('inmate_id'=>$user_id));
 	    	$get = $query->row();
-	$info['info']=$get;
+	        $info['info']=$get;
 
 				$this->data['title']    = 'Manage Inmate';
                 $this->data['css']      = array();
@@ -211,7 +216,7 @@ session_start();
 		    	$info['age']=$this->input->post('age');
 		    	$info['gender']=$this->input->post('gender');
 		    	$info['born_in']=$this->input->post('birthplace');
-		    	$info['home_add']=$this->input->post('homeStreet').' '.$this->input->post('homeBrgy').', '.$this->input->post('homeCity');
+		    	$info['home_add']=$this->input->post('homeStreet').', '.$this->input->post('homeBrgy').', '.$this->input->post('homeCity');
 		    	$info['place'] = $this->input->post('homeCity');
 		    	$info['province_add']=$this->input->post('province');
 		    	$info['occupation']=$this->input->post('occupation');
@@ -219,7 +224,7 @@ session_start();
 		    	$info['mother']=$this->input->post('mother');
 		    	$info['relative']=$this->input->post('relative');
 		    	$info['relation']=$this->input->post('relation');
-		    	$info['address']=$this->input->post('currentStreet').' '.$this->input->post('currentBrgy').', '.$this->input->post('currentCity');
+		    	$info['address']=$this->input->post('currentStreet').', '.$this->input->post('currentBrgy').', '.$this->input->post('currentCity');
 
 		    	
 		    		$this->db->where('inmate_id', $id);

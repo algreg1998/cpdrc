@@ -24,7 +24,7 @@ session_start();
 		 		$config['file_name'] = $userfile;
 			 	$config['upload_path'] = './uploads/markings';
 			 	$config['allowed_types'] = 'gif|jpg|jpeg|png';
-			 	$config['max_size']='400';
+			 	$config['max_size']='5000';
 			 	$config['max_width']='2000';
 			 	$config['max_height'] = '2000';
 

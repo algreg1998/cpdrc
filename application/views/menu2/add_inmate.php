@@ -42,6 +42,8 @@
 						echo "<div class='alert alert-danger alert-dismissible' align='center'> <button type='button' class='close' data-dismiss='alert'><span aria-hidden='true'>&times;</span><span class='sr-only'>Close</span></button>$error</div>";
 					}
 					foreach($data as $d ){}
+
+                    foreach($picture as $pic ){}
 					?>
 					</div>
 				</div>
@@ -50,7 +52,18 @@
 			    	<div class="col-md-6" align="left">
 			    		<h5 align="center" class="text-muted"><i class="fa fa-lock"></i> All fields are required.</h5>
 			    		<div id="photodiv">
-			    			<img src="<?=base_url()?>uploads/inmate/source/192x192.jpg" width="300" height="300"/>
+                            <?php
+                                $withPicture = base_url().'uploads/inmate/'.$pic->filename;
+                                $withoutPicture = base_url().'uploads/inmate/source/192x192.jpg';
+                                if(isset($pic->filename))
+                                {
+                                    echo "<img src='{$withPicture}' width='300' height='300'>";
+                                }
+                                else
+                                {
+                                    echo "<img src='{$withoutPicture}' width='300' height='300'>";
+                                }
+                            ?>
 			    		</div>
 			    			<form id="photoform" enctype="multipart/form-data">
 							  <input  required type="file" name="userfile" id="photo">
@@ -153,6 +166,10 @@
                     processData: false, type:'POST' ,url: '<?php echo site_url(); ?>cpdrc/upload/editpic',
                                           success:function(e){                 
                                               $("#photodiv").html(e);
+                                              if($("#error").val() == 1)
+                                              {
+                                                  $("#photo").show();
+                                              }
                                           }
                 }); //end of ajax 
                 return false;

@@ -299,7 +299,7 @@ class Admin_model extends MY_Model {
         return $res->result();
     }
 
-    public function getInmatesCrinme($status,$violation_id){
+    public function getInmatesCrime($status,$violation_id){
         $res = $this->db->query("
                     SELECT
                         *

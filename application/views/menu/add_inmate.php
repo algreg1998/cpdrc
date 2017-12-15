@@ -153,6 +153,10 @@
                     processData: false, type:'POST' ,url: '<?php echo site_url(); ?>cpdrc/upload',
                                           success:function(e){                 
                                               $("#photodiv").html(e);
+                                              if($("#error").val() == 1)
+                                              {
+                                                  $("#photo").show();
+                                              }
                                           }
                 }); //end of ajax 
                 return false;

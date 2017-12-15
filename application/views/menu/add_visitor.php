@@ -47,6 +47,10 @@
 				                    processData: false, type:'POST' ,url: '<?php echo site_url(); ?>cpdrc/upload/visitor',
 				                                          success:function(e){                 
 				                                              $("#photodiv").html(e);
+                                                              if($("#error").val() == 1)
+                                                              {
+                                                                  $("#photo").show();
+                                                              }
 				                                          }
 				                }); //end of ajax 
 				                return false;
@@ -56,7 +60,9 @@
                              $("#uploadphoto").css("display", "none");
                              $("#photo").change(function() {
                                  $("#uploadphoto").click();
+                                 $("#photo").hide();
                              });
+
 
 						    $("#myform").submit(function(){
 							    var formdata=$("#myform").serialize();

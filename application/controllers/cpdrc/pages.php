@@ -266,6 +266,7 @@ class Pages extends Admin_Controller
                   $this->data['footer']   = $this->load->view('footer_view',NULL,TRUE);
                   $this->data['js_bottom']= array('');
                   $this->data['custom_js']= '<script>
+                    
                   </script>';
                   $this->load->view('templates',$this->data);
                              // $this->load->view('menu/auth_visitor', $data);

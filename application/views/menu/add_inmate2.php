@@ -86,6 +86,13 @@
 
 						<label><i class="fa fa-flag"></i> <b>Citizenship</b></label>
 						<!-- <input type="text" name="nationality" class="form-control" required autofocus> -->
+                        <?php
+                        if($info != null)
+                        {
+                            $info->nationality = strtolower($info->nationality);
+                        }
+
+                        ?>
 						<select name="nationality" class="form-control" required autofocus>
 						  <option value="afghan" <?php if($info!=null && $info->nationality=="afghan"){echo "selected";}?>>Afghan</option>
 						  <option value="albanian" <?php if($info!=null && $info->nationality=="albanian"){echo "selected";}?>>Albanian</option>
@@ -196,7 +203,7 @@
 						  <option value="malawian" <?php if($info!=null && $info->nationality=="malawian"){echo "selected";}?>>Malawian</option>
 						  <option value="malaysian" <?php if($info!=null && $info->nationality=="malaysian"){echo "selected";}?>>Malaysian</option>
 						  <option value="maldivan" <?php if($info!=null && $info->nationality=="maldivan"){echo "selected";}?>>Maldivan</option>
-						  <option value="malian" <?php if($info!=null && $info->nationality=="afghan"){echo "selected";}?>>Malian</option>
+						  <option value="malian" <?php if($info!=null && $info->nationality=="malian"){echo "selected";}?>>Malian</option>
 						  <option value="maltese" <?php if($info!=null && $info->nationality=="maltese"){echo "selected";}?>>Maltese</option>
 						  <option value="marshallese" <?php if($info!=null && $info->nationality=="marshallese"){echo "selected";}?>>Marshallese</option>
 						  <option value="mauritanian" <?php if($info!=null && $info->nationality=="mauritanian"){echo "selected";}?>>Mauritanian</option>
@@ -324,79 +331,90 @@
 						
 						<!-- <textarea type="text" name="home" class="form-control" required ></textarea> -->
 						<div class="row">
+                            <?php
+                                if($info != null)
+                                {
+
+                                    $homeAddress = $info->address;
+                                    $homeAddressArray = explode(", ",$homeAddress);
+                                    $homeBaranggay = $homeAddressArray[0];
+                                    $homeStreet = $homeAddressArray[1];
+                                    $homeCity = $homeAddressArray[2];
+                                }
+                            ?>
 							<div class="col-md-12">
 								<label> <b>Home Address</b></label>
 							</div>
 							<div class="col-md-6">
 								<label><i class="fa fa-home"></i> <b>City</b></label>
 								<select name="homeCity" class="form-control" required >
-									<option value="Alcantara">Alcantara</option>
-									<option value="Alcoy">Alcoy</option>
-									<option value="Alegria">Alegria</option>
-									<option value="Aloguinsan">Aloguinsan</option>
-									<option value="Argao">Argao</option>
-									<option value="Asturias">Asturias</option>
-									<option value="Badian">Badian</option>
-									<option value="Balamban">Balamban</option>
-									<option value="Bantayan">Bantayan</option>
-									<option value="Barili">Barili</option>
-									<option value="Bogo">Bogo</option>
-									<option value="Boljoon">Boljoon</option>
-									<option value="Borbon">Borbon</option>
-									<option value="Carcar">Carcar</option>
-									<option value="Carmen">Carmen</option>
-									<option value="Catmon">Catmon</option>
-									<option value="Cebu City">Cebu City</option>
-									<option value="Compostela">Compostela</option>
-									<option value="Consolacion">Consolacion</option>
-									<option value="Cordova">Cordova</option>
-									<option value="Daanbantayan">Daanbantayan</option>
-									<option value="Dalaguete">Dalaguete</option>
-									<option value="Danao City">Danao City</option>
-									<option value="Dumanjug">Dumanjug</option>
-									<option value="Ginatilan">Ginatilan</option>
-									<option value="Lapu-Lapu City">Lapu-Lapu City</option>
-									<option value="Liloan">Liloan</option>
-									<option value="Madridejos">Madridejos</option>
-									<option value="Malabuyoc">Malabuyoc</option>
-									<option value="Mandaue City">Mandaue City</option>
-									<option value="Medellin">Medellin</option>
-									<option value="Minglanilla">Minglanilla</option>
-									<option value="Moalboal">Moalboal</option>
-									<option value="Naga">Naga</option>
-									<option value="Oslob">Oslob</option>
-									<option value="Pilar">Pilar</option>
-									<option value="Pinamungahan">Pinamungahan</option>
-									<option value="Poro">Poro</option>
-									<option value="Ronda">Ronda</option>
-									<option value="Samboan">Samboan</option>
-									<option value="San Fernando">San Fernando</option>
-									<option value="San Francisco">San Francisco</option>
-									<option value="San Remigio">San Remigio</option>
-									<option value="Santa Fe">Santa Fe</option>
-									<option value="Santander">Santander</option>
-									<option value="Sibonga">Sibonga</option>
-									<option value="Sogod">Sogod</option>
-									<option value="Tabogon">Tabogon</option>
-									<option value="Tabuelan">Tabuelan</option>
-									<option value="Talisay City">Talisay City</option>
-									<option value="Tuburan">Tuburan</option>
-									<option value="Tudela">Tudela</option>
-									<option value="Toledo">Toledo</option>
+                                    <option value="Alcantara" <?php if($info != null) { if($homeCity == "Alcantara") { echo "selected";} } ?> >Alcantara</option>
+                                    <option value="Alcoy" <?php if($info != null) { if($homeCity == "Alcoy") { echo "selected";} } ?> >Alcoy</option>
+                                    <option value="Alegria" <?php if($info != null) { if($homeCity == "Alegria") { echo "selected";} } ?> >Alegria</option>
+                                    <option value="Aloguinsan" <?php if($info != null) { if($homeCity == "Aloguinsan") { echo "selected";} } ?> >Aloguinsan</option>
+                                    <option value="Argao" <?php if($info != null) { if($homeCity == "Argao") { echo "selected";} } ?> >Argao</option>
+                                    <option value="Asturias" <?php if($info != null) { if($homeCity == "Asturias") { echo "selected";} } ?> >Asturias</option>
+                                    <option value="Badian" <?php if($info != null) { if($homeCity == "Badian") { echo "selected";} } ?> >Badian</option>
+                                    <option value="Balamban" <?php if($info != null) { if($homeCity == "Balamban") { echo "selected";} } ?> >Balamban</option>
+                                    <option value="Bantayan" <?php if($info != null) { if($homeCity == "Bantayan") { echo "selected";} } ?> >Bantayan</option>
+                                    <option value="Barili" <?php if($info != null) { if($homeCity == "Barili") { echo "selected";} } ?> >Barili</option>
+                                    <option value="Bogo" <?php if($info != null) { if($homeCity == "Bogo") { echo "selected";} } ?> >Bogo</option>
+                                    <option value="Boljoon" <?php if($info != null) { if($homeCity == "Boljoon") { echo "selected";} } ?> >Boljoon</option>
+                                    <option value="Borbon" <?php if($info != null) { if($homeCity == "Borbon") { echo "selected";} } ?> >Borbon</option>
+                                    <option value="Carcar" <?php if($info != null) { if($homeCity == "Carcar") { echo "selected";} } ?> >Carcar</option>
+                                    <option value="Carmen" <?php if($info != null) { if($homeCity == "Carmen") { echo "selected";} } ?> >Carmen</option>
+                                    <option value="Catmon" <?php if($info != null) { if($homeCity == "Catmon") { echo "selected";} } ?> >Catmon</option>
+                                    <option value="Cebu City" <?php if($info != null) { if($homeCity == "Cebu City") { echo "selected";} } ?> >Cebu City</option>
+                                    <option value="Compostela" <?php if($info != null) { if($homeCity == "Compostela") { echo "selected";} } ?> >Compostela</option>
+                                    <option value="Consolacion" <?php if($info != null) { if($homeCity == "Consolacion") { echo "selected";} } ?> >Consolacion</option>
+                                    <option value="Cordova" <?php if($info != null) { if($homeCity == "Cordova") { echo "selected";} } ?>>Cordova</option>
+                                    <option value="Daanbantayan" <?php if($info != null) { if($homeCity == "Daanbantayan") { echo "selected";} } ?>>Daanbantayan</option>
+                                    <option value="Dalaguete" <?php if($info != null) { if($homeCity == "Dalaguete") { echo "selected";} } ?>>Dalaguete</option>
+                                    <option value="Danao City" <?php if($info != null) { if($homeCity == "Danao City") { echo "selected";} } ?>>Danao City</option>
+                                    <option value="Dumanjug" <?php if($info != null) { if($homeCity == "Dumanjug") { echo "selected";} } ?>>Dumanjug</option>
+                                    <option value="Ginatilan" <?php if($info != null) { if($homeCity == "Ginatilan") { echo "selected";} } ?>>Ginatilan</option>
+                                    <option value="Lapu-Lapu City" <?php if($info != null) { if($homeCity == "Lapu-Lapu City") { echo "selected";} } ?>>Lapu-Lapu City</option>
+                                    <option value="Liloan" <?php if($info != null) { if($homeCity == "Liloan") { echo "selected";} } ?>>Liloan</option>
+                                    <option value="Madridejos" <?php if($info != null) { if($homeCity == "Madridejos") { echo "selected";} } ?>>Madridejos</option>
+                                    <option value="Malabuyoc" <?php if($info != null) { if($homeCity == "Malabuyoc") { echo "selected";} } ?>>Malabuyoc</option>
+                                    <option value="Mandaue City" <?php if($info != null) { if($homeCity == "Mandaue City") { echo "selected";} } ?>>Mandaue City</option>
+                                    <option value="Medellin" <?php if($info != null) { if($homeCity == "Medellin") { echo "selected";} } ?>>Medellin</option>
+                                    <option value="Minglanilla" <?php if($info != null) { if($homeCity == "Minglanilla") { echo "selected";} } ?>>Minglanilla</option>
+                                    <option value="Moalboal" <?php if($info != null) { if($homeCity == "Moalboal") { echo "selected";} } ?>>Moalboal</option>
+                                    <option value="Naga" <?php if($info != null) { if($homeCity == "Naga") { echo "selected";} } ?>>Naga</option>
+                                    <option value="Oslob" <?php if($info != null) { if($homeCity == "Oslob") { echo "selected";} } ?>>Oslob</option>
+                                    <option value="Pilar" <?php if($info != null) { if($homeCity == "Pilar") { echo "selected";} } ?>>Pilar</option>
+                                    <option value="Pinamungahan" <?php if($info != null) { if($homeCity == "Pinamungahan") { echo "selected";} } ?>>Pinamungahan</option>
+                                    <option value="Poro" <?php if($info != null) { if($homeCity == "Poro") { echo "selected";} } ?>>Poro</option>
+                                    <option value="Ronda" <?php if($info != null) { if($homeCity == "Ronda") { echo "selected";} } ?>>Ronda</option>
+                                    <option value="Samboan" <?php if($info != null) { if($homeCity == "Samboan") { echo "selected";} } ?>>Samboan</option>
+                                    <option value="San Fernando" <?php if($info != null) { if($homeCity == "San Fernando") { echo "selected";} } ?>>San Fernando</option>
+                                    <option value="San Francisco" <?php if($info != null) { if($homeCity == "San Francisco") { echo "selected";} } ?>>San Francisco</option>
+                                    <option value="San Remigio" <?php if($info != null) { if($homeCity == "San Remigio") { echo "selected";} } ?>>San Remigio</option>
+                                    <option value="Santa Fe" <?php if($info != null) { if($homeCity == "Santa Fe") { echo "selected";} } ?>>Santa Fe</option>
+                                    <option value="Santander" <?php if($info != null) { if($homeCity == "Santander") { echo "selected";} } ?>>Santander</option>
+                                    <option value="Sibonga" <?php if($info != null) { if($homeCity == "Sibonga") { echo "selected";} } ?>>Sibonga</option>
+                                    <option value="Sogod" <?php if($info != null) { if($homeCity == "Sogod") { echo "selected";} } ?>>Sogod</option>
+                                    <option value="Tabogon" <?php if($info != null) { if($homeCity == "Tabogon") { echo "selected";} } ?>>Tabogon</option>
+                                    <option value="Tabuelan" <?php if($info != null) { if($homeCity == "Tabuelan") { echo "selected";} } ?>>Tabuelan</option>
+                                    <option value="Talisay City" <?php if($info != null) { if($homeCity == "Talisay City") { echo "selected";} } ?>>Talisay City</option>
+                                    <option value="Tuburan" <?php if($info != null) { if($homeCity == "Tuburan") { echo "selected";} } ?>>Tuburan</option>
+                                    <option value="Tudela" <?php if($info != null) { if($homeCity == "Tudela") { echo "selected";} } ?>>Tudela</option>
+                                    <option value="Toledo" <?php if($info != null) { if($homeCity == "Toledo") { echo "selected";} } ?>>Toledo</option>
 								</select>		
 							</div>
 							<div class="col-md-6">
 								<label><i class="fa fa-home"></i> <b>Baranggay</b></label>
-								<input  type="text" name="homeBrgy" class="form-control" required ></textarea>
+								<input  type="text" name="homeBrgy" class="form-control" value="<?php if($info!=null) {echo $homeBaranggay;} ?>" required >
 							</div>
 							<div class="col-md-12">
 								<label><i class="fa fa-home"></i> <b>Street</b></label>
-								<input  type="text" name="homeStreet" class="form-control" required ></textarea>
+								<input  type="text" name="homeStreet" class="form-control" value="<?php if($info!=null) {echo $homeStreet;} ?>" required >
 							</div>
 						</div>
 						<br>
 						<label><i class="fa fa-road"></i> <b>Provincial Address</b></label>
-						<textarea type="text" name="province" class="form-control" required ></textarea><br>					
+						<textarea type="text" name="province" class="form-control" required ><?php if($info!=null){echo $info->province_add;}?></textarea><br>
 					</div>
 				
 					<div class="col-md-1 col-sm-0"></div> <!--Divider-->
@@ -416,74 +434,85 @@
 						 <textarea type="text" name="address" class="form-control" required ></textarea><br> -->
 						<br>
 						<div class="row">
+                            <?php
+                                if($info != null)
+                                {
+
+                                    $currentAddress = $info->address;
+                                    $currentAddressArray = explode(", ",$currentAddress);
+                                    $currentBaranggay = $currentAddressArray[0];
+                                    $currentStreet = $currentAddressArray[1];
+                                    $currentCity = $currentAddressArray[2];
+                                }
+                            ?>
 							<div class="col-md-12">
 								<label> <b>Current Address</b></label>
 							</div>
 							<div class="col-md-6">
 								<label><i class="fa fa-home"></i> <b>City</b></label>
 								<select name="currentCity" class="form-control" required >
-									<option value="Alcantara">Alcantara</option>
-									<option value="Alcoy">Alcoy</option>
-									<option value="Alegria">Alegria</option>
-									<option value="Aloguinsan">Aloguinsan</option>
-									<option value="Argao">Argao</option>
-									<option value="Asturias">Asturias</option>
-									<option value="Badian">Badian</option>
-									<option value="Balamban">Balamban</option>
-									<option value="Bantayan">Bantayan</option>
-									<option value="Barili">Barili</option>
-									<option value="Bogo">Bogo</option>
-									<option value="Boljoon">Boljoon</option>
-									<option value="Borbon">Borbon</option>
-									<option value="Carcar">Carcar</option>
-									<option value="Carmen">Carmen</option>
-									<option value="Catmon">Catmon</option>
-									<option value="Cebu City">Cebu City</option>
-									<option value="Compostela">Compostela</option>
-									<option value="Consolacion">Consolacion</option>
-									<option value="Cordova">Cordova</option>
-									<option value="Daanbantayan">Daanbantayan</option>
-									<option value="Dalaguete">Dalaguete</option>
-									<option value="Danao City">Danao City</option>
-									<option value="Dumanjug">Dumanjug</option>
-									<option value="Ginatilan">Ginatilan</option>
-									<option value="Lapu-Lapu City">Lapu-Lapu City</option>
-									<option value="Liloan">Liloan</option>
-									<option value="Madridejos">Madridejos</option>
-									<option value="Malabuyoc">Malabuyoc</option>
-									<option value="Mandaue City">Mandaue City</option>
-									<option value="Medellin">Medellin</option>
-									<option value="Minglanilla">Minglanilla</option>
-									<option value="Moalboal">Moalboal</option>
-									<option value="Naga">Naga</option>
-									<option value="Oslob">Oslob</option>
-									<option value="Pilar">Pilar</option>
-									<option value="Pinamungahan">Pinamungahan</option>
-									<option value="Poro">Poro</option>
-									<option value="Ronda">Ronda</option>
-									<option value="Samboan">Samboan</option>
-									<option value="San Fernando">San Fernando</option>
-									<option value="San Francisco">San Francisco</option>
-									<option value="San Remigio">San Remigio</option>
-									<option value="Santa Fe">Santa Fe</option>
-									<option value="Santander">Santander</option>
-									<option value="Sibonga">Sibonga</option>
-									<option value="Sogod">Sogod</option>
-									<option value="Tabogon">Tabogon</option>
-									<option value="Tabuelan">Tabuelan</option>
-									<option value="Talisay City">Talisay City</option>
-									<option value="Tuburan">Tuburan</option>
-									<option value="Tudela">Tudela</option>
-									<option value="Toledo">Toledo</option>
+                                    <option value="Alcantara" <?php if($info != null) { if($currentCity == "Alcantara") { echo "selected";} } ?> >Alcantara</option>
+                                    <option value="Alcoy" <?php if($info != null) { if($currentCity == "Alcoy") { echo "selected";} } ?> >Alcoy</option>
+                                    <option value="Alegria" <?php if($info != null) { if($currentCity == "Alegria") { echo "selected";} } ?> >Alegria</option>
+                                    <option value="Aloguinsan" <?php if($info != null) { if($currentCity == "Aloguinsan") { echo "selected";} } ?> >Aloguinsan</option>
+                                    <option value="Argao" <?php if($info != null) { if($currentCity == "Argao") { echo "selected";} } ?> >Argao</option>
+                                    <option value="Asturias" <?php if($info != null) { if($currentCity == "Asturias") { echo "selected";} } ?> >Asturias</option>
+                                    <option value="Badian" <?php if($info != null) { if($currentCity == "Badian") { echo "selected";} } ?> >Badian</option>
+                                    <option value="Balamban" <?php if($info != null) { if($currentCity == "Balamban") { echo "selected";} } ?> >Balamban</option>
+                                    <option value="Bantayan" <?php if($info != null) { if($currentCity == "Bantayan") { echo "selected";} } ?> >Bantayan</option>
+                                    <option value="Barili" <?php if($info != null) { if($currentCity == "Barili") { echo "selected";} } ?> >Barili</option>
+                                    <option value="Bogo" <?php if($info != null) { if($currentCity == "Bogo") { echo "selected";} } ?> >Bogo</option>
+                                    <option value="Boljoon" <?php if($info != null) { if($currentCity == "Boljoon") { echo "selected";} } ?> >Boljoon</option>
+                                    <option value="Borbon" <?php if($info != null) { if($currentCity == "Borbon") { echo "selected";} } ?> >Borbon</option>
+                                    <option value="Carcar" <?php if($info != null) { if($currentCity == "Carcar") { echo "selected";} } ?> >Carcar</option>
+                                    <option value="Carmen" <?php if($info != null) { if($currentCity == "Carmen") { echo "selected";} } ?> >Carmen</option>
+                                    <option value="Catmon" <?php if($info != null) { if($currentCity == "Catmon") { echo "selected";} } ?> >Catmon</option>
+                                    <option value="Cebu City" <?php if($info != null) { if($currentCity == "Cebu City") { echo "selected";} } ?> >Cebu City</option>
+                                    <option value="Compostela" <?php if($info != null) { if($currentCity == "Compostela") { echo "selected";} } ?> >Compostela</option>
+                                    <option value="Consolacion" <?php if($info != null) { if($currentCity == "Consolacion") { echo "selected";} } ?> >Consolacion</option>
+                                    <option value="Cordova" <?php if($info != null) { if($currentCity == "Cordova") { echo "selected";} } ?>>Cordova</option>
+                                    <option value="Daanbantayan" <?php if($info != null) { if($currentCity == "Daanbantayan") { echo "selected";} } ?>>Daanbantayan</option>
+                                    <option value="Dalaguete" <?php if($info != null) { if($currentCity == "Dalaguete") { echo "selected";} } ?>>Dalaguete</option>
+                                    <option value="Danao City" <?php if($info != null) { if($currentCity == "Danao City") { echo "selected";} } ?>>Danao City</option>
+                                    <option value="Dumanjug" <?php if($info != null) { if($currentCity == "Dumanjug") { echo "selected";} } ?>>Dumanjug</option>
+                                    <option value="Ginatilan" <?php if($info != null) { if($currentCity == "Ginatilan") { echo "selected";} } ?>>Ginatilan</option>
+                                    <option value="Lapu-Lapu City" <?php if($info != null) { if($currentCity == "Lapu-Lapu City") { echo "selected";} } ?>>Lapu-Lapu City</option>
+                                    <option value="Liloan" <?php if($info != null) { if($currentCity == "Liloan") { echo "selected";} } ?>>Liloan</option>
+                                    <option value="Madridejos" <?php if($info != null) { if($currentCity == "Madridejos") { echo "selected";} } ?>>Madridejos</option>
+                                    <option value="Malabuyoc" <?php if($info != null) { if($currentCity == "Malabuyoc") { echo "selected";} } ?>>Malabuyoc</option>
+                                    <option value="Mandaue City" <?php if($info != null) { if($currentCity == "Mandaue City") { echo "selected";} } ?>>Mandaue City</option>
+                                    <option value="Medellin" <?php if($info != null) { if($currentCity == "Medellin") { echo "selected";} } ?>>Medellin</option>
+                                    <option value="Minglanilla" <?php if($info != null) { if($currentCity == "Minglanilla") { echo "selected";} } ?>>Minglanilla</option>
+                                    <option value="Moalboal" <?php if($info != null) { if($currentCity == "Moalboal") { echo "selected";} } ?>>Moalboal</option>
+                                    <option value="Naga" <?php if($info != null) { if($currentCity == "Naga") { echo "selected";} } ?>>Naga</option>
+                                    <option value="Oslob" <?php if($info != null) { if($currentCity == "Oslob") { echo "selected";} } ?>>Oslob</option>
+                                    <option value="Pilar" <?php if($info != null) { if($currentCity == "Pilar") { echo "selected";} } ?>>Pilar</option>
+                                    <option value="Pinamungahan" <?php if($info != null) { if($currentCity == "Pinamungahan") { echo "selected";} } ?>>Pinamungahan</option>
+                                    <option value="Poro" <?php if($info != null) { if($currentCity == "Poro") { echo "selected";} } ?>>Poro</option>
+                                    <option value="Ronda" <?php if($info != null) { if($currentCity == "Ronda") { echo "selected";} } ?>>Ronda</option>
+                                    <option value="Samboan" <?php if($info != null) { if($currentCity == "Samboan") { echo "selected";} } ?>>Samboan</option>
+                                    <option value="San Fernando" <?php if($info != null) { if($currentCity == "San Fernando") { echo "selected";} } ?>>San Fernando</option>
+                                    <option value="San Francisco" <?php if($info != null) { if($currentCity == "San Francisco") { echo "selected";} } ?>>San Francisco</option>
+                                    <option value="San Remigio" <?php if($info != null) { if($currentCity == "San Remigio") { echo "selected";} } ?>>San Remigio</option>
+                                    <option value="Santa Fe" <?php if($info != null) { if($currentCity == "Santa Fe") { echo "selected";} } ?>>Santa Fe</option>
+                                    <option value="Santander" <?php if($info != null) { if($currentCity == "Santander") { echo "selected";} } ?>>Santander</option>
+                                    <option value="Sibonga" <?php if($info != null) { if($currentCity == "Sibonga") { echo "selected";} } ?>>Sibonga</option>
+                                    <option value="Sogod" <?php if($info != null) { if($currentCity == "Sogod") { echo "selected";} } ?>>Sogod</option>
+                                    <option value="Tabogon" <?php if($info != null) { if($currentCity == "Tabogon") { echo "selected";} } ?>>Tabogon</option>
+                                    <option value="Tabuelan" <?php if($info != null) { if($currentCity == "Tabuelan") { echo "selected";} } ?>>Tabuelan</option>
+                                    <option value="Talisay City" <?php if($info != null) { if($currentCity == "Talisay City") { echo "selected";} } ?>>Talisay City</option>
+                                    <option value="Tuburan" <?php if($info != null) { if($currentCity == "Tuburan") { echo "selected";} } ?>>Tuburan</option>
+                                    <option value="Tudela" <?php if($info != null) { if($currentCity == "Tudela") { echo "selected";} } ?>>Tudela</option>
+                                    <option value="Toledo" <?php if($info != null) { if($currentCity == "Toledo") { echo "selected";} } ?>>Toledo</option>
 								</select>		
 							</div>
 							<div class="col-md-6">
 								<label><i class="fa fa-home"></i> <b>Baranggay</b></label>
-								<input  type="text" name="currentBrgy" class="form-control" required ></textarea>
+								<input type="text" name="currentBrgy" class="form-control" value="<?php if($info!=null) {echo $currentBaranggay;} ?>" required >
 							</div>
 							<div class="col-md-12">
 								<label><i class="fa fa-home"></i> <b>Street</b></label>
-								<input  type="text" name="currentStreet" class="form-control" required ></textarea>
+								<input type="text" name="currentStreet" class="form-control" value="<?php if($info!=null) {echo $currentStreet;} ?>" required >
 							</div>
 						</div>
 						<br>
