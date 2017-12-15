@@ -185,6 +185,7 @@ class Graphical_tools extends Admin_Controller {
             }
 
             $pStren [] = array("day" =>$dy,
+            		"prisonersReceived"=>$prisonersReceived,
                   "prisonersReleased" => $prisonersReleased,
                   "total" => $total); 
 
