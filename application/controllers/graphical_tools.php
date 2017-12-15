@@ -193,9 +193,21 @@ class Graphical_tools extends Admin_Controller {
 }
 	public function addReleased()
 	{	
+		if ($this->form_validation->run() != TRUE )
+       {
+            if (!empty( $this->input->post('year')) && !empty( $this->input->post('month'))) {
+                 $year = $this->input->post('year');
+                 $month = $this->input->post('month');     
+           }else{
+	            $year =date("Y");
+	            $month =date("m");
+	      }
 
-		$data['data']=$this->pol(2017,12);
-		// $data['asd']=$this->cpdrc_fw->getTotalReportsDaily(2017,12);
+	      }
+		$data['data']=$this->pol($year,$month);
+		$data['year']=$year;
+      	$data['month']=$month;
+		
 		$day = array();
 		$total = array();
 		$rel = array();
@@ -210,7 +222,6 @@ class Graphical_tools extends Admin_Controller {
 		$data['rel'] = $rel;
 		// echo "<pre>";
 		// print_r($data['day']);
-		$data['number'] = cal_days_in_month(CAL_GREGORIAN, date('m'), date('Y')); // 31
 		
 		$this->data['title']	= 'Population';
 		$this->data['css']		= array('vendor/select2/select2.css','vendor/select2/select2-bootstrap.css');
