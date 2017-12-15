@@ -7,7 +7,7 @@
             </h3>
         </div>
     </div>
-   
+   	
     <div class="row">
         <div class="col-lg-12">
             <div class="panel panel-yellow">
@@ -26,6 +26,7 @@
     </div>
 </div>
 <script type="text/javascript">
+	
 	$(function () {
 	$("#container").highcharts({
 	    chart: {
@@ -50,7 +51,10 @@
 	    	title: {
 	            text: monthname
 	        },
-	        categories: [1]
+	        categories: [<?php foreach ($day as $key) {
+	        		echo $key['day'].",";
+	        	}
+	        	?>]
 	    },
 	    yAxis: {
 	        title: {
@@ -72,11 +76,17 @@
 	    series: [{
 	        type: "spline",
 	        name: "Remand",
-	        data: [1, 5, 1, 2,1, 2, 1,5,1, 2, 1, 12,1, 1, 1, 2]
+	        data: [ <?php foreach ($total as $key) {
+	        		echo $key['total'].",";
+	        	}
+	        	?> ]
 	    },{
 	        type: "spline",
 	        name: "Released",
-	        data: [1, 2, 52, 5,64, 2, 1, 2,1, 2, 66, 2,1, 2, 1, 2]
+	        data: [<?php foreach ($rel as $key) {
+	        		echo $key['rel'].",";
+	        	}
+	        	?>]
 	    }]
 	});
 });

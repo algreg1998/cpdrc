@@ -124,10 +124,92 @@ class Graphical_tools extends Admin_Controller {
 									</script>';
 		$this->load->view('templates',$this->data);
 	}
+	public function getPrisonStrength($year,$month,$day){
+	      $pStren = $this->cpdrc_fw->getReportsDailyPreviousPStren($year,$month,$day);
+	                  // if($day == 14){
+	                  //       echo $this->cpdrc_fw->db->last_query();
+	                  //       //echo json_encode($pStren);
+	                  // }
+	      $a = json_decode(json_encode($pStren));
+	      $cnt =0;
+	      for($i = 0; $i< count($a); $i++) {
+	       $cnt+=  $a[$i]->count;
+	 }
+
+	 $pStren1 = $this->cpdrc_fw->getReportsDailyPreviousReleased($year,$month,$day);
+	                  //  if($day == 14){
+	                  //      echo "<br>";
+	                  //        echo $this->cpdrc_fw->db->last_query();
+	                  // //       //echo json_encode($pStren);
+	                  //  }
+	 $b = json_decode(json_encode($pStren1));
+	 $cntRes = 0;
+	 for($i = 0; $i < count($b); $i++) {
+	       $cntRes+=  $b[$i]->count;
+	 }
+
+	 return $cnt - $cntRes;
+	}
+	public function pol($year,$month){
+
+      $pStren = array();
+
+      $day = $this->cpdrc_fw->getHighestDayOfMonth($year,$month);
+      $a = json_decode(json_encode($day));
+      $day =$a[0]->day;
+
+
+
+      for($dy = 1; $dy <= $day ; $dy++){
+
+            $prisonersReceived = $this->cpdrc_fw->getReportsDailyCurrentRecieved($year,$month,$dy);
+            $a = json_decode(json_encode($prisonersReceived));
+            if($a[0]->prisonersReceived>0){
+                  $prisonersReceived =$a[0]->prisonersReceived;
+            }else{
+                  $prisonersReceived = "";
+            }
+
+
+
+            $prisonersReleased = $this->cpdrc_fw->getReportsDailyCurrentReleased($year,$month,$dy);
+            $a = json_decode(json_encode($prisonersReleased));
+            $prisonersReleased =$a[0]->prisonersReleased;
+
+            $pStrength =  $this->getPrisonStrength($year,$month,$dy);
+            if($prisonersReceived == ""){
+                  $total = $pStrength  + 0 - $prisonersReleased;
+
+            }else{
+                  $total = $pStrength + $prisonersReceived - $prisonersReleased;
+            }
+
+            $pStren [] = array("day" =>$dy,
+                  "prisonersReleased" => $prisonersReleased,
+                  "total" => $total); 
+
+      }
+      return $pStren;
+}
 	public function addReleased()
 	{	
 
-
+		$data['data']=$this->pol(2017,12);
+		// $data['asd']=$this->cpdrc_fw->getTotalReportsDaily(2017,12);
+		$day = array();
+		$total = array();
+		$rel = array();
+		foreach ($data['data'] as $k) {
+			// echo $k["day"]." ".$k["pStrength"]." ".$k["prisonersReceived"]." ".$k["prisonersReleased"]." ".$k["total"]." <br>";
+			$day[]=array("day"=>$k["day"]);
+			$total[]=array("total"=>$k["total"]);
+			$rel[]=array("rel"=>$k["prisonersReleased"]);
+		}
+		$data['day'] = $day;
+		$data['total'] = $total ;
+		$data['rel'] = $rel;
+		// echo "<pre>";
+		// print_r($data['day']);
 		$data['number'] = cal_days_in_month(CAL_GREGORIAN, date('m'), date('Y')); // 31
 		
 		$this->data['title']	= 'Population';

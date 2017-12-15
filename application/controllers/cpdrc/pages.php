@@ -521,22 +521,22 @@ public function reportsDaily()
       
       if(!empty($user['user_id'])){
 
-       if ($this->form_validation->run() != TRUE )
-       {
-            if (!empty( $this->input->post('year')) && !empty( $this->input->post('month'))) {
-                 $year = $this->input->post('year');
-                 $month = $this->input->post('month');     
-           }else{
-            $year =date("Y");
-            $month =date("m");
-      }
-      $data['months'] = $this->getHighestMonthOfYear1($year);
-      $data['day'] = $this->pol($year,$month);
+            if ($this->form_validation->run() != TRUE )
+             {
+                  if (!empty( $this->input->post('year')) && !empty( $this->input->post('month'))) {
+                       $year = $this->input->post('year');
+                       $month = $this->input->post('month');     
+                  }else{
+                        $year =date("Y");
+                        $month =date("m");
+                  }
+            $data['months'] = $this->getHighestMonthOfYear1($year);
+            $data['day'] = $this->pol($year,$month);
 
 
-      }else{
-            $data['day'] = NULL;
-      }
+            }else{
+                  $data['day'] = NULL;
+            }
       $data['total']= $this->cpdrc_fw->getTotalReportsDaily($year,$month);
       $data['year']=$year;
       $data['month']=$month;
