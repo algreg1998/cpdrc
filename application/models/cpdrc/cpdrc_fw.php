@@ -363,7 +363,7 @@ class cpdrc_fw extends CI_Model
 	 	}
 	 	public function getReportsDailyPreviousPStren($year,$month,$day){
 	 		$query=$this->db->query('
-	 			SELECT cast(inmate.datetime_added as DATE) as datetime_added FROM inmate WHERE inmate.status ="Active"  ORDER by inmate.datetime_added asc LIMIT 1
+	 			SELECT cast(inmate.datetime_added as DATE) as datetime_added FROM inmate WHERE inmate.status !="Pending"  ORDER by inmate.datetime_added asc LIMIT 1
 				');
 	 		$a = $query->result();
 	 		
@@ -374,7 +374,7 @@ class cpdrc_fw extends CI_Model
 	 		$query=$this->db->query('
 	 			SELECT MONTH(inmate.datetime_added) as "month" , DAY(inmate.datetime_added) "day", YEAR(inmate.datetime_added) "year", COUNT(inmate.inmate_id) "count"
 				FROM inmate 
-				WHERE ( CAST(inmate.datetime_added AS DATE) BETWEEN ('.$a[0]->datetime_added .') AND "'.$year.'-'.$month.'-'.$day.'") AND inmate.status ="Active" 
+				WHERE ( CAST(inmate.datetime_added AS DATE) BETWEEN ('.$a[0]->datetime_added .') AND "'.$year.'-'.$month.'-'.$day.'") AND inmate.status !="Pending" 
 				GROUP by MONTH(inmate.datetime_added) , DAY(inmate.datetime_added), YEAR(inmate.datetime_added) asc
 				');
 	 		// echo $this->db->last_query();
@@ -422,7 +422,7 @@ class cpdrc_fw extends CI_Model
 				WHERE month(inmate.datetime_added) = '.$month.' AND
 						day(inmate.datetime_added) = '.$day.' AND
 				        year(inmate.datetime_added)= '.$year.' AND
-				        status ="Active"
+				        status !="Pending"
 				');
 	 		
 	 		$ins = array();
@@ -479,7 +479,7 @@ class cpdrc_fw extends CI_Model
 				FROM inmate
 				WHERE MONTH(inmate.datetime_added) = '.$month.' AND
 					  YEAR(inmate.datetime_added) = '.$year.'  AND
-					  inmate.status = "Active"
+					  inmate.status != "Pending"
 				');
 	 		
 	 		$ins = array();
