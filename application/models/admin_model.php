@@ -370,8 +370,24 @@ class Admin_model extends MY_Model {
 
                         WHERE DATE_FORMAT(IF(type = 'Detainee' ,date_detained, IF(type = 'Convict' ,date_convicted, date_probation)),'%Y')=$year AND i.status ='Active' 
                         GROUP BY yr_month
-                "); 
+                        -- SELECT
+                        -- *,
+                        -- DATE_FORMAT(IF(inmate_type = 'Detainee' ,date_detained, IF(inmate_type = 'Convict' ,date_convicted, date_probation)),'%Y-%m') as yr_month,
+                        -- DATE_FORMAT(IF(inmate_type = 'Detainee' ,date_detained, IF(inmate_type = 'Convict' ,date_convicted, date_probation)),'%m') as month,
+                        
+                        -- SUM(IF(inmate_type = 'Detainee',1,0)) as detainee,
+                        -- SUM(IF(inmate_type = 'Convict',1,0)) as convict,
+                        -- SUM(IF(inmate_type = 'Probation',1,0)) as probation,
+                        -- SUM(IF(inmate_type != 'Pending',1,0)) as total
 
+                        -- FROM inmate i
+                        
+
+                        -- WHERE DATE_FORMAT(IF(inmate_type = 'Detainee' ,date_detained, IF(inmate_type = 'Convict' ,date_convicted, date_probation)),'%Y')=$year AND i.status ='Active' 
+                        -- GROUP BY yr_month
+                "); 
+        // echo  $this->db->last_query();
+        // die();
         return $res->result();
     }
 
