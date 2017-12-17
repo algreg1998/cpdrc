@@ -299,7 +299,7 @@
 								</div>
 								<div class="col-md-6">
 									<label><i class="fa fa-calendar"></i> <b>Date of Birth</b></label>
-									<input type="date" name="bday" class="form-control" required value="<?php if($info!=null){echo $info->birthdate;}?>">		
+									<input type="date" id="bday" name="bday" class="form-control" required value="<?php if($info!=null){echo $info->birthdate;}?>">		
 								</div>
 							</div>	
 
@@ -536,3 +536,24 @@
        <?php $this->load->view('cpdrc/footer'); ?>
   </body>
 </html>
+<script>
+$(document).ready(function(){
+	var today = new Date();
+var dd = today.getDate();
+var mm = today.getMonth()+1; //January is 0!
+var yyyy = today.getFullYear();
+ if(dd<10){
+        dd='0'+dd
+    } 
+    if(mm<10){
+        mm='0'+mm
+    } 
+
+today = yyyy+'-'+mm+'-'+dd;
+document.getElementById("bday").setAttribute("max", today);
+<?php if($info==null){?>
+document.getElementById("bday").value=today;	
+<?php }?>
+});
+	
+</script>
