@@ -57,7 +57,10 @@
                 					<tbody id="gridBody">
                 						<?php
                   							foreach ($datapen as $key) {
-                                  
+                                                $dateTime = $key['date_added'];
+                                                $dt = new DateTime($dateTime);
+                                                $date = $dt->format('Y-m-d');
+
                 								echo "<tr id=".$key['id'].">";
                 									echo "<td>".$key['id']."</td>";
                 									echo "<td id='owner3'>".$key['lname'].", ".$key['fname']." ".$key['mi']."</td>";
@@ -69,10 +72,10 @@
   				                          //   echo "<a  class=\"col-lg-12 active2 btn btn-info btn-xs\" id=\"{$key['id']}\" href=\"#\"><i class='fa fa-check-circle'></i> Set Active</a> ";
   				                          // echo "</td>";
                   									echo "<td>";
-                  										echo "<a  class=\"col-lg-12 setTransfer btn btn-warning btn-xs\" id=\"{$key['id']}\" href=\"#\"><i class='fa fa-map-marker'></i> Set Transfer</a> ";
+                  										echo "<a class=\"col-lg-12 setTransfer btn btn-warning btn-xs\" data-dateAdded='{$date}' id=\"{$key['id']}\" href=\"#\"><i class='fa fa-map-marker'></i> Set Transfer</a> ";
                           					echo "</td>";
                           					echo "<td>";
-                  										echo "<a  class=\"col-lg-12 setReleased btn btn-danger btn-xs\" id=\"{$key['id']}\" href=\"#\"><i class='fa fa-edit'></i> Set Release</a> ";
+                  										echo "<a  class=\"col-lg-12 setReleased btn btn-danger btn-xs\" data-dateAdded='{$date}' id=\"{$key['id']}\" href=\"#\"><i class='fa fa-edit'></i> Set Release</a> ";
                           					echo "</td>";
                                   }
                                   else{
@@ -156,6 +159,7 @@
                 					</thead>
                 					<tbody id="gridBody3">
                 						<?php
+
                   							foreach ($released as $key) {
                 								echo "<tr>";
                 									echo "<td>".$key['id']."</td>";
@@ -212,7 +216,7 @@
                     <div id="append"></div>
                     <div class="row col-md-6">
                       <label><i class="fa fa-calendar"></i> <b>Date of Transfer</b></label>
-                      <input type="date" name="date" class="form-control" required autofocus><br>
+                      <input type="date" name="date" class="form-control" id='transferDate' required autofocus><br>
                     </div>
                     <div class="row col-md-8">
                       <label><i class="fa fa-location-arrow"></i> <b>Name of the Detention Facility</b></label>
@@ -274,7 +278,7 @@
                     <div id="append3"></div>
                     <div class="row col-md-6">
                       <label><i class="fa fa-calendar"></i> <b>Date of Release</b></label>
-                      <input type="date" name="date" class="form-control" required autofocus><br>
+                      <input type="date" name="date" class="form-control" id="releaseDate" required autofocus><br>
                     
                       <label><i class="fa fa-list-alt"></i> <b>Type of Release</b></label>
                       <select type="text" name="type" class="form-control" required >
@@ -364,6 +368,11 @@ $(document).ready(function() {
                 row=$(this).closest("tr");
                 var owner=$(this).closest('tr').children("#owner").html();
 
+                // Restrict the admin/user to choose a date of transfer that is before the received
+                // date of the specific inmate
+                var minimumDate = $(this).attr("data-dateAdded");
+                $("#transferDate").attr("min", minimumDate);
+
                $("#genLabel").html("<i class='text-warning fa fa-map-marker'></i> Set Status: Transfered ");
                $("#append").append("<input type='hidden' name='id' value='"+formdata+"' >");
               //$('#genModalButton').addClass("addrec");                             
@@ -396,6 +405,11 @@ $(document).ready(function() {
                 var formdata=$(this).attr("id");
                 row=$(this).closest("tr");
                 var owner=$(this).closest('tr').children("#owner").html();
+
+                // Restrict the admin/user to choose a date of release that is before the received
+                // date of the specific inmate
+                var minimumDate = $(this).attr("data-dateAdded");
+                $("#releaseDate").attr("min", minimumDate);
 
                $("#genLabel3").html("<i class='text-warning fa fa-map-marker'></i> Set Status: Released ");
                $("#append3").append("<input type='hidden' name='id' value='"+formdata+"' >");

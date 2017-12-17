@@ -301,19 +301,19 @@ class Admin_model extends MY_Model {
 
     public function getInmatesCrime($status,$violation_id){
         $res = $this->db->query("
-                    SELECT
-                        *
-                        FROM cs_cases c
-                            LEFT JOIN cs_violations v
-                                ON v.id = c.violation_id
-                            LEFT JOIN cs_reasons r
-                                ON r.id = c.reasons_id
-                            INNER JOIN inmate i
-                                ON i.inmate_id = r.inmate_id
-                            INNER JOIN file f
-                                ON f.inmate_id = i.inmate_id
-
-                        WHERE type='".$status."' AND v.id='".$violation_id."' AND i.status ='Active'
+                        SELECT
+                            *
+                            FROM cs_cases c
+                                LEFT JOIN cs_violations v
+                                    ON v.id = c.violation_id
+                                LEFT JOIN cs_reasons r
+                                    ON r.id = c.reasons_id
+                                INNER JOIN inmate i
+                                    ON i.inmate_id = r.inmate_id
+                                INNER JOIN file f
+                                    ON f.inmate_id = i.inmate_id
+    
+                            WHERE type='".$status."' AND v.id='".$violation_id."' AND i.status ='Active'
                 ");
 
         return $res->result();

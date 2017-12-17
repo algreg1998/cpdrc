@@ -145,9 +145,10 @@ class Pages extends Admin_Controller
       }
 
 
-                  //This is the viewing of each menu in the home//
+     //This is the viewing of each menu in the home//
       public function addinmate()
       {
+
            $a=$this->session->userdata('logged_in');
 
 
