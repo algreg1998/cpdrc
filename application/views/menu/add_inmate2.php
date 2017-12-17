@@ -336,7 +336,7 @@
                                 {
 
                                     $homeAddress = $info->address;
-                                    $homeAddressArray = explode(", ",$homeAddress);
+                                    $homeAddressArray = explode(" ",$homeAddress);
                                     $homeBaranggay = $homeAddressArray[0];
                                     $homeStreet = $homeAddressArray[1];
                                     $homeCity = $homeAddressArray[2];
@@ -439,7 +439,7 @@
                                 {
 
                                     $currentAddress = $info->address;
-                                    $currentAddressArray = explode(", ",$currentAddress);
+                                    $currentAddressArray = explode(" ",$currentAddress);
                                     $currentBaranggay = $currentAddressArray[0];
                                     $currentStreet = $currentAddressArray[1];
                                     $currentCity = $currentAddressArray[2];

@@ -436,8 +436,21 @@ session_start();
 				// if($res == FALSE) // original
 				// print_r($res);
 				// die();
-				if($res == 0)
-				{
+				$reason = $this->admin_model->get('cs_reasons',array('inmate_id'=>$id),TRUE);
+				// echo $this->admin_model->db->last_query()."<br>";
+			$checker = $this->admin_model->get('cs_cases_full',array('case_no'=>$data['case_no'],'violation_id'=>$data['crime'],'reasons_id'=>$reason->id,'case_status'=>'active'),TRUE);
+			// echo $this->admin_model->db->last_query();
+// echo "<pre>";
+// var_dump($reason);
+// echo $data['case_no']."<br>";
+// echo $data['crime']."<br>";
+// echo $reason->id;
+			// die();
+			if (empty($checker)) {
+				
+			// }
+				// if($res == 0)
+				// {
 				//commented out to enable many violations for 1 case end
 					$this->db->insert('inmate_case_info', $data); // for insertion
 					$primarykey = $this->db->insert_id();
@@ -530,6 +543,7 @@ session_start();
 					$inmate['formid'] = $this->input->post('formid');
 			    	$inmate['name'] = $this->input->post('name');
 			    	$inmate['filename'] = $this->input->post('filename');
+
 			    	$inmate['error'] = "<b>Warning!</b> Case information already exist. Please check the information in the table below";
 
 			    	$query = $this->db->get_where('cs_reasons',array("inmate_id"=>$id));
