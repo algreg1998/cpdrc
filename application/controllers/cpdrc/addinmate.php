@@ -438,7 +438,10 @@ session_start();
 				// die();
 				$reason = $this->admin_model->get('cs_reasons',array('inmate_id'=>$id),TRUE);
 				// echo $this->admin_model->db->last_query()."<br>";
-			$checker = $this->admin_model->get('cs_cases_full',array('case_no'=>$data['case_no'],'violation_id'=>$data['crime'],'reasons_id'=>$reason->id,'case_status'=>'active'),TRUE);
+				if($reason){
+					$checker = $this->admin_model->get('cs_cases_full',array('case_no'=>$data['case_no'],'violation_id'=>$data['crime'],'reasons_id'=>$reason->id,'case_status'=>'active'),TRUE);
+				}
+			
 			// echo $this->admin_model->db->last_query();
 // echo "<pre>";
 // var_dump($reason);
