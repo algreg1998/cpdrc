@@ -621,6 +621,7 @@ class cpdrc_fw extends CI_Model
 	 	public function getAvailableCells(){
 	 		$this->db->select('cellId,cellNumber,capacity,Count(inmate.inmate_id) as total');
 	 		$this->db->from('cell');
+	 		$this->db->where('cell.status = "Active"');
 	 	$this->db->join('inmate',"inmate.cell_no = cell.cellId","left");
 	 	$this->db->group_by('cell.cellId');
 
