@@ -21,6 +21,9 @@ class Import extends Admin_Controller {
 		$this->data['footer'] 	= $this->load->view('footer_view',NULL,TRUE);
 		$this->data['js_bottom']= array();
 		$this->data['custom_js']= '<script type="text/javascript">
+										$(function(){
+								            $(".nav-import a").addClass("active");
+								      	});
 									</script>';
 		$this->load->view('templates',$this->data);
 	}

@@ -1,4 +1,4 @@
-    <div id="page-wrapper">
+    <div id="page-wrapper" >
         <div class="row">
             <div class="col-lg-12">
                 <h3 class="page-header">Edit Requests</h3>
@@ -13,67 +13,69 @@
                     </div>
 
                     <div class="panel-body">
-                        <div class="dataTable_wrapper">
-                            <table class="table table-bordered table-hover table-striped" id="table-editReqs">
-                                <thead class="text-center">
-                                    <tr>
-                                        <th>Request # </th>
-                                        <th>Inmate ID</th>
-                                        <th>Inmate Name</th>
-                                        <th>Reason</th>
-                                        <th>Requested by</th>
-                                        <th>Requested On</th>
-                                        <th>Status</th>
-                                        <th>Option</th>
-                                    </tr>
-                                </thead>
+                        <div class='table-responsive'>
+                            <div class="dataTable_wrapper">
+                                <table class="table table-bordered table-hover table-striped" id="table-editReqs">
+                                    <thead class="text-center">
+                                        <tr>
+                                            <th>Request # </th>
+                                            <th>Inmate ID</th>
+                                            <th>Inmate Name</th>
+                                            <th>Reason</th>
+                                            <th>Requested by</th>
+                                            <th>Requested On</th>
+                                            <th>Status</th>
+                                            <th>Option</th>
+                                        </tr>
+                                    </thead>
 
-                                <tbody class="text-center">
-                                    <?php
-                                    if(isset($data)){
-                                        foreach ($data as $d) {
-                                            ?>
-                                            <tr>
-                                                <td><?php echo $d->editRequestID; ?></td>
-                                                <td><?php echo $d->inmate_id; ?></td>
-                                                <td><?php echo $d->inmateName; ?></td>
-                                                <td><?php echo $d->reason; ?></td>
-                                                <td><?php echo $d->requestedByName; ?></td>
-                                                <td><?php echo $d->addedOn; ?></td>
-                                                <td id="stat-<?php echo $d->editRequestID; ?>">
-                                                    <?php if($d->status =="approved"){?>
-                                                    <label class="label label-success" style="font-size: 100%;"><?php echo ucwords($d->status); ?>
-                                                        </label>
-                                                <?php }?>
-                                                        <?php if($d->status =="pending"){?>
-                                                        <label class="label label-default" style="font-size: 100%;"><?php echo ucwords($d->status); ?>
-                                                            </label>
-                                                <?php }?>
-                                                            <?php if($d->status =="rejected"){?>
-                                                            <label class="label label-danger" style="font-size: 100%;"><?php echo ucwords($d->status); ?>
-                                                                </label>
-                                                <?php }?>
-                                                                <?php if($d->status =="finished"){?>
-                                                                <label class="label label-primary" style="font-size: 100%;"><?php echo ucwords($d->status); ?>
-                                                                    </label>
-                                                <?php }?>
-                                                </td>
-                                                <?php if($d->status =="pending"){?>
-                                                    <td style='display:inline-block' id="opt-<?php echo $d->editRequestID; ?>">
-                                                        <button class="btn btn-success accept">Approve</button>
-                                                        <button class="btn btn-danger reject">Reject</button>
-                                                    </td>
-                                                <?php }else{
-                                                    echo "<td></td>";
-                                                }
+                                    <tbody class="text-center">
+                                        <?php
+                                        if(isset($data)){
+                                            foreach ($data as $d) {
                                                 ?>
-                                            </tr>
-                                            <?php
+                                                <tr>
+                                                    <td><?php echo $d->editRequestID; ?></td>
+                                                    <td><?php echo $d->inmate_id; ?></td>
+                                                    <td><?php echo $d->inmateName; ?></td>
+                                                    <td><?php echo $d->reason; ?></td>
+                                                    <td><?php echo $d->requestedByName; ?></td>
+                                                    <td><?php echo $d->addedOn; ?></td>
+                                                    <td id="stat-<?php echo $d->editRequestID; ?>">
+                                                        <?php if($d->status =="approved"){?>
+                                                        <label class="label label-success" style="font-size: 100%;"><?php echo ucwords($d->status); ?>
+                                                            </label>
+                                                    <?php }?>
+                                                            <?php if($d->status =="pending"){?>
+                                                            <label class="label label-default" style="font-size: 100%;"><?php echo ucwords($d->status); ?>
+                                                                </label>
+                                                    <?php }?>
+                                                                <?php if($d->status =="rejected"){?>
+                                                                <label class="label label-danger" style="font-size: 100%;"><?php echo ucwords($d->status); ?>
+                                                                    </label>
+                                                    <?php }?>
+                                                                    <?php if($d->status =="finished"){?>
+                                                                    <label class="label label-primary" style="font-size: 100%;"><?php echo ucwords($d->status); ?>
+                                                                        </label>
+                                                    <?php }?>
+                                                    </td>
+                                                    <?php if($d->status =="pending"){?>
+                                                        <td style='display:inline-block' id="opt-<?php echo $d->editRequestID; ?>">
+                                                            <button class="btn btn-success accept">Approve</button>
+                                                            <button class="btn btn-danger reject">Reject</button>
+                                                        </td>
+                                                    <?php }else{
+                                                        echo "<td></td>";
+                                                    }
+                                                    ?>
+                                                </tr>
+                                                <?php
+                                            }
                                         }
-                                    }
-                                    ?>
-                                </tbody>
-                            </table>
+                                        ?>
+                                    </tbody>
+                                </table>
+                            </div>
                         </div>
                     </div>
 

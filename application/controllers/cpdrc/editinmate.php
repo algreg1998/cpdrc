@@ -27,7 +27,7 @@ session_start();
 						);
             $this->data['custom_js']= '<script type="text/javascript">
                                             $(function(){
-                                                $(".nav-editReq").addClass("active");
+                                                $(".nav-editReq a").addClass("active");
                                             });
 									    </script>';
             $this->load->view('templates',$this->data); 

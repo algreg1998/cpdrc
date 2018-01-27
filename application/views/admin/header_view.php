@@ -155,7 +155,7 @@
                     <a href="<?php echo base_url('cpdrc/editinmate') ?>"><i class="fa fa-edit fa-fw"></i> Edit Requests    </a>  
                 </li>
                 <?php }?>
-                 <li class="nav-editReq">
+                 <li class="nav-import">
                     <a href="<?php echo base_url('import/viewImportPage') ?>"><i class="fa fa-download fa-fw"></i> Import CSV </a>  
                 </li>
                 <!-- <li class="nav-reports">
