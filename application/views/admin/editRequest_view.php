@@ -59,7 +59,7 @@
                                                 <?php }?>
                                                 </td>
                                                 <?php if($d->status =="pending"){?>
-                                                    <td id="opt-<?php echo $d->editRequestID; ?>">
+                                                    <td style='display:inline-block' id="opt-<?php echo $d->editRequestID; ?>">
                                                         <button class="btn btn-success accept">Approve</button>
                                                         <button class="btn btn-danger reject">Reject</button>
                                                     </td>
