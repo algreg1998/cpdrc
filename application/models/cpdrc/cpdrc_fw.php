@@ -368,17 +368,28 @@ class cpdrc_fw extends CI_Model
 	 		$a = $query->result();
 	 		
 	 		$a = json_decode(json_encode($a));
-	 		if($a[0]->datetime_added != "'.$year.'-'.$month.'-'.$day.'"){
-	 			$day -=1;
+	 		if(isset($a[0])){
+	 			if($a[0]->datetime_added != "'.$year.'-'.$month.'-'.$day.'"){
+		 			$day -=1;
+		 		}
 	 		}
-	 		$query=$this->db->query('
+	 		if(isset($a[0])){
+	 			$query=$this->db->query('
 	 			SELECT MONTH(inmate.datetime_added) as "month" , DAY(inmate.datetime_added) "day", YEAR(inmate.datetime_added) "year", COUNT(inmate.inmate_id) "count"
 				FROM inmate 
 				WHERE ( CAST(inmate.datetime_added AS DATE) BETWEEN ('.$a[0]->datetime_added .') AND "'.$year.'-'.$month.'-'.$day.'") AND inmate.status !="Pending" 
 				GROUP by MONTH(inmate.datetime_added) , DAY(inmate.datetime_added), YEAR(inmate.datetime_added) asc
 				');
-	 		// echo $this->db->last_query();
-	 		// die();
+	 		
+	 		}else{
+	 			$query=$this->db->query('
+	 			SELECT MONTH(inmate.datetime_added) as "month" , DAY(inmate.datetime_added) "day", YEAR(inmate.datetime_added) "year", COUNT(inmate.inmate_id) "count"
+				FROM inmate 
+				WHERE ( CAST(inmate.datetime_added AS DATE) BETWEEN ("'.$year.'-'.$month.'-'.$day.'") AND "'.$year.'-'.$month.'-'.$day.'") 
+				GROUP by MONTH(inmate.datetime_added) , DAY(inmate.datetime_added), YEAR(inmate.datetime_added) asc
+				');
+	 		}
+	 		
 	 		$ins = array();
 
 				foreach ($query->result() as $key) {

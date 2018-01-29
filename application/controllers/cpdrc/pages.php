@@ -1035,15 +1035,31 @@ echo $ret;
 public function getHighestMonthOfYear1($i)
 {
 $res = $this->cpdrc_fw->getHighestMonthOfYear($i);
- $res = json_decode(json_encode($res));
- $ret ='<select name="month" id="months">';
- for($i = 1 ; $i <= $res[0]->month; $i++ ){
-      $dateObj   = DateTime::createFromFormat('!m', $i);
-      $monthName = $dateObj->format('F'); // March
-      $ret.="<option value='".$i."'>".$monthName."</option>";
+ if($res){
+      $res = json_decode(json_encode($res));
+       $ret ='<select name="month" id="months">';
+       for($i = 1 ; $i <= $res[0]->month; $i++ ){
+            $dateObj   = DateTime::createFromFormat('!m', $i);
+            $monthName = $dateObj->format('F'); // March
+            $ret.="<option value='".$i."'>".$monthName."</option>";
+       }
+       $ret .="</select>";
+      
+ }else{
+
+      $ret ='<select name="month" id="months">';
+       for($i = 1 ; $i <= 12; $i++ ){
+
+            $dateObj   = DateTime::createFromFormat('!m', $i);
+            $monthName = $dateObj->format('F'); // March
+            $ret.="<option value='".$i."'>".$monthName."</option>";
+            // echo $ret;
+            // die();
+       }
+       $ret .="</select>";
  }
- $ret .="</select>";
-return $ret;
+
+ return $ret;     
 }
 public function municipality()
 {

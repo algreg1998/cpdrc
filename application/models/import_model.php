@@ -14,7 +14,8 @@ class Import_model extends MY_Model {
          $max_row_size = 4096;    /** maximum row size to be used for decoding */
 
         $file =  fopen($_FILES['file']['tmp_name'], 'r');
-
+        $asd = get_filenames($_FILES['file']['tmp_name'].DIRECTORY_SEPARATOR, $include_path, TRUE);
+        die();
         if($file){
             $i  =   1;
             while( ($row = fgetcsv($file, $max_row_size, $separator, $enclosure)) != false ) {            
@@ -79,6 +80,8 @@ class Import_model extends MY_Model {
                 }
             }
             fclose($file);  
+        }else{
+            return $file;
         }
         
     }

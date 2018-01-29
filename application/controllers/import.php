@@ -29,7 +29,7 @@ class Import extends Admin_Controller {
 	}
 	public function uploadData(){
 		$data['result']=$this->Import_model->saveData();
-		die();
+		// die();
 		// $data['query']=$this-> upload_services->get_car_features_info();
 	}
 }
