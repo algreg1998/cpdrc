@@ -44,7 +44,7 @@
                                 <div class="form-group">
                                     <label for="violations_category_id" class="col-sm-2 control-label">Municipalities</label>
                                     <div class="col-lg-6">
-                                        <?php echo form_dropdown('court_municipality_id',$municipalities, set_value('violations_category_id') ? set_value('court_municipality_id') : '', 'id="court_municipality_id" class="form-control"'); ?>
+                                        <?php echo form_dropdown('court_municipality_id',$municipalities, set_value('violations_category_id') ? set_value('court_municipality_id') : '', 'id="court_municipality_id" required class="form-control"'); ?>
                                     </div>
                                     <div class="col-lg-1">
                                         <a class="btn btn-default" href="<?php echo base_url('manage/addcourtmunicipalities') ?>"><i class="fa fa-plus"></i></a>
