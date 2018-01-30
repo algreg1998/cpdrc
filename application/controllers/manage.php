@@ -51,9 +51,16 @@ class Manage extends Admin_Controller {
 			$max_day = $this->input->post('max_day');
 
 			$tot = $min_year + $min_month + $min_day + $max_year + $max_month + $max_day;
-			
+
 			$lvl = $this->input->post('level');
-			if (intval($tot) <= 0 && ($lvl !== 'lifetime' && $lvl !== 'none')) {
+			
+			$minpenalty = ($min_year*365)+($min_month*30)+$min_day;
+			$maxpenalty = ($max_year*365)+($max_month*30)+$max_day;
+
+			if ($minpenalty > $maxpenalty) {
+				$this->session->set_flashdata('error_msg','Minimum penalty should be less than maximum penalty.');
+				redirect(base_url('manage/addviolation'));
+			} else if (intval($tot) <= 0 && ($lvl !== 'lifetime' && $lvl !== 'none')) {
 				$this->session->set_flashdata('error_msg','Please add some min and max penalty of the violation.');
 				redirect(base_url('manage/addviolation'));
 			}
@@ -1280,7 +1287,7 @@ class Manage extends Admin_Controller {
 								"cellNumber" => $this->input->post('cellNumber'),
 								"capacity" => $this->input->post('capacity')
 								);
-			$where = array('cellId'=>$this->input->post('cellId'),'status'=>'active');
+			$where = array('cellId'=>$id,'status'=>'active');
 			$chkr = $this->admin_model->get('cell',$where,TRUE);
 			// if (!empty($chkr) && $chkr->id !== $id) {
 			// 	$this->session->set_flashdata('error_msg','Court is already existing.');

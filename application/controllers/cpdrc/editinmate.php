@@ -15,7 +15,7 @@ session_start();
 
 			$data['data'] = $this->admin_model->getAllEditReqs();
 			// echo $this->admin_model->db->last_query();
-	   		$this->data['title']    = 'Edit Requests';
+	   		$this->data['title']    = 'Manage Inmate';
             $this->data['css']      = array('');
             $this->data['js_top']   = array();
             $this->data['header']   = $this->load->view('admin/header_view',$this->data,TRUE);

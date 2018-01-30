@@ -8,10 +8,10 @@ class Pages extends Admin_Controller
             $this->load->model('cpdrc/cpdrc_fw','',TRUE);
             $this->load->library('session');
             $this->load->library('form_validation');
-      }			
+      }                 
 
       public function index()
-      {	
+      {     
 
                   //number of inmates in cpdrc
             $this->db->select('*')->from('inmate')->where('status', 'Active');
@@ -38,7 +38,7 @@ class Pages extends Admin_Controller
 
             $result=$this->session->userdata('logged_in');
             if(!empty($result['user_id']))
-            {	
+            {     
                   if($result['type'] == "Warden Administrator")
                   {
                               //deleting the unset img of a inmate in the database
@@ -76,7 +76,7 @@ class Pages extends Admin_Controller
 
 
 
-            		     // $this->load->view('cpdrc/home', $value);
+                             // $this->load->view('cpdrc/home', $value);
             }
             else
             {
@@ -1237,8 +1237,10 @@ public function crimeIndexTabulated()
                                           );
       $this->data['custom_js']= '<script type="text/javascript">
       $(function(){
-            $(".nav-import").addClass("active");
-      });
+                  $(".nav-graphical").addClass("active");
+                  $(".nav-violations").addClass("active");
+                  $(".nav-crimeindexTabulated a").addClass("active");
+            });
       </script>';
       $this->load->view('templates',$this->data);   
 }
