@@ -11,7 +11,19 @@
                     <div class="panel-heading">
                         Import
                     </div>
+                    <?php if ($this->session->flashdata('success_msg')): ?>
+                        <div class="alert alert-success">
+                            <button class="close" aria-hidden="true" data-dismiss="alert" type="button">×</button>
+                            <?php echo $this->session->flashdata('success_msg') ?>
+                        </div>
+                    <?php endif ?>
 
+                    <?php if ($this->session->flashdata('error_msg')): ?>
+                        <div class="alert alert-danger">
+                            <button class="close" aria-hidden="true" data-dismiss="alert" type="button">×</button>
+                            <?php echo $this->session->flashdata('error_msg') ?>
+                        </div>
+                    <?php endif ?>
                     <div class="panel-body">
                         <h5> <em> Please select the CSV file you want to import. </em></h5>
                          <form action="<?php echo base_url('import/uploadData');?>" method="post" enctype="multipart/form-data" id="importFrm">

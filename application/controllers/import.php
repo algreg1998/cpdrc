@@ -56,7 +56,16 @@ class Import extends Admin_Controller {
 	}
 	public function uploadData(){
 		$data['result']=$this->Import_model->saveData();
-		
+		if($data['result']){
+			$msg ='';
+			foreach ($data['result'] as $key ) {
+				$msg.= "<br>".$key;
+			}
+			$this->session->set_flashdata('error_msg','Oops, Something went wrong!'.$msg.'<br>Inmate already exists');
+		}else{
+			$this->session->set_flashdata('success_msg','Records successfully inserted');
+		}
+		redirect("import/viewImportPage");
 		// $data['query']=$this-> upload_services->get_car_features_info();
 	}
 }
