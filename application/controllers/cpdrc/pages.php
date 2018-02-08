@@ -1237,8 +1237,10 @@ public function crimeIndexTabulated()
                                           );
       $this->data['custom_js']= '<script type="text/javascript">
       $(function(){
-            $(".nav-import").addClass("active");
-      });
+                  $(".nav-graphical").addClass("active");
+                  $(".nav-violations").addClass("active");
+                  $(".nav-crimeindexTabulated a").addClass("active");
+            });
       </script>';
       $this->load->view('templates',$this->data);   
 }

@@ -13,6 +13,19 @@
                     </div>
 
                     <div class="panel-body">
+                        <?php if ($this->session->flashdata('success_msg')): ?>
+                            <div class="alert alert-success">
+                                <button class="close" aria-hidden="true" data-dismiss="alert" type="button">×</button>
+                                <?php echo $this->session->flashdata('success_msg') ?>
+                            </div>
+                        <?php endif ?>
+
+                        <?php if ($this->session->flashdata('error_msg')): ?>
+                            <div class="alert alert-danger">
+                                <button class="close" aria-hidden="true" data-dismiss="alert" type="button">×</button>
+                                <?php echo $this->session->flashdata('error_msg') ?>
+                            </div>
+                        <?php endif ?>
                         <div id="error" class="alert alert-danger" role="alert">
                             <i class="fa fa-exclamation-triangle" aria-hidden="true"></i> Sorry, you are only allowed to upload a <strong>CSV</strong> file.
                         </div>

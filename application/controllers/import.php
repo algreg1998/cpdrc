@@ -50,9 +50,21 @@ class Import extends Admin_Controller {
 		$this->load->view('templates',$this->data);
 	}
 	public function uploadData(){
-		$data['result']=$this->Import_model->saveData();
-		// die();
-		// $data['query']=$this-> upload_services->get_car_features_info();
+
+		$ret =$this->Import_model->saveData();
+		
+		if(!isset($ret)){
+			$this->session->set_flashdata('success_msg','Inmates were successfully inserted.');
+		}else{
+			$lng ='';
+			for ($i=0; $i <count($ret) ; $i++) { 
+				$lng .= "<br>".$ret[$i];
+			}
+			$this->session->set_flashdata('error_msg','Oops, Something went wrong! Duplicate Entries'.$lng);
+		}
+		$this->viewImportPage();
+
+
 	}
 }
 

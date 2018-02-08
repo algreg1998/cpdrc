@@ -385,7 +385,7 @@ class cpdrc_fw extends CI_Model
 	 			$query=$this->db->query('
 	 			SELECT MONTH(inmate.datetime_added) as "month" , DAY(inmate.datetime_added) "day", YEAR(inmate.datetime_added) "year", COUNT(inmate.inmate_id) "count"
 				FROM inmate 
-				WHERE ( CAST(inmate.datetime_added AS DATE) BETWEEN ("'.$year.'-'.$month.'-'.$day.'") AND "'.$year.'-'.$month.'-'.$day.'") 
+				WHERE ( CAST(inmate.datetime_added AS DATE) BETWEEN ("'.$year.'-'.$month.'-'.$day.'") AND "'.$year.'-'.$month.'-'.$day.'") AND inmate.status !="Pending"
 				GROUP by MONTH(inmate.datetime_added) , DAY(inmate.datetime_added), YEAR(inmate.datetime_added) asc
 				');
 	 		}
