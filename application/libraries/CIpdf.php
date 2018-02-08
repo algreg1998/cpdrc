@@ -1,8 +1,6 @@
 <?php
 require('fpdf.php');
 
-$con = mysqli_connect('localhost','root','');
-mysqli_select_db($con,'cpdrc-ic');
 
 class CIpdf extends FPDF
 {

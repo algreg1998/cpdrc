@@ -152,9 +152,12 @@
                 </li>
                 <?php  if($this->session->userdata('user_type') == "Warden Administrator"){?>
                 <li class="nav-editReq">
-                    <a href="<?php echo base_url('cpdrc/editinmate') ?>"><i class="fa fa-user fa-fw"></i> Edit Requests    </a>  
+                    <a href="<?php echo base_url('cpdrc/editinmate') ?>"><i class="fa fa-edit fa-fw"></i> Edit Requests    </a>  
                 </li>
                 <?php }?>
+                 <li class="nav-import disabled">
+                    <a href="#<?php base_url('import/viewImportPage') ?>"><i class="fa fa-download fa-fw"></i> Import CSV </a>  
+                </li>
                 <!-- <li class="nav-reports">
                     <a href="#"><i class="fa fa-line-chart fa-fw"></i> Reports<span class="fa arrow"></span></a>
                     <ul class="nav nav-second-level">

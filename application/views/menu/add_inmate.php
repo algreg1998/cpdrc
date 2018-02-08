@@ -84,27 +84,7 @@
 	                    					
 	                    				?>
 
-	                    					<option 
-	                    					<?php 
-
-	                    						$ratio = $cell['total'] /$cell['cellCap'];
-
-			                                  	if($ratio <= 0.33)
-			                                  	{
-			                                      // echo 'style="background-color: #00ff00"';
-			                                  		echo 'style="background-color: green"';
-			                                  	}else if($ratio <= 0.66){
-			                                  		// echo 'style="background-color: #ffc180"';
-			                                  		echo 'style="background-color: yellow"';
-			                                  	}else if($ratio <= 1.0){
-			                                  		// echo 'style="background-color: #ffc180"';
-			                                  		echo 'style="background-color: red"';
-			                                  	}else{
-													// echo 'style="background-color: #ffc180"';
-													echo 'style="background-color: white"';
-			                                  	}
-				                            ?> 		
-                                  			value="<?php echo $cell['cellId'];?>" title="<?php echo $cell['total']." of ".$cell['cellCap']; ?>"><?php echo $cell['cellNumber']; ?></option>
+	                    					<option               			value="<?php echo $cell['cellId'];?>" title="<?php echo $cell['total']." of ".$cell['cellCap']; ?>"><?php echo $cell['cellNumber']; ?></option>
 	                    				<?php
 	                    				}
 	                    			?>

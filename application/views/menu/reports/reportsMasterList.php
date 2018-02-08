@@ -23,8 +23,13 @@
 
                 <div class="panel-body" id="section-to-print">
                      <h3 class="text-center"><strong> DETAINEES MASTERLIST </strong></h3> 
+                     <?php echo form_close(); 
+                        if($master){?>
+                        <a href="<?php echo site_url()?>cpdrc/pages/printMasterList/<?php echo $gender; ?>"><button class="btn btn-default"><i class="fa fa-print" id="btn1"></i> Print</button></a><br><br>
+                        <?php
 
-                     <a href="<?php echo site_url()?>cpdrc/pages/printMasterList/<?php echo $gender; ?>"><button class="btn btn-default"><i class="fa fa-print"></i> Print</button></a><br><br>
+                        }
+                     ?>
                     <div class="table-responsive" >
                         <table class="table table-bordered table-hover table-striped tablesorter" id="masterlist" style="font-size: 10px;">
                             <thead >
@@ -41,7 +46,7 @@
 
                             <tbody class="text-center">
                                <?php               
-                                    $no = 1;                   
+                                    $no = 1;              
                                     foreach ($master as $m) 
                                     {
                                         echo '<tr align="center" ';

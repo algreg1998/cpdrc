@@ -8,10 +8,10 @@ class Pages extends Admin_Controller
             $this->load->model('cpdrc/cpdrc_fw','',TRUE);
             $this->load->library('session');
             $this->load->library('form_validation');
-      }			
+      }                 
 
       public function index()
-      {	
+      {     
 
                   //number of inmates in cpdrc
             $this->db->select('*')->from('inmate')->where('status', 'Active');
@@ -38,7 +38,7 @@ class Pages extends Admin_Controller
 
             $result=$this->session->userdata('logged_in');
             if(!empty($result['user_id']))
-            {	
+            {     
                   if($result['type'] == "Warden Administrator")
                   {
                               //deleting the unset img of a inmate in the database
@@ -76,7 +76,7 @@ class Pages extends Admin_Controller
 
 
 
-            		     // $this->load->view('cpdrc/home', $value);
+                             // $this->load->view('cpdrc/home', $value);
             }
             else
             {
@@ -1035,15 +1035,31 @@ echo $ret;
 public function getHighestMonthOfYear1($i)
 {
 $res = $this->cpdrc_fw->getHighestMonthOfYear($i);
- $res = json_decode(json_encode($res));
- $ret ='<select name="month" id="months">';
- for($i = 1 ; $i <= $res[0]->month; $i++ ){
-      $dateObj   = DateTime::createFromFormat('!m', $i);
-      $monthName = $dateObj->format('F'); // March
-      $ret.="<option value='".$i."'>".$monthName."</option>";
+ if($res){
+      $res = json_decode(json_encode($res));
+       $ret ='<select name="month" id="months">';
+       for($i = 1 ; $i <= $res[0]->month; $i++ ){
+            $dateObj   = DateTime::createFromFormat('!m', $i);
+            $monthName = $dateObj->format('F'); // March
+            $ret.="<option value='".$i."'>".$monthName."</option>";
+       }
+       $ret .="</select>";
+      
+ }else{
+
+      $ret ='<select name="month" id="months">';
+       for($i = 1 ; $i <= 12; $i++ ){
+
+            $dateObj   = DateTime::createFromFormat('!m', $i);
+            $monthName = $dateObj->format('F'); // March
+            $ret.="<option value='".$i."'>".$monthName."</option>";
+            // echo $ret;
+            // die();
+       }
+       $ret .="</select>";
  }
- $ret .="</select>";
-return $ret;
+
+ return $ret;     
 }
 public function municipality()
 {
@@ -1221,10 +1237,10 @@ public function crimeIndexTabulated()
                                           );
       $this->data['custom_js']= '<script type="text/javascript">
       $(function(){
-            $(".nav-graphical").addClass("active");
-            $(".nav-violations").addClass("active");
-            $(".nav-crimeindexTabulated a").addClass("active");
-      });
+                  $(".nav-graphical").addClass("active");
+                  $(".nav-violations").addClass("active");
+                  $(".nav-crimeindexTabulated a").addClass("active");
+            });
       </script>';
       $this->load->view('templates',$this->data);   
 }

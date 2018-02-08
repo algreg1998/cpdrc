@@ -32,9 +32,10 @@
                             </select> 
                         </div>    
                         <button type="submit" class="btn btn-success submit">Submit</button>
-                    <?php echo form_close(); ?> 
+                    <?php echo form_close(); 
+                    	if($municipalities){?>
 									<a href="<?php echo site_url()?>cpdrc/pages/printMunicipality/<?php echo $gender; ?>"><button class="btn btn-default" ><i class="fa fa-print"></i> Print</button></a>
-									
+						<?php } ?>	
 									<div class="row">
 										<div class="col-md-12" align="center">
 											<h2>GEOGRAPHICAL ORIGIN OF DETAINEE</h2>

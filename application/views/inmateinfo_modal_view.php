@@ -48,7 +48,7 @@
         </div>
         <div class="row">
             <div class="col-lg-12">
-                    <table class="table table-striped table-bordered table-hover" style="margin-bottom:0">
+                    <table id="inmate_case" class="table table-striped table-bordered table-hover" style="margin-bottom:0">
                         <thead>
                             <tr>
                                 <th>Case No</th>
@@ -59,23 +59,17 @@
                                 <th style="width: 80px;" class="text-center">Max (yrs)</th>
                             </tr>
                         </thead>
-                        <tbody>
-                            <tr>
-                                <?php if (empty($cases)): ?>
-                                     <td colspan="6" class="text-center">-- No Case --</td>
-                                <?php else: ?>
-                                    <?php foreach ($cases as $case): ?>
-                                        <tr>
-                                            <td style="width: 150px"><?php echo $case->case_no ?></td>
-                                            <td><?php echo $case->name ?></td>
-                                            <td><?php echo $case->level ?></td>
-                                            <td><?php echo $case->RepublicAct ?></td>
-                                            <td class="text-center"><?php echo $case->min_year ?></td>
-                                            <td class="text-center"><?php echo $case->max_year ?></td>
-                                        </tr>
-                                    <?php endforeach; ?>
-                                <?php endif ?>
-                            </tr>
+                        <tbody>                             
+                          <?php foreach ($cases as $case): ?>
+                              <tr>
+                                  <td style="width: 150px"><?php echo $case->case_no ?></td>
+                                  <td><?php echo $case->name ?></td>
+                                  <td><?php echo $case->level ?></td>
+                                  <td><?php echo $case->RepublicAct ?></td>
+                                  <td class="text-center"><?php echo $case->min_year ?></td>
+                                  <td class="text-center"><?php echo $case->max_year ?></td>
+                              </tr>
+                          <?php endforeach; ?>
                         </tbody>
                     </table>
                 </div>
@@ -136,7 +130,21 @@
   </div>
 </div>
 
+<?php
+  $datatables = 'vendor/datatables/media/js/jquery.dataTables.min.js';
+  $dtBootstrap = 'vendor/datatables-plugins/integration/bootstrap/3/dataTables.bootstrap.js';
+  $jqueryColorbox = 'vendor/colorbox/js/jquery.colorbox-min.js';
+ ?>
+<script type="text/javascript" src="<?php echo assets_url($datatables); ?>"></script>
+<script type="text/javascript" src="<?php echo assets_url($dtBootstrap); ?>"></script>
+<script type="text/javascript" src="<?php echo assets_url($jqueryColorbox); ?>"></script>
 <script>
+    $(document).ready(function(){
+      $('#inmate_case').DataTable({
+        responsive: true
+      });
+    });
+
      $("#rfe").click(function(){
         $("#myModal4").modal("toggle");
     });

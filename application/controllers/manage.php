@@ -15,14 +15,17 @@ class Manage extends Admin_Controller {
 		$violations = $this->admin_model->get('cs_violations',array('status'=>'active'),FALSE,'name ASC, level ASC');
 		$this->data['violations'] = $violations;
 		$this->data['title']	= 'Manage | Violation';
-		$this->data['css']		= array(
-									'vendor/alertify/css/alertify.core.css',
-									'vendor/alertify/css/alertify.default.css');
+		$this->data['css']		= array('vendor/datatables-plugins/integration/bootstrap/3/dataTables.bootstrap.css',
+									    'vendor/alertify/css/alertify.core.css',
+									    'vendor/alertify/css/alertify.default.css');
 		$this->data['js_top']	= array();
 		$this->data['header'] 	= $this->load->view('admin/header_view',$this->data,TRUE);
 		$this->data['body'] 	= $this->load->view('manage_view',NULL,TRUE);
 		$this->data['footer'] 	= $this->load->view('footer_view',NULL,TRUE);
-		$this->data['js_bottom']= array('vendor/alertify/js/alertify.js');
+		$this->data['js_bottom']= array('vendor/datatables/media/js/jquery.dataTables.min.js',
+                                        'vendor/datatables-plugins/integration/bootstrap/3/dataTables.bootstrap.js',
+                                        'vendor/alertify/js/alertify.js',
+                                        'js/datatables.js');
 		$this->data['custom_js']= '<script type="text/javascript">
 										$(function(){
 											$(".nav-manage").addClass("active");
@@ -51,9 +54,16 @@ class Manage extends Admin_Controller {
 			$max_day = $this->input->post('max_day');
 
 			$tot = $min_year + $min_month + $min_day + $max_year + $max_month + $max_day;
-			
+
 			$lvl = $this->input->post('level');
-			if (intval($tot) <= 0 && ($lvl !== 'lifetime' && $lvl !== 'none')) {
+			
+			$minpenalty = ($min_year*365)+($min_month*30)+$min_day;
+			$maxpenalty = ($max_year*365)+($max_month*30)+$max_day;
+
+			if ($minpenalty > $maxpenalty) {
+				$this->session->set_flashdata('error_msg','Minimum penalty should be less than maximum penalty.');
+				redirect(base_url('manage/addviolation'));
+			} else if (intval($tot) <= 0 && ($lvl !== 'lifetime' && $lvl !== 'none')) {
 				$this->session->set_flashdata('error_msg','Please add some min and max penalty of the violation.');
 				redirect(base_url('manage/addviolation'));
 			}
@@ -494,14 +504,17 @@ class Manage extends Admin_Controller {
 		$archive_cases = $this->admin_model->get('cs_cases_full',array('case_status'=>'deleted'),FALSE,'name ASC, level ASC');
 		$this->data['archive_cases'] = $archive_cases;
 		$this->data['title']	= 'Manage | Archive';
-		$this->data['css']		= array(
-									'vendor/alertify/css/alertify.core.css',
-									'vendor/alertify/css/alertify.default.css');
+        $this->data['css']		= array('vendor/datatables-plugins/integration/bootstrap/3/dataTables.bootstrap.css',
+            'vendor/alertify/css/alertify.core.css',
+            'vendor/alertify/css/alertify.default.css');
 		$this->data['js_top']	= array();
 		$this->data['header'] 	= $this->load->view('admin/header_view',$this->data,TRUE);
 		$this->data['body'] 	= $this->load->view('archive_view',NULL,TRUE);
 		$this->data['footer'] 	= $this->load->view('footer_view',NULL,TRUE);
-		$this->data['js_bottom']= array('vendor/alertify/js/alertify.js','js/archive.js');
+        $this->data['js_bottom']= array('vendor/datatables/media/js/jquery.dataTables.min.js',
+                                        'vendor/datatables-plugins/integration/bootstrap/3/dataTables.bootstrap.js',
+                                        'vendor/alertify/js/alertify.js',
+                                        'js/datatables.js');
 		$this->data['custom_js']= '<script type="text/javascript">
 										$(function(){
 											$(".nav-manage").addClass("active");
@@ -608,7 +621,7 @@ class Manage extends Admin_Controller {
         $like = "";
         $filter = "";
         $order_by = "created_on asc";
-        
+
         if (isset($_GET['keywords'])) {
             $keywords = $_GET['keywords'];
             $add_query .= "keywords=".$_GET['keywords'];
@@ -620,14 +633,14 @@ class Manage extends Admin_Controller {
             $filter = strtolower(end($xplod));
             $add_query .= $pre."filter=".$filter;
         }
-        
+
         $config['base_url'] = base_url().'manage/logs?'.$add_query;
         $where = array('status !='=>'deleted');
         $config['total_rows'] = $this->admin_model->search_count('cs_logs',$where,$like,$filter,NULL,FALSE);
 
         $config['per_page'] = 10;
         $config['uri_protocol'] = "PATH_INFO";
-        //$config['use_page_numbers'] = TRUE;     
+        //$config['use_page_numbers'] = TRUE;
         $config['page_query_string'] = TRUE;
         $config['enable_query_strings']=TRUE;
         $config['query_string_segment'] = 'offset';
@@ -655,7 +668,7 @@ class Manage extends Admin_Controller {
         //echo $this->admin_model->db->last_query();
         //if deleted all rows in page..
         if (empty($this->data['logs']) && $page > 0) {
-            
+
             $sub = $config['total_rows']/$config['per_page'];
             $whole = intval($sub);
             if ($sub > $whole) {
@@ -691,14 +704,17 @@ class Manage extends Admin_Controller {
 		// //echo $this->admin_model->db->last_query();
 		$this->data['courts'] = $courts;
 		$this->data['title']	= 'Manage | Courts';
-		$this->data['css']		= array(
-									'vendor/alertify/css/alertify.core.css',
-									'vendor/alertify/css/alertify.default.css');
+        $this->data['css']		= array('vendor/datatables-plugins/integration/bootstrap/3/dataTables.bootstrap.css',
+                                        'vendor/alertify/css/alertify.core.css',
+                                        'vendor/alertify/css/alertify.default.css');
 		$this->data['js_top']	= array();
 		$this->data['header'] 	= $this->load->view('admin/header_view',$this->data,TRUE);
 		$this->data['body'] 	= $this->load->view('court_view',NULL,TRUE);
 		$this->data['footer'] 	= $this->load->view('footer_view',NULL,TRUE);
-		$this->data['js_bottom']= array('vendor/alertify/js/alertify.js');
+        $this->data['js_bottom']= array('vendor/datatables/media/js/jquery.dataTables.min.js',
+                                        'vendor/datatables-plugins/integration/bootstrap/3/dataTables.bootstrap.js',
+                                        'vendor/alertify/js/alertify.js',
+                                        'js/datatables.js');
 		$this->data['custom_js']= '<script type="text/javascript">
 										$(function(){
 											$(".nav-manage").addClass("active");
@@ -1182,12 +1198,16 @@ class Manage extends Admin_Controller {
 		$this->data['title']	= 'Manage | Cells';
 		$this->data['css']		= array(
 									'vendor/alertify/css/alertify.core.css',
-									'vendor/alertify/css/alertify.default.css');
+									'vendor/alertify/css/alertify.default.css',
+                                    'vendor/datatables-plugins/integration/bootstrap/3/dataTables.bootstrap.css');
 		$this->data['js_top']	= array();
 		$this->data['header'] 	= $this->load->view('admin/header_view',$this->data,TRUE);
 		$this->data['body'] 	= $this->load->view('cell_view',NULL,TRUE);
 		$this->data['footer'] 	= $this->load->view('footer_view',NULL,TRUE);
-		$this->data['js_bottom']= array('vendor/alertify/js/alertify.js');
+		$this->data['js_bottom']= array('vendor/alertify/js/alertify.js',
+                                        'vendor/datatables/media/js/jquery.dataTables.min.js',
+                                        'vendor/datatables-plugins/integration/bootstrap/3/dataTables.bootstrap.js',
+                                        'js/datatables.js');
 		$this->data['custom_js']= '<script type="text/javascript">
 										$(function(){
 											$(".nav-manage").addClass("active");
@@ -1280,7 +1300,7 @@ class Manage extends Admin_Controller {
 								"cellNumber" => $this->input->post('cellNumber'),
 								"capacity" => $this->input->post('capacity')
 								);
-			$where = array('cellId'=>$this->input->post('cellId'),'status'=>'active');
+			$where = array('cellId'=>$id,'status'=>'active');
 			$chkr = $this->admin_model->get('cell',$where,TRUE);
 			// if (!empty($chkr) && $chkr->id !== $id) {
 			// 	$this->session->set_flashdata('error_msg','Court is already existing.');

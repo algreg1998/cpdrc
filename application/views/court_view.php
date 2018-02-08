@@ -39,7 +39,7 @@
                         </div>
                     <?php endif ?>
                     <div class="dataTable_wrapper table-responsive">
-                        <table class="table table-striped table-bordered table-hover" id="table-releases">
+                        <table class="table table-striped table-bordered table-hover datatable" >
                             <thead>
                                 <tr>
                                     <th style="">Court Id</th>
@@ -47,7 +47,7 @@
                                     <th></th>
                                 </tr>
                             </thead>
-                            <tbody>
+                            <tbody class="text-center">
                                 <?php foreach ($courts as $court): ?>
                                    <tr class="odd gradeX">
                                         <td><?php echo $court->court_id ?></td>

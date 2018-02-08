@@ -36,7 +36,7 @@
                     <?php endif ?>
                     
                     <div class="dataTable_wrapper table-responsive">
-                        <table class="table table-striped table-bordered table-hover" id="table-archive">
+                        <table class="table table-striped table-bordered table-hover datatable" id="table-archive">
                             <thead>
                                 <tr>
                                     <th>Case Number</th>
@@ -48,7 +48,7 @@
                                     <th style="width: 40px;"></th>
                                 </tr>
                             </thead>
-                            <tbody>
+                            <tbody class="text-center">
                                 <?php foreach ($archive_cases as $case): ?>
                                     <tr class="odd gradeX">
                                         <td><?php echo $case->case_no ?></td>
