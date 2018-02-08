@@ -1161,7 +1161,7 @@ class Manage extends Admin_Controller {
 	}
 	public function deletemunicipality($id)
 	{
-		$checkr = $this->admin_model->get('court',array('court_mun' => $id));
+		$checkr = $this->admin_model->get('court',array('court_mun' => $id,'status'=>"active"));
 		if (!empty($checkr)) {
 			$this->session->set_flashdata('error_msg','You cannot delete that municipality. Some court connected with it.');
 			redirect(base_url('manage/addcourtmunicipalities'));
