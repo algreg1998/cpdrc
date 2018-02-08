@@ -90,11 +90,11 @@
 								</div>
 							</div><br>
 							<label><i class="fa fa-user-md"></i> <b>Body Build</b></label>
-							<input type="text" name="build" class="form-control" required value="<?php if($info!=null){echo $info->build;}?>">
+							<input type="text" name="build" class="form-control"  oninvalid="setCustomValidity('Please enter alphabets only')" onchange="try{setCustomValidity('')}catch(e){}" required value="<?php if($info!=null){echo $info->build;}?>">
 							<label><i class="fa fa-user"></i> <b>Body Complexion</b></label>
 							<textarea rows="3" type="text" name="complexion" class="form-control" required ><?php if($info!=null){echo $info->complexion;}?></textarea>
 							<label><i class="fa fa-crosshairs"></i> <b>Hair</b></label>
-							<input type="text" name="hair" class="form-control" required value="<?php if($info!=null){echo $info->hair;}?>">
+							<input type="text" name="hair" class="form-control"  oninvalid="setCustomValidity('Please enter alphabets only')" onchange="try{setCustomValidity('')}catch(e){}" required value="<?php if($info!=null){echo $info->hair;}?>">
 							<label><i class="fa fa-info"></i> <b>Hair Peculiarities</b></label>
 							<textarea rows="3" type="text" name="hairp" class="form-control" required ><?php if($info!=null){echo $info->hair_peculiarities;}?></textarea><br>
 							<button class="form-control btn btn-warning" type="submit">Submit Form</button>

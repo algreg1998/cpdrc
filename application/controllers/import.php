@@ -13,7 +13,8 @@ class Import extends Admin_Controller {
 	public function viewImportPage()
 	{
 
-		$this->data['title']	= 'Graph | Violations';
+
+		$this->data['title']	= 'Import CSV';
 		$this->data['css']		= array('vendor/select2/select2.css','vendor/select2/select2-bootstrap.css');
 		$this->data['js_top']	= array();
 		$this->data['header'] 	= $this->load->view('admin/header_view',$this->data,TRUE);
@@ -24,12 +25,38 @@ class Import extends Admin_Controller {
 										$(function(){
 								            $(".nav-import a").addClass("active");
 								      	});
+										$( document ).ready(function() {
+										    $(".close").click(function () {
+                                                $(this).parent().removeClass("in"); // hides alert with Bootstrap CSS3 
+                                            });
+                                            $("#importSubmit").hide();
+                                            $("#error").hide();
+                                            $( "#file" ).change(function() {
+                                              // get the file name, possibly with path (depends on browser)
+                                              var filename = $("#file").val();
+                                        
+                                              // Use a regular expression to trim everything before final dot
+                                              var extension = filename.replace(/^.*\./, \'\');
+//                                              alert( "User is planning to upload a ["+extension+"] file." );
+                                              if(extension != "csv")
+                                              {
+                                                  $("#error").show();
+                                                  $("#importSubmit").hide();
+                                              }
+                                              else 
+                                              {
+                                                  $("#error").hide();
+                                                  $("#importSubmit").show();
+                                              }
+                                            });
+                                        });
+
 									</script>';
 		$this->load->view('templates',$this->data);
 	}
 	public function uploadData(){
 		$data['result']=$this->Import_model->saveData();
-		die();
+		
 		// $data['query']=$this-> upload_services->get_car_features_info();
 	}
 }

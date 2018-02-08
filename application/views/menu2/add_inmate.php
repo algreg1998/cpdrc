@@ -112,13 +112,13 @@
 	                    		</div>
 	                    	</div><br>
 	                    		<label><i class="fa fa-info"></i> <b>First Name</b></label>	
-                    			<input type="text" name="fname" class="form-control" required value="<?php echo $d->inmate_fname?>">
+                    			<input type="text" name="fname" class="form-control"  oninvalid="setCustomValidity('Please enter alphabets only')" onchange="try{setCustomValidity('')}catch(e){}" required value="<?php echo $d->inmate_fname?>">
                     			<label><i class="fa fa-info"></i> <b>Last Name</b></label>
-                    			<input type="text" name="lname" class="form-control" required value="<?php echo $d->inmate_lname?>">
+                    			<input type="text" name="lname" class="form-control"  oninvalid="setCustomValidity('Please enter alphabets only')" onchange="try{setCustomValidity('')}catch(e){}" required value="<?php echo $d->inmate_lname?>">
                     			<label><i class="fa fa-info"></i> <b>Middle Name</b></label>
-	                    		<input type="text" name="mi" class="form-control" required value="<?php echo $d->inmate_mi?>">
+	                    		<input type="text" name="mi" class="form-control"  oninvalid="setCustomValidity('Please enter alphabets only')" onchange="try{setCustomValidity('')}catch(e){}" required value="<?php echo $d->inmate_mi?>">
 	                    		<label><i class="fa fa-info"></i> <b>Aliases</b></label>
-	                    		<textarea rows="3" type="text" name="alias" class="form-control" required><?php echo $d->inmate_alias?></textarea><br>
+	                    		<textarea rows="3" type="text" name="alias" class="form-control"  oninvalid="setCustomValidity('Please enter alphabets only')" onchange="try{setCustomValidity('')}catch(e){}" required><?php echo $d->inmate_alias?></textarea><br>
 	                    		<button class="form-control btn btn-warning" type="submit">Submit Form</button>
                 		</div>
 			    	</div>

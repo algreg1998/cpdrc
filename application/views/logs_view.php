@@ -15,7 +15,7 @@
                 </div>
                 <div class="panel-body">
                     <div class="dataTable_wrapper table-responsive">
-                        <table class="table table-striped table-bordered table-hover" id="table-logs">
+                        <table class="table table-striped table-bordered table-hover datatable">
                             <thead>
                                 <tr>
                                     <th style="width: 130px;">User</th>

@@ -326,7 +326,7 @@
 							</div>
 							<br>
 						<label><i class="fa fa-map-marker"></i> <b>Birthplace</b></label>
-						<input type="text" name="birthplace" class="form-control" required value="<?php if($info!=null){echo $info->born_in;}?>" >
+						<input type="text" name="birthplace" class="form-control"  oninvalid="setCustomValidity('Please enter alphabets only')" onchange="try{setCustomValidity('')}catch(e){}" required value="<?php if($info!=null){echo $info->born_in;}?>" >
 						<br>
 						
 						<!-- <textarea type="text" name="home" class="form-control" required ></textarea> -->
@@ -409,7 +409,7 @@
 							</div>
 							<div class="col-md-12">
 								<label><i class="fa fa-home"></i> <b>Street</b></label>
-								<input  type="text" name="homeStreet" class="form-control" value="<?php if($info!=null) {echo $homeStreet;} ?>" required >
+								<input  type="text" name="homeStreet" class="form-control" value="<?php if($info!=null) {echo $homeStreet;} ?>" oninvalid="setCustomValidity('Please enter alphabets only')" onchange="try{setCustomValidity('')}catch(e){}"  required >
 							</div>
 						</div>
 						<br>
@@ -421,15 +421,15 @@
 					
 					<div class="col-md-5 col-sm-12 well"><!--RIGHTSIDE-->
 						<label><i class="fa fa-briefcase"></i> <b>Occupation</b></label>
-						<input type="text" name="occupation" class="form-control" required value="<?php if($info!=null){echo $info->occupation;}?>"><br>
+						<input type="text" name="occupation" class="form-control" required oninvalid="setCustomValidity('Please enter alphabets only')" onchange="try{setCustomValidity('')}catch(e){}"  value="<?php if($info!=null){echo $info->occupation;}?>"><br>
 						<label><i class="fa fa-male"></i> <b>Father's Name</b></label>
-						<input type="text" name="father" class="form-control" required value="<?php if($info!=null){echo $info->father;}?>">
+						<input type="text" name="father" class="form-control"  oninvalid="setCustomValidity('Please enter alphabets only')" onchange="try{setCustomValidity('')}catch(e){}" required value="<?php if($info!=null){echo $info->father;}?>">
 						<label><i class="fa fa-female"></i> <b>Mother's Name</b></label>
-						<input type="text" name="mother" class="form-control" required value="<?php if($info!=null){echo $info->mother;}?>">
+						<input type="text" name="mother" class="form-control"  oninvalid="setCustomValidity('Please enter alphabets only')" onchange="try{setCustomValidity('')}catch(e){}" required value="<?php if($info!=null){echo $info->mother;}?>">
 						<label><i class="fa fa-user"></i> <b>Relative's Name</b></label>
-						<input type="text" name="relative" class="form-control" required value="<?php if($info!=null){echo $info->relative;}?>">
+						<input type="text" name="relative" class="form-control"  oninvalid="setCustomValidity('Please enter alphabets only')" onchange="try{setCustomValidity('')}catch(e){}"  required value="<?php if($info!=null){echo $info->relative;}?>">
 						<label><i class="fa fa-refresh"></i> <b>Relation</b></label>
-						<input type="text" name="relation" class="form-control" required value="<?php if($info!=null){echo $info->relation;}?>">
+						<input type="text" name="relation" class="form-control"  oninvalid="setCustomValidity('Please enter alphabets only')" onchange="try{setCustomValidity('')}catch(e){}" required value="<?php if($info!=null){echo $info->relation;}?>">
 						<!--<label><i class="fa fa-map-marker"></i> <b>Current Address</b></label>
 						 <textarea type="text" name="address" class="form-control" required ></textarea><br> -->
 						<br>
@@ -508,11 +508,11 @@
 							</div>
 							<div class="col-md-6">
 								<label><i class="fa fa-home"></i> <b>Baranggay</b></label>
-								<input type="text" name="currentBrgy" class="form-control" value="<?php if($info!=null) {echo $currentBaranggay;} ?>" required >
+								<input type="text" name="currentBrgy" class="form-control" value="<?php if($info!=null) {echo $currentBaranggay;} ?>" oninvalid="setCustomValidity('Please enter alphabets only')" onchange="try{setCustomValidity('')}catch(e){}"  required >
 							</div>
 							<div class="col-md-12">
 								<label><i class="fa fa-home"></i> <b>Street</b></label>
-								<input type="text" name="currentStreet" class="form-control" value="<?php if($info!=null) {echo $currentStreet;} ?>" required >
+								<input type="text" name="currentStreet" class="form-control" value="<?php if($info!=null) {echo $currentStreet;} ?>" oninvalid="setCustomValidity('Please enter alphabets only')" onchange="try{setCustomValidity('')}catch(e){}"  required >
 							</div>
 						</div>
 						<br>
