@@ -56,7 +56,7 @@ class cpdf extends FPDF
 
     }
 
-    function body($data1,$data2,$data3){
+    function body($data1,$data2,$data3,$data4,$data5){
 
         // echo $id;
         
@@ -250,9 +250,9 @@ class cpdf extends FPDF
         $this->Cell(50,5,"Approved by:",0,1,'C');
         $this->Ln(10);
         $this->Cell(20);
-        $this->Cell(50,0,"",0,0,'C');
+        $this->Cell(50,0,$data4,0,0,'C');
         $this->Cell(20);
-        $this->Cell(50,0,"",0,1,'C');
+        $this->Cell(50,0,$data5,0,1,'C');
         $this->Cell(20);
         $this->Cell(50,3,"______________________________",0,0,'C');
         $this->Cell(20);

@@ -42,6 +42,37 @@
                                 <?php echo ($reason_info->release_date == NULL) ? "N/A" : mdate("%M %d, %Y",strtotime($reason_info->release_date)) ?>
                             </div>
                         </div>
+                        <div class="form-group">
+                            <div class="row">
+                              <div class="col-lg-8"></div>
+                              <div class="col-lg-4"><button type="button" class="btn btn-primary pull-right" data-toggle="collapse" data-target="#demo"><i class="fa fa-print"></i> Print</button></div>
+                            </div>
+                            <div class="row">
+                              <div class="col-lg-1"></div>
+                              <div class="col-lg-11" style="padding-top:5px;">
+                                  <div id="demo" class="collapse">
+                                  <form id="id" action="<?php echo site_url()?>search/printCPT" method="post" style="display: inline;">
+                                    <input type="hidden" name="id" id= "id" class="id" value='<?php echo $inmate_info->inmate_id ?>'>
+                                    <div class="row">
+                                      <div class="col-lg-6">
+                                        <input class="form-control" type="text" name="prep" placeholder="Prepared and Verified by:">    
+                                      </div>
+                                      <div class="col-lg-4" style="padding-left:0px;">
+                                        <input class="form-control" type="text" name="app" placeholder="Approved by:">
+                                      </div>
+                                      <div class="col-lg-2">
+                                        <button  id="printCPT" class="btn btn-success pull-right">Submit</button></a>
+                                      </div>
+                                    </div>
+                                  </form>
+                            </div>                   
+                              </div>
+                            </div>
+                            
+                        </div>
+
+
+         
                     </div>
                 </div>  
             </div>
@@ -77,12 +108,6 @@
         </div>
     </div>
     <div class="modal-footer">
-
-        <form id="id" action="<?php echo site_url()?>search/printCPT" method="post" style="display: inline;">
-        <input type="hidden" name="id" id= "id" class="id" value='<?php echo $inmate_info->inmate_id ?>'>
-        <!-- <a href="<?php echo site_url()?>search/printCPT"> -->
-        <button id="printCPT" class="btn btn-default" ><i class="fa fa-print"></i> Print</button></a>
-        </form>
             <?php
                 if($reqStat!=null){
              $reqStat =json_decode(json_encode($reqStat));  

@@ -93,7 +93,7 @@ class Search extends Admin_Controller {
                 $pdf = new cpdf('P','mm','A4');
                 $pdf->AliasNbPages();
                 $pdf->AddPage();
-                $pdf->body($data['inmate'],$data['case'],$data['old']);
+                $pdf->body($data['inmate'],$data['case'],$data['old'],$this->input->post('prep'),$this->input->post('app'));
                 // $pdf->display($data['inmate'],$data['case'],$data['old']);
                 $pdf->Output();
         }
