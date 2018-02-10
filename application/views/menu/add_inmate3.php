@@ -164,13 +164,41 @@
 						  <div class="panel-heading"><b>Body build</b></div>
 						  <div class="panel-body">
 						  	<div class="row">
-				    			<div class="col-md-4" align="middle"><img src="<?php echo base_url("assets/images/step 3/ectomorph.png") ?>" ><h4><b>Ectomorph</b></h4></div>
-				    			<div class="col-md-4" align="middle"><img src="<?php echo base_url("assets/images/step 3/mesomorph.png") ?>" ><h4><b>Mesomorph</b></h4></div>
-				    			<div class="col-md-4" align="middle"><img src="<?php echo base_url("assets/images/step 3/endomorph.png") ?>" ><h4><b>Endomorph</b></h4></div>
+				    			<div class="col-md-4" ><div align="middle"><img  src="<?php echo base_url("assets/images/step 3/ectomorph.png") ?>" ></div>
+				    				<h4 align="middle"><b>Ectomorph</b></h4>
+				    				<ul>
+				    					<li>Narrow hips and clavicles </li>
+										<li>Small joints (wrist/ankles)</li>
+										<li>Thin build</li>
+										<li>Stringy muscle bellies </li>
+										<li>Long limbs </li>
+				    				</ul>
+				    			</div>
+				    			<div class="col-md-4"><div align="middle"><img align="middle" src="<?php echo base_url("assets/images/step 3/mesomorph.png") ?>" ></div>
+				    				<h4 align="middle"><b>Mesomorph</b></h4>
+				    				<ul>
+				    					<li>Wide clavicles</li>
+				    					<li>Narrow waist</li>
+				    					<li>Thinner joints</li>
+				    					<li>Long and round muscle bellies</li>
+				    				</ul>
+				    			</div>
+				    			<div class="col-md-4"><div align="middle"><img src="<?php echo base_url("assets/images/step 3/endomorph.png") ?>" ></div>
+				    				<h4 align="middle"><b>Endomorph</b></h4>
+				    				<ul>
+				    					<li>Blocky </li>
+										<li>Thick rib cage</li>
+										<li>Wide/thicker joints</li>
+										<li>Hips as wide (or wider)</li>
+										<li>than clavicles</li>
+										<li>Shorter limbs</li>
+				    				</ul>
+				    			</div>
+				    			<div class="col-md-12" align="right"><b>Source:</b>https://www.bodybuilding.com/fun/becker3.htm</div>
 				    		</div>
 						  </div>
 						</div>
-			    		<div class="panel panel-success">
+			    		<!-- <div class="panel panel-success">
 						  <div class="panel-heading"><b>Hair</b></div>
 						  <div class="panel-body">
 						  	<div class="row">
@@ -182,7 +210,7 @@
 				    			<div class="col-md-6" align="middle"><img src="<?php echo base_url("assets/images/step 3/mesomorph.png") ?>" ><h4><b>Coily Hair</b></h4></div>
 				    		</div>
 						  </div>
-						</div>
+						</div> -->
 			    		
 			    	</div>
 				</div>
