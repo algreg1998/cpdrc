@@ -748,7 +748,7 @@ class Manage extends Admin_Controller {
 	{
 		$courts = $this->admin_model->get('court',"court_mun IS NOT  NULL",FALSE);
 		
-		$municipalities = $this->admin_model->get('municipality',"province != 'Default'",FALSE);
+		$municipalities = $this->admin_model->get('municipality',"province != 'Default' AND status = 'active'",FALSE);
 		
 		$this->form_validation->set_rules('court_name','court_name','trim|strip_tags|xss_clean|required');
 		
