@@ -169,8 +169,9 @@ session_start();
 		    	$info['mother']=$this->input->post('mother');
 		    	$info['relative']=$this->input->post('relative');
 		    	$info['relation']=$this->input->post('relation');
-                    $info['relation']=$this->input->post('relation');
+                $info['relation']=$this->input->post('relation');
 		    	$info['address']=$this->input->post('currentStreet').', '.$this->input->post('currentBrgy').', '.$this->input->post('currentCity');
+		    	$info['relation']=$this->input->post('religion');
 
 		    	if($info['age'] < 100 && $info['age'] > 17){
 		    		$this->db->insert('inmate_info', $info);

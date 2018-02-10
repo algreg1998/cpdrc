@@ -83,7 +83,7 @@
 			    			<div style='display: none' class="row">
 			    				<div class="col-md-6">
 			    					<label><i class="fa fa-list-alt"></i> <b>Reference Form ID</b></label>
-			    					<input type="number" name="formid" class="form-control" required autofocus  value="<?php echo $d->ref_formid?>">
+			    					<input type="number" name="formid"   value="<?php echo $d->ref_formid?>">
 			    				</div>
 			    			</div>
 				    		<div class="row">

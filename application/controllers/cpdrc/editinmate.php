@@ -224,6 +224,7 @@ session_start();
 		    	$info['mother']=$this->input->post('mother');
 		    	$info['relative']=$this->input->post('relative');
 		    	$info['relation']=$this->input->post('relation');
+		    	$info['religion']=$this->input->post('religion');
 		    	$info['address']=$this->input->post('currentStreet').', '.$this->input->post('currentBrgy').', '.$this->input->post('currentCity');
 
 		    	
@@ -265,8 +266,35 @@ session_start();
 		    		$this->data['footer']   = $this->load->view('footer_view',NULL,TRUE);
 		    		$this->data['js_bottom']= array();
 		    		$this->data['custom_js']= '<script type="text/javascript">
-			    		$(function(){
-			    		});
+			    		$(document).ready(function(){
+                                                        $("#ft").keyup(function(){
+                                                            var feet = $("#ft").val();
+                                                            var inches = $("#in").val();
+                                                            
+                                                            var finalInches = parseInt((feet * 12)) + parseInt(inches);
+                                                            var result_cm = (finalInches * 2.54).toFixed(2);
+                                                            
+                                                            $("#cm").val(result_cm);
+                                                        });
+                                                        
+                                                        $("#in").keyup(function(){
+                                                            var feet = $("#ft").val();
+                                                            var inches = $("#in").val();
+                                                            
+                                                            var finalInches = parseInt((feet * 12)) + parseInt(inches);
+                                                            var result_cm = (finalInches * 2.54).toFixed(2);
+                                                            
+                                                            $("#cm").val(result_cm);
+                                                        });
+                                                        
+                                                        $("#kg").keyup(function(){
+                                                            var kilograms = $("#kg").val();
+                                                            
+                                                            var result_lbs = (parseInt(kilograms) * 2.2).toFixed(2);
+                                                            
+                                                            $("#lbs").val(result_lbs);
+                                                        });
+                                                    });
 			    	</script>';
 		    		$this->load->view('templates',$this->data);
 
