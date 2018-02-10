@@ -952,7 +952,7 @@ court.status ="active"');
 								IF(s_max_year is not NULL, s_max_year, 0) as s_max_year,
 								IF(s_max_month is not NULL, s_max_month, 0) as s_max_month,
 								IF(s_max_day is not NULL, s_max_day, 0) as s_max_day,
-								MAX(( IF(s_max_year is not NULL, s_max_year * 365, 0) + IF(s_max_month is not NULL, s_max_year * 30, 0) + IF(s_max_day is not NULL, s_max_day, 0) )) as max_penalty
+								MAX(( IF(s_max_year is not NULL, s_max_year * 365, 0) + IF(s_max_month is not NULL, s_max_month * 30, 0) + IF(s_max_day is not NULL, s_max_day, 0) )) as max_penalty
 								FROM (`cs_cases`)
 								WHERE `reasons_id` = "'.$reason_id.'" AND status="active" GROUP BY id
 							')->result();

@@ -20,7 +20,7 @@ session_start();
 	    	$user_id=$this->input->post('id');
 	    	$form = " ";
 
-	    	$info['ref_formid'] = $form;
+	    	$info['ref_formid'] = null;
 			$info['inmate_id']=$user_id;
 			$info['cell_no']=$this->input->post('cell');
 			$info['inmate_fname']= ucwords($this->input->post('fname'));
@@ -448,24 +448,6 @@ session_start();
 				$this->db->where('inmate_id',$id);
 				$this->db->update('inmate');
 
-				// $e is used for checkcaseinfo()
-				$e['inmate_id']= $id;
-				$e['date_confinment']=$this->input->post('confine');
-				$e['sentence']="";
-				
-				// $e['expire_good']=$this->input->post('dategood');
-				
-				$e['case_no']=$this->input->post('casenum');
-				$e['crime']=$this->input->post('crime');
-				$e['court_name']=$this->input->post('court'); // Stored in cs_appearance_schedules.place
-				// To determine which tables should $e be stored
-				$e['commencing']="";
-
-				// $e['expire_bad']=$this->input->post('datebad');
-				
-				#echo('{reasons}'.print_r($cs_reasons));
-				#echo('{case}'.print_r($cs_cases));
-				
 				$data = array('inmate_id'=>$id,
 							  'date_confinment'=>$this->input->post('confine'),
 							  'sentence'=>$this->input->post('sentence'),
@@ -476,38 +458,20 @@ session_start();
 							  'commencing'=> "",
 							  'counts' => $this->input->post('counts'),
 							  'expire_bad'=>$this->input->post('datebad'));
-				/**/
-				//commented out to enable many violations for 1 case
-				$res = $this->cpdrc_fw->checkcaseinfo($e);
-				//commented out to enable many violations for 1 case end
-				// Debugging only
-				// print_r($res);
-				// echo $this->db->last_query();
 				
-
-				// if($res == FALSE) // original
-				// print_r($res);
-				// die();
 				$reason = $this->admin_model->get('cs_reasons',array('inmate_id'=>$id),TRUE);
-				// echo $this->admin_model->db->last_query()."<br>";
+
 				if($reason){
 					$checker = $this->admin_model->get('cs_cases_full',array('case_no'=>$data['case_no'],'violation_id'=>$data['crime'],'reasons_id'=>$reason->id,'case_status'=>'active'),TRUE);
+				}else{
+					$query = $this->db->insert('cs_reasons',$cs_reasons);
+					$reason = $this->admin_model->get('cs_reasons',array('inmate_id'=>$id),TRUE);
 				}
-			
-			// echo $this->admin_model->db->last_query();
-// echo "<pre>";
-// var_dump($reason);
-// echo $data['case_no']."<br>";
-// echo $data['crime']."<br>";
-// echo $reason->id;
-			// die();
-			if (empty($checker)) {
+				$cs_cases['reasons_id'] = $reason->id;
+				if (empty($checker)) {
 				
-			// }
-				// if($res == 0)
-				// {
-				//commented out to enable many violations for 1 case end
 					$this->db->insert('inmate_case_info', $data); // for insertion
+					
 					$primarykey = $this->db->insert_id();
 					$data = $this->admin_model->get("inmate",array("inmate_id"=>$id));
 					$logData = array(
@@ -523,142 +487,91 @@ session_start();
 						);
 					$this->admin_model->save('cs_logs',$logData);
 
-					$query = $this->db->insert('cs_reasons',$cs_reasons);
-					if($query && ! $this->session->flashdata('update_token')){
-						$reason = $this->db->get_where('cs_reasons',array('inmate_id'=>$cs_reasons['inmate_id']));//temp placement, should be transferred to MODEL
-						// Check DB query at this point
-					
-						$cs_cases['reasons_id'] = $reason->row()->id;
-						$cs_appearance_schedules['reason_id'] = $reason->row()->id;
-						$query = $this->db->insert('cs_cases',$cs_cases);
-						$query = $this->db->insert('cs_appearance_schedules',$cs_appearance_schedules);
-						 $this->session->set_flashdata('update_token', time());
+					$cid = $this->admin_model->save('cs_cases',$cs_cases);
+					//logs
+					$logData = array(
+								'linked_id' => $cid,
+								'table_name' => 'cs_cases',
+								'table_field' => 'id',
+								'subject' => 'Add New Case',
+								'reasons' => 'Case # '.$cs_cases['case_no'].' - '.$violation_info->name.' '.$violation_info->level.' ('.$violation_info->RepublicAct.') was added to Inmate ID : '.$id,
+								'update_by' => $this->session->userdata('user_id'),
+								'action' => 'add',
+								'created_at' => now(),
+								'status' => 'active'
+							);
+					$this->admin_model->save('cs_logs',$logData);
+				
+					$inmate_info = $this->admin_model->get('inmates_full',array('inmate_id'=>$reason->inmate_id),TRUE);
+					$max_res = $this->db->query('
+									SELECT id,violation_id,
+									IF(s_max_year is not NULL, s_max_year, 0) as s_max_year,
+									IF(s_max_month is not NULL, s_max_month, 0) as s_max_month,
+									IF(s_max_day is not NULL, s_max_day, 0) as s_max_day,
+									MAX(( IF(s_max_year is not NULL, s_max_year * 365, 0) + IF(s_max_month is not NULL, s_max_month * 30, 0) + IF(s_max_day is not NULL, s_max_day, 0) )) as max_penalty
+									FROM (`cs_cases`)
+									WHERE `reasons_id` = "'.$reason->id.'" AND status="active" GROUP BY id
+								')->result();
+					// echo $this->db->last_query();
+					// die();
+					$m_id = 0;
+					$m_pen = 0;
+					$number_of_years = 0;
+					$number_of_months = 0;
+					$number_of_days = 0;
+					foreach ($max_res as $max_r) {
+						if ($max_r->max_penalty > $m_pen) {
+							$m_id = $max_r->violation_id;
+							$m_pen = $max_r->max_penalty;
+							$number_of_years = intval($max_r->s_max_year);
+							$number_of_months = intval($max_r->s_max_month);
+							$number_of_days = intval($max_r->s_max_day);
+						}
 					}
+					$max_penalty = $m_pen;
+
+					$data = array();
+					$data['created_on'] = now();
+					$data['modified_on'] = 0;
+
+					if ($inmate_info->inmate_type == 'Detainee' || $inmate_info->inmate_type == 'Pending' ) {
+						$s_date = $inmate_info->date_detained;
+					}elseif ($inmate_info->inmate_type == 'Probation') {
+						$s_date = $inmate_info->date_probation;
+					}elseif ($inmate_info->inmate_type == 'Convict') {
+						$s_date = $inmate_info->date_convicted;
+					}
+					
+					$rd = strtotime("+$number_of_days days",strtotime("+$number_of_months months",strtotime("+$number_of_years years", strtotime($s_date))));
+					$data['release_date'] = mdate("%Y-%m-%d",$rd);
+					$data['number_of_years'] = $number_of_years;
+					$data['number_of_months'] = $number_of_months;
+					$data['number_of_days'] = $number_of_days;
+					$where = array('inmate_id'=>$inmate_info->inmate_id);
+					// die();
+					$this->admin_model->update('cs_reasons',$where,$data);
+				
+
+					// $query = $this->db->insert('cs_reasons',$cs_reasons);
+					// if($query && ! $this->session->flashdata('update_token')){
+					// 	$reason = $this->db->get_where('cs_reasons',array('inmate_id'=>$cs_reasons['inmate_id']));//temp placement, should be transferred to MODEL
+					// 	// Check DB query at this point
+					
+					// 	$cs_cases['reasons_id'] = $reason->row()->id;
+					// 	$cs_appearance_schedules['reason_id'] = $reason->row()->id;
+					// 	$query = $this->db->insert('cs_cases',$cs_cases);
+					// 	$query = $this->db->insert('cs_appearance_schedules',$cs_appearance_schedules);
+					// 	 $this->session->set_flashdata('update_token', time());
+					// }
 					redirect("cpdrc/addinmate/profiling/".$id);
-					/**/
-					// $inmate['case']=$this->cpdrc_fw->getcaseinfolimit($id);
-
-					// $inmate['id']=$id;
-					// $inmate['formid'] = $this->input->post('formid');
-			  //   	$inmate['name'] = $this->input->post('name');
-			  //   	$inmate['filename'] = $this->input->post('filename');
-
-			  //   	$cases = $this->admin_model->get('cs_cases_full',array('reasons_id'=>$cs_cases['reasons_id'],'case_status'=>'active'),FALSE,'name ASC, level ASC');
-			  //   	// // Retrieve violation data from database
-			  //   	// $this->db->select('id,name');
-			  //   	// $query = $this->db->get('cs_violations');
-			  //   	// $inmate['violations'] = $query->result();
-			  //   	$violations = $this->admin_model->get('cs_violations',null,FALSE,'name ASC');
-
-					// $vio = array();
-					// foreach ($violations as $violation) {
-					// 	if($violation->status == 'active'){
-					// 		if ( in_array($violation->level, array('1','2','3','4','5')) )
-					// 		{
-					// 			$vio[$violation->id] = $violation->name.' (level '.$violation->level.') ' . $violation->RepublicAct;
-					// 		}
-					// 		else
-					// 		{
-					// 			$vio[$violation->id] = $violation->name.' ('.$violation->level.') ' . $violation->RepublicAct;
-					// 		}	
-					// 	}
-					// }
-
-					// $inmate['violations'] = $vio;
-					// if (count($vio)==0) {
-					// 	$inmate['error'] = "<b>Warning!</b> No more violations to choose from! ";
-					// }
-
-			  //   	// Retrieve court list from db
-			  //   	// Retrieve court list from db
-			  //   	$query = $this->db->get_where('court','court_mun NOT in (SELECT municipality.mun_id FROM municipality WHERE municipality.status ="deleted")AND court.status ="active"');
-			  //   	$inmate['courts'] = $query->result();
-
-
-			  //   	$this->data['title']    = 'Manage Inmate';
-		   //  		$this->data['css']      = array();
-		   //  		$this->data['js_top']   = array();
-		   //  		$this->data['header']   = $this->load->view('admin/header_view',$this->data,TRUE);
-		   //  		$this->data['body']     = $this->load->view('menu/add_inmate4',$inmate,TRUE);
-		   //  		$this->data['footer']   = $this->load->view('footer_view',NULL,TRUE);
-		   //  		$this->data['js_bottom']= array();
-		   //  		$this->data['custom_js']= '<script type="text/javascript">
-			  //   		$(function(){
-			  //   		});
-			  //   	</script>';
-		   //  		$this->load->view('templates',$this->data);
-
-					// $this->load->view('menu/add_inmate4', $inmate);
-					/**/
-					//commented out to enable many violations for 1 case
+					
 				}else{
-					// $inmate['case']=$this->cpdrc_fw->getcaseinfolimit($id);
-					// echo $this->cpdrc_fw->db->last_query();
 					
 					$inmate['id']=$id;
-					// $inmate['formid'] = $this->input->post('formid');
-			  //   	$inmate['name'] = $this->input->post('name');
-			  //   	$inmate['filename'] = $this->input->post('filename');
-
-			  //   	$inmate['error'] = "<b>Warning!</b> Case information already exist. Please check the information in the table below";
-
-			    	$this->session->set_flashdata('error_msg','<b>Warning!</b> Case information already exist. Please check the information in the table below');
+					$this->session->set_flashdata('error_msg','<b>Warning!</b> Case information already exist. Please check the information in the table below');
 			    	redirect("cpdrc/addinmate/profiling/".$id);
-			  //   	$query = $this->db->get_where('cs_reasons',array("inmate_id"=>$id));
-			  //   	//$this->db->from('court');
-			  //   	$data['cs_reasons'] = $query->result();
-			  //   	$cs_res = json_decode(json_encode($data['cs_reasons']));
-			  //   	if($cs_res){
-					// 	$cases = $this->admin_model->get('cs_cases_full',array('reasons_id'=>$cs_res[0]->id,'case_status'=>'active'),FALSE,'name ASC, level ASC');
-			  //   	}
-					
-			  //   	// // Retrieve violation data from database
-			  //   	// $this->db->select('id,name');
-			  //   	// $query = $this->db->get('cs_violations');
-			  //   	// $inmate['violations'] = $query->result();
-			  //   	$violations = $this->admin_model->get('cs_violations',null,FALSE,'name ASC');
-
-					// $vio = array();
-					// foreach ($violations as $violation) {
-					// 	if($violation->status == 'active'){
-					// 		if ( in_array($violation->level, array('1','2','3','4','5')) )
-					// 		{
-					// 			$vio[$violation->id] = $violation->name.' (level '.$violation->level.') ' . $violation->RepublicAct;
-					// 		}
-					// 		else
-					// 		{
-					// 			$vio[$violation->id] = $violation->name.' ('.$violation->level.') ' . $violation->RepublicAct;
-					// 		}	
-					// 	}
-					// }
-					// // if($cs_res){
-					// // 	foreach ($cases as $case) {
-					// // 		unset($vio[$case->violation_id]);
-					// // 	}
-					// // }
-					// $inmate['violations'] = $vio;
-
-			  //   	// Retrieve court list from db
-			  //   	$query = $this->db->get_where('court','court_mun NOT in (SELECT municipality.mun_id FROM municipality WHERE municipality.status ="deleted")AND court.status ="active"');
-			  //   	$inmate['courts'] = $query->result();
-
-			  //   	$this->data['title']    = 'Manage Inmate';
-		   //  		$this->data['css']      = array();
-		   //  		$this->data['js_top']   = array();
-		   //  		$this->data['header']   = $this->load->view('admin/header_view',$this->data,TRUE);
-		   //  		$this->data['body']     = $this->load->view('menu/add_inmate4',$inmate,TRUE);
-		   //  		$this->data['footer']   = $this->load->view('footer_view',NULL,TRUE);
-		   //  		$this->data['js_bottom']= array();
-		   //  		$this->data['custom_js']= '<script type="text/javascript">
-			  //   		$(function(){
-			  //   		});
-			  //   	</script>';
-		   //  		$this->load->view('templates',$this->data);
-
-					// $this->load->view('menu/add_inmate4', $inmate);
-				}
-				/**/
-				//commented out to enable many violations for 1 case end
+			  	}
+			
 	    }
 	  public function add5() //for the passing of inmate id to 2d model view
 	    {

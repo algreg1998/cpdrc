@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 10, 2018 at 01:29 PM
+-- Generation Time: Feb 10, 2018 at 06:26 PM
 -- Server version: 10.1.13-MariaDB
 -- PHP Version: 7.0.8
 
@@ -324,7 +324,7 @@ CREATE TABLE `file` (
 --
 
 CREATE TABLE `inmate` (
-  `ref_formid` varchar(255) NOT NULL,
+  `ref_formid` int(11) NOT NULL,
   `inmate_id` varchar(255) NOT NULL,
   `cell_no` varchar(255) NOT NULL,
   `inmate_fname` varchar(255) NOT NULL,
@@ -815,7 +815,8 @@ ALTER TABLE `file`
 --
 ALTER TABLE `inmate`
   ADD PRIMARY KEY (`inmate_id`),
-  ADD KEY `added_by` (`added_by`);
+  ADD KEY `added_by` (`added_by`),
+  ADD KEY `ref_formid` (`ref_formid`);
 
 --
 -- Indexes for table `inmate_2d`
@@ -971,6 +972,11 @@ ALTER TABLE `cs_violations_categories`
 --
 ALTER TABLE `editrequest`
   MODIFY `editRequestID` int(11) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT for table `inmate`
+--
+ALTER TABLE `inmate`
+  MODIFY `ref_formid` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `inmate_2d`
 --
