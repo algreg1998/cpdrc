@@ -550,8 +550,9 @@ session_start();
 					$where = array('inmate_id'=>$inmate_info->inmate_id);
 					// die();
 					$this->admin_model->update('cs_reasons',$where,$data);
-				
-
+					
+					$cs_appearance_schedules['reason_id'] = $reason->id;
+					$query = $this->db->insert('cs_appearance_schedules',$cs_appearance_schedules);
 					// $query = $this->db->insert('cs_reasons',$cs_reasons);
 					// if($query && ! $this->session->flashdata('update_token')){
 					// 	$reason = $this->db->get_where('cs_reasons',array('inmate_id'=>$cs_reasons['inmate_id']));//temp placement, should be transferred to MODEL
