@@ -825,7 +825,7 @@ session_start();
 				    	//$this->db->from('court');
 				    	$data['courts'] = $query->result();
 
-						$data['case']=$this->cpdrc_fw->getcaseinfolimit($data['id']);
+						$data['case']=$this->cpdrc_fw->getcaseinfolimit($id);
 						
 				    	
 				}else if($step == 5){

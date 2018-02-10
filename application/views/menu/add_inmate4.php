@@ -146,20 +146,26 @@
 												<option>No Crimes</option>
 											</select>';
 										}  ?> 
-							<div style="background-color: hsl(0, 100%, 90%); padding: 10px; opacity:0.6; margin-bottom: 10px;"> 
-								<div class="row">
-									<div class="row"><div class="col-md-12" align="center"><h4 >MAX</h4></div></div>
-									<div class="col-md-4" align="center"><label>DAY:</label>&nbsp;<span id="mad"></span></div>
-									<div class="col-md-4" align="center"><label>MONTH:</label>&nbsp;<span id="mam"></span></div>
-									<div class="col-md-4" align="center"><label>YEAR:</label>&nbsp;<span id="may"></span></div>
+							<br>
+							<div class="panel panel-danger">
+							  <div class="panel-heading"><b>MAXIMUM</b></div>
+							  <div class="panel-body">
+							  	<div class="row">
+									<div class="col-md-4" align="center"><label>MONTH:</label>&nbsp;<h2><span id="mam"></span></h2></div>
+									<div class="col-md-4" align="center"><label>DAY:</label>&nbsp;<h2><span id="mad"></span></h2></div>
+									<div class="col-md-4" align="center"><label>YEAR:</label>&nbsp;<h2><span id="may"></span></h2></div>
 								</div>
-								<br>
-								<div class="row">
-									<div class="row"><div class="col-md-12" align="center"><h4 >MINIMUM</h4></div></div>
-									<div class="col-md-4" align="center"><label>DAY:</label>&nbsp;<span id="mid"></span></div>
-									<div class="col-md-4" align="center"><label>MONTH:</label>&nbsp;<span id="mim"></span></div>
-									<div class="col-md-4" align="center"><label>YEAR:</label>&nbsp;<span id="miy"></span></div>
+							  </div>
+							</div>
+							<div class="panel panel-danger">
+							  <div class="panel-heading"><b>MINIMUM</b></div>
+							  <div class="panel-body">
+							  	<div class="row">
+									<div class="col-md-4" align="center"><label>MONTH:</label>&nbsp;<h2><span id="mim"></span></h2></div>
+									<div class="col-md-4" align="center"><label>DAY:</label>&nbsp;<h2><span id="mid"></span></h2></div>
+									<div class="col-md-4" align="center"><label>YEAR:</label>&nbsp;<h2><span id="miy"></span></h2></div>
 								</div>
+							  </div>
 							</div>
                             <label><i class="fa fa-sort-numeric-asc"></i> Counts(s)</label><br>
                             <input type="number" min="0" name="counts" value="0"><br><br>
@@ -195,18 +201,17 @@
 									  					<th>Date</th>
 									  					<th>Case number</th>
 									  					<th>Crime</th>
-									  					<th>Sentence</th>
+									  					<th>Counts</th>
 									  				</tr>
 									  			</thead>
 									  			<tbody id="gridBody">
 									  	        <?php
   												foreach ($case as $key) {
-
 									  		         echo "<tr>";
 									  			       echo "<td>".$key['confine']."</td>";
 									  			       echo "<td>".$key['case_no']."</td>";
 									  			       echo "<td>".$key['name']."</td>";
-									  			       echo "<td>".$key['sentence']."</td>";
+									  			       echo "<td>".$key['counts']."</td>";
 
 									  				 echo "</tr>";
 												}  ?>	

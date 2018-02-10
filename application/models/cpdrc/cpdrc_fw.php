@@ -1002,7 +1002,8 @@ class cpdrc_fw extends CI_Model
 				 			'commencing' => $key->commencing,
 				 			'expireg' => $key->expire_good,
 				 			'expireb' => $key->expire_bad,
-				 			'name' => $key->name
+				 			'name' => $key->name,
+				 			'counts' => $key->counts
 						);	
 				}
 				return $case;
