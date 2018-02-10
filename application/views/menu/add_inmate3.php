@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!DOC<option value=""> Typehtml>
 <html>
     <div id="page-wrapper">
 				<div class="row">
@@ -90,15 +90,40 @@
 								</div>
 							</div><br>
 							<label><i class="fa fa-user-md"></i> <b>Body Build</b></label>
-							<input type="text" name="build" class="form-control"  oninvalid="setCustomValidity('Please enter alphabets only')" onchange="try{setCustomValidity('')}catch(e){}" required value="<?php if($info!=null){echo $info->build;}?>">
+							<select name="build" class="form-control">
+								<option value="Ectomorph" <?php if($info!=null && $info->build == "Ectomorph"){echo "selected";} ?>>Ectomorph</option>
+								<option value="Mesomorph" <?php if($info!=null && $info->build == "Mesomorph"){echo "selected";} ?>>Mesomorph</option>
+								<option value="Endomorph" <?php if($info!=null && $info->build == "Endomorph"){echo "selected";} ?>>Endomorph</option>
+							</select>
+							<!-- <input type="text" name="build" class="form-control"  oninvalid="setCustomValidity('Please enter alphabets only')" onchange="try{setCustomValidity('')}catch(e){}" required value="<?php if($info!=null){echo $info->build;}?>"> -->
 							<label><i class="fa fa-user"></i> <b>Body Complexion</b></label>
-							<textarea rows="3" type="text" name="complexion" class="form-control" required ><?php if($info!=null){echo $info->complexion;}?></textarea>
+							<select  name="complexion" class="form-control" required>
+								<option value="Light skin that always burns and never tans." <?php if($info!=null && $info->complexion == "Light skin that always burns and never tans."){echo "selected";}?>> Light skin that always burns and never tans.</option>
+								<option value="Fair skin that usually burns, then tans." <?php if($info!=null && $info->complexion == "Fair skin that usually burns, then tans."){echo "selected";}?>> Fair skin that usually burns, then tans.</option>
+								<option value="Medium skin that may burn, but tans well." <?php if($info!=null && $info->complexion == "Medium skin that may burn, but tans well."){echo "selected";}?>> Medium skin that may burn, but tans well.</option>
+								<option value="Olive skin that rarely burns and tans well." <?php if($info!=null && $info->complexion == "Olive skin that rarely burns and tans well."){echo "selected";}?>> Olive skin that rarely burns and tans well.</option>
+								<option value="Tan brown skin that very rarely burns and tans well." <?php if($info!=null && $info->complexion == "Tan brown skin that very rarely burns and tans well."){echo "selected";}?>> Tan brown skin that very rarely burns and tans well.</option>
+								<option value="Black brown skin that never burns and tans very well." <?php if($info!=null && $info->complexion == "Black brown skin that never burns and tans very well."){echo "selected";}?>> Black brown skin that never burns and tans very well.</option>
+							</select>
 							<label><i class="fa fa-crosshairs"></i> <b>Hair</b></label>
-							<input type="text" name="hair" class="form-control"  oninvalid="setCustomValidity('Please enter alphabets only')" onchange="try{setCustomValidity('')}catch(e){}" required value="<?php if($info!=null){echo $info->hair;}?>">
+							<select name="hair" class="form-control">
+								<option value="Straight Hair" <?php if($info!=null && $info->hair == "Straight Hair"){echo "selected";}?> >Straight Hair</option>
+								<option value="Wavy Hair" <?php if($info!=null && $info->hair == "Wavy Hair"){echo "selected";}?> >Wavy Hair</option>
+								<option value="Curly Hair" <?php if($info!=null && $info->hair == "Curly Hair"){echo "selected";}?> >Curly Hair</option>
+								<option value="Coily Hair" <?php if($info!=null && $info->hair == "Coily Hair"){echo "selected";}?> >Coily Hair</option>
+							</select>
+							<!-- <input type="text" name="hair" class="form-control"  oninvalid="setCustomValidity('Please enter alphabets only')" onchange="try{setCustomValidity('')}catch(e){}" required value="<?php if($info!=null){echo $info->hair;}?>"> -->
 							<label><i class="fa fa-info"></i> <b>Hair Peculiarities</b></label>
 							<textarea rows="3" type="text" name="hairp" class="form-control" required ><?php if($info!=null){echo $info->hair_peculiarities;}?></textarea><br>
 							<button class="form-control btn btn-warning" type="submit">Submit Form</button>
-
+			    	</div>
+			    	<div class="col-md-7">
+			    		<h3>Body build</h3>
+			    		<div class="row">
+			    			<div class="col-md-4" align="middle"><img src="<?php echo base_url("assets/images/step 3/ectomorph.png") ?>" ><h4><b>Ectomorph</b></h4></div>
+			    			<div class="col-md-4" align="middle"><img src="<?php echo base_url("assets/images/step 3/mesomorph.png") ?>" ><h4><b>Mesomorph</b></h4></div>
+			    			<div class="col-md-4" align="middle"><img src="<?php echo base_url("assets/images/step 3/endomorph.png") ?>" ><h4><b>Endomorph</b></h4></div>
+			    		</div>
 			    	</div>
 				</div>
 			</div>
