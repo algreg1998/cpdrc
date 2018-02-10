@@ -1015,7 +1015,7 @@ class cpdrc_fw extends CI_Model
 
 	 	public function addedcaseinfo($id)
 	 	{
-	 		$this->db->select('*')->from('inmate_case_info')->where('inmate_id', $id)->where('case_status', '1')->order_by('time_added', "desc");
+	 		$this->db->select('*')->from('inmate_case_info')->where('inmate_id', $id)->join('cs_violations cv', 'cv.id = inmate_case_info.crime', 'left')->where('case_status', '1')->order_by('time_added', "desc");
 	 		$count=$this->db->get();
 	 		$case = array();
 
@@ -1029,7 +1029,9 @@ class cpdrc_fw extends CI_Model
 				 			'sentence' => $key->sentence,
 				 			'commencing' => $key->commencing,
 				 			'expireg' => $key->expire_good,
-				 			'expireb' => $key->expire_bad
+				 			'expireb' => $key->expire_bad,
+				 			'counts' => $key->counts,
+				 			'vioName' => $key->name,
 						);	
 				}
 				return $case;

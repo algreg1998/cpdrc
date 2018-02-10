@@ -200,7 +200,7 @@
 										  		         echo "<tr>";
 										  			       echo "<td>".$key['confine']."</td>";
 										  			       echo "<td>".$key['case_no']."</td>";
-										  			       echo "<td>".$key['crime']."</td>";
+										  			       echo "<td>".$key['vioName']."</td>";
 										  			       echo "<td>".$key['counts']."</td>";
 										  				 echo "</tr>";
 													}	
