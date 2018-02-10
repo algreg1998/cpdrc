@@ -41,7 +41,7 @@
 										<img src="<?=base_url()?>uploads/inmate/<?=$filename;?>" width="130" height="130"/>
 									</div>
 									<div class="col-md-7">
-										<p><b>Reference Form ID</b>: <?php echo $formid;?> <br>
+<!--										<p><b>Reference Form ID</b>: --><?php //echo $formid;?><!-- <br>-->
 										<b>Inmate number</b>: <?php echo $id;?><br>
 										<b>Inmate name</b>: <?php echo $name;?></p>	
 									</div>
@@ -97,11 +97,11 @@
 
                                     <br>
 
-                                    <div class="row">
-                                        <div class="col-md-12">
-                                            <button id="convertHeight" type="button" class="btn btn-info">Convert Height</button>
-                                        </div>
-                                    </div>
+<!--                                    <div class="row">-->
+<!--                                        <div class="col-md-12">-->
+<!--                                            <button id="convertHeight" type="button" class="btn btn-info">Convert Height</button>-->
+<!--                                        </div>-->
+<!--                                    </div>-->
 
                                     <br>
 
@@ -121,11 +121,11 @@
 
                                     <br>
 
-                                    <div class="row">
-                                        <div class="col-md-12">
-                                            <button id="convertWeight" type="button" class="btn btn-info">Convert Weight</button>
-                                        </div>
-                                    </div>
+<!--                                    <div class="row">-->
+<!--                                        <div class="col-md-12">-->
+<!--                                            <button id="convertWeight" type="button" class="btn btn-info">Convert Weight</button>-->
+<!--                                        </div>-->
+<!--                                    </div>-->
 
                                     <br>
 

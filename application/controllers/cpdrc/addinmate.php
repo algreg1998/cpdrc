@@ -215,7 +215,7 @@ session_start();
 		    		$this->data['js_bottom']= array();
                     $this->data['custom_js']= '<script type="text/javascript">
                                             $(document).ready(function(){
-                                                $("#convertHeight").click(function(){
+                                                $("#ft").keyup(function(){
                                                     var feet = $("#ft").val();
                                                     var inches = $("#in").val();
                                                     
@@ -225,7 +225,17 @@ session_start();
                                                     $("#cm").val(result_cm);
                                                 });
                                                 
-                                                $("#convertWeight").click(function(){
+                                                $("#in").keyup(function(){
+                                                    var feet = $("#ft").val();
+                                                    var inches = $("#in").val();
+                                                    
+                                                    var finalInches = parseInt((feet * 12)) + parseInt(inches);
+                                                    var result_cm = (finalInches * 2.54).toFixed(2);
+                                                    
+                                                    $("#cm").val(result_cm);
+                                                });
+                                                
+                                                $("#kg").keyup(function(){
                                                     var kilograms = $("#kg").val();
                                                     
                                                     var result_lbs = (parseInt(kilograms) * 2.2).toFixed(2);
@@ -854,7 +864,7 @@ session_start();
 			    		$this->data['js_bottom']= array();
                         $this->data['custom_js']= '<script type="text/javascript">
                                                     $(document).ready(function(){
-                                                        $("#convertHeight").click(function(){
+                                                        $("#ft").keyup(function(){
                                                             var feet = $("#ft").val();
                                                             var inches = $("#in").val();
                                                             
@@ -864,7 +874,17 @@ session_start();
                                                             $("#cm").val(result_cm);
                                                         });
                                                         
-                                                        $("#convertWeight").click(function(){
+                                                        $("#in").keyup(function(){
+                                                            var feet = $("#ft").val();
+                                                            var inches = $("#in").val();
+                                                            
+                                                            var finalInches = parseInt((feet * 12)) + parseInt(inches);
+                                                            var result_cm = (finalInches * 2.54).toFixed(2);
+                                                            
+                                                            $("#cm").val(result_cm);
+                                                        });
+                                                        
+                                                        $("#kg").keyup(function(){
                                                             var kilograms = $("#kg").val();
                                                             
                                                             var result_lbs = (parseInt(kilograms) * 2.2).toFixed(2);
