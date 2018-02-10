@@ -160,12 +160,30 @@
 							<button class="form-control btn btn-warning" type="submit">Submit Form</button>
 			    	</div>
 			    	<div class="col-md-7">
-			    		<h3>Body build</h3>
-			    		<div class="row">
-			    			<div class="col-md-4" align="middle"><img src="<?php echo base_url("assets/images/step 3/ectomorph.png") ?>" ><h4><b>Ectomorph</b></h4></div>
-			    			<div class="col-md-4" align="middle"><img src="<?php echo base_url("assets/images/step 3/mesomorph.png") ?>" ><h4><b>Mesomorph</b></h4></div>
-			    			<div class="col-md-4" align="middle"><img src="<?php echo base_url("assets/images/step 3/endomorph.png") ?>" ><h4><b>Endomorph</b></h4></div>
-			    		</div>
+			    		<div class="panel panel-success">
+						  <div class="panel-heading"><b>Body build</b></div>
+						  <div class="panel-body">
+						  	<div class="row">
+				    			<div class="col-md-4" align="middle"><img src="<?php echo base_url("assets/images/step 3/ectomorph.png") ?>" ><h4><b>Ectomorph</b></h4></div>
+				    			<div class="col-md-4" align="middle"><img src="<?php echo base_url("assets/images/step 3/mesomorph.png") ?>" ><h4><b>Mesomorph</b></h4></div>
+				    			<div class="col-md-4" align="middle"><img src="<?php echo base_url("assets/images/step 3/endomorph.png") ?>" ><h4><b>Endomorph</b></h4></div>
+				    		</div>
+						  </div>
+						</div>
+			    		<div class="panel panel-success">
+						  <div class="panel-heading"><b>Hair</b></div>
+						  <div class="panel-body">
+						  	<div class="row">
+				    			<div class="col-md-6" align="middle"><img src="<?php echo base_url("assets/images/step 3/ectomorph.png") ?>" ><h4><b>Straight Hair</b></h4></div>
+				    			<div class="col-md-6" align="middle"><img src="<?php echo base_url("assets/images/step 3/mesomorph.png") ?>" ><h4><b>Wavy Hair</b></h4></div>
+				    		</div>
+				    		<div class="row">
+				    			<div class="col-md-6" align="middle"><img src="<?php echo base_url("assets/images/step 3/ectomorph.png") ?>" ><h4><b>Curly Hair</b></h4></div>
+				    			<div class="col-md-6" align="middle"><img src="<?php echo base_url("assets/images/step 3/mesomorph.png") ?>" ><h4><b>Coily Hair</b></h4></div>
+				    		</div>
+						  </div>
+						</div>
+			    		
 			    	</div>
 				</div>
 			</div>
