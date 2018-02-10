@@ -80,13 +80,55 @@
 								<input type="hidden" name="filename" value="<?=$filename;?>">
 								
 
-								<div class="col-md-6">
-									<label><i class="fa fa-arrows-v"></i> <b>Height in centimeters</b></label>
-									<input type="number" name="height" min="0" class="form-control" required autofocus  value="<?php if($info!=null){echo $info->height;}?>">
-								</div>
-								<div class="col-md-6">
-									<label><i class="fa fa-tachometer"></i> <b>Weight in pounds</b></label>
-									<input type="number" name="weight" min="0" class="form-control" required value="<?php if($info!=null){echo $info->weight;}?>">		
+								<div class="col-md-12">
+									<label><i class="fa fa-arrows-v"></i> <b>Height</b></label>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <input type="number" id="ft" placeholder="ft" class="form-control">
+                                        </div>
+                                        <div class="col-md-6">
+                                            <input type="number" id="in" placeholder="in" class="form-control">
+                                        </div>
+                                    </div>
+
+                                    <br>
+
+									<input type="number" name="height" min="0" step="0.01" id="cm" placeholder="cm" class="form-control" required autofocus  value="<?php if($info!=null){echo $info->height;}?>">
+
+                                    <br>
+
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <button id="convertHeight" type="button" class="btn btn-info">Convert Height</button>
+                                        </div>
+                                    </div>
+
+                                    <br>
+
+                                </div>
+
+								<div class="col-md-12">
+									<label><i class="fa fa-tachometer"></i> <b>Weight</b></label>
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <input type="number" id="kg" placeholder="kg" class="form-control">
+                                        </div>
+                                    </div>
+
+                                    <br>
+
+                                    <input type="number" name="weight" min="0" step="0.01" id="lbs" placeholder="lbs" class="form-control" required value="<?php if($info!=null){echo $info->weight;}?>">
+
+                                    <br>
+
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <button id="convertWeight" type="button" class="btn btn-info">Convert Weight</button>
+                                        </div>
+                                    </div>
+
+                                    <br>
+
 								</div>
 							</div><br>
 							<label><i class="fa fa-user-md"></i> <b>Body Build</b></label>

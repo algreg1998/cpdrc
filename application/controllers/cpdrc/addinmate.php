@@ -213,10 +213,27 @@ session_start();
 		    		$this->data['body']     = $this->load->view('menu/add_inmate2',$data,TRUE);
 		    		$this->data['footer']   = $this->load->view('footer_view',NULL,TRUE);
 		    		$this->data['js_bottom']= array();
-		    		$this->data['custom_js']= '<script type="text/javascript">
-			    		$(function(){
-			    		});
-			    	</script>';
+                    $this->data['custom_js']= '<script type="text/javascript">
+                                            $(document).ready(function(){
+                                                $("#convertHeight").click(function(){
+                                                    var feet = $("#ft").val();
+                                                    var inches = $("#in").val();
+                                                    
+                                                    var finalInches = parseInt((feet * 12)) + parseInt(inches);
+                                                    var result_cm = (finalInches * 2.54).toFixed(2);
+                                                    
+                                                    $("#cm").val(result_cm);
+                                                });
+                                                
+                                                $("#convertWeight").click(function(){
+                                                    var kilograms = $("#kg").val();
+                                                    
+                                                    var result_lbs = (parseInt(kilograms) * 2.2).toFixed(2);
+                                                    
+                                                    $("#lbs").val(result_lbs);
+                                                });
+                                            });
+                                        </script>';
 		    		$this->load->view('templates',$this->data);
 
 		    		// $this->load->view('menu/add_inmate2', $info);		    		
@@ -236,10 +253,27 @@ session_start();
 		    		$this->data['body']     = $this->load->view('menu/add_inmate2',$info,TRUE);
 		    		$this->data['footer']   = $this->load->view('footer_view',NULL,TRUE);
 		    		$this->data['js_bottom']= array();
-		    		$this->data['custom_js']= '<script type="text/javascript">
-								    		$(function(){
-								    		});
-			    	</script>';
+                    $this->data['custom_js']= '<script type="text/javascript">
+                                            $(document).ready(function(){
+                                                $("#convertHeight").click(function(){
+                                                    var feet = $("#ft").val();
+                                                    var inches = $("#in").val();
+                                                    
+                                                    var finalInches = parseInt((feet * 12)) + parseInt(inches);
+                                                    var result_cm = (finalInches * 2.54).toFixed(2);
+                                                    
+                                                    $("#cm").val(result_cm);
+                                                });
+                                                
+                                                $("#convertWeight").click(function(){
+                                                    var kilograms = $("#kg").val();
+                                                    
+                                                    var result_lbs = (parseInt(kilograms) * 2.2).toFixed(2);
+                                                    
+                                                    $("#lbs").val(result_lbs);
+                                                });
+                                            });
+                                        </script>';
 		    		$this->load->view('templates',$this->data);
 
 		    		// $this->load->view('menu/add_inmate2', $info);
@@ -818,10 +852,27 @@ session_start();
 				}
 				$this->data['footer']   = $this->load->view('footer_view',NULL,TRUE);
 			    		$this->data['js_bottom']= array();
-			    		$this->data['custom_js']= '<script type="text/javascript">
-				    		$(function(){
-				    		});
-				    	</script>';
+                        $this->data['custom_js']= '<script type="text/javascript">
+                                                    $(document).ready(function(){
+                                                        $("#convertHeight").click(function(){
+                                                            var feet = $("#ft").val();
+                                                            var inches = $("#in").val();
+                                                            
+                                                            var finalInches = parseInt((feet * 12)) + parseInt(inches);
+                                                            var result_cm = (finalInches * 2.54).toFixed(2);
+                                                            
+                                                            $("#cm").val(result_cm);
+                                                        });
+                                                        
+                                                        $("#convertWeight").click(function(){
+                                                            var kilograms = $("#kg").val();
+                                                            
+                                                            var result_lbs = (parseInt(kilograms) * 2.2).toFixed(2);
+                                                            
+                                                            $("#lbs").val(result_lbs);
+                                                        });
+                                                    });
+                                                </script>';
 			    		$this->load->view('templates',$this->data);
 	    	}else{
 	    		redirect("search1")	;
