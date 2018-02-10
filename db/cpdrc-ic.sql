@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 10, 2018 at 06:53 AM
+-- Generation Time: Feb 10, 2018 at 09:38 AM
 -- Server version: 10.1.13-MariaDB
 -- PHP Version: 7.1.1
 
@@ -253,7 +253,9 @@ INSERT INTO `cs_appearance_schedules` (`id`, `reason_id`, `date`, `place`, `assi
 (00000000138, 00000000133, '0000-00-00 00:00:00', 'RTC Branch 1', '', '', '', 'Pending', 0, '0000-00-00 00:00:00', '0000-00-00 00:00:00', NULL),
 (00000000139, 00000000133, '0000-00-00 00:00:00', 'RTC Branch 2', '', '', '', 'Pending', 0, '0000-00-00 00:00:00', '0000-00-00 00:00:00', NULL),
 (00000000140, 00000000129, '0000-00-00 00:00:00', 'RTC Branch 1', '', '', '', 'Pending', 0, '0000-00-00 00:00:00', '0000-00-00 00:00:00', NULL),
-(00000000141, 00000000133, '0000-00-00 00:00:00', 'RTC Branch 2', '', '', '', 'Pending', 0, '0000-00-00 00:00:00', '0000-00-00 00:00:00', NULL);
+(00000000141, 00000000133, '0000-00-00 00:00:00', 'RTC Branch 2', '', '', '', 'Pending', 0, '0000-00-00 00:00:00', '0000-00-00 00:00:00', NULL),
+(00000000142, 00000000142, '0000-00-00 00:00:00', 'RTC Branch 2', '', '', '', 'Pending', 0, '0000-00-00 00:00:00', '0000-00-00 00:00:00', NULL),
+(00000000143, 00000000143, '0000-00-00 00:00:00', 'RTC Branch 1', '', '', '', 'Pending', 0, '0000-00-00 00:00:00', '0000-00-00 00:00:00', NULL);
 
 -- --------------------------------------------------------
 
@@ -438,7 +440,9 @@ INSERT INTO `cs_cases` (`id`, `reasons_id`, `case_no`, `violation_id`, `created_
 (00000000140, 00000000133, '1235', 00000000004, 1513505409, NULL, '1', '5', '', '', '', '', 'active', ''),
 (00000000141, 00000000129, '1235651', 00000000004, 1518237394, NULL, '1', '5', '', '', '', '', 'active', ''),
 (00000000142, 00000000133, '1233', 00000000004, 1518238878, NULL, '1', '5', '', '', '', '', 'active', ''),
-(00000000143, 00000000017, '762342', 00000000003, 1518239153, NULL, '', '1', '', '', '', '', 'active', '');
+(00000000143, 00000000017, '762342', 00000000003, 1518239153, NULL, '', '1', '', '', '', '', 'active', ''),
+(00000000144, 00000000142, '4124', 00000000003, 1518249838, NULL, '', '1', '', '', '', '', 'active', ''),
+(00000000145, 00000000143, '151243', 00000000003, 1518251714, NULL, '', '1', '', '', '', '', 'active', '');
 
 -- --------------------------------------------------------
 
@@ -680,7 +684,10 @@ INSERT INTO `cs_logs` (`id`, `linked_id`, `table_name`, `table_field`, `subject`
 (00000000179, '5', 'cs_violations', 'id', 'Add Violation', 'Violation \"Test Violation 2\" was added', 00000000001, 'add', '2018-02-10 12:30:02', 'active'),
 (00000000180, '141', 'inmate_case_info', 'id', 'Add Case Information', 'A Case Information of \"First Name_22 Last Name_22\" was added', 00000000001, 'insert', '2018-02-10 12:36:35', 'active'),
 (00000000181, '142', 'inmate_case_info', 'id', 'Add Case Information', 'A Case Information of \"First Name_503 Last Name_503\" was added', 00000000001, 'insert', '2018-02-10 01:01:18', 'active'),
-(00000000182, '143', 'cs_cases', 'id', 'Add New Case', 'Case # 762342 - 1 Year 1 (asdasd) was added to Inmate ID : 550010', 00000000001, 'add', '0000-00-00 00:00:00', 'active');
+(00000000182, '143', 'cs_cases', 'id', 'Add New Case', 'Case # 762342 - 1 Year 1 (asdasd) was added to Inmate ID : 550010', 00000000001, 'add', '0000-00-00 00:00:00', 'active'),
+(00000000183, '550010', 'inmate', 'inmate_id', 'Edit Inmate Information Step 1 ', 'Inmate Information of \"First Name_10 Last Name_10\" was updated', 00000000001, 'update', '2018-02-10 02:33:47', 'active'),
+(00000000184, '143', 'inmate_case_info', 'id', 'Add Case Information', 'A Case Information of \"Test Test\" was added', 00000000001, 'insert', '2018-02-10 04:03:58', 'active'),
+(00000000185, '144', 'inmate_case_info', 'id', 'Add Case Information', 'A Case Information of \"Test TESTtest\" was added', 00000000001, 'insert', '2018-02-10 04:35:14', 'active');
 
 -- --------------------------------------------------------
 
@@ -849,7 +856,9 @@ INSERT INTO `cs_reasons` (`id`, `inmate_id`, `status`, `type`, `start_date`, `re
 (00000000138, '5500503', 'Active', 'Detainee', '2017-12-07 00:00:00', '0000-00-00 00:00:00', 0, NULL, NULL, '', 0, 1513505202, NULL),
 (00000000139, '5500503', 'Active', 'Detainee', '2017-12-27 00:00:00', '0000-00-00 00:00:00', 0, NULL, NULL, '', 0, 1513505409, NULL),
 (00000000140, '550022', 'Active', 'Detainee', '2018-02-23 00:00:00', '0000-00-00 00:00:00', 0, NULL, NULL, '', 0, 1518237394, NULL),
-(00000000141, '5500503', 'Active', 'Detainee', '2018-02-08 00:00:00', '0000-00-00 00:00:00', 0, NULL, NULL, '', 0, 1518238878, NULL);
+(00000000141, '5500503', 'Active', 'Detainee', '2018-02-08 00:00:00', '0000-00-00 00:00:00', 0, NULL, NULL, '', 0, 1518238878, NULL),
+(00000000142, '7624634', 'Active', 'Detainee', '2018-03-01 00:00:00', '0000-00-00 00:00:00', 0, NULL, NULL, '', 0, 1518249838, NULL),
+(00000000143, 'test', 'Active', 'Detainee', '2018-02-15 00:00:00', '0000-00-00 00:00:00', 0, NULL, NULL, '', 0, 1518251714, NULL);
 
 -- --------------------------------------------------------
 
@@ -870,7 +879,8 @@ CREATE TABLE `cs_sessions` (
 --
 
 INSERT INTO `cs_sessions` (`session_id`, `ip_address`, `user_agent`, `last_activity`, `user_data`) VALUES
-('259b8ab6d1571f3a2f87afea8c49dc81', '::1', 'Mozilla/5.0 (Windows NT 6.3; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/64.0.3282.119 Safari/537.36', 1518233241, 'a:5:{s:9:\"user_data\";s:0:\"\";s:12:\"is_logged_in\";b:1;s:9:\"user_type\";s:20:\"Warden Administrator\";s:7:\"user_id\";s:11:\"00000000001\";s:9:\"logged_in\";a:6:{s:8:\"username\";s:5:\"admin\";s:8:\"password\";s:128:\"08f9ef3c42adfe2fbb0e979604c7eb30aa12705fac8b1a9ead899e67b46fd7348c0041721d2be1d64902b66535380e6ff68ee4ed1e9baebf7a7d3dc4285e5391\";s:5:\"fname\";s:5:\"CPDRC\";s:5:\"lname\";s:13:\"Administrator\";s:4:\"type\";s:20:\"Warden Administrator\";s:7:\"user_id\";s:11:\"00000000001\";}}');
+('855f04ada3f7f834fa7f701369cae878', '::1', 'Mozilla/5.0 (Windows NT 6.3; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/64.0.3282.119 Safari/537.36', 1518247652, 'a:5:{s:9:\"user_data\";s:0:\"\";s:12:\"is_logged_in\";b:1;s:9:\"user_type\";s:20:\"Warden Administrator\";s:7:\"user_id\";s:11:\"00000000001\";s:9:\"logged_in\";a:6:{s:8:\"username\";s:5:\"admin\";s:8:\"password\";s:128:\"08f9ef3c42adfe2fbb0e979604c7eb30aa12705fac8b1a9ead899e67b46fd7348c0041721d2be1d64902b66535380e6ff68ee4ed1e9baebf7a7d3dc4285e5391\";s:5:\"fname\";s:5:\"CPDRC\";s:5:\"lname\";s:13:\"Administrator\";s:4:\"type\";s:20:\"Warden Administrator\";s:7:\"user_id\";s:11:\"00000000001\";}}'),
+('c6da3e28ec2995332217f4479f95d07d', '127.0.0.1', 'Mozilla/5.0 (Windows NT 6.3; Win64; x64; rv:58.0) Gecko/20100101 Firefox/58.0', 1518251006, 'a:5:{s:9:\"user_data\";s:0:\"\";s:12:\"is_logged_in\";b:1;s:9:\"user_type\";s:20:\"Warden Administrator\";s:7:\"user_id\";s:11:\"00000000001\";s:9:\"logged_in\";a:6:{s:8:\"username\";s:5:\"admin\";s:8:\"password\";s:128:\"08f9ef3c42adfe2fbb0e979604c7eb30aa12705fac8b1a9ead899e67b46fd7348c0041721d2be1d64902b66535380e6ff68ee4ed1e9baebf7a7d3dc4285e5391\";s:5:\"fname\";s:5:\"CPDRC\";s:5:\"lname\";s:13:\"Administrator\";s:4:\"type\";s:20:\"Warden Administrator\";s:7:\"user_id\";s:11:\"00000000001\";}}');
 
 -- --------------------------------------------------------
 
@@ -977,7 +987,8 @@ CREATE TABLE `editrequest` (
 --
 
 INSERT INTO `editrequest` (`editRequestID`, `requestedBy`, `inmateId`, `status`, `reason`, `judgedBy`, `addedOn`, `isRead`, `judgedOn`) VALUES
-(8, 1, '9874651325946132456', 'finished', 'sad', 1, '2017-12-17 10:17:23', 1, '2017-12-17 18:17:00');
+(8, 1, '9874651325946132456', 'finished', 'sad', 1, '2017-12-17 10:17:23', 1, '2017-12-17 18:17:00'),
+(9, 1, '550010', 'approved', 'as', 1, '2018-02-10 06:10:56', 1, '2018-02-10 14:10:00');
 
 -- --------------------------------------------------------
 
@@ -1123,7 +1134,14 @@ INSERT INTO `file` (`inmate_id`, `filename`, `added_by`, `img_set`) VALUES
 ('5500139', '192x192.jpg', 00000000001, '1'),
 ('5500140', '192x192.jpg', 00000000001, '1'),
 ('4124', '192x192.jpg', 00000000001, '1'),
-('6326', '192x192.jpg', 00000000001, '1');
+('6326', '192x192.jpg', 00000000001, '1'),
+('8235', '9aa0e013a31d0f30c3f60907000250689992c943_hq2.jpg', 00000000001, '1'),
+('1254125', '192x192.jpg', 00000000001, '1'),
+('15125', '192x192.jpg', 00000000001, '1'),
+('1241254', '192x192.jpg', 00000000001, '1'),
+('541241', '192x192.jpg', 00000000001, '1'),
+('7624634', '192x192.jpg', 00000000001, '1'),
+('test', '192x192.jpg', 00000000001, '1');
 
 -- --------------------------------------------------------
 
@@ -1154,7 +1172,11 @@ CREATE TABLE `inmate` (
 --
 
 INSERT INTO `inmate` (`ref_formid`, `inmate_id`, `cell_no`, `inmate_fname`, `inmate_lname`, `inmate_mi`, `inmate_alias`, `status`, `inmate_type`, `date_detained`, `date_convicted`, `date_probation`, `datetime_added`, `is_read`, `added_by`) VALUES
-('124124', '4124', '2', 'Test', 'Test', 'Test', 'Test', 'Pending', 'Pending', '0000-00-00 00:00:00', '0000-00-00 00:00:00', '0000-00-00 00:00:00', '2018-02-10 05:28:38', 0, 00000000001),
+(' ', '1241254', '2', 'TEST', 'TEST', 'TEST', 'TEST', 'Pending', 'Pending', '0000-00-00 00:00:00', '0000-00-00 00:00:00', '0000-00-00 00:00:00', '2018-02-10 08:00:29', 0, 00000000001),
+(' ', '1254125', '2', 'TEST', 'TEST', 'TEST', 'TEST', 'Pending', 'Pending', '0000-00-00 00:00:00', '0000-00-00 00:00:00', '0000-00-00 00:00:00', '2018-02-10 06:46:27', 0, 00000000001),
+(' ', '15125', '2', 'Test', 'Test', 'Test', 'Test', 'Pending', 'Pending', '0000-00-00 00:00:00', '0000-00-00 00:00:00', '0000-00-00 00:00:00', '2018-02-10 07:57:23', 0, 00000000001),
+('1', '4124', '2', 'Test', 'Test', 'Test', 'Test', 'Pending', 'Pending', '0000-00-00 00:00:00', '0000-00-00 00:00:00', '0000-00-00 00:00:00', '2018-02-10 05:28:38', 0, 00000000001),
+(' ', '541241', '2', 'TEST', 'TEST', 'TEST', 'TEST', 'Pending', 'Pending', '0000-00-00 00:00:00', '0000-00-00 00:00:00', '0000-00-00 00:00:00', '2018-02-10 08:02:00', 0, 00000000001),
 ('58010', '550010', '2', 'First Name_10', 'Last Name_10', 'Middle Name_10', 'Alias_10', 'Active', 'Detainee', '2017-12-04 00:00:00', '0000-00-00 00:00:00', '0000-00-00 00:00:00', '2017-12-14 15:17:00', 0, 00000000001),
 ('580100', '5500100', '2', 'First Name_100', 'Last Name_100', 'Middle Name_100', 'Alias_100', 'Active', 'Detainee', '2017-12-21 00:00:00', '0000-00-00 00:00:00', '0000-00-00 00:00:00', '2017-12-14 15:29:49', 0, 00000000001),
 ('580101', '5500101', '2', 'First Name_101', 'Last Name_101', 'Middle Name_101', 'Alias_101', 'Active', 'Detainee', '2017-12-04 00:00:00', '0000-00-00 00:00:00', '0000-00-00 00:00:00', '2017-12-14 15:29:58', 0, 00000000001),
@@ -1280,7 +1302,10 @@ INSERT INTO `inmate` (`ref_formid`, `inmate_id`, `cell_no`, `inmate_fname`, `inm
 ('58098', '550098', '2', 'First Name_98', 'Last Name_98', 'Middle Name_98', 'Alias_98', 'Active', 'Detainee', '2017-12-04 00:00:00', '0000-00-00 00:00:00', '0000-00-00 00:00:00', '2017-12-14 15:29:32', 0, 00000000001),
 ('58099', '550099', '2', 'First Name_99', 'Last Name_99', 'Middle Name_99', 'Alias_99', 'Active', 'Detainee', '2017-12-04 00:00:00', '0000-00-00 00:00:00', '0000-00-00 00:00:00', '2017-12-14 15:29:40', 0, 00000000001),
 ('151265', '6326', '2', 'Te', 'Test', 'Test', 'Test', 'Pending', 'Pending', '0000-00-00 00:00:00', '0000-00-00 00:00:00', '0000-00-00 00:00:00', '2018-02-10 05:33:49', 0, 00000000001),
-('123', '9874651325946132456', '1', 'Asd', 'Gsa', 'Gas', 'Asg', 'Active', 'Detainee', '2017-12-21 00:00:00', '0000-00-00 00:00:00', '0000-00-00 00:00:00', '2017-12-14 12:28:55', 0, 00000000001);
+(' ', '7624634', '2', 'Test', 'Test', 'Test', 'Test', 'Active', 'Detainee', '2018-03-01 00:00:00', '0000-00-00 00:00:00', '0000-00-00 00:00:00', '2018-02-10 08:03:09', 0, 00000000001),
+(' ', '8235', '2', 'Test', 'Test', 'Test', 'Test', 'Pending', 'Pending', '0000-00-00 00:00:00', '0000-00-00 00:00:00', '0000-00-00 00:00:00', '2018-02-10 06:37:44', 0, 00000000001),
+('123', '9874651325946132456', '1', 'Asd', 'Gsa', 'Gas', 'Asg', 'Active', 'Detainee', '2017-12-21 00:00:00', '0000-00-00 00:00:00', '0000-00-00 00:00:00', '2017-12-14 12:28:55', 0, 00000000001),
+(' ', 'test', '2', 'Test', 'TESTtest', 'Test', 'Test', 'Active', 'Detainee', '2018-02-15 00:00:00', '0000-00-00 00:00:00', '0000-00-00 00:00:00', '2018-02-10 08:34:47', 0, 00000000001);
 
 -- --------------------------------------------------------
 
@@ -1400,8 +1425,8 @@ CREATE TABLE `inmate_auth_visitor` (
 
 CREATE TABLE `inmate_build` (
   `inmate_id` varchar(255) NOT NULL,
-  `height` int(11) NOT NULL,
-  `weight` int(11) NOT NULL,
+  `height` float NOT NULL,
+  `weight` float NOT NULL,
   `complexion` varchar(255) NOT NULL,
   `build` text NOT NULL,
   `hair` varchar(255) NOT NULL,
@@ -1413,6 +1438,7 @@ CREATE TABLE `inmate_build` (
 --
 
 INSERT INTO `inmate_build` (`inmate_id`, `height`, `weight`, `complexion`, `build`, `hair`, `hair_peculiarities`) VALUES
+('4124', 167.64, 167.2, 'Black', 'Medium', 'None', 'Bald'),
 ('550010', 167, 155, 'Body_Complexion_10', 'Body_Build_10', 'Hair_10', 'Hair_Pec_10'),
 ('5500100', 167, 155, 'Body_Complexion_100', 'Body_Build_100', 'Hair_100', 'Hair_Pec_100'),
 ('5500101', 167, 155, 'Body_Complexion_101', 'Body_Build_101', 'Hair_101', 'Hair_Pec_101'),
@@ -1537,7 +1563,10 @@ INSERT INTO `inmate_build` (`inmate_id`, `height`, `weight`, `complexion`, `buil
 ('550097', 167, 155, 'Body_Complexion_97', 'Body_Build_97', 'Hair_97', 'Hair_Pec_97'),
 ('550098', 167, 155, 'Body_Complexion_98', 'Body_Build_98', 'Hair_98', 'Hair_Pec_98'),
 ('550099', 167, 155, 'Body_Complexion_99', 'Body_Build_99', 'Hair_99', 'Hair_Pec_99'),
-('9874651325946132456', 12, 123, 'asdas', 'asd', 'asf', 'fasfsaf');
+('6326', 167.64, 167.2, 'test', 'test', 'test', 'test'),
+('7624634', 167, 189, 'test', 'test', 'test', 'test'),
+('9874651325946132456', 12, 123, 'asdas', 'asd', 'asf', 'fasfsaf'),
+('test', 170.18, 143, 'test', 'test', 'test', 'test');
 
 -- --------------------------------------------------------
 
@@ -1707,7 +1736,9 @@ INSERT INTO `inmate_case_info` (`cid`, `inmate_id`, `case_no`, `court_name`, `da
 (139, '5500503', '1235', 'RTC Branch 1', '2017-12-07', '00000000003', '0', 0, 'asd', '0000-00-00', '0000-00-00', '2017-12-17 10:06:42', '0'),
 (140, '5500503', '1235', 'RTC Branch 2', '2017-12-27', '00000000004', '0', 0, 'asd', '0000-00-00', '0000-00-00', '2017-12-17 10:10:09', '0'),
 (141, '550022', '1235651', 'RTC Branch 1', '2018-02-23', '00000000004', '0', 0, '', '0000-00-00', '0000-00-00', '2018-02-10 04:36:34', '0'),
-(142, '5500503', '1233', 'RTC Branch 2', '2018-02-08', '00000000004', '0', 5, '', '0000-00-00', '0000-00-00', '2018-02-10 05:01:18', '0');
+(142, '5500503', '1233', 'RTC Branch 2', '2018-02-08', '00000000004', '0', 5, '', '0000-00-00', '0000-00-00', '2018-02-10 05:01:18', '0'),
+(143, '7624634', '4124', 'RTC Branch 2', '2018-03-01', '00000000003', '0', 51, '', '0000-00-00', '0000-00-00', '2018-02-10 08:03:58', '0'),
+(144, 'test', '151243', 'RTC Branch 1', '2018-02-15', '00000000003', '0', 123123, '', '0000-00-00', '0000-00-00', '2018-02-10 08:35:14', '0');
 
 -- --------------------------------------------------------
 
@@ -1789,7 +1820,11 @@ CREATE TABLE `inmate_info` (
 --
 
 INSERT INTO `inmate_info` (`inmate_id`, `nationality`, `status`, `birthdate`, `age`, `gender`, `born_in`, `home_add`, `province_add`, `occupation`, `father`, `mother`, `relative`, `relation`, `contactpersonnum`, `address`, `place`) VALUES
+('1241254', 'Afghan', 'Single', '2018-02-10', 18, 'Male', 'TEST', 'TEST, TEST, Alcantara', 'TEST', 'TEST', 'TEST', 'TEST', 'TEST', 'TEST', '', 'TEST, TEST, Alcantara', 'Alcantara'),
+('1254125', 'Afghan', 'Single', '2018-02-10', 18, 'Male', 'test', 'test, test, Alcantara', 'test', 'test', 'test', 'test', 'test', 'test', '', 'test, test, Alcantara', 'Alcantara'),
+('15125', 'Afghan', 'Single', '2018-02-10', 18, 'Male', 'test', 'test, test, Alcantara', 'test', 'test', 'test', 'test', 'test', 'test', '', 'test, test, Alcantara', 'Alcantara'),
 ('4124', 'Argentinean', 'Single', '2018-02-10', 18, 'Male', 'test', 'test, test, Alcantara', 'test', 'test', 'test', 'test', 'test', 'test', '2147483647', 'test, test, Alcantara', 'Alcantara'),
+('541241', 'Afghan', 'Single', '2018-02-10', 18, 'Male', 'TEST', 'TEST, TEST, Alcantara', 'TEST', 'TEST', 'TESTTEST', 'TEST', 'TEST', 'TEST', '', 'TEST, TEST, Alcantara', 'Alcantara'),
 ('550010', 'Filipino', 'Married', '1990-01-01', 18, 'Female', 'Birthplace_10', 'Home_Street_10 Home_Brgy_10, Bantayan', 'Home_Province_10', 'Occupation_10', 'Name_Father_10', 'Name_Mother_10', 'Name_Relative_10', 'Relation_10', '09252348929', 'Current_Street_10 Current_Brgy_10, Bantayan', 'Bantayan'),
 ('5500100', 'Filipino', 'Married', '1990-01-01', 18, 'Female', 'Birthplace_100', 'Current_Brgy_100,, Current_Street_100, Badian', 'Home_Province_100', 'Occupation_100', 'Name_Father_100', 'Name_Mother_100', 'Name_Relative_100', 'Relation_100', '0', 'Current_Brgy_100,, Current_Street_100, Badian', 'Badian'),
 ('5500101', 'Filipino', 'Married', '1990-01-01', 18, 'Male', 'Birthplace_101', 'Home_Street_101 Home_Brgy_101, Balamban', 'Home_Province_101', 'Occupation_101', 'Name_Father_101', 'Name_Mother_101', 'Name_Relative_101', 'Relation_101', '0', 'Current_Street_101 Current_Brgy_101, Balamban', 'Balamban'),
@@ -1915,7 +1950,9 @@ INSERT INTO `inmate_info` (`inmate_id`, `nationality`, `status`, `birthdate`, `a
 ('550098', 'Filipino', 'Married', '1990-01-01', 18, 'Female', 'Birthplace_98', 'Home_Street_98 Home_Brgy_98, Argao', 'Home_Province_98', 'Occupation_98', 'Name_Father_98', 'Name_Mother_98', 'Name_Relative_98', 'Relation_98', '0', 'Current_Street_98 Current_Brgy_98, Argao', 'Argao'),
 ('550099', 'Filipino', 'Married', '1990-01-01', 18, 'Male', 'Birthplace_99', 'Home_Street_99 Home_Brgy_99, Asturias', 'Home_Province_99', 'Occupation_99', 'Name_Father_99', 'Name_Mother_99', 'Name_Relative_99', 'Relation_99', '0', 'Current_Street_99 Current_Brgy_99, Asturias', 'Asturias'),
 ('6326', 'Afghan', 'Single', '2018-02-10', 18, 'Male', 'test', 'test, test, Alcantara', 'test', 'test', 'test', 'test', 'test', 'test', '09252348929', 'test, test, Alcantara', 'Alcantara'),
-('9874651325946132456', 'Afghan', 'Single', '2017-12-12', 18, 'Male', 'asdags', 'asf,,,,,, asf,,,,, Alcantara', 'asfasf', 'asf', 'asf', 'asf', 'asf', 'sfa', '9252348929', 'asf,,,,,, asf,,,,, Alcantara', 'Alcantara');
+('7624634', 'Afghan', 'Single', '2018-02-10', 18, 'Male', 'test', 'test, test, Alcantara', 'test', 'test', 'TESTTEST', 'test', 'test', 'test', '', 'test, test, Alcantara', 'Alcantara'),
+('9874651325946132456', 'Afghan', 'Single', '2017-12-12', 18, 'Male', 'asdags', 'asf,,,,,, asf,,,,, Alcantara', 'asfasf', 'asf', 'asf', 'asf', 'asf', 'sfa', '9252348929', 'asf,,,,,, asf,,,,, Alcantara', 'Alcantara'),
+('test', 'Afghan', 'Single', '2018-02-10', 18, 'Male', 'test', 'test, test, Alcantara', 'test', 'test', 'test', 'test', 'test', 'test', '', 'test, test, Alcantara', 'Alcantara');
 
 -- --------------------------------------------------------
 
@@ -2032,8 +2069,14 @@ INSERT INTO `temp` (`tempId`, `inmate_id`, `step`) VALUES
 (22, '5500501', '5'),
 (24, '5500503', '5'),
 (45, '550022', '5'),
-(52, '4124', '3'),
-(53, '6326', '3');
+(52, '4124', '4'),
+(53, '6326', '4'),
+(54, '550010', '2'),
+(55, '8235', '2'),
+(56, '1254125', '3'),
+(57, '15125', '3'),
+(58, '1241254', '3'),
+(59, '541241', '3');
 
 -- --------------------------------------------------------
 
@@ -2332,7 +2375,7 @@ ALTER TABLE `cs_administrators`
 -- AUTO_INCREMENT for table `cs_appearance_schedules`
 --
 ALTER TABLE `cs_appearance_schedules`
-  MODIFY `id` int(11) UNSIGNED ZEROFILL NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=142;
+  MODIFY `id` int(11) UNSIGNED ZEROFILL NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=144;
 --
 -- AUTO_INCREMENT for table `cs_appearance_schedule_personnels`
 --
@@ -2342,17 +2385,17 @@ ALTER TABLE `cs_appearance_schedule_personnels`
 -- AUTO_INCREMENT for table `cs_cases`
 --
 ALTER TABLE `cs_cases`
-  MODIFY `id` int(11) UNSIGNED ZEROFILL NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=144;
+  MODIFY `id` int(11) UNSIGNED ZEROFILL NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=146;
 --
 -- AUTO_INCREMENT for table `cs_logs`
 --
 ALTER TABLE `cs_logs`
-  MODIFY `id` int(11) UNSIGNED ZEROFILL NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=183;
+  MODIFY `id` int(11) UNSIGNED ZEROFILL NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=186;
 --
 -- AUTO_INCREMENT for table `cs_reasons`
 --
 ALTER TABLE `cs_reasons`
-  MODIFY `id` int(11) UNSIGNED ZEROFILL NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=142;
+  MODIFY `id` int(11) UNSIGNED ZEROFILL NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=144;
 --
 -- AUTO_INCREMENT for table `cs_users`
 --
@@ -2372,7 +2415,7 @@ ALTER TABLE `cs_violations_categories`
 -- AUTO_INCREMENT for table `editrequest`
 --
 ALTER TABLE `editrequest`
-  MODIFY `editRequestID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `editRequestID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 --
 -- AUTO_INCREMENT for table `inmate_2d`
 --
@@ -2387,7 +2430,7 @@ ALTER TABLE `inmate_auth_visitor`
 -- AUTO_INCREMENT for table `inmate_case_info`
 --
 ALTER TABLE `inmate_case_info`
-  MODIFY `cid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=143;
+  MODIFY `cid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=145;
 --
 -- AUTO_INCREMENT for table `inmate_conduct_rec`
 --
@@ -2407,7 +2450,7 @@ ALTER TABLE `municipality`
 -- AUTO_INCREMENT for table `temp`
 --
 ALTER TABLE `temp`
-  MODIFY `tempId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=54;
+  MODIFY `tempId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=62;
 --
 -- AUTO_INCREMENT for table `user_account`
 --
