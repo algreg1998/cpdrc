@@ -43,9 +43,9 @@
                             <thead>
                                 <tr>
                                     <th style="">Violation Name</th>
-                                    <th style="">Description</th>
-                                    <th style="">Republic Act</th>
-                                    <th style="">Lvl</th>
+<!--                                    <th style="">Description</th>-->
+<!--                                    <th style="">Republic Act</th>-->
+<!--                                    <th style="">Lvl</th>-->
                                     <th style="">Min Penalty</th>
                                     <th style="">Max Penalty</th>
                                     <th>Action</th>
@@ -55,9 +55,9 @@
                                 <?php foreach ($violations as $violation): ?>
                                    <tr class="odd gradeX">
                                         <td><?php echo $violation->name ?></td>
-                                        <td><?php echo $violation->description ?></td>
-                                        <td><?php echo $violation->RepublicAct ?></td>
-                                        <td><?php echo $violation->level ?></td>
+<!--                                        <td>--><?php //echo $violation->description ?><!--</td>-->
+<!--                                        <td>--><?php //echo $violation->RepublicAct ?><!--</td>-->
+<!--                                        <td>--><?php //echo $violation->level ?><!--</td>-->
                                         <td>
                                             <?php $min_pen = array(); ?>
                                             <?php if (intval($violation->min_year) > 0): ?>

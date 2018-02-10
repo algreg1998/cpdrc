@@ -346,7 +346,7 @@
 								<label> <b>Home Address</b></label>
 							</div>
 							<div class="col-md-6">
-								<label><i class="fa fa-home"></i> <b>City</b></label>
+								<label><i class="fa fa-home"></i> <b>Town / City</b></label>
 								<select name="homeCity" class="form-control" required >
                                     <option value="Alcantara" <?php if($info != null) { if($homeCity == "Alcantara") { echo "selected";} } ?> >Alcantara</option>
                                     <option value="Alcoy" <?php if($info != null) { if($homeCity == "Alcoy") { echo "selected";} } ?> >Alcoy</option>
@@ -449,7 +449,7 @@
 								<label> <b>Current Address</b></label>
 							</div>
 							<div class="col-md-6">
-								<label><i class="fa fa-home"></i> <b>City</b></label>
+								<label><i class="fa fa-home"></i> <b>Town / City</b></label>
 								<select name="currentCity" class="form-control" required >
                                     <option value="Alcantara" <?php if($info != null) { if($currentCity == "Alcantara") { echo "selected";} } ?> >Alcantara</option>
                                     <option value="Alcoy" <?php if($info != null) { if($currentCity == "Alcoy") { echo "selected";} } ?> >Alcoy</option>

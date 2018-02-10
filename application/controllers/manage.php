@@ -41,9 +41,9 @@ class Manage extends Admin_Controller {
 		$categories = $this->admin_model->get('cs_violations_categories',array('status'=>'active'),FALSE,'name ASC');
 		
 		$this->form_validation->set_rules('name','name','trim|strip_tags|xss_clean|required');
-		$this->form_validation->set_rules('description','description','trim|strip_tags|xss_clean|required');
+//		$this->form_validation->set_rules('description','description','trim|strip_tags|xss_clean|required');
 		$this->form_validation->set_rules('level','level','trim|strip_tags|xss_clean|required');
-		$this->form_validation->set_rules('RepublicAct','RepublicAct','trim|strip_tags|xss_clean|required');
+//		$this->form_validation->set_rules('RepublicAct','RepublicAct','trim|strip_tags|xss_clean|required');
 
 		if ($this->form_validation->run() !== FALSE) {
 			$min_year = $this->input->post('min_year');
@@ -84,7 +84,9 @@ class Manage extends Admin_Controller {
 									'max_day'
 								)
 						);
-			$vio_data['created_on'] = now();
+            $vio_data['created_on'] = now();
+            $vio_data['RepublicAct'] = NULL;
+            $vio_data['description'] = NULL;
 			//echo now();
 			//check if name and level exists
 			$where = array(
