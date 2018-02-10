@@ -76,13 +76,18 @@
 									<div class="col-md-4" align="center"><label>YEAR:</label>&nbsp;<span id="miy"></span></div>
 								</div>
 							</div>
+
+                            <label><i class="fa fa-sort-numeric-asc"></i> Counts(s)</label><br>
+                            <input type="number" min="0" name="counts" value="0"><br><br>
+
 							<label><i class="fa fa-info"></i> Period of Preventive Imprisonment</label><br>
 							<label>Date Received</label>&nbsp;&nbsp;&nbsp;<input type="date" name="dor"><br>
 							<label>Date Commence</label>&nbsp;&nbsp;&nbsp;<input type="date" name="doc"><br>
 							<!-- <label><i class="fa fa-file-o"></i> <b>Sentence</b></label>
 							<textarea rows="3" type="text" name="sentence" class="form-control" required ></textarea> -->
-							<label><i class="fa fa-info"></i> <b>Commencing</b></label>						
-							<textarea rows="3" type="text" name="commencing" class="form-control" placeholder="Commencing" required ></textarea><br>
+<!--							<label><i class="fa fa-info"></i> <b>Commencing</b></label>						-->
+<!--							<textarea rows="3" type="text" name="commencing" class="form-control" placeholder="Commencing" required ></textarea>-->
+                            <br>
 							<!-- <label><i class="fa fa-calendar"></i> <b>Expected Date of Release</b></label>
 							<div class="row">
 								<div class="col-md-6">
@@ -118,7 +123,7 @@
 									<label class="text-muted">With misconduct records</label><input type="date" id="datebad" name="datebad" class="form-control" placeholder="Date of Released(with bad record)" required ><br>
 								</div>
 							</div> -->
-							<input type="submit" name="submit" value="Add case information" class="btn btn-warning btn-lg form-control">
+							<input type="submit" name="submit" value="Add case information" class="btn btn-warning form-control">
 						</form>
 							
 						</div>

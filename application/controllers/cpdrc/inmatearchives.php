@@ -132,7 +132,8 @@ session_start();
 				$e['date_confinment']=$this->input->post('confine');
 				$e['crime']=$this->input->post('crime');
 				// $e['sentence']=$this->input->post('sentence');
-				$e['commencing']=$this->input->post('commencing');
+				$e['commencing']= " ";
+                $e['counts']= $this->input->post('counts');
 				// $e['expire_good']=$this->input->post('dategood');
 				// $e['expire_bad']=$this->input->post('datebad');
 
