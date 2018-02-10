@@ -127,8 +127,6 @@
 <!--                                        </div>-->
 <!--                                    </div>-->
 
-                                    <br>
-
 								</div>
 							</div><br>
 							<label><i class="fa fa-user-md"></i> <b>Body Build</b></label>
