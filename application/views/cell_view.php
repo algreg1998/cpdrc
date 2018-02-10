@@ -42,7 +42,7 @@
                         <table class="table table-striped table-bordered table-hover datatable" >
                             <thead>
                                 <tr>
-                                    <th style="">Cell Id</th>
+<!--                                    <th style="">Cell Id</th>-->
                                     <th style="">Cell Number</th>
                                     <th style="">Capacity</th>
                                     <th></th>
@@ -51,7 +51,7 @@
                             <tbody class="text-center">
                                 <?php foreach ($cells as $cell): ?>
                                    <tr class="odd gradeX">
-                                        <td><?php echo $cell->cellId ?></td>
+<!--                                        <td>--><?php //echo $cell->cellId ?><!--</td>-->
                                         <td><?php echo $cell->cellNumber ?></td>
                                         <td><?php echo $cell->capacity ?></td>
                                         <td>

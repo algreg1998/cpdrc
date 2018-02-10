@@ -161,6 +161,9 @@
 									<div class="col-md-4" align="center"><label>YEAR:</label>&nbsp;<span id="miy"></span></div>
 								</div>
 							</div>
+                            <label><i class="fa fa-sort-numeric-asc"></i> Counts(s)</label><br>
+                            <input type="number" min="0" name="counts" value="0"><br><br>
+
 							<label><i class="fa fa-info"></i> Period of Preventive Imprisonment</label><br>
 							<label>Date Received</label>&nbsp;&nbsp;&nbsp;<input type="date" name="dor"><br>
 							<label>Date Commence</label>&nbsp;&nbsp;&nbsp;<input type="date" name="doc"><br>

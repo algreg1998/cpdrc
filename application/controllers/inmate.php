@@ -164,7 +164,7 @@ class Inmate extends Admin_Controller {
 					$data['release_date'] = mdate("%Y-%m-%d",$rd);
 					$data['number_of_years'] = $number_of_years;
 					$data['number_of_months'] = $number_of_months;
-					$data['number_of_days'] = $number_of_dayss;
+					$data['number_of_days'] = $number_of_days;
 				}
 			}
 			else

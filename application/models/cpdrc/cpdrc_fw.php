@@ -896,6 +896,7 @@ class cpdrc_fw extends CI_Model
 		 			'mother' => $key->mother,
 		 			'relative' => $key->relative,
 		 			'relation' => $key->relation,
+		 			'contactpersonnum' => $key->contactpersonnum,
 		 			'address' => $key->address,
 
 		 			'filename' =>$key->filename

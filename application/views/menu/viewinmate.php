@@ -141,6 +141,10 @@ function MM_preloadImages() { //v3.0
 							                    	<td><b>Relation</b></td>
 							                    	<td><?=$key['relation']?></td>
 							                    </tr>
+                                                <tr>
+                                                    <td><b>Contact Person's Number</b></td>
+                                                    <td><?=$key['contactpersonnum']?></td>
+                                                </tr>
 							                    <tr>
 							                    	<td><b>Current Address</b></td>
 							                    	<td><?=$key['address']?></td>

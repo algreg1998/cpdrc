@@ -124,9 +124,9 @@
                                                             <thead>
                                                                 <tr>
                                                                     <th>Case No</th>
-                                                                    <th>RA</th>
+<!--                                                                    <th>RA</th>-->
                                                                     <th>Violation</th>
-                                                                    <th>Level</th>
+<!--                                                                    <th>Level</th>-->
                                                                 </tr>
                                                             </thead>
                                                             <tbody>
@@ -137,9 +137,9 @@
                                                                         <?php foreach ($cases as $case): ?>
                                                                             <tr>
                                                                                 <td style="width: 150px"><?php echo $case->case_no ?></td>
-                                                                                <td><?php echo $case->RepublicAct ?></td>
+<!--                                                                                <td>--><?php //echo $case->RepublicAct ?><!--</td>-->
                                                                                 <td><?php echo $case->name ?></td>
-                                                                                <td><?php echo $case->level ?></td>
+<!--                                                                                <td>--><?php //echo $case->level ?><!--</td>-->
                                                                             </tr>
                                                                         <?php endforeach; ?>
                                                                     <?php endif ?>

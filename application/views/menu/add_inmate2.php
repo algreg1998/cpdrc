@@ -430,7 +430,9 @@
 						<input type="text" name="relative" class="form-control"  oninvalid="setCustomValidity('Please enter alphabets only')" onchange="try{setCustomValidity('')}catch(e){}"  required value="<?php if($info!=null){echo $info->relative;}?>">
 						<label><i class="fa fa-refresh"></i> <b>Relation</b></label>
 						<input type="text" name="relation" class="form-control"  oninvalid="setCustomValidity('Please enter alphabets only')" onchange="try{setCustomValidity('')}catch(e){}" required value="<?php if($info!=null){echo $info->relation;}?>">
-						<!--<label><i class="fa fa-map-marker"></i> <b>Current Address</b></label>
+                        <label><i class="fa fa-sort-numeric-asc"></i> <b>Contact Person's Number</b></label>
+                        <input type="number" min="0" name="contactpersonnum" class="form-control">
+                        <!--<label><i class="fa fa-map-marker"></i> <b>Current Address</b></label>
 						 <textarea type="text" name="address" class="form-control" required ></textarea><br> -->
 						<br>
 						<div class="row">

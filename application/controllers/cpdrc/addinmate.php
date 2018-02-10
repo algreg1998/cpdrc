@@ -164,6 +164,7 @@ session_start();
 		    	$info['mother']=$this->input->post('mother');
 		    	$info['relative']=$this->input->post('relative');
 		    	$info['relation']=$this->input->post('relation');
+                $info['contactpersonnum']=$this->input->post('contactpersonnum');
 		    	$info['address']=$this->input->post('currentStreet').', '.$this->input->post('currentBrgy').', '.$this->input->post('currentCity');
 
 		    	if($info['age'] < 100 && $info['age'] > 17){
@@ -423,6 +424,7 @@ session_start();
 							  'crime'=>$this->input->post('crime'),
 							  'court_name'=>$this->input->post('court'),
 							  'commencing'=> "",
+							  'counts' => $this->input->post('counts'),
 							  'expire_bad'=>$this->input->post('datebad'));
 				/**/
 				//commented out to enable many violations for 1 case

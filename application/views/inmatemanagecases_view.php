@@ -116,22 +116,22 @@
                                             <table class="table table-striped table-bordered table-hover" style="margin-bottom:20px; margin-top:10px">
                                                 <thead>
                                                     <tr>
-                                                        <th>Case No</th>
-                                                        <th>Violation</th>
-                                                        <th>Description</th>
-                                                        <th>Level</th>
-                                                        <th>RA</th>
-                                                        <th style="width: 20px;"></th>
+                                                        <th class="text-center">Case No</th>
+                                                        <th class="text-center">Violation</th>
+<!--                                                        <th>Description</th>-->
+<!--                                                        <th>Level</th>-->
+<!--                                                        <th>RA</th>-->
+                                                        <th></th>
                                                     </tr>
                                                 </thead>
-                                                <tbody>
+                                                <tbody class="text-center">
                                                     <?php foreach ($cases as $case): ?>
                                                         <tr>
                                                             <td style="width: 150px"><?php echo $case->case_no ?></td>
                                                             <td><?php echo $case->name ?></td>
-                                                            <td><?php echo $case->description ?></td>
-                                                            <td><?php echo $case->level ?></td>
-                                                            <td><?php echo $case->RepublicAct ?></td>
+<!--                                                            <td>--><?php //echo $case->description ?><!--</td>-->
+<!--                                                            <td>--><?php //echo $case->level ?><!--</td>-->
+<!--                                                            <td>--><?php //echo $case->RepublicAct ?><!--</td>-->
                                                             <td><a href="<?php echo base_url('inmate/deletecase/'.$reason_info->id.'?cno='.$case->case_no) ?>" class="delCase" data-type="delete" data-item="Case #<?php echo $case->case_no ?>"><i class="fa fa-trash"></i></a></td>
                                                         </tr>
                                                     <?php endforeach; ?>
