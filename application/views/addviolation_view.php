@@ -42,10 +42,11 @@
                                     </div>
                                 <?php endif ?>
 
-                                <div style='display: none' class="form-group">
+                                <div style='display: none' class="">
                                     <label for="violations_category_id" class="col-sm-2 control-label">Categories</label>
                                     <div class="col-lg-6">
-                                        <?php echo form_dropdown('violations_category_id',$categories, set_value('violations_category_id') ? set_value('violations_category_id') : '', 'id="violations_category_id" required class="form-control"'); ?>
+                                        <input type="text" name="violations_category_id" value="0">
+                                        <!-- <?php echo form_dropdown('violations_category_id',$categories, set_value('violations_category_id') ? set_value('violations_category_id') : '', 'id="violations_category_id" value='); ?> -->
                                     </div>
                                     <div class="col-lg-1">
                                         <a class="btn btn-default" href="<?php echo base_url('manage/addviolationcategories') ?>"><i class="fa fa-plus"></i></a>

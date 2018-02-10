@@ -86,7 +86,7 @@
                                         </td>
                                         <td style="text-align:center !important">
                                             <!-- <a data-type="" data-item="<?php echo $violation->name ?>" href="<?php echo base_url('manage/editviolation/'.$violation->id) ?>"><i class="fa fa-edit"></i></a> -->
-                                            <a data-type="delete" data-item="<?php echo $violation->name ?>" href="<?php echo base_url('manage/deleteviolation/'.$violation->id) ?>" class="generalAlertify"><i class="fa fa-trash"></i></a>
+                                            <a data-type="delete" data-item="<?php echo $violation->name ?>" href="<?php echo base_url('manage/deleteviolation/'.$violation->id) ?>" class="generalAlertify"><button class="btn btn-danger"><i class="fa fa-trash"></i> Delete</button></a>
                                         </td>
                                     </tr> 
                                 <?php endforeach ?>
