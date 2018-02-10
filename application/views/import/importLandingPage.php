@@ -25,10 +25,16 @@
                         </div>
                     <?php endif ?>
                     <div class="panel-body">
+                        <div class="alert alert-danger" id="error">
+                            <i class="fa fa-times-circle" aria-hidden="true"></i> Sorry, selected file is invalid! Please upload a <strong>CSV</strong> file. </a>
+                        </div>
+                        <div class="alert alert-success" id="checked">
+                            <i class="fa fa-check-circle" aria-hidden="true"></i> <strong>CSV</strong> File detected! You can now import this file. </a>
+                        </div>
                         <h5> <em> Please select the CSV file you want to import. </em></h5>
                          <form action="<?php echo base_url('import/uploadData');?>" method="post" enctype="multipart/form-data" id="importFrm">
-                            <input type="file" name="file" required/><br>
-                            <input type="submit" class="btn btn-primary" name="importSubmit" value="Import CSV File">
+                            <input type="file" name="file" id="file" required/><br>
+                            <input type="submit" class="btn btn-primary" name="importSubmit" id="importSubmit" value="Import">
                         </form>
                     </div>
 
