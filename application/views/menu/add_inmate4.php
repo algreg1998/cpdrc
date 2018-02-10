@@ -164,8 +164,9 @@
 							<label><i class="fa fa-info"></i> Period of Preventive Imprisonment</label><br>
 							<label>Date Received</label>&nbsp;&nbsp;&nbsp;<input type="date" name="dor"><br>
 							<label>Date Commence</label>&nbsp;&nbsp;&nbsp;<input type="date" name="doc"><br>
-							<label><i class="fa fa-info"></i> <strong>Commencing</strong></label>						
-							<textarea rows="3" <?php if(count($violations) == 0){ echo "disabled";} ?> type="text" name="commencing" class="form-control" placeholder="Commencing" required ></textarea><br>
+<!--							<label><i class="fa fa-info"></i> <strong>Commencing</strong></label>						-->
+<!--							<textarea rows="3" --><?php //if(count($violations) == 0){ echo "disabled";} ?><!-- type="text" name="commencing" class="form-control" placeholder="Commencing" required ></textarea>-->
+                            <br>
 
 							<button <?php if(count($violations) == 0){ echo "disabled";} ?> class="form-control btn btn-warning" type="submit">Submit Form</button>
   		<?php echo validation_errors(); ?>

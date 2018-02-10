@@ -408,8 +408,8 @@ session_start();
 				$e['crime']=$this->input->post('crime');
 				$e['court_name']=$this->input->post('court'); // Stored in cs_appearance_schedules.place
 				// To determine which tables should $e be stored
-				$e['commencing']=$this->input->post('commencing');
-				
+				$e['commencing']="";
+
 				// $e['expire_bad']=$this->input->post('datebad');
 				
 				#echo('{reasons}'.print_r($cs_reasons));
@@ -422,7 +422,7 @@ session_start();
 							  'case_no'=>$this->input->post('casenum'),
 							  'crime'=>$this->input->post('crime'),
 							  'court_name'=>$this->input->post('court'),
-							  'commencing'=>$this->input->post('commencing'),
+							  'commencing'=> "",
 							  'expire_bad'=>$this->input->post('datebad'));
 				/**/
 				//commented out to enable many violations for 1 case
