@@ -420,6 +420,36 @@
 					<div class="col-md-1 col-sm-0"></div> <!--Divider-->
 					
 					<div class="col-md-5 col-sm-12 well"><!--RIGHTSIDE-->
+						<label><b>Religion</b></label>
+						  <select name="religion" class="form-control">
+      <option value="None" <?php echo ($info!= null && $info->religion =="None")?"selected":""; ?>>None                                                             </option> 
+      <option value="Aglipayan" <?php echo ($info!= null && $info->religion =="Aglipayan")?"selected":""; ?>>Aglipayan                                                        </option>     
+      <option value="Association of Fundamental Baptist Churches in the Philippine" <?php echo ($info!= null && $info->religion =="Association of Fundamental Baptist Churches in the Philippine")?"selected":""; ?>>Association of Fundamental Baptist Churches in the Philippines </option> 
+      <option value="Bible Baptist Church" <?php echo ($info!= null && $info->religion =="Bible Baptist Church")?"selected":""; ?>>Bible Baptist Church                                              </option> 
+      <option value="Buddhist" <?php echo ($info!= null && $info->religion =="Buddhist")?"selected":""; ?>>Buddhist                                                         </option> 
+      <option value="Church of Christ" <?php echo ($info!= null && $info->religion =="Church of Christ")?"selected":""; ?>>Church of Christ                                                 </option> 
+      <option value="Church of Jesus Christ of the Latter Day Saints" <?php echo ($info!= null && $info->religion =="Church of Jesus Christ of the Latter Day Saints")?"selected":""; ?>>Church of Jesus Christ of the Latter Day Saints                 </option> 
+      <option value="Convention of the Philippine Baptist Church" <?php echo ($info!= null && $info->religion =="Convention of the Philippine Baptist Church")?"selected":""; ?>>Convention of the Philippine Baptist Church                      </option> 
+      <option value="Crusaders of the Divine Church of Christ Inc." <?php echo ($info!= null && $info->religion =="Crusaders of the Divine Church of Christ Inc.")?"selected":""; ?>>Crusaders of the Divine Church of Christ Inc.                   </option> 
+      <option value="Evangelical Christian Outreach Foundation" <?php echo ($info!= null && $info->religion =="Evangelical Christian Outreach Foundation")?"selected":""; ?>>Evangelical Christian Outreach Foundation                        </option>
+      <option value="Iglesia Ni Cristo" <?php echo ($info!= null && $info->religion =="Iglesia Ni Cristo")?"selected":""; ?>>Iglesia Ni Cristo                                                 </option>
+      <option value="Iglesia sa Dios Espiritu Santo Inc." <?php echo ($info!= null && $info->religion =="Iglesia sa Dios Espiritu Santo Inc.")?"selected":""; ?>>Iglesia sa Dios Espiritu Santo Inc.                             </option>
+      <option value="Islam" <?php echo ($info!= null && $info->religion =="Islam")?"selected":""; ?>>Islam                                                             </option>
+      <option value="Jehovahs Witnesses" <?php echo ($info!= null && $info->religion =="Jehovahs Witnesses")?"selected":""; ?>>Jehovahs' Witnesses                                              </option>
+      <option value="Jesus is Lord Church" <?php echo ($info!= null && $info->religion =="Jesus is Lord Church")?"selected":""; ?>>Jesus is Lord Church                                          </option>
+      <option value="Lutheran Church of the Philippines" <?php echo ($info!= null && $info->religion =="Lutheran Church of the Philippines")?"selected":""; ?>>Lutheran Church of the Philippines                                </option>
+      <option value="Other Baptists" <?php echo ($info!= null && $info->religion =="Other Baptists")?"selected":""; ?>>Other Baptists                                                     </option>
+      <option value="Other Protestants" <?php echo ($info!= null && $info->religion =="Other Protestants")?"selected":""; ?>>Other Protestants                                                  </option>    
+      <option value="Philippine Benevolent Missionaries Association" <?php echo ($info!= null && $info->religion =="Philippine Benevolent Missionaries Association")?"selected":""; ?>>Philippine Benevolent Missionaries Association                   </option> 
+      <option value="Philippine Independent Catholic Church" <?php echo ($info!= null && $info->religion =="Philippine Independent Catholic Church")?"selected":""; ?>>Philippine Independent Catholic Church                           </option>    
+      <option value="Roman Catholic,including Catholic Charismatic" <?php echo ($info!= null && $info->religion =="Philippine Independent Catholic Church")?"selected":""; ?>>Roman Catholic,including Catholic Charismatic                      </option>  
+      <option value="Seventh-day Adventist" <?php echo ($info!= null && $info->religion =="Philippine Independent Catholic Church")?"selected":""; ?>>Seventh-day Adventist                                             </option>
+      <option value="Tribal Religions" <?php echo ($info!= null && $info->religion =="Philippine Independent Catholic Church")?"selected":""; ?>>Tribal Religions                                                   </option>  
+      <option value="Unión Espiritista Cristiana de Filipinas, Inc." <?php echo ($info!= null && $info->religion =="Unión Espiritista Cristiana de Filipinas, Inc.")?"selected":""; ?>>Unión Espiritista Cristiana de Filipinas, Inc.                   </option>    
+      <option value="United Church of Christ in the Philippines" <?php echo ($info!= null && $info->religion =="United Church of Christ in the Philippines")?"selected":""; ?>>United Church of Christ in the Philippines                       </option>
+      <option value="United Pentecostal Church (Philippines) Inc." <?php echo ($info!= null && $info->religion =="United Pentecostal Church (Philippines) Inc.")?"selected":""; ?>>United Pentecostal Church (Philippines) Inc.                    </option>      
+      <option value="Others" <?php echo ($info!= null && $info->religion =="Others")?"selected":""; ?>> Others </option>
+  </select>
 						<label><i class="fa fa-briefcase"></i> <b>Occupation</b></label>
 						<input type="text" name="occupation" class="form-control" required oninvalid="setCustomValidity('Please enter alphabets only')" onchange="try{setCustomValidity('')}catch(e){}"  value="<?php if($info!=null){echo $info->occupation;}?>"><br>
 						<label><i class="fa fa-male"></i> <b>Father's Name</b></label>
