@@ -122,6 +122,12 @@
 						</form>
 							
 						</div>
+	                    <?php if ($this->session->flashdata('error_msg')): ?>
+	                        <div class="alert alert-danger">
+	                            <button class="close" aria-hidden="true" data-dismiss="alert" type="button">×</button>
+	                            <?php echo $this->session->flashdata('error_msg') ?>
+	                        </div>
+	                    <?php endif ?>
 						<div class="col-md-7">
 							<?php
 							if (isset($case)) {
@@ -185,15 +191,17 @@
 									  			</thead>
 									  			<tbody id="gridBody">
 									  	        <?php
-  												foreach ($arc as $key) {
-
-									  		         echo "<tr>";
-									  			       echo "<td>".$key['confine']."</td>";
-									  			       echo "<td>".$key['case_no']."</td>";
-									  			       echo "<td>".$key['crime']."</td>";
-									  			       echo "<td>".$key['sentence']."</td>";
-									  				 echo "</tr>";
-												}  ?>	
+									  	        if (isset($arc)) {
+									  	        	foreach ($arc as $key) {
+										  		         echo "<tr>";
+										  			       echo "<td>".$key['confine']."</td>";
+										  			       echo "<td>".$key['case_no']."</td>";
+										  			       echo "<td>".$key['crime']."</td>";
+										  			       echo "<td>".$key['sentence']."</td>";
+										  				 echo "</tr>";
+													}	
+									  	        }
+  												  ?>	
 
 									  			</tbody>
 									  		</table>

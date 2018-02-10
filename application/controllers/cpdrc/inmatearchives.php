@@ -76,7 +76,7 @@ session_start();
 			$inmate['gos'] = $this->cpdrc_fw->inmateinfo($id);
 			$inmate['id']=$id;
 			// Retrieve violation data from database
-	    	$violations = $this->admin_model->get('cs_violations',null,FALSE,'name ASC');
+	    	$violations = $this->admin_model->get('cs_violations',array("status"=>'active'),FALSE,'name ASC');
 
 			$vio = array();
 
@@ -139,6 +139,7 @@ session_start();
 				$this->db->select('*');
 				$this->db->from('inmate_case_info');
 				$this->db->where("case_no = ".$e['case_no']);
+				$this->db->where("crime = ".$e['crime']);
 
 				$res = $this->db->get()->result();
 				// echo $this->db->last_query();
@@ -155,7 +156,7 @@ session_start();
 				$inmate['id']=$id;
 
 				// Retrieve violation data from database
-		    	$violations = $this->admin_model->get('cs_violations',null,FALSE,'name ASC');
+		    	$violations = $this->admin_model->get('cs_violations',array('status' => 'active' ),FALSE,'name ASC');
 
 				$vio = array();
 				
