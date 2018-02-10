@@ -484,123 +484,126 @@ session_start();
 						$query = $this->db->insert('cs_appearance_schedules',$cs_appearance_schedules);
 						 $this->session->set_flashdata('update_token', time());
 					}
+					redirect("cpdrc/addinmate/profiling/".$id);
 					/**/
-					$inmate['case']=$this->cpdrc_fw->getcaseinfolimit($id);
+					// $inmate['case']=$this->cpdrc_fw->getcaseinfolimit($id);
 
-					$inmate['id']=$id;
-					$inmate['formid'] = $this->input->post('formid');
-			    	$inmate['name'] = $this->input->post('name');
-			    	$inmate['filename'] = $this->input->post('filename');
+					// $inmate['id']=$id;
+					// $inmate['formid'] = $this->input->post('formid');
+			  //   	$inmate['name'] = $this->input->post('name');
+			  //   	$inmate['filename'] = $this->input->post('filename');
 
-			    	$cases = $this->admin_model->get('cs_cases_full',array('reasons_id'=>$cs_cases['reasons_id'],'case_status'=>'active'),FALSE,'name ASC, level ASC');
-			    	// // Retrieve violation data from database
-			    	// $this->db->select('id,name');
-			    	// $query = $this->db->get('cs_violations');
-			    	// $inmate['violations'] = $query->result();
-			    	$violations = $this->admin_model->get('cs_violations',null,FALSE,'name ASC');
+			  //   	$cases = $this->admin_model->get('cs_cases_full',array('reasons_id'=>$cs_cases['reasons_id'],'case_status'=>'active'),FALSE,'name ASC, level ASC');
+			  //   	// // Retrieve violation data from database
+			  //   	// $this->db->select('id,name');
+			  //   	// $query = $this->db->get('cs_violations');
+			  //   	// $inmate['violations'] = $query->result();
+			  //   	$violations = $this->admin_model->get('cs_violations',null,FALSE,'name ASC');
 
-					$vio = array();
-					foreach ($violations as $violation) {
-						if($violation->status == 'active'){
-							if ( in_array($violation->level, array('1','2','3','4','5')) )
-							{
-								$vio[$violation->id] = $violation->name.' (level '.$violation->level.') ' . $violation->RepublicAct;
-							}
-							else
-							{
-								$vio[$violation->id] = $violation->name.' ('.$violation->level.') ' . $violation->RepublicAct;
-							}	
-						}
-					}
+					// $vio = array();
+					// foreach ($violations as $violation) {
+					// 	if($violation->status == 'active'){
+					// 		if ( in_array($violation->level, array('1','2','3','4','5')) )
+					// 		{
+					// 			$vio[$violation->id] = $violation->name.' (level '.$violation->level.') ' . $violation->RepublicAct;
+					// 		}
+					// 		else
+					// 		{
+					// 			$vio[$violation->id] = $violation->name.' ('.$violation->level.') ' . $violation->RepublicAct;
+					// 		}	
+					// 	}
+					// }
 
-					$inmate['violations'] = $vio;
-					if (count($vio)==0) {
-						$inmate['error'] = "<b>Warning!</b> No more violations to choose from! ";
-					}
+					// $inmate['violations'] = $vio;
+					// if (count($vio)==0) {
+					// 	$inmate['error'] = "<b>Warning!</b> No more violations to choose from! ";
+					// }
 
-			    	// Retrieve court list from db
-			    	// Retrieve court list from db
-			    	$query = $this->db->get_where('court','court_mun NOT in (SELECT municipality.mun_id FROM municipality WHERE municipality.status ="deleted")AND court.status ="active"');
-			    	$inmate['courts'] = $query->result();
+			  //   	// Retrieve court list from db
+			  //   	// Retrieve court list from db
+			  //   	$query = $this->db->get_where('court','court_mun NOT in (SELECT municipality.mun_id FROM municipality WHERE municipality.status ="deleted")AND court.status ="active"');
+			  //   	$inmate['courts'] = $query->result();
 
 
-			    	$this->data['title']    = 'Manage Inmate';
-		    		$this->data['css']      = array();
-		    		$this->data['js_top']   = array();
-		    		$this->data['header']   = $this->load->view('admin/header_view',$this->data,TRUE);
-		    		$this->data['body']     = $this->load->view('menu/add_inmate4',$inmate,TRUE);
-		    		$this->data['footer']   = $this->load->view('footer_view',NULL,TRUE);
-		    		$this->data['js_bottom']= array();
-		    		$this->data['custom_js']= '<script type="text/javascript">
-			    		$(function(){
-			    		});
-			    	</script>';
-		    		$this->load->view('templates',$this->data);
+			  //   	$this->data['title']    = 'Manage Inmate';
+		   //  		$this->data['css']      = array();
+		   //  		$this->data['js_top']   = array();
+		   //  		$this->data['header']   = $this->load->view('admin/header_view',$this->data,TRUE);
+		   //  		$this->data['body']     = $this->load->view('menu/add_inmate4',$inmate,TRUE);
+		   //  		$this->data['footer']   = $this->load->view('footer_view',NULL,TRUE);
+		   //  		$this->data['js_bottom']= array();
+		   //  		$this->data['custom_js']= '<script type="text/javascript">
+			  //   		$(function(){
+			  //   		});
+			  //   	</script>';
+		   //  		$this->load->view('templates',$this->data);
 
 					// $this->load->view('menu/add_inmate4', $inmate);
 					/**/
 					//commented out to enable many violations for 1 case
 				}else{
-					$inmate['case']=$this->cpdrc_fw->getcaseinfolimit($id);
+					// $inmate['case']=$this->cpdrc_fw->getcaseinfolimit($id);
 					// echo $this->cpdrc_fw->db->last_query();
 					
 					$inmate['id']=$id;
-					$inmate['formid'] = $this->input->post('formid');
-			    	$inmate['name'] = $this->input->post('name');
-			    	$inmate['filename'] = $this->input->post('filename');
+					// $inmate['formid'] = $this->input->post('formid');
+			  //   	$inmate['name'] = $this->input->post('name');
+			  //   	$inmate['filename'] = $this->input->post('filename');
 
-			    	$inmate['error'] = "<b>Warning!</b> Case information already exist. Please check the information in the table below";
+			  //   	$inmate['error'] = "<b>Warning!</b> Case information already exist. Please check the information in the table below";
 
-			    	$query = $this->db->get_where('cs_reasons',array("inmate_id"=>$id));
-			    	//$this->db->from('court');
-			    	$data['cs_reasons'] = $query->result();
-			    	$cs_res = json_decode(json_encode($data['cs_reasons']));
-			    	if($cs_res){
-						$cases = $this->admin_model->get('cs_cases_full',array('reasons_id'=>$cs_res[0]->id,'case_status'=>'active'),FALSE,'name ASC, level ASC');
-			    	}
+			    	$this->session->set_flashdata('error_msg','<b>Warning!</b> Case information already exist. Please check the information in the table below');
+			    	redirect("cpdrc/addinmate/profiling/".$id);
+			  //   	$query = $this->db->get_where('cs_reasons',array("inmate_id"=>$id));
+			  //   	//$this->db->from('court');
+			  //   	$data['cs_reasons'] = $query->result();
+			  //   	$cs_res = json_decode(json_encode($data['cs_reasons']));
+			  //   	if($cs_res){
+					// 	$cases = $this->admin_model->get('cs_cases_full',array('reasons_id'=>$cs_res[0]->id,'case_status'=>'active'),FALSE,'name ASC, level ASC');
+			  //   	}
 					
-			    	// // Retrieve violation data from database
-			    	// $this->db->select('id,name');
-			    	// $query = $this->db->get('cs_violations');
-			    	// $inmate['violations'] = $query->result();
-			    	$violations = $this->admin_model->get('cs_violations',null,FALSE,'name ASC');
+			  //   	// // Retrieve violation data from database
+			  //   	// $this->db->select('id,name');
+			  //   	// $query = $this->db->get('cs_violations');
+			  //   	// $inmate['violations'] = $query->result();
+			  //   	$violations = $this->admin_model->get('cs_violations',null,FALSE,'name ASC');
 
-					$vio = array();
-					foreach ($violations as $violation) {
-						if($violation->status == 'active'){
-							if ( in_array($violation->level, array('1','2','3','4','5')) )
-							{
-								$vio[$violation->id] = $violation->name.' (level '.$violation->level.') ' . $violation->RepublicAct;
-							}
-							else
-							{
-								$vio[$violation->id] = $violation->name.' ('.$violation->level.') ' . $violation->RepublicAct;
-							}	
-						}
-					}
-					// if($cs_res){
-					// 	foreach ($cases as $case) {
-					// 		unset($vio[$case->violation_id]);
+					// $vio = array();
+					// foreach ($violations as $violation) {
+					// 	if($violation->status == 'active'){
+					// 		if ( in_array($violation->level, array('1','2','3','4','5')) )
+					// 		{
+					// 			$vio[$violation->id] = $violation->name.' (level '.$violation->level.') ' . $violation->RepublicAct;
+					// 		}
+					// 		else
+					// 		{
+					// 			$vio[$violation->id] = $violation->name.' ('.$violation->level.') ' . $violation->RepublicAct;
+					// 		}	
 					// 	}
 					// }
-					$inmate['violations'] = $vio;
+					// // if($cs_res){
+					// // 	foreach ($cases as $case) {
+					// // 		unset($vio[$case->violation_id]);
+					// // 	}
+					// // }
+					// $inmate['violations'] = $vio;
 
-			    	// Retrieve court list from db
-			    	$query = $this->db->get_where('court','court_mun NOT in (SELECT municipality.mun_id FROM municipality WHERE municipality.status ="deleted")AND court.status ="active"');
-			    	$inmate['courts'] = $query->result();
+			  //   	// Retrieve court list from db
+			  //   	$query = $this->db->get_where('court','court_mun NOT in (SELECT municipality.mun_id FROM municipality WHERE municipality.status ="deleted")AND court.status ="active"');
+			  //   	$inmate['courts'] = $query->result();
 
-			    	$this->data['title']    = 'Manage Inmate';
-		    		$this->data['css']      = array();
-		    		$this->data['js_top']   = array();
-		    		$this->data['header']   = $this->load->view('admin/header_view',$this->data,TRUE);
-		    		$this->data['body']     = $this->load->view('menu/add_inmate4',$inmate,TRUE);
-		    		$this->data['footer']   = $this->load->view('footer_view',NULL,TRUE);
-		    		$this->data['js_bottom']= array();
-		    		$this->data['custom_js']= '<script type="text/javascript">
-			    		$(function(){
-			    		});
-			    	</script>';
-		    		$this->load->view('templates',$this->data);
+			  //   	$this->data['title']    = 'Manage Inmate';
+		   //  		$this->data['css']      = array();
+		   //  		$this->data['js_top']   = array();
+		   //  		$this->data['header']   = $this->load->view('admin/header_view',$this->data,TRUE);
+		   //  		$this->data['body']     = $this->load->view('menu/add_inmate4',$inmate,TRUE);
+		   //  		$this->data['footer']   = $this->load->view('footer_view',NULL,TRUE);
+		   //  		$this->data['js_bottom']= array();
+		   //  		$this->data['custom_js']= '<script type="text/javascript">
+			  //   		$(function(){
+			  //   		});
+			  //   	</script>';
+		   //  		$this->load->view('templates',$this->data);
 
 					// $this->load->view('menu/add_inmate4', $inmate);
 				}

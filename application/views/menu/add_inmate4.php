@@ -94,12 +94,12 @@
 
 				<div class="row">
 					<div class="col-md-5">
-					<?php
-					if(isset($error))
-					{
-						echo "<div class='alert alert-danger alert-dismissible' align='center'> <button type='button' class='close' data-dismiss='alert'><span aria-hidden='true'>&times;</span><span class='sr-only'>Close</span></button>$error</div>";
-					}
-					?>
+					 <?php if ($this->session->flashdata('error_msg')): ?>
+			            <div class="alert alert-danger">
+			                <button class="close" aria-hidden="true" data-dismiss="alert" type="button">×</button>
+			                <?php echo $this->session->flashdata('error_msg') ?>
+			            </div>
+			        <?php endif ?>
 					</div>
 				</div>
 				
