@@ -945,7 +945,7 @@ court.status ="active"');
 
 			//if convict dont change period or date released...
 			//recheck max penalty
-			if ($inmate_info->status == 'Detainee' || $inmate_info->status == 'Probation')
+			if ($inmate_info->inmate_type == 'Detainee' || $inmate_info->inmate_type == 'Probation')
 			{
 				$max_res = $this->db->query('
 								SELECT id,
@@ -977,11 +977,11 @@ court.status ="active"');
 				$data['created_on'] = now();
 				$data['modified_on'] = 0;
 
-				if ($inmate_info->status == 'Detainee') {
+				if ($inmate_info->inmate_type == 'Detainee') {
 					$s_date = $inmate_info->date_detained;
-				}elseif ($inmate_info->status == 'Probation') {
+				}elseif ($inmate_info->inmate_type == 'Probation') {
 					$s_date = $inmate_info->date_probation;
-				}elseif ($inmate_info->status == 'Convict') {
+				}elseif ($inmate_info->inmate_type == 'Convict') {
 					$s_date = $inmate_info->date_convicted;
 				}
 

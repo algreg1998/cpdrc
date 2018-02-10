@@ -38,12 +38,11 @@
                                         <div class="col-sm-9" style="margin-top: 7px; font-size: 16px">
                                             <?php 
                                             
-                                                if ($inmate_info->status == 'Detainee') {
-                                                    // echo ($reason_info->start_date == NULL) ? "N/A" : mdate("%M %d, %Y",strtotime($inmate_info->date_detained));
-                                                    echo "asdasd";
-                                                }elseif ($inmate_info->status == 'Probation') {
+                                                if ($inmate_info->inmate_type == 'Detainee') {
+                                                    echo ($reason_info->start_date == NULL) ? "N/A" : mdate("%M %d, %Y",strtotime($inmate_info->date_detained));
+                                                }elseif ($inmate_info->inmate_type == 'Probation') {
                                                     echo ($reason_info->start_date == NULL) ? "N/A" : mdate("%M %d, %Y",strtotime($inmate_info->date_probation));
-                                                }elseif ($inmate_info->status == 'Convict') {
+                                                }elseif ($inmate_info->inmate_type == 'Convict') {
                                                     echo ($reason_info->start_date == NULL) ? "N/A" : mdate("%M %d, %Y",strtotime($inmate_info->date_convicted));
                                                 }
                                             ?>
