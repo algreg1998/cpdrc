@@ -111,7 +111,7 @@ session_start();
 			    	$this->data['header']   = $this->load->view('admin/header_view',$this->data,TRUE);
 			    	$this->data['body']     = $this->load->view('menu/add_inmate',$data,TRUE);
 			    	$this->data['footer']   = $this->load->view('footer_view',NULL,TRUE);
-			    	$this->data['js_bottom']= array();
+			    	$this->data['js_bottom']= array('vendor/jquery/jquery-3.2.1.min.js');
 			    	$this->data['custom_js']= '<script type="text/javascript">
 				    	$(document).ready(function() {
                 $("#uploadphoto").css("display", "none");
