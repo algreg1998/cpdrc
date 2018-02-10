@@ -83,7 +83,7 @@
                                             <div class="form-group">
                                                 <label class="col-lg-5 control-label" style="">Status :</label>
                                                 <div class="col-sm-7" style="margin-top: 7px;">
-                                                    <?php echo $inmate_info->status ?>
+                                                    <?php echo $inmate_info->inmate_type ?>
                                                 </div>
                                             </div>
                                             <div class="form-group">
