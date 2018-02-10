@@ -18,7 +18,7 @@ session_start();
 	    		}
 	    	$actor=$this->session->userdata('logged_in');
 	    	$user_id=$this->input->post('id');
-	    	$form = $this->input->post('formid');
+	    	$form = " ";
 
 	    	$info['ref_formid'] = $form;
 			$info['inmate_id']=$user_id;
@@ -164,7 +164,7 @@ session_start();
 		    	$info['mother']=$this->input->post('mother');
 		    	$info['relative']=$this->input->post('relative');
 		    	$info['relation']=$this->input->post('relation');
-                $info['contactpersonnum']=$this->input->post('contactpersonnum');
+                    $info['relation']=$this->input->post('relation');
 		    	$info['address']=$this->input->post('currentStreet').', '.$this->input->post('currentBrgy').', '.$this->input->post('currentCity');
 
 		    	if($info['age'] < 100 && $info['age'] > 17){

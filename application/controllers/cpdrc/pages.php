@@ -150,13 +150,11 @@ class Pages extends Admin_Controller
       {
 
            $a=$this->session->userdata('logged_in');
-
-
            $this->data["cells"] = $this->cpdrc_fw->getAvailableCells();
                         // echo json_encode($this->data["cells"] );
                         // echo $this->db->last_query();
 
-           if(!empty($a['user_id']))
+          if(!empty($a['user_id']))
            {
                               //deleting the unset img of a inmate in the database
             $del = array('img_set' => '0',
@@ -168,7 +166,7 @@ class Pages extends Admin_Controller
             $this->data['css']      = array();
             $this->data['js_top']   = array();
             $this->data['header']   = $this->load->view('admin/header_view',$this->data,TRUE);
-            $this->data['body']     = $this->load->view('menu/add_inmate',NULL,TRUE);
+            $this->data['body']     = $this->load->view('menu/add_inmate',$this->data,TRUE);
             $this->data['footer']   = $this->load->view('footer_view',NULL,TRUE);
             $this->data['js_bottom']= array('vendor/jquery/jquery-3.2.1.min.js');
             $this->data['custom_js']= '<script>

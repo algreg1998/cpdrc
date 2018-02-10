@@ -1,7 +1,5 @@
 <!DOCTYPE html>
 <html>
-    
-
 		<!--FIRST PART OF ADDING A INMATE-->
 		<!-- <section id="personal"> -->
 			<div id="page-wrapper">
@@ -58,19 +56,19 @@
 			    	</div>
 					<?php 
 				 		$attr = array('class' => 'form_horizontal');
-						echo form_open('cpdrc/addinmate', $attr);
+						echo form_open('cpdrc/
+						addinmate', $attr);
 					?>
 			    	<div class="col-md-6 well">
 			   	
 			    		<div class="form-group">
-			    			<div class="row">
+			    			<div style='display:none' class="row">
 			    				<div class="col-md-6">
 			    					<label><i class="fa fa-list-alt"></i> <b>Reference Form ID</b></label>
-			    					<input type="number" name="formid" class="form-control" required autofocus>
+			    					<input type="text" name="formid" class="form-control" autofocus>
 			    				</div>
 			    			</div>
 				    		<div class="row">
-				    		<br>
 				    			<div class="col-md-6">
 				    				<label><i class="fa fa-user"></i> <b>Inmate Number</b></label>
 	                    			<input type="text" name="id" class="form-control" required>

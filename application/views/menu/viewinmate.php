@@ -37,7 +37,7 @@ function MM_preloadImages() { //v3.0
 					<div class="panel-body">
 						<div class="list-group">
 							<p align="center"><img src="<?=base_url()?>uploads/inmate/<?=$key['filename']?>" width="50%" height="50%"/></p>
-							<p class="list-group-item"><b>Reference Form ID:</b> <?=$key['formid']?></p>
+<!--							<p class="list-group-item"><b>Reference Form ID:</b> --><?//=$key['formid']?><!--</p>-->
 							<p class="list-group-item"><b>Inmate number:</b> <?=$key['id']?></p>
 							<p class="list-group-item"><b>Cell number:</b> <?=$key['cell']?></p>
 							<p class="list-group-item"><b>Full Name:</b> <?=$key['lname'].", ".$key['fname']." ".$key['mi']?></p>

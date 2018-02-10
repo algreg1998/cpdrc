@@ -80,14 +80,13 @@
 			    	<div class="col-md-6 well">
 			   	
 			    		<div class="form-group">
-			    			<div class="row">
+			    			<div style='display: none' class="row">
 			    				<div class="col-md-6">
 			    					<label><i class="fa fa-list-alt"></i> <b>Reference Form ID</b></label>
 			    					<input type="number" name="formid" class="form-control" required autofocus  value="<?php echo $d->ref_formid?>">
 			    				</div>
 			    			</div>
 				    		<div class="row">
-				    		<br>
 				    			<div class="col-md-6">
 				    				<label><i class="fa fa-user"></i> <b>Inmate Number</b></label>
 	                    			<input type="text" name="id" class="form-control" required  value="<?php echo $d->inmate_id?>">
