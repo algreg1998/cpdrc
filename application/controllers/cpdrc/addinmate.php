@@ -405,24 +405,15 @@ session_start();
 	    	if($this->input->post('id')== NULL){
 	    			redirect("search1");
 	    		}
-				#$cs_reasons['type']=$this->input->post('sentence');
-				#$cs_cases['crime']=$this->input->post('crime'); // Original;
+				
 				$id = $this->input->post('id');
 				// For cs_reasons table
 				$cs_reasons['inmate_id']= $id;
 				$cs_reasons['start_date']=$this->input->post('confine');
-				
-
-				//release date
 				$cs_reasons['release_date']=$this->input->post('dategood');
-				
-
-
 				$cs_reasons['created_on']=time();
 				$cs_reasons['number_of_years']=$this->input->post('max_years');
 				
-				// For cs_cases table
-				//$cs_cases['s_max_year']=$this->input->post('max_years');
 
 				$cs_cases['case_no']=$this->input->post('casenum');
 				$cs_cases['violation_id']=$this->input->post('crime');
@@ -435,13 +426,12 @@ session_start();
 				$cs_cases['s_max_year'] = $violation_info->max_year;
 				$cs_cases['s_max_month'] = $violation_info->max_month;
 				$cs_cases['s_max_day'] = $violation_info->max_day;
-
 				$cs_cases['created_on']=$cs_reasons['created_on'];
+				
 				// For cs_appearance_schedules table
 				$cs_appearance_schedules['reason_id'] = null; // to be assigned a value below
 				$cs_appearance_schedules['place']=$this->input->post('court'); 
 				
-				// Update inmate record in db
 				$inmate['date_detained'] = $this->input->post('confine');
 				
 				$this->db->set('date_detained',$inmate['date_detained']);
@@ -512,8 +502,6 @@ session_start();
 									FROM (`cs_cases`)
 									WHERE `reasons_id` = "'.$reason->id.'" AND status="active" GROUP BY id
 								')->result();
-					// echo $this->db->last_query();
-					// die();
 					$m_id = 0;
 					$m_pen = 0;
 					$number_of_years = 0;
@@ -548,22 +536,13 @@ session_start();
 					$data['number_of_months'] = $number_of_months;
 					$data['number_of_days'] = $number_of_days;
 					$where = array('inmate_id'=>$inmate_info->inmate_id);
-					// die();
+					
 					$this->admin_model->update('cs_reasons',$where,$data);
 					
 					$cs_appearance_schedules['reason_id'] = $reason->id;
 					$query = $this->db->insert('cs_appearance_schedules',$cs_appearance_schedules);
-					// $query = $this->db->insert('cs_reasons',$cs_reasons);
-					// if($query && ! $this->session->flashdata('update_token')){
-					// 	$reason = $this->db->get_where('cs_reasons',array('inmate_id'=>$cs_reasons['inmate_id']));//temp placement, should be transferred to MODEL
-					// 	// Check DB query at this point
 					
-					// 	$cs_cases['reasons_id'] = $reason->row()->id;
-					// 	$cs_appearance_schedules['reason_id'] = $reason->row()->id;
-					// 	$query = $this->db->insert('cs_cases',$cs_cases);
-					// 	$query = $this->db->insert('cs_appearance_schedules',$cs_appearance_schedules);
-					// 	 $this->session->set_flashdata('update_token', time());
-					// }
+
 					redirect("cpdrc/addinmate/profiling/".$id);
 					
 				}else{
