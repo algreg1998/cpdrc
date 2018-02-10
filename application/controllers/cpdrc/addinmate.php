@@ -113,8 +113,13 @@ session_start();
 			    	$this->data['footer']   = $this->load->view('footer_view',NULL,TRUE);
 			    	$this->data['js_bottom']= array();
 			    	$this->data['custom_js']= '<script type="text/javascript">
-				    	$(function(){
-				    	});
+				    	$(document).ready(function() {
+                $("#uploadphoto").css("display", "none");
+                $("#photo").change(function() {
+                    $("#uploadphoto").click();
+                    $("#photo").hide();
+                });
+            });
 				    </script>';
 			    	$this->load->view('templates',$this->data); 
 			    	// $this->load->view('menu/add_inmate', $data);
