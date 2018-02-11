@@ -45,11 +45,11 @@
 									</div>
 									
 										<div class="table-responsive">
-						 					<table class="table table-bordered table-hover table-striped tablesorter datatable">
+						 					<table class="text-center table table-bordered table-hover table-striped tablesorter datatable">
 						 						<thead align="center">
-						 							<th>No.</th>
-						 							<th>PLACE</th>
-						 							<th>TOTAL</th>
+						 							<th class="text-center">No.</th>
+						 							<th class="text-center">PLACE</th>
+						 							<th class="text-center">TOTAL</th>
 						 						</thead>
 						 						<tbody>
 						 							
