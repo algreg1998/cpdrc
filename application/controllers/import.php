@@ -65,12 +65,13 @@ class Import extends Admin_Controller {
 	}
 	public function uploadData(){
 		$data['result']=$this->Import_model->saveData();
+		var_dump($data['result']);
 		if($data['result']){
 			$msg ='';
 			foreach ($data['result'] as $key ) {
-				$msg.= "<br>".$key;
+				$msg.= "<li>".$key."</li>";
 			}
-			$this->session->set_flashdata('error_msg','Oops, Something went wrong!'.$msg.'<br>Inmate already exists');
+			$this->session->set_flashdata('error_msg','Oops, Something went wrong! Importing canceled. <br><br><ul>'.$msg.'</ul><br>Inmate IDs already exists. Please change to prevent duplicates.');
 		}else{
 			$this->session->set_flashdata('success_msg','Records successfully inserted');
 		}

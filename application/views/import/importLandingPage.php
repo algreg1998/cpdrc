@@ -11,20 +11,20 @@
                     <div class="panel-heading">
                         Import
                     </div>
-                    <?php if ($this->session->flashdata('success_msg')): ?>
-                        <div class="alert alert-success">
-                            <button class="close" aria-hidden="true" data-dismiss="alert" type="button">×</button>
-                            <?php echo $this->session->flashdata('success_msg') ?>
-                        </div>
-                    <?php endif ?>
-
-                    <?php if ($this->session->flashdata('error_msg')): ?>
-                        <div class="alert alert-danger">
-                            <button class="close" aria-hidden="true" data-dismiss="alert" type="button">×</button>
-                            <?php echo $this->session->flashdata('error_msg') ?>
-                        </div>
-                    <?php endif ?>
                     <div class="panel-body">
+                        <?php if ($this->session->flashdata('success_msg')): ?>
+                            <div class="alert alert-success">
+                                <button class="close" aria-hidden="true" data-dismiss="alert" type="button">×</button>
+                                <?php echo $this->session->flashdata('success_msg') ?>
+                            </div>
+                        <?php endif ?>
+
+                        <?php if ($this->session->flashdata('error_msg')): ?>
+                            <div class="alert alert-danger">
+                                <button class="close" aria-hidden="true" data-dismiss="alert" type="button">×</button>
+                                <?php echo $this->session->flashdata('error_msg') ?>
+                            </div>
+                        <?php endif ?>
                         <div class="alert alert-danger" id="error">
                             <i class="fa fa-times-circle" aria-hidden="true"></i> Sorry, selected file is invalid! Please upload a <strong>CSV</strong> file. </a>
                         </div>
