@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 10, 2018 at 06:26 PM
+-- Generation Time: Feb 11, 2018 at 06:10 AM
 -- Server version: 10.1.13-MariaDB
 -- PHP Version: 7.0.8
 
@@ -33,6 +33,13 @@ CREATE TABLE `cell` (
   `status` enum('active','deleted','','') NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Dumping data for table `cell`
+--
+
+INSERT INTO `cell` (`cellId`, `cellNumber`, `capacity`, `status`) VALUES
+(1, 1, 500, 'active');
+
 -- --------------------------------------------------------
 
 --
@@ -45,6 +52,13 @@ CREATE TABLE `court` (
   `court_mun` int(12) DEFAULT NULL,
   `status` varchar(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `court`
+--
+
+INSERT INTO `court` (`court_id`, `court_name`, `court_mun`, `status`) VALUES
+(1, 'RTC Branch 1', 1, 'active');
 
 -- --------------------------------------------------------
 
@@ -216,6 +230,14 @@ CREATE TABLE `cs_sessions` (
   `last_activity` int(10) UNSIGNED NOT NULL DEFAULT '0',
   `user_data` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `cs_sessions`
+--
+
+INSERT INTO `cs_sessions` (`session_id`, `ip_address`, `user_agent`, `last_activity`, `user_data`) VALUES
+('a8c7df2b32573f396a728cca2baa6ba0', '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36', 1518325752, ''),
+('bb8e1ac00a61fe039b79df65fe0e5a2e', '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36', 1518325752, 'a:5:{s:9:"user_data";s:0:"";s:12:"is_logged_in";b:1;s:9:"user_type";s:20:"Warden Administrator";s:7:"user_id";s:11:"00000000001";s:9:"logged_in";a:6:{s:8:"username";s:5:"admin";s:8:"password";s:128:"08f9ef3c42adfe2fbb0e979604c7eb30aa12705fac8b1a9ead899e67b46fd7348c0041721d2be1d64902b66535380e6ff68ee4ed1e9baebf7a7d3dc4285e5391";s:5:"fname";s:5:"CPDRC";s:5:"lname";s:13:"Administrator";s:4:"type";s:20:"Warden Administrator";s:7:"user_id";s:11:"00000000001";}}');
 
 -- --------------------------------------------------------
 
@@ -598,6 +620,13 @@ CREATE TABLE `logs` (
   `agent` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Dumping data for table `logs`
+--
+
+INSERT INTO `logs` (`id`, `action`, `actor`, `time`, `agent`) VALUES
+(1, 'Log in', 00000000001, '2018-02-11 05:09:18', 'Chrome  v.63.0.3239.132 on Unknown Windows OS');
+
 -- --------------------------------------------------------
 
 --
@@ -621,6 +650,13 @@ CREATE TABLE `municipality` (
   `province` varchar(50) NOT NULL,
   `status` varchar(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `municipality`
+--
+
+INSERT INTO `municipality` (`mun_id`, `mun_name`, `province`, `status`) VALUES
+(1, 'Cebu City', 'Cebu', 'active');
 
 -- --------------------------------------------------------
 
@@ -916,12 +952,12 @@ ALTER TABLE `user_account`
 -- AUTO_INCREMENT for table `cell`
 --
 ALTER TABLE `cell`
-  MODIFY `cellId` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `cellId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT for table `court`
 --
 ALTER TABLE `court`
-  MODIFY `court_id` int(12) NOT NULL AUTO_INCREMENT;
+  MODIFY `court_id` int(12) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT for table `cs_administrators`
 --
@@ -1001,12 +1037,12 @@ ALTER TABLE `inmate_conduct_rec`
 -- AUTO_INCREMENT for table `logs`
 --
 ALTER TABLE `logs`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT for table `municipality`
 --
 ALTER TABLE `municipality`
-  MODIFY `mun_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `mun_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT for table `temp`
 --
