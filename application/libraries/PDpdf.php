@@ -126,7 +126,7 @@ class PDpdf extends FPDF
         $b = json_decode(json_encode($pStren));
 
         $this->Ln(22);
-        for($a = 1 ; $a < $cnt ; $a++){
+        for($a = 1 ; $a <= $cnt ; $a++){
             if($a % 12 == 0){
                 $this->AddPage();
                 $this->Ln(2);
