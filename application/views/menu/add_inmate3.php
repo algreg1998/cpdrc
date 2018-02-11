@@ -84,7 +84,7 @@
 									<label><i class="fa fa-arrows-v"></i> <b>Height</b></label>
                                     <div class="row">
                                         <div class="col-md-6">
-                                            <input type="number" id="ft" placeholder="ft" class="form-control">
+                                            <input type="number" id="ft" autofocus placeholder="ft" class="form-control">
                                         </div>
                                         <div class="col-md-6">
                                             <input type="number" id="in" placeholder="in" class="form-control">
@@ -93,7 +93,7 @@
 
                                     <br>
 
-									<input readonly type="number" name="height" min="0" step="0.01" id="cm" placeholder="cm" class="form-control" required autofocus  value="<?php if($info!=null){echo $info->height;}?>">
+									<input readonly type="number" name="height" min="0" step="0.01" id="cm" placeholder="cm" class="form-control" required   value="<?php if($info!=null){echo $info->height;}?>">
 
                                     <br>
 
