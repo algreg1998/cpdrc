@@ -100,6 +100,18 @@
 			                <?php echo $this->session->flashdata('error_msg') ?>
 			            </div>
 			        <?php endif ?>
+			        <?php if (count($violations) == 0 || count($courts) == 0): ?>
+			            <div class="alert alert-danger">
+			                <button class="close" aria-hidden="true" data-dismiss="alert" type="button">×</button>
+			                <?php if (count($violations) == 0){?>
+			                	No Violations to choose from.
+			                <?php }elseif (count($courts) == 0){?>
+			                	No Courts to choose from.
+			                <?php }else{?>
+			                	No Violations and Courts to choose from.
+			                <?php } ?>
+			            </div>
+			        <?php endif ?>
 					</div>
 				</div>
 				
@@ -118,16 +130,16 @@
 							<div class="row">
 								<div class="col-md-6">
 									<label><i class="fa fa-calendar"></i> <strong>Date of Confinement</strong></label>
-									<input <?php if(count($violations) == 0){ echo "disabled";} ?> id="confine" type="date" name="confine" class="form-control" required >			
+									<input <?php if(count($violations) == 0 || count($courts) == 0){ echo "disabled";} ?> id="confine" type="date" name="confine" class="form-control" required >			
 								</div>
 								<div class="col-md-6">
 									<label><i class="fa fa-sort-numeric-asc"></i> <strong>Case Number</strong></label>
-									<input <?php if(count($violations) == 0){ echo "disabled";} ?> type="text" name="casenum" class="form-control" required ><br>
+									<input <?php if(count($violations) == 0 || count($courts) == 0){ echo "disabled";} ?> type="text" name="casenum" class="form-control" required ><br>
 								</div>
 							</div>
 							<label><i class="fa fa-info"></i> <strong>Court Name</strong></label>
 							<!--input type="text" name="court" class="form-control" required --> <!--Original -->
-							<select <?php if(count($violations) == 0){ echo "disabled";} ?> name="court" class="form-control" required >
+							<select <?php if(count($violations) == 0 || count($courts) == 0){ echo "disabled";} ?> name="court" class="form-control" required >
 								
 								<?php 
 									foreach ($courts as $row) {
@@ -137,10 +149,14 @@
 							</select> 
 							<label><i class="fa fa-file"></i> <strong>Crime/Violation</strong></label>
 							<!--textarea rows="3" type="text" name="crime" class="form-control" required ></textarea--><!-- Original -->
-							 <?php if(count($violations) != 0){ 
-								$js = 'onchange="getViolation();"';
-								
+							 <?php if(count($violations) != 0){
+							 	if((count($courts) != 0)){
+										$js = 'onchange="getViolation();"';
+										
 										echo form_dropdown('crime', $violations, '',' onChange="getViolation();" id="crime"  class="form-control" ');
+									}else{
+										echo form_dropdown('crime', $violations, '',' onChange="getViolation();" id="crime"  class="form-control" disabled');
+									}
 									}else{
 										echo '<select  disabled id="crime" onchange="getViolation()" name="crime" class="form-control" >
 												<option>No Crimes</option>
@@ -168,16 +184,16 @@
 							  </div>
 							</div>
                             <label><i class="fa fa-sort-numeric-asc"></i> Counts(s)</label><br>
-                            <input type="number" min="0" name="counts" value="0"><br><br>
+                            <input type="number" min="0" name="counts" value="0"  <?php if(count($violations) == 0 || count($courts) == 0){ echo "disabled";} ?>><br><br>
 
 							<label><i class="fa fa-info"></i> Period of Preventive Imprisonment</label><br>
 							<label>Date Received</label>&nbsp;&nbsp;&nbsp;<input type="date" name="dor"><br>
 							<label>Date Commence</label>&nbsp;&nbsp;&nbsp;<input type="date" name="doc"><br>
 <!--							<label><i class="fa fa-info"></i> <strong>Commencing</strong></label>						-->
-<!--							<textarea rows="3" --><?php //if(count($violations) == 0){ echo "disabled";} ?><!-- type="text" name="commencing" class="form-control" placeholder="Commencing" required ></textarea>-->
+<!--							<textarea rows="3" --><?php //if(count($violations) == 0 || count($courts) == 0){ echo "disabled";} ?><!-- type="text" name="commencing" class="form-control" placeholder="Commencing" required ></textarea>-->
                             <br>
 
-							<button <?php if(count($violations) == 0){ echo "disabled";} ?> class="form-control btn btn-warning" type="submit">Submit Form</button>
+							<button <?php if(count($violations) == 0 || count($courts) == 0){ echo "disabled";} ?> class="form-control btn btn-warning" type="submit">Submit Form</button>
   		<?php echo validation_errors(); ?>
 									</form>
 							 				
