@@ -25,15 +25,15 @@ class GODpdf extends FPDF
         $this->SetFont('Arial','',8);
         $this->Ln(15);
         $this->Cell(8);
-        $this->Cell(83,8,'NO.',1,0,'C');
-        $this->Cell(83,8,'PLACE',1,0,'C');
-        $this->Cell(83,8,'TOTAL.',1,0,'C');
-        // $this->Cell(10,8,'NO.',1,0,'C');
-        // $this->Cell(80,8,'PLACE',1,0,'C');
-        // $this->Cell(40,8,'TOTAL.',1,0,'C');
-        // $this->Cell(10,8,'NO.',1,0,'C');
-        // $this->Cell(80,8,'PLACE',1,0,'C');
-        // $this->Cell(40,8,'TOTAL.',1,0,'C');
+        // $this->Cell(83,8,'NO.',1,0,'C');
+        // $this->Cell(83,8,'PLACE',1,0,'C');
+        // $this->Cell(83,8,'TOTAL.',1,0,'C');
+        $this->Cell(10,8,'NO.',1,0,'C');
+        $this->Cell(80,8,'PLACE',1,0,'C');
+        $this->Cell(40,8,'TOTAL.',1,0,'C');
+        $this->Cell(10,8,'NO.',1,0,'C');
+        $this->Cell(80,8,'PLACE',1,0,'C');
+        $this->Cell(40,8,'TOTAL.',1,0,'C');
          $this->Ln();
     }
 
