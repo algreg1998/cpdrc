@@ -24,11 +24,14 @@ class CITpdf extends FPDF
         $this->Ln(15);
         $this->Cell(8);
         $this->Cell(10,8,'NO.',1,0,'C');
-        $this->Cell(80,8,'CRIME',1,0,'C');
+        $this->Cell(210,8,'CRIME',1,0,'C');
         $this->Cell(40,8,'TOTAL.',1,0,'C');
-        $this->Cell(10,8,'NO.',1,0,'C');
-        $this->Cell(80,8,'CRIME',1,0,'C');
-        $this->Cell(40,8,'TOTAL.',1,0,'C');
+        // $this->Cell(10,8,'NO.',1,0,'C');
+        // $this->Cell(80,8,'CRIME',1,0,'C');
+        // $this->Cell(40,8,'TOTAL.',1,0,'C');
+        // $this->Cell(10,8,'NO.',1,0,'C');
+        // $this->Cell(80,8,'CRIME',1,0,'C');
+        // $this->Cell(40,8,'TOTAL.',1,0,'C');
         $this->Ln();
     }
 
@@ -48,34 +51,45 @@ class CITpdf extends FPDF
         //echo json_encode($data);
         $a = 1;
         $ctr = 1;
-        $lnmin = 0;
+        // $lnmin = 0;
+        $this->SetFont('Arial','',8);
         foreach($data as $row){
         // for($ctr = 1 ; $a < 100 ; $ctr++ ){
             
 
-            if($ctr < 19){
-                $this->Cell(8);
-            }else if($ctr == 19){
-                $this->Ln(-144);
-                $this->Cell(138);
-            }else if($ctr % 37 == 0){
-                $ctr = 1;
-                $this->Cell(8);
-            }else{
-                $this->Cell(138);
-            }
+            // if($ctr < 19){
+            //     $this->Cell(8);
+            // }else if($ctr == 19){
+            //     $this->Ln(-144);
+            //     $this->Cell(138);
+            // }else if($ctr % 37 == 0){
+            //     $ctr = 1;
+            //     $this->Cell(8);
+            // }else{
+            //     $this->Cell(138);
+            // }
 
-                // $this->Cell(10,8,$a,1,0,'C');
-                // $this->Cell(80,8,$row['name'],1,0,'C');
-                // $this->Cell(40,8,$row['count'],1,0,'C');
+
+            //     $this->Cell(10,8,$a,1,0,'C');
+            //     $this->Cell(80,8,$row['name'],1,0,'C');
+            //     $this->Cell(40,8,$row['count'],1,0,'C');
+            //     $a++;
+            //     $this->Ln();
+            //     $ctr++;
+                // $lnmin
+
+                $this->Cell(8);
                 $this->Cell(10,8,$a,1,0,'C');
-                $this->Cell(80,8,$row['name'],1,0,'C');
+                $width = $this->GetStringWidth($row['name']);
+                if($width > 130){
+                    $this->SetFont('Arial','',6);
+                }
+                $this->Cell(210,8,$row['name'],1,0,'C');
+                $this->SetFont('Arial','',8);
                 $this->Cell(40,8,$row['count'],1,0,'C');
                 $a++;
                 $this->Ln();
                 $ctr++;
-                // $lnmin
-
         }
     }
 }

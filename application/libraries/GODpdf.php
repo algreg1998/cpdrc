@@ -25,12 +25,15 @@ class GODpdf extends FPDF
         $this->SetFont('Arial','',8);
         $this->Ln(15);
         $this->Cell(8);
-        $this->Cell(10,8,'NO.',1,0,'C');
-        $this->Cell(80,8,'PLACE',1,0,'C');
-        $this->Cell(40,8,'TOTAL.',1,0,'C');
-        $this->Cell(10,8,'NO.',1,0,'C');
-        $this->Cell(80,8,'PLACE',1,0,'C');
-        $this->Cell(40,8,'TOTAL.',1,0,'C');
+        $this->Cell(83,8,'NO.',1,0,'C');
+        $this->Cell(83,8,'PLACE',1,0,'C');
+        $this->Cell(83,8,'TOTAL.',1,0,'C');
+        // $this->Cell(10,8,'NO.',1,0,'C');
+        // $this->Cell(80,8,'PLACE',1,0,'C');
+        // $this->Cell(40,8,'TOTAL.',1,0,'C');
+        // $this->Cell(10,8,'NO.',1,0,'C');
+        // $this->Cell(80,8,'PLACE',1,0,'C');
+        // $this->Cell(40,8,'TOTAL.',1,0,'C');
          $this->Ln();
     }
 
@@ -73,7 +76,8 @@ class GODpdf extends FPDF
         //     }
 
 
-        $cnt = 0;
+        $cnt = $ctr = 0;
+
         $v = count($data);
         $a = json_decode(json_encode($data));
         for($i = 0; $cnt < $v; $i++) {
@@ -84,13 +88,22 @@ class GODpdf extends FPDF
                 $this->Ln(-144);
                 $this->Cell(138);
             }else if($i % 36 == 0){
-                $i = 1;
+                $i = 0;
+                $this->AddPage();
                 $this->Cell(8);
+
             }else{
                 $this->Cell(138);
             }
 
             // $this->Cell(8);
+            // $b = json_decode(json_encode($a[$cnt]));
+            // $this->Cell(10,8,$cnt+1,1,0,'C');
+            // $this->Cell(80,8,"test",1,0,'C');
+            // $this->Cell(40,8,"test",1,0,'C');
+            // $this->Ln();
+            // $cnt++;
+
             $b = json_decode(json_encode($a[$cnt]));
             $this->Cell(10,8,$cnt+1,1,0,'C');
             $this->Cell(80,8,$b[0]->place,1,0,'C');
@@ -98,6 +111,7 @@ class GODpdf extends FPDF
             $this->Ln();
             $cnt++;
         }
+
 
 
         
