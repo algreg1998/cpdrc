@@ -93,7 +93,7 @@
 
                                     <br>
 
-									<input type="number" name="height" min="0" step="0.01" id="cm" placeholder="cm" class="form-control" required autofocus  value="<?php if($info!=null){echo $info->height;}?>">
+									<input readonly type="number" name="height" min="0" step="0.01" id="cm" placeholder="cm" class="form-control" required autofocus  value="<?php if($info!=null){echo $info->height;}?>">
 
                                     <br>
 
@@ -117,7 +117,7 @@
 
                                     <br>
 
-                                    <input type="number" name="weight" min="0" step="0.01" id="lbs" placeholder="lbs" class="form-control" required value="<?php if($info!=null){echo $info->weight;}?>">
+                                    <input readonly type="number" name="weight" min="0" step="0.01" id="lbs" placeholder="lbs" class="form-control" required value="<?php if($info!=null){echo $info->weight;}?>">
 
                                     <br>
 
