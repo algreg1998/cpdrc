@@ -41,35 +41,36 @@ class PDpdf extends FPDF
             $this->SetFont('Arial','B',16);
             // $this->Cell(30,10,'Prison Data for the Period of 1-15 April 2017',0,0,'C');
         }
-        $this->SetFont('Arial','',11);
+        $this->SetFont('Arial','',9);
         $this->Ln(10);
         $this->Cell(8);
         $this->Cell(17,20,'DAY',1,0,'C');
-        $this->Cell(25,20,'PRISONERS',1,0,'C');
-        $this->Cell(25,20,'PRISONERS',1,0,'C');
+        $this->Cell(20,20,'PRISONERS',1,0,'C');
+        $this->Cell(20,20,'PRISONERS',1,0,'C');
         $this->Cell(171,5,'RELEASED',1,0,'C');
         $this->Cell(17,20,'TOTAL',1,0,'C');
         $this->Ln(5);
         $this->Cell(8);
         $this->Cell(17);
-        $this->Cell(25,20,'STRENGTH',0,0,'C');
-        $this->Cell(25,20,'RECEIVED',0,0,'C');
-        $this->SetFont('Arial','',9);
-        $this->Cell(19,15,'SERVED',1,0,'C');
-        $this->Cell(19,15,'PROBATION',1,0,'C');
-        $this->Cell(19,15,'SHIPPED',1,0,'C');
-        $this->Cell(19,15,'BONDED',1,0,'C');
-        $this->Cell(19,15,'ACQUITTED',1,0,'C');
-        $this->Cell(19,15,'DISMISSED',1,0,'C');
-        $this->Cell(19,15,'DEAD',1,0,'C');
-        $this->Cell(19,15,'OTHERS',1,0,'C');
-        $this->Cell(19,5,'TOTAL',0,0,'C');
+        $this->Cell(20,20,'STRENGTH',0,0,'C');
+        $this->Cell(20,20,'RECEIVED',0,0,'C');
+        $this->SetFont('Arial','',7);
+        $this->Cell(17,15,'SERVED',1,0,'C');
+        $this->Cell(17,15,'PROBATION',1,0,'C');
+        $this->Cell(17,15,'SHIPPED',1,0,'C');
+        $this->Cell(17,15,'BONDED',1,0,'C');
+        $this->Cell(17,15,'ACQUITTED',1,0,'C');
+        $this->Cell(17,15,'DISMISSED',1,0,'C');
+        $this->Cell(17,15,'DEAD',1,0,'C');
+        $this->Cell(17,15,'GCTA',1,0,'C');
+        $this->Cell(17,15,'OTHERS',1,0,'C');
+        $this->Cell(18,5,'TOTAL',0,0,'C');
         $this->Ln(0);
-        $this->Cell(227);
-        $this->Cell(19,15,'PRISONERS',1,0,'C');
+        $this->Cell(218);
+        $this->Cell(18,15,'PRISONERS',1,0,'C');
         $this->Ln(5);
-        $this->Cell(227);
-        $this->Cell(19,15,'RELEASED',0,0,'C');
+        $this->Cell(218);
+        $this->Cell(18,15,'RELEASED',0,0,'C');
     }
 
     // Page footer
@@ -126,7 +127,7 @@ class PDpdf extends FPDF
         $b = json_decode(json_encode($pStren));
 
         $this->Ln(22);
-        for($a = 1 ; $a < $cnt ; $a++){
+        for($a = 1 ; $a <= $cnt ; $a++){
             if($a % 12 == 0){
                 $this->AddPage();
                 $this->Ln(2);
@@ -135,35 +136,39 @@ class PDpdf extends FPDF
             $this->Cell(8);
             $this->SetFont('Arial','',8);
             $this->Cell(17,8,$b[($a-1)]->day,1,0,'C');
-            $this->Cell(25,8,$b[($a-1)]->pStrength,1,0,'C');
-            $this->Cell(25,8,$b[($a-1)]->prisonersReceived,1,0,'C');
-            $this->Cell(19,8,$b[($a-1)]->served,1,0,'C');
-            $this->Cell(19,8,$b[($a-1)]->probation,1,0,'C');
-            $this->Cell(19,8,$b[($a-1)]->shipped,1,0,'C');
-            $this->Cell(19,8,$b[($a-1)]->bonded,1,0,'C');
-            $this->Cell(19,8,$b[($a-1)]->acquitted,1,0,'C');
-            $this->Cell(19,8,$b[($a-1)]->dismissed,1,0,'C');
-            $this->Cell(19,8,$b[($a-1)]->dead,1,0,'C');
-            $this->Cell(19,8,$b[($a-1)]->others,1,0,'C');
-            $this->Cell(19,8,$b[($a-1)]->prisonersReleased,1,0,'C');
+            $this->Cell(20,8,$b[($a-1)]->pStrength,1,0,'C');
+            $this->Cell(20,8,$b[($a-1)]->prisonersReceived,1,0,'C');
+            $this->Cell(17,8,$b[($a-1)]->served,1,0,'C');
+            $this->Cell(17,8,$b[($a-1)]->probation,1,0,'C');
+            $this->Cell(17,8,$b[($a-1)]->shipped,1,0,'C');
+            $this->Cell(17,8,$b[($a-1)]->bonded,1,0,'C');
+            $this->Cell(17,8,$b[($a-1)]->acquitted,1,0,'C');
+            $this->Cell(17,8,$b[($a-1)]->dismissed,1,0,'C');
+            $this->Cell(17,8,$b[($a-1)]->dead,1,0,'C');
+            $this->Cell(17,8,$b[($a-1)]->gcta,1,0,'C');
+            $this->Cell(17,8,$b[($a-1)]->others,1,0,'C');
+            $this->Cell(18,8,$b[($a-1)]->prisonersReleased,1,0,'C');
             $this->Cell(17,8,$b[($a-1)]->total,1,0,'C');
         }
+
+        // echo json_encode($data);
 
         $c = json_decode(json_encode($data));
             $this->Ln(8);
             $this->Cell(8);
             $this->SetFont('Arial','',8);
-            $this->Cell(42,8,$c[0],1,0,'C');
-            $this->Cell(25,8,$c[2],1,0,'C');
-            $this->Cell(19,8,$c[3],1,0,'C');
-            $this->Cell(19,8,$c[4],1,0,'C');
-            $this->Cell(19,8,$c[5],1,0,'C');
-            $this->Cell(19,8,$c[6],1,0,'C');
-            $this->Cell(19,8,$c[7],1,0,'C');
-            $this->Cell(19,8,$c[8],1,0,'C');
-            $this->Cell(19,8,$c[9],1,0,'C');
-            $this->Cell(19,8,$c[10],1,0,'C');
-            $this->Cell(19,8,$c[11],1,0,'C');
+            $this->Cell(37,8,$c[0],1,0,'C');
+            $this->Cell(20,8,$c[1],1,0,'C');
+            $this->Cell(17,8,$c[2],1,0,'C');
+            $this->Cell(17,8,$c[3],1,0,'C');
+            $this->Cell(17,8,$c[4],1,0,'C');
+            $this->Cell(17,8,$c[5],1,0,'C');
+            $this->Cell(17,8,$c[6],1,0,'C');
+            $this->Cell(17,8,$c[7],1,0,'C');
+            $this->Cell(17,8,$c[8],1,0,'C');
+            $this->Cell(17,8,$c[9],1,0,'C');
+            $this->Cell(17,8,$c[10],1,0,'C');
+            $this->Cell(18,8,$c[11],1,0,'C');
             $this->Cell(17,8,$c[12],1,0,'C');
             
     }

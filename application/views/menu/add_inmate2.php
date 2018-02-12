@@ -93,7 +93,7 @@
                         }
 
                         ?>
-						<select name="nationality" class="form-control" required autofocus>
+						<select name="nationality" class="form-control" id="citizenshipList" required autofocus>
 						  <option value="afghan" <?php if($info!=null && $info->nationality=="afghan"){echo "selected";}?>>Afghan</option>
 						  <option value="albanian" <?php if($info!=null && $info->nationality=="albanian"){echo "selected";}?>>Albanian</option>
 						  <option value="algerian" <?php if($info!=null && $info->nationality=="algerian"){echo "selected";}?>>Algerian</option>
@@ -286,7 +286,7 @@
 						  <option value="yemenite" <?php if($info!=null && $info->nationality=="yemenite"){echo "selected";}?>>Yemenite</option>
 						  <option value="zambian" <?php if($info!=null && $info->nationality=="zambian"){echo "selected";}?>>Zambian</option>
 						  <option value="zimbabwean" <?php if($info!=null && $info->nationality=="zimbabwean"){echo "selected";}?>>Zimbabwean</option>
-						</select><br>
+						</select><br><br>
 							<div class="row">
 								<div class="col-md-6">
 									<label><i class="fa fa-files-o"></i> <b>Civil Status</b></label>
@@ -347,7 +347,7 @@
 							</div>
 							<div class="col-md-6">
 								<label><i class="fa fa-home"></i> <b>Town / City</b></label>
-								<select name="homeCity" class="form-control" required >
+								<select name="homeCity" class="form-control city" required >
                                     <option value="Alcantara" <?php if($info != null) { if($homeCity == "Alcantara") { echo "selected";} } ?> >Alcantara</option>
                                     <option value="Alcoy" <?php if($info != null) { if($homeCity == "Alcoy") { echo "selected";} } ?> >Alcoy</option>
                                     <option value="Alegria" <?php if($info != null) { if($homeCity == "Alegria") { echo "selected";} } ?> >Alegria</option>
@@ -421,7 +421,7 @@
 					
 					<div class="col-md-5 col-sm-12 well"><!--RIGHTSIDE-->
 						<label><b>Religion</b></label>
-						  <select name="religion" class="form-control">
+						  <select name="religion" class="form-control" id="religionList">
 						      <option value="None" <?php echo ($info!= null && $info->religion =="None")?"selected":""; ?>>None                                                             </option> 
 						      <option value="Aglipayan" <?php echo ($info!= null && $info->religion =="Aglipayan")?"selected":""; ?>>Aglipayan                                                        </option>     
 						      <option value="Association of Fundamental Baptist Churches in the Philippine" <?php echo ($info!= null && $info->religion =="Association of Fundamental Baptist Churches in the Philippine")?"selected":""; ?>>Association of Fundamental Baptist Churches in the Philippines </option> 
@@ -450,6 +450,7 @@
 						      <option value="United Pentecostal Church (Philippines) Inc." <?php echo ($info!= null && $info->religion =="United Pentecostal Church (Philippines) Inc.")?"selected":""; ?>>United Pentecostal Church (Philippines) Inc.                    </option>      
 						      <option value="Others" <?php echo ($info!= null && $info->religion =="Others")?"selected":""; ?>> Others </option>
 						  </select>
+						  <br><br>
 						<label><i class="fa fa-briefcase"></i> <b>Occupation</b></label>
 						<input type="text" name="occupation" class="form-control" required oninvalid="setCustomValidity('Please enter alphabets only')" onchange="try{setCustomValidity('')}catch(e){}"  value="<?php if($info!=null){echo $info->occupation;}?>"><br>
 						<label><i class="fa fa-male"></i> <b>Father's Name</b></label>
@@ -482,7 +483,7 @@
 							</div>
 							<div class="col-md-6">
 								<label><i class="fa fa-home"></i> <b>Town / City</b></label>
-								<select name="currentCity" class="form-control" required >
+								<select name="currentCity" class="form-control city" required >
                                     <option value="Alcantara" <?php if($info != null) { if($currentCity == "Alcantara") { echo "selected";} } ?> >Alcantara</option>
                                     <option value="Alcoy" <?php if($info != null) { if($currentCity == "Alcoy") { echo "selected";} } ?> >Alcoy</option>
                                     <option value="Alegria" <?php if($info != null) { if($currentCity == "Alegria") { echo "selected";} } ?> >Alegria</option>

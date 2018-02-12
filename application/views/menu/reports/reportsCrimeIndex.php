@@ -16,20 +16,22 @@
                 <div class="panel-body">
                     <?php echo form_open(current_url_full(), 'class="form-horizontal"'); ?>
                         <div style="display: inline;">
-                            <select name="crime" class='form-control' style='width:20%; display: inline' >
-                                <option value=''> Select a crime </option>
-                                <?php
-                                    foreach($allCrime as $category)
-                                    {
-                                        echo "<option value='".$category['id']."'";
-                                        if($category['id'] == $id)
+                            <div class="col-sm-3 col-md-4">
+                                <select name="crime" class='form-control' id="asdasd">
+                                    <option value=''> Select a crime </option>
+                                    <?php
+                                        foreach($allCrime as $category)
                                         {
-                                            echo "selected";
-                                        }    
-                                        echo ">".$category['crime']."</option>";
-                                    }
-                                 ?>                                          
-                            </select> 
+                                            echo "<option value='".$category['id']."'";
+                                            if($category['id'] == $id)
+                                            {
+                                                echo "selected";
+                                            }    
+                                            echo ">".$category['crime']."</option>";
+                                        }
+                                     ?>                                          
+                                </select> 
+                            </div>
                         </div>    
                         <button type="submit" class="btn btn-success">Submit</button>
                     <?php echo form_close(); ?>          

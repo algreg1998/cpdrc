@@ -629,9 +629,7 @@ public function reportsCrimeIndex() {
             $this->data['title']    = 'Table | Violations';
             $this->data['css']      = array(
                                           'vendor/datatables-plugins/integration/bootstrap/3/dataTables.bootstrap.css',
-                                          'vendor/colorbox/css/colorbox.css',
-                                          'vendor/alertify/css/alertify.core.css',
-                                          'vendor/alertify/css/alertify.default.css'
+                                          'vendor/select2/select2.css','vendor/select2/select2-bootstrap.css'
                                           );
             $this->data['js_top']   = array();
             $this->data['header']   = $this->load->view('admin/header_view',$this->data,TRUE);
@@ -642,13 +640,14 @@ public function reportsCrimeIndex() {
                                           'vendor/datatables-plugins/integration/bootstrap/3/dataTables.bootstrap.js',
                                           'vendor/colorbox/js/jquery.colorbox-min.js',
                                           'js/reportsCrimeIndex.js',
-                                          'vendor/alertify/js/alertify.js'
+                                          'vendor/select2/select2.js'
                                           );
             $this->data['custom_js']= '
             
 
             <script type="text/javascript">
             $(function(){
+                  $("#asdasd").select2();
                   $(".nav-graphical").addClass("active");
                   $(".nav-violations").addClass("active");
                   $(".nav-crimeIndex a").addClass("active");
@@ -879,7 +878,7 @@ public function printCrimeIndex()
 
                   $crime = $this->input->post('crime');
                   
-                  $crimeIndex = $this->cpdrc_fw->getCrimeIndex($crime);
+                  $crimeIndex = $this->cpdrc_fw->getCrimeIndexPrinting($crime);
 
                   $pdf = new CIpdf('L','mm','A4');
                   $pdf->AliasNbPages();
@@ -1483,7 +1482,7 @@ public function crimeIndexTabulated()
             public function printMasterList($gender){
                   $this->load->library('MLpdf');
 
-                  $data['master'] = $this->cpdrc_fw->getMasterListByGender($gender);
+                  $data['master'] = $this->cpdrc_fw->getMasterListByGenderPrinting($gender);
                   
                   $pdf = new MLpdf('L','mm','A4');
                    $pdf->AliasNbPages();

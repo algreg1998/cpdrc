@@ -84,16 +84,16 @@
 									<label><i class="fa fa-arrows-v"></i> <b>Height</b></label>
                                     <div class="row">
                                         <div class="col-md-6">
-                                            <input type="number" id="ft" placeholder="ft" class="form-control">
+                                            <input type="number" id="ft" min="1" autofocus placeholder="ft" class="form-control">
                                         </div>
                                         <div class="col-md-6">
-                                            <input type="number" id="in" placeholder="in" class="form-control">
+                                            <input type="number" id="in" min="1" placeholder="in" class="form-control">
                                         </div>
                                     </div>
 
                                     <br>
 
-									<input type="number" name="height" min="0" step="0.01" id="cm" placeholder="cm" class="form-control" required autofocus  value="<?php if($info!=null){echo $info->height;}?>">
+									<input readonly type="number" name="height" min="0" step="0.01" id="cm" placeholder="cm" class="form-control" required   value="<?php if($info!=null){echo $info->height;}?>">
 
                                     <br>
 
@@ -111,13 +111,13 @@
 									<label><i class="fa fa-tachometer"></i> <b>Weight</b></label>
                                     <div class="row">
                                         <div class="col-md-12">
-                                            <input type="number" id="kg" placeholder="kg" class="form-control">
+                                            <input type="number" id="kg" min="1" placeholder="kg" class="form-control">
                                         </div>
                                     </div>
 
                                     <br>
 
-                                    <input type="number" name="weight" min="0" step="0.01" id="lbs" placeholder="lbs" class="form-control" required value="<?php if($info!=null){echo $info->weight;}?>">
+                                    <input readonly type="number" name="weight" min="0" step="0.01" id="lbs" placeholder="lbs" class="form-control" required value="<?php if($info!=null){echo $info->weight;}?>">
 
                                     <br>
 

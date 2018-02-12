@@ -84,8 +84,8 @@
                             <tr>
                                 <th>Case No</th>
                                 <th>Violation</th>
-                                <th>Level</th>
-                                <th>RA</th>
+                                <!-- <th>Level</th>
+                                <th>RA</th> -->
                                 <th style="width: 80px;" class="text-center">Min (yrs)</th>
                                 <th style="width: 80px;" class="text-center">Max (yrs)</th>
                             </tr>
@@ -95,8 +95,8 @@
                               <tr>
                                   <td style="width: 150px"><?php echo $case->case_no ?></td>
                                   <td><?php echo $case->name ?></td>
-                                  <td><?php echo $case->level ?></td>
-                                  <td><?php echo $case->RepublicAct ?></td>
+                                  <!-- <td><?php //echo $case->level ?></td>
+                                  <td><?php //echo $case->RepublicAct ?></td> -->
                                   <td class="text-center"><?php echo $case->min_year ?></td>
                                   <td class="text-center"><?php echo $case->max_year ?></td>
                               </tr>
