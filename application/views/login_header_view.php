@@ -6,6 +6,6 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
         </button>
-        <a class="navbar-brand" href="index.html">CPDRC</a>
+        <a class="navbar-brand" >CPDRC</a>
     </div>
 </nav>

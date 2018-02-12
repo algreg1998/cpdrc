@@ -38,19 +38,18 @@
                                         <div class="col-sm-9" style="margin-top: 7px; font-size: 16px">
                                             <?php 
                                             
-                                                if ($inmate_info->status == 'Detainee') {
-                                                    // echo ($reason_info->start_date == NULL) ? "N/A" : mdate("%M %d, %Y",strtotime($inmate_info->date_detained));
-                                                    echo "asdasd";
-                                                }elseif ($inmate_info->status == 'Probation') {
+                                                if ($inmate_info->inmate_type == 'Detainee') {
+                                                    echo ($reason_info->start_date == NULL) ? "N/A" : mdate("%M %d, %Y",strtotime($inmate_info->date_detained));
+                                                }elseif ($inmate_info->inmate_type == 'Probation') {
                                                     echo ($reason_info->start_date == NULL) ? "N/A" : mdate("%M %d, %Y",strtotime($inmate_info->date_probation));
-                                                }elseif ($inmate_info->status == 'Convict') {
+                                                }elseif ($inmate_info->inmate_type == 'Convict') {
                                                     echo ($reason_info->start_date == NULL) ? "N/A" : mdate("%M %d, %Y",strtotime($inmate_info->date_convicted));
                                                 }
                                             ?>
                                         </div>
                                     </div>
                                     <div class="form-group">
-                                        <label class="col-lg-3 control-label" style="font-size: 16px">Release Date :</label>
+                                        <label class="col-lg-3 control-label" style="font-size: 16px">Estimated Release Date :</label>
                                         <div class="col-sm-9" style="margin-top: 7px; font-size: 16px">
                                             <?php echo ($reason_info->release_date == NULL) ? "N/A" : mdate("%M %d, %Y",strtotime($reason_info->release_date)) ?>
                                         </div>
@@ -116,22 +115,22 @@
                                             <table class="table table-striped table-bordered table-hover" style="margin-bottom:20px; margin-top:10px">
                                                 <thead>
                                                     <tr>
-                                                        <th>Case No</th>
-                                                        <th>Violation</th>
-                                                        <th>Description</th>
-                                                        <th>Level</th>
-                                                        <th>RA</th>
-                                                        <th style="width: 20px;"></th>
+                                                        <th class="text-center">Case No</th>
+                                                        <th class="text-center">Violation</th>
+<!--                                                        <th>Description</th>-->
+<!--                                                        <th>Level</th>-->
+<!--                                                        <th>RA</th>-->
+                                                        <th></th>
                                                     </tr>
                                                 </thead>
-                                                <tbody>
+                                                <tbody class="text-center">
                                                     <?php foreach ($cases as $case): ?>
                                                         <tr>
                                                             <td style="width: 150px"><?php echo $case->case_no ?></td>
                                                             <td><?php echo $case->name ?></td>
-                                                            <td><?php echo $case->description ?></td>
-                                                            <td><?php echo $case->level ?></td>
-                                                            <td><?php echo $case->RepublicAct ?></td>
+<!--                                                            <td>--><?php //echo $case->description ?><!--</td>-->
+<!--                                                            <td>--><?php //echo $case->level ?><!--</td>-->
+<!--                                                            <td>--><?php //echo $case->RepublicAct ?><!--</td>-->
                                                             <td><a href="<?php echo base_url('inmate/deletecase/'.$reason_info->id.'?cno='.$case->case_no) ?>" class="delCase" data-type="delete" data-item="Case #<?php echo $case->case_no ?>"><i class="fa fa-trash"></i></a></td>
                                                         </tr>
                                                     <?php endforeach; ?>

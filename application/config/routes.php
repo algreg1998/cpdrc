@@ -46,6 +46,9 @@ $route['historical-graphical-tools/violationsTable'] = 'graphical_tools/violatio
 $route['historical-graphical-tools/violations'] = 'graphical_tools/violations';
 $route['historical-graphical-tools/populations'] = 'graphical_tools/populations';
 $route['historical-graphical-tools/population'] = 'graphical_tools/populations';
+$route['historical-graphical-tools/addReleased'] = 'graphical_tools/addReleased';
+$route['historical-graphical-tools/popuBar'] = 'graphical_tools/popuBar';
+$route['historical-graphical-tools/popuPie'] = 'graphical_tools/popuPie';
 $route['prisonpopulations'] = 'home/prisonpopulations';
 
 $route['404_override'] = '';

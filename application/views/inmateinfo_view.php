@@ -48,7 +48,7 @@
                                         </div>
                                     </div>
                                     <div class="form-group">
-                                        <label class="col-lg-3 control-label" style="font-size: 16px">Release Date :</label>
+                                        <label class="col-lg-3 control-label" style="font-size: 16px">Estimated Release Date:</label>
                                         <div class="col-sm-9" style="margin-top: 7px; font-size: 16px">
                                             <?php echo ($reason_info->release_date == NULL) ? "N/A" : mdate("%M %d, %Y",strtotime($reason_info->release_date)) ?>
                                         </div>
@@ -83,7 +83,7 @@
                                             <div class="form-group">
                                                 <label class="col-lg-5 control-label" style="">Status :</label>
                                                 <div class="col-sm-7" style="margin-top: 7px;">
-                                                    <?php echo $inmate_info->status ?>
+                                                    <?php echo $inmate_info->inmate_type ?>
                                                 </div>
                                             </div>
                                             <div class="form-group">

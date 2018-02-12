@@ -270,7 +270,7 @@ class Home extends Admin_Controller {
 		$status = $_GET['status'];
 		$violation_id = $_GET['vid'];
 		$where = array('status' => $status);
-		$this->data['inmates'] = $this->admin_model->getInmatesCrinme($status,$violation_id);
+		$this->data['inmates'] = $this->admin_model->getInmatesCrime($status,$violation_id);
 
 		$this->data['title']	= 'Home';
 		$this->data['css']		= array('vendor/select2/select2.css','vendor/select2/select2-bootstrap.css','vendor/colorbox/css/colorbox.css');

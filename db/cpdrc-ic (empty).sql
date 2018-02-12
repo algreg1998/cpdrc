@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 23, 2017 at 12:13 PM
+-- Generation Time: Feb 11, 2018 at 06:10 AM
 -- Server version: 10.1.13-MariaDB
 -- PHP Version: 7.0.8
 
@@ -38,8 +38,7 @@ CREATE TABLE `cell` (
 --
 
 INSERT INTO `cell` (`cellId`, `cellNumber`, `capacity`, `status`) VALUES
-(1, 2147483647, 16, 'active'),
-(2, 546, 505, 'active');
+(1, 1, 500, 'active');
 
 -- --------------------------------------------------------
 
@@ -59,8 +58,7 @@ CREATE TABLE `court` (
 --
 
 INSERT INTO `court` (`court_id`, `court_name`, `court_mun`, `status`) VALUES
-(1, 'RTC Branch 1', 1, 'active'),
-(2, 'RTC Branch 2', 1, 'active');
+(1, 'RTC Branch 1', 1, 'active');
 
 -- --------------------------------------------------------
 
@@ -186,7 +184,7 @@ CREATE TABLE `cs_cases_full` (
 
 CREATE TABLE `cs_logs` (
   `id` int(11) UNSIGNED ZEROFILL NOT NULL,
-  `linked_id` int(11) UNSIGNED ZEROFILL NOT NULL,
+  `linked_id` varchar(255) NOT NULL,
   `table_name` varchar(255) DEFAULT NULL,
   `table_field` varchar(255) DEFAULT NULL,
   `subject` text,
@@ -238,7 +236,8 @@ CREATE TABLE `cs_sessions` (
 --
 
 INSERT INTO `cs_sessions` (`session_id`, `ip_address`, `user_agent`, `last_activity`, `user_data`) VALUES
-('6977894cd5e3733d38476137b6b276b6', '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/62.0.3202.94 Safari/537.36', 1511435544, 'a:5:{s:9:"user_data";s:0:"";s:12:"is_logged_in";b:1;s:9:"user_type";s:20:"Warden Administrator";s:7:"user_id";s:11:"00000000001";s:9:"logged_in";a:6:{s:8:"username";s:5:"admin";s:8:"password";s:128:"08f9ef3c42adfe2fbb0e979604c7eb30aa12705fac8b1a9ead899e67b46fd7348c0041721d2be1d64902b66535380e6ff68ee4ed1e9baebf7a7d3dc4285e5391";s:5:"fname";s:5:"CPDRC";s:5:"lname";s:13:"Administrator";s:4:"type";s:20:"Warden Administrator";s:7:"user_id";s:11:"00000000001";}}');
+('a8c7df2b32573f396a728cca2baa6ba0', '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36', 1518325752, ''),
+('bb8e1ac00a61fe039b79df65fe0e5a2e', '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36', 1518325752, 'a:5:{s:9:"user_data";s:0:"";s:12:"is_logged_in";b:1;s:9:"user_type";s:20:"Warden Administrator";s:7:"user_id";s:11:"00000000001";s:9:"logged_in";a:6:{s:8:"username";s:5:"admin";s:8:"password";s:128:"08f9ef3c42adfe2fbb0e979604c7eb30aa12705fac8b1a9ead899e67b46fd7348c0041721d2be1d64902b66535380e6ff68ee4ed1e9baebf7a7d3dc4285e5391";s:5:"fname";s:5:"CPDRC";s:5:"lname";s:13:"Administrator";s:4:"type";s:20:"Warden Administrator";s:7:"user_id";s:11:"00000000001";}}');
 
 -- --------------------------------------------------------
 
@@ -302,6 +301,13 @@ CREATE TABLE `cs_violations_categories` (
   `modified_on` int(11) UNSIGNED DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Dumping data for table `cs_violations_categories`
+--
+
+INSERT INTO `cs_violations_categories` (`id`, `name`, `description`, `status`, `created_on`, `modified_on`) VALUES
+(00000000000, 'Default Category', 'Default Category', 'active', NULL, NULL);
+
 -- --------------------------------------------------------
 
 --
@@ -311,7 +317,7 @@ CREATE TABLE `cs_violations_categories` (
 CREATE TABLE `editrequest` (
   `editRequestID` int(11) NOT NULL,
   `requestedBy` int(11) NOT NULL,
-  `inmateId` int(11) NOT NULL,
+  `inmateId` varchar(255) NOT NULL,
   `status` enum('pending','approved','rejected','finished') NOT NULL,
   `reason` varchar(250) NOT NULL,
   `judgedBy` int(11) NOT NULL,
@@ -340,7 +346,7 @@ CREATE TABLE `file` (
 --
 
 CREATE TABLE `inmate` (
-  `ref_formid` varchar(255) NOT NULL,
+  `ref_formid` int(11) NOT NULL,
   `inmate_id` varchar(255) NOT NULL,
   `cell_no` varchar(255) NOT NULL,
   `inmate_fname` varchar(255) NOT NULL,
@@ -464,8 +470,8 @@ CREATE TABLE `inmate_auth_visitor` (
 
 CREATE TABLE `inmate_build` (
   `inmate_id` varchar(255) NOT NULL,
-  `height` int(11) NOT NULL,
-  `weight` int(11) NOT NULL,
+  `height` float NOT NULL,
+  `weight` float NOT NULL,
   `complexion` varchar(255) NOT NULL,
   `build` text NOT NULL,
   `hair` varchar(255) NOT NULL,
@@ -486,6 +492,7 @@ CREATE TABLE `inmate_case_info` (
   `date_confinment` date NOT NULL,
   `crime` text NOT NULL,
   `sentence` text NOT NULL,
+  `counts` int(11) NOT NULL,
   `commencing` varchar(255) NOT NULL,
   `expire_good` date NOT NULL,
   `expire_bad` date NOT NULL,
@@ -558,11 +565,13 @@ CREATE TABLE `inmate_info` (
   `born_in` varchar(255) NOT NULL,
   `home_add` varchar(255) NOT NULL,
   `province_add` varchar(255) NOT NULL,
+  `religion` enum() NOT NULL,
   `occupation` varchar(255) NOT NULL,
   `father` varchar(255) NOT NULL,
   `mother` varchar(255) NOT NULL,
   `relative` varchar(255) NOT NULL,
   `relation` varchar(255) NOT NULL,
+  `contactpersonnum` varchar(40) NOT NULL,
   `address` varchar(255) NOT NULL,
   `place` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -574,11 +583,12 @@ CREATE TABLE `inmate_info` (
 --
 
 CREATE TABLE `inmate_released` (
-  `inmate_id` bigint(20) NOT NULL,
+  `inmate_id` varchar(255) NOT NULL,
   `date_released` date NOT NULL,
   `type_released` enum('SERVED','PROBATION','SHIPPED','BONDED','ACQUITTED','DISMISSED','DEAD','GCTA','OTHERS') NOT NULL,
   `released_info` varchar(255) NOT NULL,
-  `user_id` bigint(20) UNSIGNED ZEROFILL NOT NULL
+  `user_id` bigint(20) UNSIGNED ZEROFILL NOT NULL,
+  `record` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -588,11 +598,12 @@ CREATE TABLE `inmate_released` (
 --
 
 CREATE TABLE `inmate_transfer` (
-  `inmate_id` bigint(20) UNSIGNED ZEROFILL NOT NULL,
+  `inmate_id` varchar(255) NOT NULL,
   `date_of_transfer` date NOT NULL,
   `transfer_to` varchar(255) NOT NULL,
   `information` varchar(255) NOT NULL,
-  `warden_id` bigint(20) UNSIGNED ZEROFILL NOT NULL
+  `warden_id` bigint(20) UNSIGNED ZEROFILL NOT NULL,
+  `record` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -608,6 +619,13 @@ CREATE TABLE `logs` (
   `time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `agent` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `logs`
+--
+
+INSERT INTO `logs` (`id`, `action`, `actor`, `time`, `agent`) VALUES
+(1, 'Log in', 00000000001, '2018-02-11 05:09:18', 'Chrome  v.63.0.3239.132 on Unknown Windows OS');
 
 -- --------------------------------------------------------
 
@@ -638,8 +656,7 @@ CREATE TABLE `municipality` (
 --
 
 INSERT INTO `municipality` (`mun_id`, `mun_name`, `province`, `status`) VALUES
-(1, 'Cebu City', 'Cebu', 'active'),
-(2, 'Danao City', 'Cebu', 'active');
+(1, 'Cebu City', 'Cebu', 'active');
 
 -- --------------------------------------------------------
 
@@ -687,7 +704,9 @@ CREATE TABLE `user_account` (
 --
 
 INSERT INTO `user_account` (`user_id`, `username`, `password`, `email`, `user_fname`, `user_lname`, `user_mi`, `gender`, `birthdate`, `user_address`, `user_contact`, `type`, `status`, `user_filename`, `img_set`, `added_by`, `position`, `last_activity`, `created_on`, `modified_on`) VALUES
-(00000000001, 'admin', '08f9ef3c42adfe2fbb0e979604c7eb30aa12705fac8b1a9ead899e67b46fd7348c0041721d2be1d64902b66535380e6ff68ee4ed1e9baebf7a7d3dc4285e5391', 'admin@gmail.com', 'CPDRC', 'Administrator', 'yow', 'Male', '0000-00-00', '0', '09434528795', 'Warden Administrator', 'Active', 'cd03b000d25df96f624c079d814eae33.jpg', '1', 00000000000, '', 0, 0, 0);
+(00000000001, 'admin', '08f9ef3c42adfe2fbb0e979604c7eb30aa12705fac8b1a9ead899e67b46fd7348c0041721d2be1d64902b66535380e6ff68ee4ed1e9baebf7a7d3dc4285e5391', 'admin@gmail.com', 'CPDRC', 'Administrator', 'yow', 'Male', '0000-00-00', '0', '09434528795', 'Warden Administrator', 'Active', 'cd03b000d25df96f624c079d814eae33.jpg', '1', 00000000000, '', 0, 0, 0),
+(00000000002, 'asd', '1320c4dfbcbd404e791276ce5dbef76492dc5421e602948e962c4d95a4b967a56e21a8661e0e33681d3af43ea9680cf2b5d24ef8cfc87df2ba01541e1e4adf7a', '', 'asd', 'asd', 'asd', 'Male', '0000-00-00', 'asdsafasasf', '092343565656', 'Warden', 'Deactive', '192x192.jpg', '1', 00000000001, '', 0, 0, 0),
+(00000000003, 'fsa', '5ef4b4a5c101768c80aed959249c7d820e81f5248d383efa7961a5725d8fd3b55df431b1191085def8edd199290ae6a4c802856d19265ec4439cdfa878b83840', '', 'fas', 'fsa', 'fas', 'Male', '0000-00-00', 'fs', 'fsa', 'Warden', 'Active', '192x192.jpg', '1', 00000000001, '', 0, 0, 0);
 
 -- --------------------------------------------------------
 
@@ -816,7 +835,8 @@ ALTER TABLE `cs_violations_categories`
 -- Indexes for table `editrequest`
 --
 ALTER TABLE `editrequest`
-  ADD PRIMARY KEY (`editRequestID`);
+  ADD PRIMARY KEY (`editRequestID`),
+  ADD KEY `inmateId` (`inmateId`);
 
 --
 -- Indexes for table `file`
@@ -831,7 +851,8 @@ ALTER TABLE `file`
 --
 ALTER TABLE `inmate`
   ADD PRIMARY KEY (`inmate_id`),
-  ADD KEY `added_by` (`added_by`);
+  ADD KEY `added_by` (`added_by`),
+  ADD KEY `ref_formid` (`ref_formid`);
 
 --
 -- Indexes for table `inmate_2d`
@@ -885,6 +906,18 @@ ALTER TABLE `inmate_info`
   ADD KEY `inmate_id` (`inmate_id`);
 
 --
+-- Indexes for table `inmate_released`
+--
+ALTER TABLE `inmate_released`
+  ADD KEY `inmate_id` (`inmate_id`);
+
+--
+-- Indexes for table `inmate_transfer`
+--
+ALTER TABLE `inmate_transfer`
+  ADD KEY `inmate_id` (`inmate_id`);
+
+--
 -- Indexes for table `logs`
 --
 ALTER TABLE `logs`
@@ -919,12 +952,12 @@ ALTER TABLE `user_account`
 -- AUTO_INCREMENT for table `cell`
 --
 ALTER TABLE `cell`
-  MODIFY `cellId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `cellId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT for table `court`
 --
 ALTER TABLE `court`
-  MODIFY `court_id` int(12) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `court_id` int(12) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT for table `cs_administrators`
 --
@@ -969,12 +1002,17 @@ ALTER TABLE `cs_violations`
 -- AUTO_INCREMENT for table `cs_violations_categories`
 --
 ALTER TABLE `cs_violations_categories`
-  MODIFY `id` int(11) UNSIGNED ZEROFILL NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) UNSIGNED ZEROFILL NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT for table `editrequest`
 --
 ALTER TABLE `editrequest`
   MODIFY `editRequestID` int(11) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT for table `inmate`
+--
+ALTER TABLE `inmate`
+  MODIFY `ref_formid` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `inmate_2d`
 --
@@ -999,12 +1037,12 @@ ALTER TABLE `inmate_conduct_rec`
 -- AUTO_INCREMENT for table `logs`
 --
 ALTER TABLE `logs`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT for table `municipality`
 --
 ALTER TABLE `municipality`
-  MODIFY `mun_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `mun_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT for table `temp`
 --
@@ -1014,7 +1052,7 @@ ALTER TABLE `temp`
 -- AUTO_INCREMENT for table `user_account`
 --
 ALTER TABLE `user_account`
-  MODIFY `user_id` int(11) UNSIGNED ZEROFILL NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `user_id` int(11) UNSIGNED ZEROFILL NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 --
 -- Constraints for dumped tables
 --
@@ -1057,17 +1095,17 @@ ALTER TABLE `cs_violations`
   ADD CONSTRAINT `cs_violations_ibfk_1` FOREIGN KEY (`violations_category_id`) REFERENCES `cs_violations_categories` (`id`) ON DELETE CASCADE;
 
 --
+-- Constraints for table `editrequest`
+--
+ALTER TABLE `editrequest`
+  ADD CONSTRAINT `fk_in` FOREIGN KEY (`inmateId`) REFERENCES `inmate` (`inmate_id`) ON UPDATE CASCADE;
+
+--
 -- Constraints for table `file`
 --
 ALTER TABLE `file`
   ADD CONSTRAINT `fk_ff` FOREIGN KEY (`inmate_id`) REFERENCES `inmate` (`inmate_id`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `fk_us` FOREIGN KEY (`added_by`) REFERENCES `user_account` (`user_id`) ON DELETE CASCADE ON UPDATE CASCADE;
-
---
--- Constraints for table `inmate`
---
-ALTER TABLE `inmate`
-  ADD CONSTRAINT `fk_ad` FOREIGN KEY (`added_by`) REFERENCES `user_account` (`user_id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
 -- Constraints for table `inmate_2d`
@@ -1112,6 +1150,18 @@ ALTER TABLE `inmate_fp`
 --
 ALTER TABLE `inmate_info`
   ADD CONSTRAINT `fk_id` FOREIGN KEY (`inmate_id`) REFERENCES `inmate` (`inmate_id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Constraints for table `inmate_released`
+--
+ALTER TABLE `inmate_released`
+  ADD CONSTRAINT `fk_inReleased` FOREIGN KEY (`inmate_id`) REFERENCES `inmate` (`inmate_id`) ON UPDATE CASCADE;
+
+--
+-- Constraints for table `inmate_transfer`
+--
+ALTER TABLE `inmate_transfer`
+  ADD CONSTRAINT `fk_inTrans` FOREIGN KEY (`inmate_id`) REFERENCES `inmate` (`inmate_id`);
 
 --
 -- Constraints for table `logs`

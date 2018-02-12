@@ -48,7 +48,7 @@
                                         </div>
                                     </div>
                                     <div class="form-group">
-                                        <label class="col-lg-3 control-label" style="font-size: 16px">Release Date :</label>
+                                        <label class="col-lg-3 control-label" style="font-size: 16px">Estimated Release Date:</label>
                                         <div class="col-sm-9" style="margin-top: 7px; font-size: 16px">
                                             <?php echo ($reason_info->release_date == NULL) ? "N/A" : mdate("%M %d, %Y",strtotime($reason_info->release_date)) ?>
                                         </div>
@@ -124,9 +124,9 @@
                                                             <thead>
                                                                 <tr>
                                                                     <th>Case No</th>
-                                                                    <th>RA</th>
+<!--                                                                    <th>RA</th>-->
                                                                     <th>Violation</th>
-                                                                    <th>Level</th>
+<!--                                                                    <th>Level</th>-->
                                                                 </tr>
                                                             </thead>
                                                             <tbody>
@@ -137,9 +137,9 @@
                                                                         <?php foreach ($cases as $case): ?>
                                                                             <tr>
                                                                                 <td style="width: 150px"><?php echo $case->case_no ?></td>
-                                                                                <td><?php echo $case->RepublicAct ?></td>
+<!--                                                                                <td>--><?php //echo $case->RepublicAct ?><!--</td>-->
                                                                                 <td><?php echo $case->name ?></td>
-                                                                                <td><?php echo $case->level ?></td>
+<!--                                                                                <td>--><?php //echo $case->level ?><!--</td>-->
                                                                             </tr>
                                                                         <?php endforeach; ?>
                                                                     <?php endif ?>

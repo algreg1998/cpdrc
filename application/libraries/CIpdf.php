@@ -1,8 +1,6 @@
 <?php
 require('fpdf.php');
 
-$con = mysqli_connect('localhost','root','');
-mysqli_select_db($con,'cpdrc-ic');
 
 class CIpdf extends FPDF
 {
@@ -128,9 +126,9 @@ class CIpdf extends FPDF
         $a = json_decode(json_encode($data));
         for($b = 1 ; $b <= $cnt ; $b++){
 
-            $courts = explode("/",$a[$b-1]->court);
-            $crimes = explode("/",$a[$b-1]->crime);
-            $cases = explode("/",$a[$b-1]->case_no);
+            $courts = explode("|",$a[$b-1]->court);
+            $crimes = explode("|",$a[$b-1]->crime);
+            $cases = explode("|",$a[$b-1]->case_no);
             // if($b % 12 == 0){
             //     $this->AddPage();
             //     $this->Ln(7);

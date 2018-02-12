@@ -34,7 +34,6 @@
 							<label><i class="fa fa-info"></i> <strong>Court Name</strong></label>
 							<!--input type="text" name="court" class="form-control" required --> <!--Original -->
 							<select name="court" class="form-control" required >
-								
 								<?php 
 									foreach ($courts as $row) {
 									 echo '<option value="'.$row->court_name.'">'.$row->court_name.'</option>';
@@ -43,21 +42,58 @@
 							</select> 
 							<label><i class="fa fa-file"></i> <strong>Crime/Violation</strong></label>
 							<!--textarea rows="3" type="text" name="crime" class="form-control" required ></textarea--><!-- Original -->
+							<?php 
+							if(count($violations) != 0){ 
+
+										echo form_dropdown('crime', $violations, '',' onChange="getViolation();" id="crime"  class="form-control" ');
+									}else{
+										echo '<select  disabled id="crime" onchange="getViolation()" name="crime" class="form-control" >
+												<option>No Crimes</option>
+											</select>';
+										}  ?> <!-- 
 							<select id="crime" name="crime" class="form-control" onchange="getViolation()" required>
 								
 								<?php 
 									foreach ($violations as $row) {
 									 echo '<option value="'.$row->id.'">'.$row->name.'</option>';
 									}
-								?>
+								?> -->
 							</select>
 							<!-- <label><i class="fa fa-file"></i> <b>Crime</b></label>
 							<textarea rows="3" type="text" name="crime" class="form-control" required ></textarea> -->
-							<label><i class="fa fa-file-o"></i> <b>Sentence</b></label>
-							<textarea rows="3" type="text" name="sentence" class="form-control" required ></textarea>
-							<label><i class="fa fa-info"></i> <b>Commencing</b></label>						
-							<textarea rows="3" type="text" name="commencing" class="form-control" placeholder="Commencing" required ></textarea><br>
-							<label><i class="fa fa-calendar"></i> <b>Expected Date of Release</b></label>
+							<br>
+							<div class="panel panel-danger">
+							  <div class="panel-heading"><b>MAXIMUM</b></div>
+							  <div class="panel-body">
+							  	<div class="row">
+									<div class="col-md-4" align="center"><label>MONTH:</label>&nbsp;<h2><span id="mam"></span></h2></div>
+									<div class="col-md-4" align="center"><label>DAY:</label>&nbsp;<h2><span id="mad"></span></h2></div>
+									<div class="col-md-4" align="center"><label>YEAR:</label>&nbsp;<h2><span id="may"></span></h2></div>
+								</div>
+							  </div>
+							</div>
+							<div class="panel panel-danger">
+							  <div class="panel-heading"><b>MINIMUM</b></div>
+							  <div class="panel-body">
+							  	<div class="row">
+									<div class="col-md-4" align="center"><label>MONTH:</label>&nbsp;<h2><span id="mim"></span></h2></div>
+									<div class="col-md-4" align="center"><label>DAY:</label>&nbsp;<h2><span id="mid"></span></h2></div>
+									<div class="col-md-4" align="center"><label>YEAR:</label>&nbsp;<h2><span id="miy"></span></h2></div>
+								</div>
+							  </div>
+							</div>
+                            <label><i class="fa fa-sort-numeric-asc"></i> Counts(s)</label><br>
+                            <input type="number" min="0" name="counts" value="0"><br><br>
+
+							<label><i class="fa fa-info"></i> Period of Preventive Imprisonment</label><br>
+							<label>Date Received</label>&nbsp;&nbsp;&nbsp;<input type="date" name="dor"><br>
+							<label>Date Commence</label>&nbsp;&nbsp;&nbsp;<input type="date" name="doc"><br>
+							<!-- <label><i class="fa fa-file-o"></i> <b>Sentence</b></label>
+							<textarea rows="3" type="text" name="sentence" class="form-control" required ></textarea> -->
+<!--							<label><i class="fa fa-info"></i> <b>Commencing</b></label>						-->
+<!--							<textarea rows="3" type="text" name="commencing" class="form-control" placeholder="Commencing" required ></textarea>-->
+                            <br>
+							<!-- <label><i class="fa fa-calendar"></i> <b>Expected Date of Release</b></label>
 							<div class="row">
 								<div class="col-md-6">
 									<label class="text-muted">With good records</label><input type="date" id="dategood" name="dategood" class="form-control" placeholder="Date of Released(with good record)" required ><br>
@@ -91,8 +127,8 @@
 								<div class="col-md-6">			
 									<label class="text-muted">With misconduct records</label><input type="date" id="datebad" name="datebad" class="form-control" placeholder="Date of Released(with bad record)" required ><br>
 								</div>
-							</div>
-							<input type="submit" name="submit" value="Add case information" class="btn btn-warning btn-lg form-control">
+							</div> -->
+							<input type="submit" name="submit" value="Add case information" class="btn btn-warning form-control">
 						</form>
 							
 						</div>
@@ -115,7 +151,7 @@
 									  					<th>Date</th>
 									  					<th>Case number</th>
 									  					<th>Crime</th>
-									  					<th>Sentence</th>
+									  					<th>Counts</th>
 									  				</tr>
 									  			</thead>
 									  			<tbody id="gridBody">
@@ -125,8 +161,8 @@
 									  		         echo "<tr>";
 									  			       echo "<td>".$key['confine']."</td>";
 									  			       echo "<td>".$key['case_no']."</td>";
-									  			       echo "<td>".$key['crime']."</td>";
-									  			       echo "<td>".$key['sentence']."</td>";
+									  			       echo "<td>".$key['name']."</td>";
+									  			       echo "<td>".$key['counts']."</td>";
 									  				 echo "</tr>";
 												}  ?>	
 
@@ -154,20 +190,22 @@
 									  					<th>Date</th>
 									  					<th>Case number</th>
 									  					<th>Crime</th>
-									  					<th>Sentence</th>
+									  					<th>Counts</th>
 									  				</tr>
 									  			</thead>
 									  			<tbody id="gridBody">
 									  	        <?php
-  												foreach ($arc as $key) {
-
-									  		         echo "<tr>";
-									  			       echo "<td>".$key['confine']."</td>";
-									  			       echo "<td>".$key['case_no']."</td>";
-									  			       echo "<td>".$key['crime']."</td>";
-									  			       echo "<td>".$key['sentence']."</td>";
-									  				 echo "</tr>";
-												}  ?>	
+									  	        if (isset($arc)) {
+									  	        	foreach ($arc as $key) {
+										  		         echo "<tr>";
+										  			       echo "<td>".$key['confine']."</td>";
+										  			       echo "<td>".$key['case_no']."</td>";
+										  			       echo "<td>".$key['vioName']."</td>";
+										  			       echo "<td>".$key['counts']."</td>";
+										  				 echo "</tr>";
+													}	
+									  	        }
+  												  ?>	
 
 									  			</tbody>
 									  		</table>
@@ -330,5 +368,47 @@ $(function(){
      });
 });
 
+		function getViolation(){
+			var data = null;
+			data = $('#crime').find(':selected').val();
+			
+			$.post('<?php echo site_url();?>cpdrc/addinmate/getViolation/'+data,
+				{},
+				function(data)
+				{
+					var test = JSON.parse(data);
+					
+					if(test['max_day']==""){
+							test['max_day'] =0;
+					}
+					if(test['max_month']==""){
+							test['max_month'] =0;
+					}
+					if(test['max_year']==""){
+							test['max_year'] =0;
+					}
+					$("#mad").text(test['max_day']);
+					$("#mam").text(test['max_month']);
+					$("#may").text(test['max_year']);
+					
+					if(test['min_day']==""){
+							test['min_day'] =0;
+					}
+					if(test['min_month']==""){
+							test['min_month'] =0;
+					}
+					if(test['min_year']==""){
+							test['min_year'] =0;
+					}
+					$("#mid").text(test['min_day']);
+					$("#mim").text(test['min_month']);
+					$("#miy").text(test['min_year']);
+					
 
+				});
+		}
+		$( document ).ready(function() {
+		   getViolation();
+		});
+	
 </script>

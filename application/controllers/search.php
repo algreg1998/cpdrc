@@ -89,12 +89,27 @@ class Search extends Admin_Controller {
 		 		$data['inmate']=$this->cpdrc_fw->inmateinfo($id);
 		 		$data['case']=$this->cpdrc_fw->getcaseinfo($id);
 		 		$data['old'] = $this->cpdrc_fw->getOldCase($id);
+		 		$prep =$this->input->post('prep');
+		 		$app = $this->input->post('app');
 
                 $pdf = new cpdf('P','mm','A4');
                 $pdf->AliasNbPages();
                 $pdf->AddPage();
-                $pdf->body($data['inmate'],$data['case'],$data['old']);
+                $pdf->body($data['inmate'],$data['case'],$data['old'],$prep,$app);
                 // $pdf->display($data['inmate'],$data['case'],$data['old']);
+                //logs
+				$logData = array(
+							'linked_id' => $data['id'],
+							'table_name' => 'inmate',
+							'table_field' => 'id',
+							'subject' => 'Generate Carpeta printout',
+							'reasons' => 'Prepared and Verified by: "'.$prep.'" Approved by: "'.$app.'"',
+							'update_by' => $this->session->userdata('user_id'),
+							'action' => 'generate',
+							'created_at' => now(),
+							'status' => 'active'
+						);
+				$this->admin_model->save('cs_logs',$logData);
                 $pdf->Output();
         }
 

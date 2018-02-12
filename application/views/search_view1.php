@@ -37,10 +37,9 @@
                                             <td><?php echo $inmate->inmate_mi; ?></td>
                                             <!-- <td><?php echo $inmate->step; ?></td> -->
                                             <td style='text-align: center'>
-                                            <form method="POST" action="<?php echo site_url()?>cpdrc/addinmate/continue">
-                                            <input type="text" class="hidden" name="inmate_id" value="<?php echo $inmate->inmate_id; ?>">
-                                            <button type="submit" class="btn btn-danger"> <i class="fa fa-arrow-right" aria-hidden="true"></i> Proceed to <b> Step <?php echo $inmate->step; ?> </b></button> 
-                                              </form>  
+                                                <a href="<?php echo site_url()?>cpdrc/addinmate/profiling/<?php echo $inmate->inmate_id;?>">
+                                                    <button type="submit" class="btn btn-danger"> <i class="fa fa-arrow-right" aria-hidden="true"></i> Proceed to <b> Step <?php echo $inmate->step; ?> </b></button> 
+                                                </a>
                                             </td>
                                         </tr>
                                         <?php

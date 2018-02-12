@@ -83,9 +83,9 @@
                         <li class="nav-violations">
                             <a href="#">&nbsp;<i></i>&nbsp;Violations<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
-                                <li class="nav-graphical-violations">
+                                <!-- <li class="nav-graphical-violations">
                                     <a href="<?php echo base_url('historical-graphical-tools/violations') ?>">&nbsp;&nbsp;&nbsp;<i></i>&nbsp;&nbsp;&nbsp;Graph</a>
-                                </li>
+                                </li> -->
                                 <li class="nav-crimeIndex">
                                     <a href="<?php echo base_url('cpdrc/pages/reportsCrimeIndex') ?>">&nbsp;&nbsp;&nbsp;<i></i>&nbsp;&nbsp;&nbsp;Crime Index</a>
                                 </li>
@@ -99,17 +99,27 @@
                         </li>
 
                         <li class="nav-graphical-populations">
-                            <a href="<?php echo base_url('historical-graphical-tools/population') ?>">&nbsp;<i></i>&nbsp;Population</a>
+                            <a href="<?php echo base_url('historical-graphical-tools/population') ?>">&nbsp;&nbsp;&nbsp;Population</a>
                         </li>
                         <li class="nav-graphical-Daily">
-                            <a href="<?php echo base_url('cpdrc/pages/reportsDaily') ?>">Daily</a>
+                            <a href="<?php echo base_url('cpdrc/pages/reportsDaily') ?>">&nbsp;&nbsp;&nbsp;Daily</a>
                         </li>
                         <li class="nav-graphical-releases">
-                            <a href="<?php echo base_url('cpdrc/pages/releases') ?>">Releases</a>
+                            <a href="<?php echo base_url('cpdrc/pages/releases') ?>">&nbsp;&nbsp;&nbsp;Releases</a>
                         </li>
                         <li class="nav-graphical-municipality">
-                            <a href="<?php echo base_url('cpdrc/pages/municipality') ?>">Municipality</a>
+                            <a href="<?php echo base_url('cpdrc/pages/municipality') ?>">&nbsp;&nbsp;&nbsp;Municipality</a>
                         </li>
+                        <li class="nav-graphical-addReleased">
+                            <a href="<?php echo base_url('historical-graphical-tools/addReleased') ?>">&nbsp;&nbsp;&nbsp;Remand and Released</a>
+                        </li>
+                        <li class="nav-graphical-popuBar">
+                            <a href="<?php echo base_url('historical-graphical-tools/popuBar') ?>">&nbsp;&nbsp;&nbsp;Population Bar</a>
+                        </li>
+                        <li class="nav-graphical-popuPie">
+                            <a href="<?php echo base_url('historical-graphical-tools/popuPie') ?>">&nbsp;&nbsp;&nbsp;Population Pie Chart</a>
+                        </li>
+
                         
                     </ul>
                 </li>
@@ -142,9 +152,12 @@
                 </li>
                 <?php  if($this->session->userdata('user_type') == "Warden Administrator"){?>
                 <li class="nav-editReq">
-                    <a href="<?php echo base_url('cpdrc/editinmate') ?>"><i class="fa fa-user fa-fw"></i> Edit Requests    </a>  
+                    <a href="<?php echo base_url('cpdrc/editinmate') ?>"><i class="fa fa-edit fa-fw"></i> Edit Requests    </a>  
                 </li>
                 <?php }?>
+                 <li class="nav-import">
+                    <a href="<?php echo base_url('import/viewImportPage'); ?>"><i class="fa fa-download fa-fw"></i> Import CSV </a>  
+                </li>
                 <!-- <li class="nav-reports">
                     <a href="#"><i class="fa fa-line-chart fa-fw"></i> Reports<span class="fa arrow"></span></a>
                     <ul class="nav nav-second-level">

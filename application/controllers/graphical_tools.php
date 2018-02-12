@@ -5,7 +5,9 @@ class Graphical_tools extends Admin_Controller {
 	public function __construct()
 	{
 		parent::__construct();
+		$this->load->model('cpdrc/cpdrc_fw','',TRUE);
 		$this->load->helper('date');
+		$this->load->library('form_validation');
 	}
 	
 	public function violations()
@@ -122,7 +124,228 @@ class Graphical_tools extends Admin_Controller {
 									</script>';
 		$this->load->view('templates',$this->data);
 	}
+	public function getPrisonStrength($year,$month,$day){
+	      $pStren = $this->cpdrc_fw->getReportsDailyPreviousPStren($year,$month,$day);
+	                  // if($day == 14){
+	                  //       echo $this->cpdrc_fw->db->last_query();
+	                  //       //echo json_encode($pStren);
+	                  // }
+	      $a = json_decode(json_encode($pStren));
+	      $cnt =0;
+	      for($i = 0; $i< count($a); $i++) {
+	       $cnt+=  $a[$i]->count;
+	 }
 
+	 $pStren1 = $this->cpdrc_fw->getReportsDailyPreviousReleased($year,$month,$day);
+	                  //  if($day == 14){
+	                  //      echo "<br>";
+	                  //        echo $this->cpdrc_fw->db->last_query();
+	                  // //       //echo json_encode($pStren);
+	                  //  }
+	 $b = json_decode(json_encode($pStren1));
+	 $cntRes = 0;
+	 for($i = 0; $i < count($b); $i++) {
+	       $cntRes+=  $b[$i]->count;
+	 }
+
+	 return $cnt - $cntRes;
+	}
+	public function pol($year,$month){
+
+      $pStren = array();
+
+      $day = $this->cpdrc_fw->getHighestDayOfMonth($year,$month);
+      $a = json_decode(json_encode($day));
+      $day =$a[0]->day;
+
+
+
+      for($dy = 1; $dy <= $day ; $dy++){
+
+            $prisonersReceived = $this->cpdrc_fw->getReportsDailyCurrentRecieved($year,$month,$dy);
+            $a = json_decode(json_encode($prisonersReceived));
+            if($a[0]->prisonersReceived>0){
+                  $prisonersReceived =$a[0]->prisonersReceived;
+            }else{
+                  $prisonersReceived = "";
+            }
+
+
+
+            $prisonersReleased = $this->cpdrc_fw->getReportsDailyCurrentReleased($year,$month,$dy);
+            $a = json_decode(json_encode($prisonersReleased));
+            $prisonersReleased =$a[0]->prisonersReleased;
+
+            $pStrength =  $this->getPrisonStrength($year,$month,$dy);
+            if($prisonersReceived == ""){
+                  $total = $pStrength  + 0 - $prisonersReleased;
+
+            }else{
+                  $total = $pStrength + $prisonersReceived - $prisonersReleased;
+            }
+
+            $pStren [] = array("day" =>$dy,
+            		"prisonersReceived"=>$prisonersReceived,
+                  "prisonersReleased" => $prisonersReleased,
+                  "total" => $total); 
+
+      }
+      return $pStren;
+}
+	public function addReleased()
+	{	
+		if ($this->form_validation->run() != TRUE )
+       {
+            if (!empty( $this->input->post('year')) && !empty( $this->input->post('month'))) {
+                 $year = $this->input->post('year');
+                 $month = $this->input->post('month');     
+           }else{
+	            $year =date("Y");
+	            $month =date("m");
+	      }
+
+	      }
+		$data['data']=$this->pol($year,$month);
+		$data['year']=$year;
+      	$data['month']=$month;
+		
+		$day = array();
+		$total = array();
+		$rel = array();
+		foreach ($data['data'] as $k) {
+			// echo $k["day"]." ".$k["pStrength"]." ".$k["prisonersReceived"]." ".$k["prisonersReleased"]." ".$k["total"]." <br>";
+			$day[]=array("day"=>$k["day"]);
+			$total[]=array("total"=>$k["total"]);
+			$rel[]=array("rel"=>$k["prisonersReleased"]);
+		}
+		$data['day'] = $day;
+		$data['total'] = $total ;
+		$data['rel'] = $rel;
+		// echo "<pre>";
+		// print_r($data['day']);
+		
+		$this->data['title']	= 'Population';
+		$this->data['css']		= array('vendor/select2/select2.css','vendor/select2/select2-bootstrap.css');
+		$this->data['js_top']	= array();
+		$this->data['header'] 	= $this->load->view('admin/header_view',$this->data,TRUE);
+		$this->data['body'] 	= $this->load->view('graphical_tools_addedReleased_view',$data,TRUE);
+		$this->data['footer'] 	= $this->load->view('footer_view',NULL,TRUE);
+		$this->data['js_bottom']= array('vendor/highcharts/highcharts.js','vendor/highcharts/modules/exporting.js');
+		$this->data['custom_js']= "<script type='text/javascript'>
+										var monthname = 'November'
+										$('.nav-graphical').addClass('active');
+											$('.nav-graphical-addReleased a').addClass('active');
+									</script>";
+		$this->load->view('templates',$this->data);
+	}
+	public function popuPie()
+	{	
+		
+		$data['popu'] = $this->admin_model->getMaleFemalCnt();
+        $this->data['title']    = 'Masterlist';
+        $this->data['css']      = array(
+                                'vendor/datatables-plugins/integration/bootstrap/3/dataTables.bootstrap.css',
+                                'vendor/colorbox/css/colorbox.css',
+                                'vendor/alertify/css/alertify.core.css',
+                                'vendor/alertify/css/alertify.default.css'
+                                );
+        $this->data['js_top']   = array();
+        $this->data['header']   = $this->load->view('admin/header_view',$this->data,TRUE);
+        $this->data['body']     = $this->load->view('graphical_tools_populationPieChart_view', $data,TRUE);
+        $this->data['footer']   = $this->load->view('footer_view',NULL,TRUE);
+        $this->data['js_bottom']= array('vendor/highcharts/highcharts.js','vendor/highcharts/modules/exporting.js');
+        $this->data['custom_js']= "<script type='text/javascript'>
+										var monthname = 'November'
+										$('.nav-graphical').addClass('active');
+											$('.nav-graphical-popuPie a').addClass('active');
+									</script>";
+        $this->load->view('templates',$this->data);   
+	}
+	public function getPopuonDate1($year){
+		$reports = $this->admin_model->getPopulationReport($year);
+	   	// var_dump($reports);
+	   	foreach ($reports as $key => $report)
+		{
+			$a = $report->detainee+$report->convict+$report->probation;
+
+			 // var_dump($report);
+			$months[$report->monthname] = $a ;
+		}
+		var_dump($months);
+	   	die();
+		return $cnt - $cntRes;
+	}
+	public function getPopuonDate($month,$day,$year){
+		$pStren = $this->cpdrc_fw->getReportsDailyPreviousPStren($year,$month,$day);
+	    $a = json_decode(json_encode($pStren));
+		$cnt =0;
+		for($i = 0; $i< count($a); $i++) {								
+		    $cnt+=  $a[$i]->count;
+		}
+
+		$pStren1 = $this->cpdrc_fw->getReportsDailyPreviousReleased($year,$month,$day);
+		$b = json_decode(json_encode($pStren1));
+		$cntRes = 0;
+		for($i = 0; $i < count($b); $i++) {
+		    $cntRes+=  $b[$i]->count;
+		}
+		return $cnt - $cntRes;
+	}
+	public function popuBar()
+	{	
+		if ($this->form_validation->run() != TRUE )
+       {
+            if (!empty( $this->input->post('year')) && !empty( $this->input->post('month'))) {
+                 $year = $this->input->post('year');
+                 $month = $this->input->post('month');     
+           }else{
+	            $year =date("Y");
+	            $month =date("m");
+	      }
+
+	      }else{
+	            $data['day'] = NULL;
+	      }
+
+		$day = cal_days_in_month(CAL_GREGORIAN,$month,$year);
+		$a = array();
+		$days= array();
+
+		for ($i =1; $i <= $day; $i++) { 
+			$a[$i] =  $this->getPopuonDate($month,$i,$year);
+			$days[]=$i;
+		}
+		// for ($i =1; $i <= $day; $i++) { 
+		// 	$a[$i] =  $this->getPopuonDate1($year);
+		// 	$days[]=$i;
+		// }
+		$data["data"]=$a;
+		$data["days"]=$days;
+		$data['year']=$year;
+      	$data['month']=$month;
+		$dateObj   = DateTime::createFromFormat('!m', $month);
+								$monthName = $dateObj->format('F'); // March
+								// echo $monthName;
+		$data['monthName']	=$monthName;							
+        $this->data['title']    = 'Masterlist';
+        $this->data['css']      = array(
+                                'vendor/datatables-plugins/integration/bootstrap/3/dataTables.bootstrap.css',
+                                'vendor/colorbox/css/colorbox.css',
+                                'vendor/alertify/css/alertify.core.css',
+                                'vendor/alertify/css/alertify.default.css'
+                                );
+        $this->data['js_top']   = array();
+        $this->data['header']   = $this->load->view('admin/header_view',$this->data,TRUE);
+        $this->data['body']     = $this->load->view('graphical_tools_populationBarGraph_view', $data,TRUE);
+        $this->data['footer']   = $this->load->view('footer_view',NULL,TRUE);
+        $this->data['js_bottom']= array('vendor/highcharts/highcharts.js','vendor/highcharts/modules/exporting.js');
+        $this->data['custom_js']= "<script type='text/javascript'>
+										var monthname = 'November'
+										$('.nav-graphical').addClass('active');
+											$('.nav-graphical-popuBar a').addClass('active');
+									</script>";
+        $this->load->view('templates',$this->data);   
+	}
 	public function filename_safe($filename) {
 		$temp = $filename;
 		 

@@ -5,7 +5,18 @@ class Admin_model extends MY_Model {
     public function lastquery () {
         echo $this->db->last_query();
     }
-   
+   public function getMaleFemalCnt(){
+            $query = $this->db->query("SELECT Sum(CASE WHEN inmate_info.gender= 'Male'
+                                        THEN 1 Else 0 End) maleCnt,Sum(CASE WHEN inmate_info.gender= 'Female'
+                                        THEN 1 Else 0 End) femaleCnt,
+                                        COUNT(i.inmate_id) as 'cnt'  
+                                        from inmate as i
+                                        LEFT JOIN inmate_info 
+                                        on i.inmate_id = inmate_info.inmate_id
+                                        WHERE i.status != 'Released' AND i.status = 'Active' 
+                                        ");
+            return $query->result();
+        }
     public function getEditReqStatus($reqBy ,$inmateId){
         $res = $this->db->query('
                 SELECT status
@@ -288,21 +299,21 @@ class Admin_model extends MY_Model {
         return $res->result();
     }
 
-    public function getInmatesCrinme($status,$violation_id){
+    public function getInmatesCrime($status,$violation_id){
         $res = $this->db->query("
-                    SELECT
-                        *
-                        FROM cs_cases c
-                            LEFT JOIN cs_violations v
-                                ON v.id = c.violation_id
-                            LEFT JOIN cs_reasons r
-                                ON r.id = c.reasons_id
-                            INNER JOIN inmate i
-                                ON i.inmate_id = r.inmate_id
-                            INNER JOIN file f
-                                ON f.inmate_id = i.inmate_id
-
-                        WHERE type='".$status."' AND v.id='".$violation_id."' AND i.status ='Active'
+                        SELECT
+                            *
+                            FROM cs_cases c
+                                LEFT JOIN cs_violations v
+                                    ON v.id = c.violation_id
+                                LEFT JOIN cs_reasons r
+                                    ON r.id = c.reasons_id
+                                INNER JOIN inmate i
+                                    ON i.inmate_id = r.inmate_id
+                                INNER JOIN file f
+                                    ON f.inmate_id = i.inmate_id
+    
+                            WHERE type='".$status."' AND v.id='".$violation_id."' AND i.status ='Active'
                 ");
 
         return $res->result();
@@ -359,8 +370,24 @@ class Admin_model extends MY_Model {
 
                         WHERE DATE_FORMAT(IF(type = 'Detainee' ,date_detained, IF(type = 'Convict' ,date_convicted, date_probation)),'%Y')=$year AND i.status ='Active' 
                         GROUP BY yr_month
-                "); 
+                        -- SELECT
+                        -- *,
+                        -- DATE_FORMAT(IF(inmate_type = 'Detainee' ,date_detained, IF(inmate_type = 'Convict' ,date_convicted, date_probation)),'%Y-%m') as yr_month,
+                        -- DATE_FORMAT(IF(inmate_type = 'Detainee' ,date_detained, IF(inmate_type = 'Convict' ,date_convicted, date_probation)),'%m') as month,
+                        
+                        -- SUM(IF(inmate_type = 'Detainee',1,0)) as detainee,
+                        -- SUM(IF(inmate_type = 'Convict',1,0)) as convict,
+                        -- SUM(IF(inmate_type = 'Probation',1,0)) as probation,
+                        -- SUM(IF(inmate_type != 'Pending',1,0)) as total
 
+                        -- FROM inmate i
+                        
+
+                        -- WHERE DATE_FORMAT(IF(inmate_type = 'Detainee' ,date_detained, IF(inmate_type = 'Convict' ,date_convicted, date_probation)),'%Y')=$year AND i.status ='Active' 
+                        -- GROUP BY yr_month
+                "); 
+        // echo  $this->db->last_query();
+        // die();
         return $res->result();
     }
 
@@ -407,7 +434,7 @@ class Admin_model extends MY_Model {
         return $res->result();
     }
 
-    public function getAppearanceSchedule($year,$month){
+    public function getAppearanceSchedule($year,$month,$day){
         $res = $this->db->query("
                     SELECT
                         *,
@@ -425,6 +452,7 @@ class Admin_model extends MY_Model {
                         aps.status='Pending' AND
                         YEAR(date)=$year AND
                         MONTH(date)=$month AND
+                        DAY(date)>= $day AND
                         i.status != 'Released'
                         GROUP BY i.inmate_id
                         ORDER BY date ASC
@@ -433,7 +461,7 @@ class Admin_model extends MY_Model {
         return $res->result();
     }
 
-    public function getAppearanceScheduleCount($year,$month){
+    public function getAppearanceScheduleCount($year,$month,$day){
         $res = $this->db->query("
                     SELECT
                         *,
@@ -451,6 +479,7 @@ class Admin_model extends MY_Model {
                         aps.status='Pending' AND
                         YEAR(date)=$year AND
                         MONTH(date)=$month AND
+                        DAY(date)>= $day AND
                         i.status != 'Released' AND
                         aps.is_read = 0
                         GROUP BY i.inmate_id

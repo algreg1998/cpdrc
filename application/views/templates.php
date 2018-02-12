@@ -29,7 +29,7 @@
 	<?php endif?>
 
 	<link type="text/css" rel="stylesheet" href="<?php echo css_url('style.css') ?>"/>
-
+<!--    <script type="text/javascript" src="--><?php //echo js_url('jquery-3.2.1.min.js') ?><!--"></script>-->
 	<script type="text/javascript" src="<?php echo js_url('jquery-1.11.2.min.js') ?>"></script>
 	<script type="text/javascript" src="<?php echo js_url('moment.js') ?>"></script>
 

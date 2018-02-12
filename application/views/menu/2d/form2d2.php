@@ -14,7 +14,7 @@
 				<label><b>Scar Type</b></label>
 				<select class="form-control" name="markType" required> 
 					<option value="scars">Scars</option>
-					<option value="tatoo">Tatoo</option>
+					<option value="tattoo">Tattoo</option>
 					<option value="birthmark">Birthmark</option>
 					<option value="others">Other</option>
 				</select>

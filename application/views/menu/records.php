@@ -16,6 +16,19 @@
           </div>
           <br>
 	<div id="title">
+        <?php if ($this->session->flashdata('success_msg')): ?>
+            <div class="alert alert-success">
+                <button class="close" aria-hidden="true" data-dismiss="alert" type="button">×</button>
+                <?php echo $this->session->flashdata('success_msg') ?>
+            </div>
+        <?php endif ?>
+
+        <?php if ($this->session->flashdata('error_msg')): ?>
+            <div class="alert alert-danger">
+                <button class="close" aria-hidden="true" data-dismiss="alert" type="button">×</button>
+                <?php echo $this->session->flashdata('error_msg') ?>
+            </div>
+        <?php endif ?>
   		<table cellpadding="0" cellspacing="0" border="0" class="table table-hover table-bordered" id="theGrid">
   			<thead>
   				<tr>
@@ -152,6 +165,9 @@ table.table thead .sorting_desc_disabled { background: url('<?php echo base_url(
   
 /* Table initialisation */
 $(document).ready(function() {
+    $("#myform").submit(function() {
+        $("#genModalButton").prop("disabled", true);
+    });
        var row;
 	oTable=$('#theGrid').dataTable( {
 		//"sDom": "<'row'<'span6'l><'span6'f>r>t<'row'<'span6'i><'span6'p>>",

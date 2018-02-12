@@ -164,7 +164,7 @@ class Inmate extends Admin_Controller {
 					$data['release_date'] = mdate("%Y-%m-%d",$rd);
 					$data['number_of_years'] = $number_of_years;
 					$data['number_of_months'] = $number_of_months;
-					$data['number_of_days'] = $number_of_dayss;
+					$data['number_of_days'] = $number_of_days;
 				}
 			}
 			else
@@ -886,18 +886,16 @@ court.status ="active"');
 
 		$vio = array();
 		foreach ($violations as $violation) {
-			if ( in_array($violation->level, array('1','2','3','4','5')) )
-			{
-				$vio[$violation->id] = $violation->name.' (level '.$violation->level.') ' . $violation->RepublicAct;
+			if($violation->status == 'active'){
+				if ( in_array($violation->level, array('1','2','3','4','5')) )
+				{
+					$vio[$violation->id] = $violation->name.' (level '.$violation->level.') ' . $violation->RepublicAct;
+				}
+				else
+				{
+					$vio[$violation->id] = $violation->name.' ('.$violation->level.') ' . $violation->RepublicAct;
+				}	
 			}
-			else
-			{
-				$vio[$violation->id] = $violation->name.' ('.$violation->level.') ' . $violation->RepublicAct;
-			}
-		}
-
-		foreach ($cases as $case) {
-			unset($vio[$case->violation_id]);
 		}
 
 
@@ -919,7 +917,9 @@ court.status ="active"');
 			$data['s_max_month'] = $violation_info->max_month;
 			$data['s_max_day'] = $violation_info->max_day;
 
-			$checker = $this->admin_model->get('cs_cases_full',array('violation_id'=>$data['violation_id'],'reasons_id'=>$reason->id,'case_status'=>'active'),TRUE);
+
+			$checker = $this->admin_model->get('cs_cases_full',array('case_no'=>$data['case_no'],'violation_id'=>$data['violation_id'],'reasons_id'=>$reason->id,'case_status'=>'active'),TRUE);
+
 			if (!empty($checker)) {
 				$this->session->set_flashdata('error_msg','You have already added that violation.');
 				redirect(current_url_full());
@@ -945,14 +945,14 @@ court.status ="active"');
 
 			//if convict dont change period or date released...
 			//recheck max penalty
-			if ($inmate_info->status == 'Detainee' || $inmate_info->status == 'Probation')
+			if ($inmate_info->inmate_type == 'Detainee' || $inmate_info->inmate_type == 'Probation')
 			{
 				$max_res = $this->db->query('
 								SELECT id,
 								IF(s_max_year is not NULL, s_max_year, 0) as s_max_year,
 								IF(s_max_month is not NULL, s_max_month, 0) as s_max_month,
 								IF(s_max_day is not NULL, s_max_day, 0) as s_max_day,
-								MAX(( IF(s_max_year is not NULL, s_max_year * 365, 0) + IF(s_max_month is not NULL, s_max_year * 30, 0) + IF(s_max_day is not NULL, s_max_day, 0) )) as max_penalty
+								MAX(( IF(s_max_year is not NULL, s_max_year * 365, 0) + IF(s_max_month is not NULL, s_max_month * 30, 0) + IF(s_max_day is not NULL, s_max_day, 0) )) as max_penalty
 								FROM (`cs_cases`)
 								WHERE `reasons_id` = "'.$reason_id.'" AND status="active" GROUP BY id
 							')->result();
@@ -977,11 +977,11 @@ court.status ="active"');
 				$data['created_on'] = now();
 				$data['modified_on'] = 0;
 
-				if ($inmate_info->status == 'Detainee') {
+				if ($inmate_info->inmate_type == 'Detainee') {
 					$s_date = $inmate_info->date_detained;
-				}elseif ($inmate_info->status == 'Probation') {
+				}elseif ($inmate_info->inmate_type == 'Probation') {
 					$s_date = $inmate_info->date_probation;
-				}elseif ($inmate_info->status == 'Convict') {
+				}elseif ($inmate_info->inmate_type == 'Convict') {
 					$s_date = $inmate_info->date_convicted;
 				}
 

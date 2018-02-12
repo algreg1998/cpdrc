@@ -20,9 +20,17 @@ session_start();
 	 					'cause' => $this->input->post('cause'),
 	 					'warden_id' => $user['user_id'],
 	 					'pointValue' => $this->input->post('pointValue'),
-	 					'pointUnit' => $this->input->post('pointUnit'), );
+	 					'pointUnit' => $this->input->post('pointUnit'),
+                        'status' => 1);
 
-	 		$this->db->insert('inmate_conduct_rec', $rec);
+	 		$save = $this->db->insert('inmate_conduct_rec', $rec);
+	 		if ($save)
+			{
+				$this->session->set_flashdata('success_msg','Conduct Record was successfully created. Inmate Id: <strong>'.$rec['inmate_id'].'</strong> was added a  <strong>'.$rec['rec_type'].'</strong>');
+            }else
+            {
+				$this->session->set_flashdata('error_msg','Oops, Something went wrong!');
+			}
 	 		redirect('cpdrc/pages/records');
 
 	 	}
@@ -36,9 +44,9 @@ session_start();
 	 	public function delete()
 	 	{
 	 		$id = $this->input->post('id');
-
-	 		$this->db->where('id', $id);
-	 		$this->db->delete('inmate_conduct_rec');
+	 		$update = array("status"=>'0');
+	 		// $this->db->where('id', $id);
+	 		$this->admin_model->update('inmate_conduct_rec',array("id"=>$id),$update);
 	 		
 	 		$data['view']=$this->cpdrc_fw->viewconrec2($id);
 	 		$this->load->view('menu/view_conrec2', $data);
