@@ -181,9 +181,9 @@ class MLpdf extends FPDF
             $a = json_decode(json_encode($data));
             $this->Ln(-11);
             for($b = 1 ; $b <= $cnt ; $b++){
-                $courts = explode("/",$a[$b-1]->court);
-                $crimes = explode("/",$a[$b-1]->crime);
-                $cases = explode("/",$a[$b-1]->case_no);
+                $courts = explode("|",$a[$b-1]->court);
+                $crimes = explode("|",$a[$b-1]->crime);
+                $cases = explode("|",$a[$b-1]->case_no);
                 // $courts = explode("/",$a[$b-1]->court);
                 // $crimes = explode("/",$a[$b-1]->crime);
                 // echo $a[$b-1]->nameOfInmate;

@@ -265,17 +265,17 @@ class cpdrc_fw extends CI_Model
 	 	public function getCrimeCases($id)
 	 	{
 	 		$query = $this->db->query("SELECT cs_cases.case_no, cs_violations.name ,cas.place 
-										from inmate as i, cs_appearance_schedules as cas , inmate_info ,cs_reasons 
-										LEFT JOIN cs_cases on cs_reasons.id = cs_cases.reasons_id
+										from inmate as i, cs_appearance_schedules as cas , inmate_info 
+										LEFT JOIN cs_reasons as cr on cr.inmate_id = inmate_info.inmate_id
+										LEFT JOIN cs_cases on cr.id = cs_cases.reasons_id
 										LEFT JOIN cs_violations on cs_cases.violation_id = cs_violations.id
 										WHERE i.status != 'Released' AND
 										      cs_violations.id is not null AND
-										      cas.reason_id = cs_reasons.id AND
+										      cr.id is not null AND
 										      i.inmate_id = inmate_info.inmate_id AND
-										      cs_reasons.inmate_id = i.inmate_id AND
-										       i.inmate_id =   '".$id."'");
-
-	 		
+										      cr.inmate_id = i.inmate_id AND
+										       i.inmate_id =   '".$id."'
+										  GROUP BY cs_cases.id ASC");
 	 		$case ="";
 	 		$vio ="";
 	 		$court ="";
@@ -304,15 +304,17 @@ class cpdrc_fw extends CI_Model
 	 	public function getCrimeCases1($id)
 	 	{
 	 		$query = $this->db->query("SELECT cs_cases.case_no, cs_violations.name ,cas.place 
-										from inmate as i, cs_appearance_schedules as cas , inmate_info ,cs_reasons 
-										LEFT JOIN cs_cases on cs_reasons.id = cs_cases.reasons_id
+										from inmate as i, cs_appearance_schedules as cas , inmate_info 
+										LEFT JOIN cs_reasons as cr on cr.inmate_id = inmate_info.inmate_id
+										LEFT JOIN cs_cases on cr.id = cs_cases.reasons_id
 										LEFT JOIN cs_violations on cs_cases.violation_id = cs_violations.id
 										WHERE i.status != 'Released' AND
 										      cs_violations.id is not null AND
-										      cas.reason_id = cs_reasons.id AND
+										      cr.id is not null AND
 										      i.inmate_id = inmate_info.inmate_id AND
-										      cs_reasons.inmate_id = i.inmate_id AND
-										       i.inmate_id =   '".$id."'");
+										      cr.inmate_id = i.inmate_id AND
+										       i.inmate_id =   '".$id."'
+										  GROUP BY cs_cases.id ASC");
 
 	 		
 	 		$case ="";
