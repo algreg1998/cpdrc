@@ -83,9 +83,9 @@
                         <li class="nav-violations">
                             <a href="#">&nbsp;<i></i>&nbsp;Violations<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
-                                <li class="nav-graphical-violations">
+                                <!-- <li class="nav-graphical-violations">
                                     <a href="<?php echo base_url('historical-graphical-tools/violations') ?>">&nbsp;&nbsp;&nbsp;<i></i>&nbsp;&nbsp;&nbsp;Graph</a>
-                                </li>
+                                </li> -->
                                 <li class="nav-crimeIndex">
                                     <a href="<?php echo base_url('cpdrc/pages/reportsCrimeIndex') ?>">&nbsp;&nbsp;&nbsp;<i></i>&nbsp;&nbsp;&nbsp;Crime Index</a>
                                 </li>

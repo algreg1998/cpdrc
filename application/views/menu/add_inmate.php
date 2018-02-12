@@ -91,11 +91,11 @@
 	                    		</div>
 	                    	</div><br>
 	                    		<label><i class="fa fa-info"></i> <b>First Name</b></label>	
-                    			<input type="text" name="fname" class="form-control" pattern="[a-zA-Z]+"   oninvalid="setCustomValidity('Please enter alphabets only')" onchange="try{setCustomValidity('')}catch(e){}" required >
+                    			<input type="text" name="fname" class="form-control" pattern="([A-zA-Z\s]){2,}"   oninvalid="setCustomValidity('Please enter alphabets only')" onchange="try{setCustomValidity('')}catch(e){}" required >
                     			<label><i class="fa fa-info"></i> <b>Last Name</b></label>
-                    			<input type="text" name="lname" class="form-control" pattern="[a-zA-Z]+"   oninvalid="setCustomValidity('Please enter alphabets only')" onchange="try{setCustomValidity('')}catch(e){}" required >
+                    			<input type="text" name="lname" class="form-control" pattern="([A-zA-Z\s]){2,}"   oninvalid="setCustomValidity('Please enter alphabets only')" onchange="try{setCustomValidity('')}catch(e){}" required >
                     			<label><i class="fa fa-info"></i> <b>Middle Name</b></label>
-	                    		<input type="text" name="mi" class="form-control" pattern="[a-zA-Z]+"   oninvalid="setCustomValidity('Please enter alphabets only')" onchange="try{setCustomValidity('')}catch(e){}" required >
+	                    		<input type="text" name="mi" class="form-control" pattern="([A-zA-Z\s]){2,}"   oninvalid="setCustomValidity('Please enter alphabets only')" onchange="try{setCustomValidity('')}catch(e){}" required >
 	                    		<label><i class="fa fa-info"></i> <b>Aliases</b></label>
 	                    		<textarea rows="3" type="text" name="alias" class="form-control" pattern="[a-zA-Z]+" required ></textarea><br>
 	                    		<button class="form-control btn btn-warning" type="submit" id="submitForm">Submit Form</button>
