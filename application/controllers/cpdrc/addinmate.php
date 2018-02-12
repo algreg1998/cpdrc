@@ -171,7 +171,7 @@ session_start();
 		    	$info['relation']=$this->input->post('relation');
                 $info['relation']=$this->input->post('relation');
 		    	$info['address']=$this->input->post('currentStreet').', '.$this->input->post('currentBrgy').', '.$this->input->post('currentCity');
-		    	$info['relation']=$this->input->post('religion');
+		    	$info['religion']=$this->input->post('religion');
 
 		    	if($info['age'] < 100 && $info['age'] > 17){
 		    		$this->db->insert('inmate_info', $info);
@@ -726,7 +726,7 @@ session_start();
 				}
 				
 				$this->data['title']    = 'Manage Inmate';
-				$this->data['css']      = array();
+				$this->data['css']      = array('vendor/select2/select2.css','vendor/select2/select2-bootstrap.css');
 				$this->data['js_top']   = array();
 				$this->data['header']   = $this->load->view('admin/header_view',$this->data,TRUE);
 				
@@ -755,9 +755,14 @@ session_start();
 						break;
 				}
 				$this->data['footer']   = $this->load->view('footer_view',NULL,TRUE);
-			    		$this->data['js_bottom']= array();
+			    		$this->data['js_bottom']= array('vendor/select2/select2.js');
                         $this->data['custom_js']= '<script type="text/javascript">
                                                     $(document).ready(function(){
+                                                    	$("#citizenshipList").select2();
+                                                    	$("#crimeList").select2();
+                                                    	$("#courtList").select2();
+                                                    	$("#religionList").select2();
+                                                    	$(".city").select2();
                                                         $("#ft").keyup(function(){
                                                             var feet = $("#ft").val();
                                                             var inches = $("#in").val();
@@ -779,6 +784,33 @@ session_start();
                                                         });
                                                         
                                                         $("#kg").keyup(function(){
+                                                            var kilograms = $("#kg").val();
+                                                            
+                                                            var result_lbs = (parseInt(kilograms) * 2.2).toFixed(2);
+                                                            
+                                                            $("#lbs").val(result_lbs);
+                                                        });
+                                                        $("#ft").change(function(){
+                                                            var feet = $("#ft").val();
+                                                            var inches = $("#in").val();
+                                                            
+                                                            var finalInches = parseInt((feet * 12)) + parseInt(inches);
+                                                            var result_cm = (finalInches * 2.54).toFixed(2);
+                                                            
+                                                            $("#cm").val(result_cm);
+                                                        });
+                                                        
+                                                        $("#in").change(function(){
+                                                            var feet = $("#ft").val();
+                                                            var inches = $("#in").val();
+                                                            
+                                                            var finalInches = parseInt((feet * 12)) + parseInt(inches);
+                                                            var result_cm = (finalInches * 2.54).toFixed(2);
+                                                            
+                                                            $("#cm").val(result_cm);
+                                                        });
+                                                        
+                                                        $("#kg").change(function(){
                                                             var kilograms = $("#kg").val();
                                                             
                                                             var result_lbs = (parseInt(kilograms) * 2.2).toFixed(2);

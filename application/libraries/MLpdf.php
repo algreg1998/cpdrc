@@ -192,11 +192,16 @@ class MLpdf extends FPDF
                 // echo $ccnt;
 
                 $x = 0;
+                 $this->SetFont('Arial','',8);
                 while($x < $ccnt){
                     $this->Ln();
                     $this->Cell(10,10,$b,1,0,'C');
                     $this->Cell(60,10,$a[$b-1]->nameOfInmate,1,0,'C');
+                    if($this->GetStringWidth($crimes[$x]) > 20){
+                         $this->SetFont('Arial','',8);
+                    }
                     $this->Cell(60,10,$crimes[$x],1,0,'C');
+                    $this->SetFont('Arial','',11);
                     $this->Cell(40,10,$cases[$x],1,0,'C');
                     $this->Cell(20,10,$a[$b-1]->cellNumber,1,0,'C');
                     // $this->Cell(30,10,$courts[$x],1,0,'C');

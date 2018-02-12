@@ -565,7 +565,7 @@ CREATE TABLE `inmate_info` (
   `born_in` varchar(255) NOT NULL,
   `home_add` varchar(255) NOT NULL,
   `province_add` varchar(255) NOT NULL,
-  `religion` enum('Roman Catholic,including Catholic Charismatic','Islam','Evangelicals (PCEC)','Iglesia Ni Cristo','Non-Roman Catholic and Protestant (NCCP)','Aglipayan','Seventh-day Adventist','Bible Baptist Church','United Church of Christ in the Philippines','Jehovah''s Witnesses','Other Protestants','Church of Christ','Jesus is Lord Church','Tribal Religions','United Pentecostal Church (Philippines) Inc.','Other Baptists','Philippine Independent Catholic Church','Unión Espiritista Cristiana de Filipinas, Inc.','Church of Jesus Christ of the Latter Day Saints	','Association of Fundamental Baptist Churches in the Philippines','Evangelical Christian Outreach Foundation','None','Convention of the Philippine Baptist Church','Crusaders of the Divine Church of Christ Inc.	','Buddhist','Lutheran Church of the Philippines','Iglesia sa Dios Espiritu Santo Inc.','Philippine Benevolent Missionaries Association','Faith Tabernacle Church (Living Rock Ministries)','Others') NOT NULL,
+  `religion` enum() NOT NULL,
   `occupation` varchar(255) NOT NULL,
   `father` varchar(255) NOT NULL,
   `mother` varchar(255) NOT NULL,

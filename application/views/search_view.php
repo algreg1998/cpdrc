@@ -13,6 +13,12 @@
                     Finished Inmates
                 </div>
                 <div class="panel-body">
+                     <?php if ($this->session->flashdata('error_msg')): ?>
+                        <div class="alert alert-danger">
+                            <button class="close" aria-hidden="true" data-dismiss="alert" type="button">×</button>
+                            <?php echo $this->session->flashdata('error_msg') ?>
+                        </div>
+                    <?php endif ?>
                     <div class="dataTable_wrapper">
                         <table class="table table-striped table-bordered table-hover" id="table-inmaterecords">
                             <thead>

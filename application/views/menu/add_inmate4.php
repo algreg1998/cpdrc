@@ -2,15 +2,16 @@
 <head>
 	<script type="text/javascript">
 		function getViolation(){
+			
 			var data = null;
-			data = $('#crime').find(':selected').val();
+			data = $('#crimeList').find(':selected').val();
 			
 			$.post('<?php echo site_url();?>cpdrc/addinmate/getViolation/'+data,
 				{},
 				function(data)
 				{
 					var test = JSON.parse(data);
-					
+					console.log(data);
 					if(test['max_day']==""){
 							test['max_day'] =0;
 					}
@@ -139,7 +140,7 @@
 							</div>
 							<label><i class="fa fa-info"></i> <strong>Court Name</strong></label>
 							<!--input type="text" name="court" class="form-control" required --> <!--Original -->
-							<select <?php if(count($violations) == 0 || count($courts) == 0){ echo "disabled";} ?> name="court" class="form-control" required >
+							<select <?php if(count($violations) == 0 || count($courts) == 0){ echo "disabled";} ?> name="court" id="courtList" class="form-control" required >
 								
 								<?php 
 									foreach ($courts as $row) {
@@ -147,21 +148,23 @@
 									}
 								?>
 							</select> 
+							<br><br>
 							<label><i class="fa fa-file"></i> <strong>Crime/Violation</strong></label>
 							<!--textarea rows="3" type="text" name="crime" class="form-control" required ></textarea--><!-- Original -->
 							 <?php if(count($violations) != 0){
 							 	if((count($courts) != 0)){
 										$js = 'onchange="getViolation();"';
 										
-										echo form_dropdown('crime', $violations, '',' onChange="getViolation();" id="crime"  class="form-control" ');
+										echo form_dropdown('crime', $violations, '',' onChange="getViolation();" id="crimeList"  class="form-control" ');
 									}else{
-										echo form_dropdown('crime', $violations, '',' onChange="getViolation();" id="crime"  class="form-control" disabled');
+										echo form_dropdown('crime', $violations, '',' onChange="getViolation();" id="crimeList"  class="form-control" disabled');
 									}
 									}else{
 										echo '<select  disabled id="crime" onchange="getViolation()" name="crime" class="form-control" >
 												<option>No Crimes</option>
 											</select>';
 										}  ?> 
+							<br>
 							<br>
 							<div class="panel panel-danger">
 							  <div class="panel-heading"><b>MAXIMUM</b></div>
