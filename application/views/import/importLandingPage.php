@@ -34,6 +34,11 @@
                         <h5> <em> Please select the CSV file you want to import. </em></h5>
                          <form action="<?php echo base_url('import/uploadData');?>" method="post" enctype="multipart/form-data" id="importFrm">
                             <input type="file" name="file" id="file" required/><br>
+                            <label>Type</label>
+                            <select name="type" class="form-control" style="width: 150px;">
+                                <option value="inmate">Inmate Records</option>
+                                <option value="violation">Violation Records</option>
+                            </select>
                             <input type="submit" class="btn btn-primary" name="importSubmit" id="importSubmit" value="Import">
                         </form>
                     </div>

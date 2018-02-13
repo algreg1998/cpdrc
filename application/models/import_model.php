@@ -6,21 +6,21 @@ class Import_model extends MY_Model {
             parent::__construct();
             $this->load->model('cpdrc/cpdrc_fw','',TRUE);
         }
-    public function saveData(){
-          $fields;            /** columns names retrieved after parsing */ 
-          $separator = ';';    /** separator used to explode each line */
-          $enclosure = '"';    /** enclosure used to decorate each field */
+    public function saveInmateData(){
+        $fields;            /** columns names retrieved after parsing */ 
+        $separator = ';';    /** separator used to explode each line */
+        $enclosure = '"';    /** enclosure used to decorate each field */
+        
+        $max_row_size = 4096;    /** maximum row size to be used for decoding */
  
-          $max_row_size = 4096;    /** maximum row size to be used for decoding */
- 
-         $file =  fopen($_FILES['file']['tmp_name'], 'r');
+        $file =  fopen($_FILES['file']['tmp_name'], 'r');
         
         $eval = FALSE;
         $ret = null;
 
-         if($file){
-             $i  =   1;
-             while( ($row = fgetcsv($file, $max_row_size, $separator, $enclosure)) != false ) {            
+        if($file){
+            $i  =   1;
+            while( ($row = fgetcsv($file, $max_row_size, $separator, $enclosure)) != false ) {            
                 if( $row != null ) { // skip empty lines
                     $values =   explode(',',$row[0]);
                     $info['inmate_id']= $values[1];
@@ -31,11 +31,11 @@ class Import_model extends MY_Model {
                          $ret[]="<b>".$values[1]."</b>- ".ucwords($values[3])." ".ucwords($values[5])." ".ucwords($values[4]);
                     }
                 }
-            }
+            }   
             fclose($file);  
             $file =  fopen($_FILES['file']['tmp_name'], 'r');
-             if(!$eval){
-                 while( ($row = fgetcsv($file, $max_row_size, $separator, $enclosure)) != false ) {            
+            if(!$eval){
+                while( ($row = fgetcsv($file, $max_row_size, $separator, $enclosure)) != false ) {            
                      if( $row != null ) { // skip empty lines
                          $values =   explode(',',$row[0]);
                          // echo"<pre>";
@@ -95,11 +95,71 @@ class Import_model extends MY_Model {
                          $temp['step'] = 3;
                          $this->cpdrc_fw->insert($temp);
                      }
-                 }
-             }
-             fclose($file);  
-         }
-         return $ret;
+                }
+            }
+            fclose($file);  
+        }
+        return $ret;
+     }
+
+    public function saveViolationData(){
+        $fields;            /** columns names retrieved after parsing */ 
+        $separator = ';';    /** separator used to explode each line */
+        $enclosure = '"';    /** enclosure used to decorate each field */
+        
+        $max_row_size = 4096;    /** maximum row size to be used for decoding */
+ 
+        $file =  fopen($_FILES['file']['tmp_name'], 'r');
+        
+        $eval = FALSE;
+        $ret = null;
+
+        if($file){
+            $i  =   1;
+            while( ($row = fgetcsv($file, $max_row_size, $separator, $enclosure)) != false ) {            
+                if( $row != null ) { // skip empty lines
+                    $values =   explode(',',$row[0]);
+                    $where = array(
+                                'name' => trim($values[0]),
+                                'status' => 'active'
+                            );
+                    $this->admin_model->db->query("SET collation_connection = 'utf8_general_ci';");
+                    $chkr = $this->admin_model->get('cs_violations',$where,TRUE);
+                    if (!empty($chkr)) {
+                        $eval = TRUE;
+                        $ret[]="<b>".$values[0]."</b>";
+                    }else{
+                        echo "<br>".$values[0]."</br>";
+                    }
+                }
+            }   
+            die();
+            fclose($file);  
+            $file =  fopen($_FILES['file']['tmp_name'], 'r');
+            if(!$eval){
+                while( ($row = fgetcsv($file, $max_row_size, $separator, $enclosure)) != false ) {            
+                    if( $row != null ) { // skip empty lines
+                        $values =   explode(',',$row[0]);
+                        $vio_data['violations_category_id'] = '00000000000' ;
+                        $vio_data['name'] = $values[0];
+                        $vio_data['level'] = 1;
+                        $vio_data['min_year'] = 1;
+                        $vio_data['min_month'] = 1;
+                        $vio_data['min_day'] = 1;
+                        $vio_data['max_year'] = 1;
+                        $vio_data['max_month'] = 1;
+                        $vio_data['max_day'] = 1;
+                        $vio_data['created_on'] = now();
+                        $vio_data['RepublicAct'] = NULL;
+                        $vio_data['description'] = NULL;
+
+                        $save = $this->admin_model->save('cs_violations',$vio_data);
+                    }
+                }
+            }
+            fclose($file);  
+        }
+        return $ret;
      }
 
 }
