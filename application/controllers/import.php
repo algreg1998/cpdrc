@@ -92,6 +92,19 @@ class Import extends Admin_Controller {
 				}
 						
 				break;
+			// case 'cases':
+			// 	$data['result']=$this->Import_model->filterCases();
+			// 	if($data['result']){
+			// 		$msg ='';
+			// 		foreach ($data['result'] as $key ) {
+			// 			$msg.= "<li>".$key."</li>";
+			// 		}
+			// 		$this->session->set_flashdata('error_msg','Oops, Something went wrong! Importing canceled. <br><br><ul>'.$msg.'</ul><br>Violation names already exists. Please change to prevent duplicates.');
+			// 	}else{
+			// 		$this->session->set_flashdata('success_msg','Violation Records successfully inserted');
+			// 	}
+						
+			// 	break;
 			
 			default:
 				# code...

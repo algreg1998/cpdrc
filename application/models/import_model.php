@@ -133,7 +133,6 @@ class Import_model extends MY_Model {
                     }
                 }
             }   
-            die();
             fclose($file);  
             $file =  fopen($_FILES['file']['tmp_name'], 'r');
             if(!$eval){
@@ -158,6 +157,75 @@ class Import_model extends MY_Model {
                 }
             }
             fclose($file);  
+        }
+        return $ret;
+     }
+
+    public function filterCases(){
+        $fields;            /** columns names retrieved after parsing */ 
+        $separator = ';';    /** separator used to explode each line */
+        $enclosure = '"';    /** enclosure used to decorate each field */
+        
+        $max_row_size = 4096;    /** maximum row size to be used for decoding */
+ 
+        $file =  fopen($_FILES['file']['tmp_name'], 'r');
+        
+        $eval = FALSE;
+        $ret = null;
+        $data = null;
+        if($file){
+            $i  =   1;
+            while( ($row = fgetcsv($file, $max_row_size, $separator, $enclosure)) != false ) {
+                if( $row != null ) {
+                    $data[] = $row[0];
+                }
+            }   
+            
+            fclose($file);  
+            foreach ($data as $d) {
+             $values =   explode('/',$d);
+                
+                if(count($values) > 1){
+                    foreach ($values as $key) {
+                        $ret[]= "<b>".$key."<b>";
+                    }    
+                }else{
+                   $ret[]= "<b>".$values[0]."<b>";
+                }
+            }
+
+            for ($i=0; $i <count($ret) ; $i++) { 
+                $values = explode('-',$ret[$i] );
+                $l = count($values)- 2;
+                $r = count($values) - 1;
+                echo "<br>".$values[$l]."||".$values[$r];
+                echo "<br>";
+                if(is_numeric($values[$l]) || is_numeric($values[$r])){
+                    // echo strlen($values[$l]);
+                    echo is_numeric($values[$r]);
+                    echo "<br>";
+                    $index = strlen($values[$l])-2;
+                    if($values[$l][$index] == $values[$r][0]){
+                        
+                        echo $values[$l][strlen($values[$l])-2]."++" .$values[$r][0];
+                    }
+                }
+                echo "<br>";
+
+
+
+                foreach ($values as $key ) {
+                    echo $key."||";
+                }
+                echo "<br>";
+                echo "--------------------------------";
+            }
+
+            // foreach ($ret as $key) {
+            //     echo "<br>".$key;
+            // }
+            die();
+             
         }
         return $ret;
      }

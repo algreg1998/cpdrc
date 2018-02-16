@@ -38,6 +38,7 @@
                             <select name="type" class="form-control" style="width: 150px;">
                                 <option value="inmate">Inmate Records</option>
                                 <option value="violation">Violation Records</option>
+                                <!-- <option value="cases">Cases Records</option> -->
                             </select>
                             <input type="submit" class="btn btn-primary" name="importSubmit" id="importSubmit" value="Import">
                         </form>
