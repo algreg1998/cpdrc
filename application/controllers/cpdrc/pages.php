@@ -889,6 +889,20 @@ public function printCrimeIndex()
                   $pdf->ViolationName($this->cpdrc_fw->getCrimeName($crime),$crimeIndex);
                   $pdf->Display($crimeIndex );
                   $pdf->Output();
+
+                  //logs
+                  $logData = array(
+                        'linked_id' => 0,
+                        'table_name' => 'printing',
+                        'table_field' => 'none',
+                        'subject' => 'Print',
+                        'reasons' => 'Printed Crime Index',
+                        'update_by' => $this->session->userdata('user_id'),
+                        'action' => 'print',
+                        'created_at' => date("Y-m-d h:i:sa"),
+                        'status' => 'active'
+                  );
+                  $this->admin_model->save('cs_logs',$logData);
             }
       
       public function printCrimeIndexGeo()
@@ -898,10 +912,10 @@ public function printCrimeIndex()
                   $place = $this->input->post('place');
                   $data['id'] = $place;      
             
-            $data['crimeIndex'] = $this->cpdrc_fw->getCrimeIndexGeo($place);
-            // $data['crimeIndexCount'] = $this->cpdrc_fw->getCrimeIndexCount($place);
-            // $data['cName'] =  $this->cpdrc_fw->getCrimeName($crime);
-            $data['place'] = $place;
+                  $data['crimeIndex'] = $this->cpdrc_fw->getCrimeIndexGeo($place);
+                  // $data['crimeIndexCount'] = $this->cpdrc_fw->getCrimeIndexCount($place);
+                  // $data['cName'] =  $this->cpdrc_fw->getCrimeName($crime);
+                  $data['place'] = $place;
 
                   $pdf = new CIGpdf('L','mm','A4');
                   $pdf->AliasNbPages();
@@ -911,7 +925,23 @@ public function printCrimeIndex()
 
                   $pdf->Display($data['crimeIndex']);
                   $pdf->Output();
+
+                  //logs
+                  $logData = array(
+                        'linked_id' => 0,
+                        'table_name' => 'printing',
+                        'table_field' => 'none',
+                        'subject' => 'Print',
+                        'reasons' => 'Printed Crime Index Geographical',
+                        'update_by' => $this->session->userdata('user_id'),
+                        'action' => 'print',
+                        'created_at' => date("Y-m-d h:i:sa"),
+                        'status' => 'active'
+                  );
+                  $this->admin_model->save('cs_logs',$logData);
             }
+
+
 
 
 // public function printDaily()
@@ -1350,6 +1380,21 @@ public function crimeIndexTabulated()
                   $pdf->BasicTable($a);
                      
                   $pdf->Output();
+
+                  //logs
+                  $logData = array(
+                        'linked_id' => 0,
+                        'table_name' => 'print',
+                        'table_field' => 'none',
+                        'subject' => 'Printing',
+                        'reasons' => 'Printed Crime Index Tabulated',
+                        'update_by' => $this->session->userdata('user_id'),
+                        'action' => 'print',
+                        'created_at' => date("Y-m-d h:i:sa"),
+                        'status' => 'active'
+                  );
+            
+                  $this->admin_model->save('cs_logs',$logData);
             }
       public function getMuniRep($gender){
                   $municipalities = array();
@@ -1477,6 +1522,20 @@ public function crimeIndexTabulated()
                   $pdf->BasicTable($muni);
                      
                   $pdf->Output();
+
+                  //logs
+                  $logData = array(
+                        'linked_id' => 0,
+                        'table_name' => 'printing',
+                        'table_field' => 'none',
+                        'subject' => 'Print',
+                        'reasons' => 'Printed List of Municipalities '.$gender.' gender',
+                        'update_by' => $this->session->userdata('user_id'),
+                        'action' => 'print',
+                        'created_at' => date("Y-m-d h:i:sa"),
+                        'status' => 'active'
+                  );
+                  $this->admin_model->save('cs_logs',$logData);
             }
 
             public function printMasterList($gender){
@@ -1485,12 +1544,26 @@ public function crimeIndexTabulated()
                   $data['master'] = $this->cpdrc_fw->getMasterListByGenderPrinting($gender);
                   
                   $pdf = new MLpdf('L','mm','A4');
-                   $pdf->AliasNbPages();
+                  $pdf->AliasNbPages();
                   $pdf->AddPage();
                   $pdf->SetFont('Times','',12);
                   $pdf->displayTotal($data['master']);
                   $pdf->Display($data['master']);
                   $pdf->Output();
+
+                  //logs
+                  $logData = array(
+                        'linked_id' => 0,
+                        'table_name' => 'printing',
+                        'table_field' => 'none',
+                        'subject' => 'Print',
+                        'reasons' => 'Printed MasterList '.$gender.' gender',
+                        'update_by' => $this->session->userdata('user_id'),
+                        'action' => 'print',
+                        'created_at' => date("Y-m-d h:i:sa"),
+                        'status' => 'active'
+                  );
+                  $this->admin_model->save('cs_logs',$logData);
             }
 
             public function printRelease(){
