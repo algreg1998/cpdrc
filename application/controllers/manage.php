@@ -855,7 +855,7 @@ class Manage extends Admin_Controller {
 			//check if name and level exists
 			$where = array('court_name'=>$this->input->post('court_name'),'status'=>'active');
 			$chkr = $this->admin_model->get('court',$where,TRUE);
-			if (!empty($chkr) && $chkr->id !== $id) {
+			if (!empty($chkr) && $chkr->court_id != $id) {
 				$this->session->set_flashdata('error_msg','Court is already existing.');
 				redirect(base_url('manage/editcourt/'.$id));
 			}
