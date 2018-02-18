@@ -1544,7 +1544,7 @@ CREATE TABLE `inmate_released` (
   `type_released` enum('SERVED','PROBATION','SHIPPED','BONDED','ACQUITTED','DISMISSED','DEAD','GCTA','OTHERS') NOT NULL,
   `released_info` varchar(255) NOT NULL,
   `user_id` bigint(20) UNSIGNED ZEROFILL NOT NULL,
-  `record` int(11) NOT NULL
+  `record` int(11) NOT NULL  DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -1559,7 +1559,7 @@ CREATE TABLE `inmate_transfer` (
   `transfer_to` varchar(255) NOT NULL,
   `information` varchar(255) NOT NULL,
   `warden_id` bigint(20) UNSIGNED ZEROFILL NOT NULL,
-  `record` int(11) NOT NULL
+  `record` int(11) NOT NULL DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
