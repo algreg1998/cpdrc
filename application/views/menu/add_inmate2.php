@@ -1,3 +1,5 @@
+<?php //var_dump($info); die(); ?>
+
 <!DOCTYPE html>
 <html>
     <div id="page-wrapper">
@@ -448,9 +450,9 @@
 						      <option value="Other Protestants" <?php echo ($info!= null && $info->religion =="Other Protestants")?"selected":""; ?>>Other Protestants                                                  </option>    
 						      <option value="Philippine Benevolent Missionaries Association" <?php echo ($info!= null && $info->religion =="Philippine Benevolent Missionaries Association")?"selected":""; ?>>Philippine Benevolent Missionaries Association                   </option> 
 						      <option value="Philippine Independent Catholic Church" <?php echo ($info!= null && $info->religion =="Philippine Independent Catholic Church")?"selected":""; ?>>Philippine Independent Catholic Church                           </option>    
-						      <option value="Roman Catholic,including Catholic Charismatic" <?php echo ($info!= null && $info->religion =="Philippine Independent Catholic Church")?"selected":""; ?>>Roman Catholic,including Catholic Charismatic                      </option>  
-						      <option value="Seventh-day Adventist" <?php echo ($info!= null && $info->religion =="Philippine Independent Catholic Church")?"selected":""; ?>>Seventh-day Adventist                                             </option>
-						      <option value="Tribal Religions" <?php echo ($info!= null && $info->religion =="Philippine Independent Catholic Church")?"selected":""; ?>>Tribal Religions                                                   </option>  
+						      <option value="Roman Catholic,including Catholic Charismatic" <?php echo ($info!= null && $info->religion =="Roman Catholic,including Catholic Charismatic")?"selected":""; ?>>Roman Catholic,including Catholic Charismatic                      </option>  
+						      <option value="Seventh-day Adventist" <?php echo ($info!= null && $info->religion =="Seventh-day Adventist")?"selected":""; ?>>Seventh-day Adventist                                             </option>
+						      <option value="Tribal Religions" <?php echo ($info!= null && $info->religion =="Tribal Religions")?"selected":""; ?>>Tribal Religions                                                   </option>  
 						      <option value="Unión Espiritista Cristiana de Filipinas, Inc." <?php echo ($info!= null && $info->religion =="Unión Espiritista Cristiana de Filipinas, Inc.")?"selected":""; ?>>Unión Espiritista Cristiana de Filipinas, Inc.                   </option>    
 						      <option value="United Church of Christ in the Philippines" <?php echo ($info!= null && $info->religion =="United Church of Christ in the Philippines")?"selected":""; ?>>United Church of Christ in the Philippines                       </option>
 						      <option value="United Pentecostal Church (Philippines) Inc." <?php echo ($info!= null && $info->religion =="United Pentecostal Church (Philippines) Inc.")?"selected":""; ?>>United Pentecostal Church (Philippines) Inc.                    </option>      
@@ -468,7 +470,7 @@
 						<label><i class="fa fa-refresh"></i> <b>Relation</b></label>
 						<input type="text" name="relation" class="form-control"  oninvalid="setCustomValidity('Please enter alphabets only')" onchange="try{setCustomValidity('')}catch(e){}" required value="<?php if($info!=null){echo $info->relation;}?>">
                         <label><i class="fa fa-sort-numeric-asc"></i> <b>Contact Person's Number</b></label>
-                        <input type="number" min="0" name="contactpersonnum" class="form-control">
+                        <input type="text" name="contactpersonnum" class="form-control" value="<?php if($info!=null){echo $info->contactpersonnum;} ?>" required>
                         <!--<label><i class="fa fa-map-marker"></i> <b>Current Address</b></label>
 						 <textarea type="text" name="address" class="form-control" required ></textarea><br> -->
 						<br>

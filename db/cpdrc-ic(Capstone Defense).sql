@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.5.1
--- http://www.phpmyadmin.net
+-- version 4.6.5.2
+-- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 17, 2018 at 03:11 PM
+-- Generation Time: Feb 18, 2018 at 07:41 AM
 -- Server version: 10.1.13-MariaDB
--- PHP Version: 7.0.8
+-- PHP Version: 7.1.1
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -171,6 +171,7 @@ INSERT INTO `cs_cases` (`id`, `reasons_id`, `case_no`, `violation_id`, `created_
 
 --
 -- Stand-in structure for view `cs_cases_full`
+-- (See below for the actual view)
 --
 CREATE TABLE `cs_cases_full` (
 `case_id` int(11) unsigned zerofill
@@ -225,31 +226,36 @@ CREATE TABLE `cs_logs` (
 --
 
 INSERT INTO `cs_logs` (`id`, `linked_id`, `table_name`, `table_field`, `subject`, `reasons`, `update_by`, `action`, `created_at`, `status`) VALUES
-(00000000001, 00000000001, 'inmate_case_info', 'id', 'Add Case Information', 'A Case Information of "Prince Gomez" was added', 00000000001, 'insert', '2018-02-12 12:51:32', 'active'),
+(00000000001, 00000000001, 'inmate_case_info', 'id', 'Add Case Information', 'A Case Information of \"Prince Gomez\" was added', 00000000001, 'insert', '2018-02-12 12:51:32', 'active'),
 (00000000002, 00000000001, 'cs_cases', 'id', 'Add New Case', 'Case # 123 -  VIOL OF SEC 11 RA 9165 & ROB W/ FORCE UPON THINGS  1 () was added to Inmate ID : 123213', 00000000001, 'add', '0000-00-00 00:00:00', 'active'),
-(00000000003, 00000000002, 'inmate_case_info', 'id', 'Add Case Information', 'A Case Information of "Dardar Solsol" was added', 00000000001, 'insert', '2018-02-12 12:54:56', 'active'),
+(00000000003, 00000000002, 'inmate_case_info', 'id', 'Add Case Information', 'A Case Information of \"Dardar Solsol\" was added', 00000000001, 'insert', '2018-02-12 12:54:56', 'active'),
 (00000000004, 00000000002, 'cs_cases', 'id', 'Add New Case', 'Case # 512 - ABDUCTION W/ RAPE 1 () was added to Inmate ID : F231', 00000000001, 'add', '0000-00-00 00:00:00', 'active'),
-(00000000005, 00000123213, 'inmate', 'id', 'Generate Carpeta printout', 'Prepared and Verified by: "Atty. Chaka" Approved by: "Atty. Wala"', 00000000001, 'generate', '0000-00-00 00:00:00', 'active'),
-(00000000006, 00000000003, 'inmate_case_info', 'id', 'Add Case Information', 'A Case Information of "Joseph Entoma " was added', 00000000001, 'insert', '2018-02-12 01:23:19', 'active'),
+(00000000005, 00000123213, 'inmate', 'id', 'Generate Carpeta printout', 'Prepared and Verified by: \"Atty. Chaka\" Approved by: \"Atty. Wala\"', 00000000001, 'generate', '0000-00-00 00:00:00', 'active'),
+(00000000006, 00000000003, 'inmate_case_info', 'id', 'Add Case Information', 'A Case Information of \"Joseph Entoma \" was added', 00000000001, 'insert', '2018-02-12 01:23:19', 'active'),
 (00000000007, 00000000003, 'cs_cases', 'id', 'Add New Case', 'Case # 12355 - ACTS OF LASCIVIOSNESS & STATUTORY RAPE 1 () was added to Inmate ID : 12345', 00000000001, 'add', '0000-00-00 00:00:00', 'active'),
-(00000000008, 00000000004, 'inmate_case_info', 'id', 'Add Case Information', 'A Case Information of "Joseph Entoma " was added', 00000000001, 'insert', '2018-02-12 01:27:50', 'active'),
+(00000000008, 00000000004, 'inmate_case_info', 'id', 'Add Case Information', 'A Case Information of \"Joseph Entoma \" was added', 00000000001, 'insert', '2018-02-12 01:27:50', 'active'),
 (00000000009, 00000000004, 'cs_cases', 'id', 'Add New Case', 'Case # 12355 - ACTS OF LASCIVIOUSNESS 1 () was added to Inmate ID : 12345', 00000000001, 'add', '0000-00-00 00:00:00', 'active'),
-(00000000010, 00000000826, 'cs_violations', 'id', 'Add Violation', 'Violation "violation1" was added', 00000000001, 'add', '2018-02-12 01:31:51', 'active'),
+(00000000010, 00000000826, 'cs_violations', 'id', 'Add Violation', 'Violation \"violation1\" was added', 00000000001, 'add', '2018-02-12 01:31:51', 'active'),
 (00000000011, 00000000005, 'cs_cases', 'id', 'Add New Case', 'Case # 8732 - ABDUCTION W/ RAPE 1 () was added to Inmate ID : 12345', 00000000001, 'add', '0000-00-00 00:00:00', 'active'),
-(00000000012, 00000000002, 'municipality', 'mun_id', 'Delete Municipality', 'Municipality "Danao City" was deleted', 00000000001, 'delete', '2018-02-12 01:37:42', 'active'),
-(00000000013, 00000000003, 'municipality', 'mun_id', 'Add Municipality', 'Municipality "muni" was added', 00000000001, 'add', '2018-02-12 01:38:07', 'active'),
-(00000000014, 00000000003, 'court', 'court_id', 'Add Court', 'Court "h" was added', 00000000001, 'add', '2018-02-12 01:38:34', 'active'),
-(00000000015, 00000000003, 'court', 'id', 'Delete Court', 'Court "h" was deleted', 00000000001, 'delete', '2018-02-12 01:38:39', 'active'),
-(00000000016, 00000000003, 'municipality', 'mun_id', 'Delete Municipality', 'Municipality "muni" was deleted', 00000000001, 'delete', '2018-02-12 01:38:46', 'active'),
-(00000000017, 00000000004, 'municipality', 'mun_id', 'Add Municipality', 'Municipality "kj" was added', 00000000001, 'add', '2018-02-12 01:39:01', 'active'),
-(00000000018, 00000000004, 'court', 'court_id', 'Add Court', 'Court "ih" was added', 00000000001, 'add', '2018-02-12 01:39:08', 'active'),
-(00000000019, 00000000004, 'court', 'id', 'Delete Court', 'Court "ih" was deleted', 00000000001, 'delete', '2018-02-12 01:39:13', 'active'),
-(00000000020, 00000000004, 'municipality', 'mun_id', 'Delete Municipality', 'Municipality "kj" was deleted', 00000000001, 'delete', '2018-02-12 01:39:23', 'active'),
-(00000000021, 00000000004, 'municipality', 'mun_id', 'Delete Municipality', 'Municipality "kj" was deleted', 00000000001, 'delete', '2018-02-12 01:39:24', 'active'),
-(00000000022, 00000000000, 'inmate', 'id', 'Generate Carpeta printout', 'Prepared and Verified by: "Atty. Bla bla" Approved by: "Atty. Wawa"', 00000000001, 'generate', '0000-00-00 00:00:00', 'active'),
-(00000000023, 00000000001, 'court', 'court_id', 'Update Court', 'Court "RTC Branch 1123" was updated', 00000000001, 'update', '2018-02-16 04:27:20', 'active'),
-(00000000024, 00000000001, 'cell', 'id', 'Update Cell', 'Cell "111" was updated', 00000000001, 'update', '2018-02-16 04:27:29', 'active'),
-(00000000025, 00000000000, 'inmate', 'id', 'Generate Carpeta printout', 'Prepared and Verified by: "asdf" Approved by: "sadf"', 00000000001, 'generate', '0000-00-00 00:00:00', 'active');
+(00000000012, 00000000002, 'municipality', 'mun_id', 'Delete Municipality', 'Municipality \"Danao City\" was deleted', 00000000001, 'delete', '2018-02-12 01:37:42', 'active'),
+(00000000013, 00000000003, 'municipality', 'mun_id', 'Add Municipality', 'Municipality \"muni\" was added', 00000000001, 'add', '2018-02-12 01:38:07', 'active'),
+(00000000014, 00000000003, 'court', 'court_id', 'Add Court', 'Court \"h\" was added', 00000000001, 'add', '2018-02-12 01:38:34', 'active'),
+(00000000015, 00000000003, 'court', 'id', 'Delete Court', 'Court \"h\" was deleted', 00000000001, 'delete', '2018-02-12 01:38:39', 'active'),
+(00000000016, 00000000003, 'municipality', 'mun_id', 'Delete Municipality', 'Municipality \"muni\" was deleted', 00000000001, 'delete', '2018-02-12 01:38:46', 'active'),
+(00000000017, 00000000004, 'municipality', 'mun_id', 'Add Municipality', 'Municipality \"kj\" was added', 00000000001, 'add', '2018-02-12 01:39:01', 'active'),
+(00000000018, 00000000004, 'court', 'court_id', 'Add Court', 'Court \"ih\" was added', 00000000001, 'add', '2018-02-12 01:39:08', 'active'),
+(00000000019, 00000000004, 'court', 'id', 'Delete Court', 'Court \"ih\" was deleted', 00000000001, 'delete', '2018-02-12 01:39:13', 'active'),
+(00000000020, 00000000004, 'municipality', 'mun_id', 'Delete Municipality', 'Municipality \"kj\" was deleted', 00000000001, 'delete', '2018-02-12 01:39:23', 'active'),
+(00000000021, 00000000004, 'municipality', 'mun_id', 'Delete Municipality', 'Municipality \"kj\" was deleted', 00000000001, 'delete', '2018-02-12 01:39:24', 'active'),
+(00000000022, 00000000000, 'inmate', 'id', 'Generate Carpeta printout', 'Prepared and Verified by: \"Atty. Bla bla\" Approved by: \"Atty. Wawa\"', 00000000001, 'generate', '0000-00-00 00:00:00', 'active'),
+(00000000023, 00000000001, 'court', 'court_id', 'Update Court', 'Court \"RTC Branch 1123\" was updated', 00000000001, 'update', '2018-02-16 04:27:20', 'active'),
+(00000000024, 00000000001, 'cell', 'id', 'Update Cell', 'Cell \"111\" was updated', 00000000001, 'update', '2018-02-16 04:27:29', 'active'),
+(00000000025, 00000000000, 'inmate', 'id', 'Generate Carpeta printout', 'Prepared and Verified by: \"asdf\" Approved by: \"sadf\"', 00000000001, 'generate', '0000-00-00 00:00:00', 'active'),
+(00000000026, 00000123213, 'inmate', 'inmate_id', 'Edit Inmate Information Step 1 ', 'Inmate Information of \"Prince Gomez\" was updated', 00000000001, 'update', '2018-02-18 02:19:14', 'active'),
+(00000000027, 00000123213, 'inmate', 'inmate_id', 'Edit Inmate Information Step 2 ', 'Inmate Information of \"Prince Gomez\" was updated', 00000000001, 'update', '2018-02-18 02:33:08', 'active'),
+(00000000028, 00000123213, 'inmate', 'inmate_id', 'Edit Inmate Information Step 3 ', 'Inmate Information of \"Prince Gomez\" was updated', 00000000001, 'update', '2018-02-18 02:34:40', 'active'),
+(00000000029, 00000123213, 'inmate', 'inmate_id', 'Edit Inmate Information Step 3 ', 'Inmate Information of \"Prince Gomez\" was updated', 00000000001, 'update', '2018-02-18 02:34:40', 'active'),
+(00000000030, 00000000827, 'cs_violations', 'id', 'Add Violation', 'Violation \"Sample Violation\" was added', 00000000001, 'add', '2018-02-18 02:40:44', 'active');
 
 -- --------------------------------------------------------
 
@@ -301,7 +307,7 @@ CREATE TABLE `cs_sessions` (
 --
 
 INSERT INTO `cs_sessions` (`session_id`, `ip_address`, `user_agent`, `last_activity`, `user_data`) VALUES
-('c6ae3bc7f158fb977e024a31df4e3dd0', '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36', 1518765094, 'a:4:{s:12:"is_logged_in";b:1;s:9:"user_type";s:20:"Warden Administrator";s:7:"user_id";s:11:"00000000001";s:9:"logged_in";a:6:{s:8:"username";s:5:"admin";s:8:"password";s:128:"08f9ef3c42adfe2fbb0e979604c7eb30aa12705fac8b1a9ead899e67b46fd7348c0041721d2be1d64902b66535380e6ff68ee4ed1e9baebf7a7d3dc4285e5391";s:5:"fname";s:5:"CPDRC";s:5:"lname";s:13:"Administrator";s:4:"type";s:20:"Warden Administrator";s:7:"user_id";s:11:"00000000001";}}');
+('b73255f136d33146f889a347be68319c', '127.0.0.1', 'Mozilla/5.0 (Windows NT 6.3; Win64; x64; rv:58.0) Gecko/20100101 Firefox/58.0', 1518934716, 'a:5:{s:9:\"user_data\";s:0:\"\";s:12:\"is_logged_in\";b:1;s:9:\"user_type\";s:20:\"Warden Administrator\";s:7:\"user_id\";s:11:\"00000000001\";s:9:\"logged_in\";a:6:{s:8:\"username\";s:5:\"admin\";s:8:\"password\";s:128:\"08f9ef3c42adfe2fbb0e979604c7eb30aa12705fac8b1a9ead899e67b46fd7348c0041721d2be1d64902b66535380e6ff68ee4ed1e9baebf7a7d3dc4285e5391\";s:5:\"fname\";s:5:\"CPDRC\";s:5:\"lname\";s:13:\"Administrator\";s:4:\"type\";s:20:\"Warden Administrator\";s:7:\"user_id\";s:11:\"00000000001\";}}');
 
 -- --------------------------------------------------------
 
@@ -1180,7 +1186,8 @@ INSERT INTO `cs_violations` (`id`, `violations_category_id`, `name`, `level`, `d
 (00000000823, 00000000000, 'VIOLATION. OF SEC. 5, ART. 2 RA 9165', '1', '', '', '1', '1', '0', '0', '0', '0', 'active', NULL, NULL),
 (00000000824, 00000000000, 'VIOLO. OF SEC. 5 & 11, ART. 2 RA 9165/VIOL. OF RA 7166/VIOL. OF RA 8294', '1', '', '', '1', '1', '0', '0', '0', '0', 'active', NULL, NULL),
 (00000000825, 00000000000, 'VOLATION OF PD 1866 & VIOLATION OF PD 532', '1', '', '', '1', '1', '0', '0', '0', '0', 'active', NULL, NULL),
-(00000000826, 00000000000, 'violation1', '1', NULL, NULL, '1', '5', '1', '5', '1', '5', 'active', 1518413511, NULL);
+(00000000826, 00000000000, 'violation1', '1', NULL, NULL, '1', '5', '1', '5', '1', '5', 'active', 1518413511, NULL),
+(00000000827, 00000000000, 'Sample Violation', '1', NULL, NULL, '1', '1', '1', '1', '1', '1', 'active', 1518936044, NULL);
 
 -- --------------------------------------------------------
 
@@ -1221,6 +1228,13 @@ CREATE TABLE `editrequest` (
   `isRead` tinyint(1) NOT NULL DEFAULT '1',
   `judgedOn` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `editrequest`
+--
+
+INSERT INTO `editrequest` (`editRequestID`, `requestedBy`, `inmateId`, `status`, `reason`, `judgedBy`, `addedOn`, `isRead`, `judgedOn`) VALUES
+(1, 1, '123213', 'finished', 'test', 1, '2018-02-18 06:34:50', 1, '2018-02-18 14:19:00');
 
 -- --------------------------------------------------------
 
@@ -1316,6 +1330,7 @@ INSERT INTO `inmate` (`ref_formid`, `inmate_id`, `cell_no`, `inmate_fname`, `inm
 
 --
 -- Stand-in structure for view `inmates_full`
+-- (See below for the actual view)
 --
 CREATE TABLE `inmates_full` (
 `inmate_id` varchar(255)
@@ -1563,7 +1578,7 @@ CREATE TABLE `inmate_info` (
   `mother` varchar(255) NOT NULL,
   `relative` varchar(255) NOT NULL,
   `relation` varchar(255) NOT NULL,
-  `contactpersonnum` bigint(20) NOT NULL,
+  `contactpersonnum` varchar(20) NOT NULL,
   `address` varchar(255) NOT NULL,
   `place` varchar(50) NOT NULL,
   `religion` enum('Roman Catholic,including Catholic Charismatic','Islam','Evangelicals (PCEC)','Iglesia Ni Cristo','Non-Roman Catholic and Protestant (NCCP)','Aglipayan','Seventh-day Adventist','Bible Baptist Church','United Church of Christ in the Philippines','Jehovah''s Witnesses','Other Protestants','Church of Christ','Jesus is Lord Church','Tribal Religions','United Pentecostal Church (Philippines) Inc.','Other Baptists','Philippine Independent Catholic Church','Unión Espiritista Cristiana de Filipinas, Inc.','Church of Jesus Christ of the Latter Day Saints	','Association of Fundamental Baptist Churches in the Philippines','Evangelical Christian Outreach Foundation','None','Convention of the Philippine Baptist Church','Crusaders of the Divine Church of Christ Inc.	','Buddhist','Lutheran Church of the Philippines','Iglesia sa Dios Espiritu Santo Inc.','Philippine Benevolent Missionaries Association','Faith Tabernacle Church (Living Rock Ministries)','Others') NOT NULL
@@ -1574,25 +1589,25 @@ CREATE TABLE `inmate_info` (
 --
 
 INSERT INTO `inmate_info` (`inmate_id`, `nationality`, `status`, `birthdate`, `age`, `gender`, `born_in`, `home_add`, `province_add`, `occupation`, `father`, `mother`, `relative`, `relation`, `contactpersonnum`, `address`, `place`, `religion`) VALUES
-('1231231231', 'Filipino', 'Married', '1983-11-05', 34, 'Female', 'Female', ',  Cebu", "San Remegio', '', '', 'Laundry Woman', 'Ernesto Tudtud', 'Teresita Caballero', 'Anselmo Abad', 0, 'Pulpogan, Consolacion, Husband', '"San Remegio', 'Roman Catholic,including Catholic Charismatic'),
-('1231231232', 'Filipino', 'Married', '1983-11-06', 34, 'Male', 'Male', ',  Cebu", "San Remegio', '', '', 'Laundry Woman', 'Ernesto Tudtud', 'Teresita Caballero', 'Anselmo Abad', 0, 'Pulpogan, Consolacion, Husband', '"San Remegio', 'Roman Catholic,including Catholic Charismatic'),
-('1231231233', 'Filipino', 'Single', '1983-11-07', 34, 'Male', 'Male', ',  Cebu", "San Remegio', '', '', 'Laundry Woman', 'Ernesto Tudtud', 'Teresita Caballero', 'Anselmo Abad', 0, 'Pulpogan, Consolacion, Husband', '"San Remegio', 'Roman Catholic,including Catholic Charismatic'),
-('1231231234', 'Filipino', 'Widow', '1983-11-08', 34, 'Male', 'Male', ',  Cebu", "San Remegio', '', '', 'Laundry Woman', 'Ernesto Tudtud', 'Teresita Caballero', 'Anselmo Abad', 0, 'Pulpogan, Consolacion, Husband', '"San Remegio', 'Roman Catholic,including Catholic Charismatic'),
-('1231231235', 'Filipino', 'Married', '1983-11-09', 34, 'Female', 'Female', ',  Cebu", "San Remegio', '', '', 'Laundry Woman', 'Ernesto Tudtud', 'Teresita Caballero', 'Anselmo Abad', 0, 'Pulpogan, Consolacion, Husband', '"San Remegio', 'Roman Catholic,including Catholic Charismatic'),
-('1231231236', 'Filipino', 'Widower', '1983-11-10', 34, 'Female', 'Female', ',  Cebu", "San Remegio', '', '', 'Laundry Woman', 'Ernesto Tudtud', 'Teresita Caballero', 'Anselmo Abad', 0, 'Pulpogan, Consolacion, Husband', '"San Remegio', 'Roman Catholic,including Catholic Charismatic'),
-('1231231237', 'Filipino', 'Single', '1983-11-11', 34, 'Female', 'Female', ',  Cebu", "San Remegio', '', '', 'Laundry Woman', 'Ernesto Tudtud', 'Teresita Caballero', 'Anselmo Abad', 0, 'Pulpogan, Consolacion, Husband', '"San Remegio', 'Roman Catholic,including Catholic Charismatic'),
-('1231231238', 'Filipino', 'Married', '1983-11-12', 34, 'Male', 'Male', ',  Cebu", "San Remegio', '', '', 'Laundry Woman', 'Ernesto Tudtud', 'Teresita Caballero', 'Anselmo Abad', 0, 'Pulpogan, Consolacion, Husband', '"San Remegio', 'Roman Catholic,including Catholic Charismatic'),
-('1231231239', 'Filipino', 'Married', '1983-11-13', 34, 'Male', 'Male', ',  Cebu", "San Remegio', '', '', 'Laundry Woman', 'Ernesto Tudtud', 'Teresita Caballero', 'Anselmo Abad', 0, 'Pulpogan, Consolacion, Husband', '"San Remegio', 'Roman Catholic,including Catholic Charismatic'),
-('1231231240', 'Filipino', 'Single', '1983-11-14', 34, 'Male', 'Male', ',  Cebu", "San Remegio', '', '', 'Laundry Woman', 'Ernesto Tudtud', 'Teresita Caballero', 'Anselmo Abad', 0, 'Pulpogan, Consolacion, Husband', '"San Remegio', 'Roman Catholic,including Catholic Charismatic'),
-('1231231241', 'Filipino', 'Married', '1983-11-15', 34, 'Female', 'Female', ',  Cebu", "San Remegio', '', '', 'Laundry Woman', 'Ernesto Tudtud', 'Teresita Caballero', 'Anselmo Abad', 0, 'Pulpogan, Consolacion, Husband', '"San Remegio', 'Roman Catholic,including Catholic Charismatic'),
-('1231231242', 'Filipino', 'Widow', '1983-11-16', 34, 'Female', 'Female', ',  Cebu", "San Remegio', '', '', 'Laundry Woman', 'Ernesto Tudtud', 'Teresita Caballero', 'Anselmo Abad', 0, 'Pulpogan, Consolacion, Husband', '"San Remegio', 'Roman Catholic,including Catholic Charismatic'),
-('1231231243', 'Filipino', 'Married', '1983-11-17', 34, 'Female', 'Female', ',  Cebu", "San Remegio', '', '', 'Laundry Woman', 'Ernesto Tudtud', 'Teresita Caballero', 'Anselmo Abad', 0, 'Pulpogan, Consolacion, Husband', '"San Remegio', 'Roman Catholic,including Catholic Charismatic'),
-('1231231244', 'Filipino', 'Widower', '1983-11-18', 34, 'Male', 'Male', ',  Cebu", "San Remegio', '', '', 'Laundry Woman', 'Ernesto Tudtud', 'Teresita Caballero', 'Anselmo Abad', 0, 'Pulpogan, Consolacion, Husband', '"San Remegio', 'Roman Catholic,including Catholic Charismatic'),
-('1231231245', 'Filipino', 'Married', '1983-11-19', 34, 'Male', 'Male', ',  Cebu", "San Remegio', '', '', 'Laundry Woman', 'Ernesto Tudtud', 'Teresita Caballero', 'Anselmo Abad', 0, 'Pulpogan, Consolacion, Husband', '"San Remegio', 'Roman Catholic,including Catholic Charismatic'),
-('1231231246', 'Filipino', 'Single', '1983-11-20', 34, 'Male', 'Male', ',  Cebu", "San Remegio', '', '', 'Laundry Woman', 'Ernesto Tudtud', 'Teresita Caballero', 'Anselmo Abad', 0, 'Pulpogan, Consolacion, Husband', '"San Remegio', 'Roman Catholic,including Catholic Charismatic'),
-('123213', 'Filipino', 'Single', '1997-02-05', 21, 'Male', 'cebu', 'vistbasd, basak, Cebu City', 'cebu ', 'n/a', 'jun', 'norm', 'n/a', 'n/a', 0, 'n/a, basak, Cebu City', 'Cebu City', 'Roman Catholic,including Catholic Charismatic'),
-('12345', 'Afghan', 'Single', '1997-02-22', 20, 'Male', 'cebu', 'vista , basak, Cebu City', 'cebu province', 'n/a', 'Jun  Entoma', 'Mama Entoma', 'Cous ', 'Cousin', 0, 'VB, basak, Cebu City', 'Cebu City', 'Buddhist'),
-('F231', 'American', 'Single', '2000-02-12', 18, 'Male', 'cebceb', 'wa koy alamag, basak, Badian', 'n/a', 'n/a', 'n/a', 'n/a', 'n/a', 'n/a', 0, 'saag, wala, Asturias', 'Badian', '');
+('1231231231', 'Filipino', 'Married', '1983-11-05', 34, 'Female', 'Female', ',  Cebu\", \"San Remegio', '', '', 'Laundry Woman', 'Ernesto Tudtud', 'Teresita Caballero', 'Anselmo Abad', '0', 'Pulpogan, Consolacion, Husband', '\"San Remegio', 'Roman Catholic,including Catholic Charismatic'),
+('1231231232', 'Filipino', 'Married', '1983-11-06', 34, 'Male', 'Male', ',  Cebu\", \"San Remegio', '', '', 'Laundry Woman', 'Ernesto Tudtud', 'Teresita Caballero', 'Anselmo Abad', '0', 'Pulpogan, Consolacion, Husband', '\"San Remegio', 'Roman Catholic,including Catholic Charismatic'),
+('1231231233', 'Filipino', 'Single', '1983-11-07', 34, 'Male', 'Male', ',  Cebu\", \"San Remegio', '', '', 'Laundry Woman', 'Ernesto Tudtud', 'Teresita Caballero', 'Anselmo Abad', '0', 'Pulpogan, Consolacion, Husband', '\"San Remegio', 'Roman Catholic,including Catholic Charismatic'),
+('1231231234', 'Filipino', 'Widow', '1983-11-08', 34, 'Male', 'Male', ',  Cebu\", \"San Remegio', '', '', 'Laundry Woman', 'Ernesto Tudtud', 'Teresita Caballero', 'Anselmo Abad', '0', 'Pulpogan, Consolacion, Husband', '\"San Remegio', 'Roman Catholic,including Catholic Charismatic'),
+('1231231235', 'Filipino', 'Married', '1983-11-09', 34, 'Female', 'Female', ',  Cebu\", \"San Remegio', '', '', 'Laundry Woman', 'Ernesto Tudtud', 'Teresita Caballero', 'Anselmo Abad', '0', 'Pulpogan, Consolacion, Husband', '\"San Remegio', 'Roman Catholic,including Catholic Charismatic'),
+('1231231236', 'Filipino', 'Widower', '1983-11-10', 34, 'Female', 'Female', ',  Cebu\", \"San Remegio', '', '', 'Laundry Woman', 'Ernesto Tudtud', 'Teresita Caballero', 'Anselmo Abad', '0', 'Pulpogan, Consolacion, Husband', '\"San Remegio', 'Roman Catholic,including Catholic Charismatic'),
+('1231231237', 'Filipino', 'Single', '1983-11-11', 34, 'Female', 'Female', ',  Cebu\", \"San Remegio', '', '', 'Laundry Woman', 'Ernesto Tudtud', 'Teresita Caballero', 'Anselmo Abad', '0', 'Pulpogan, Consolacion, Husband', '\"San Remegio', 'Roman Catholic,including Catholic Charismatic'),
+('1231231238', 'Filipino', 'Married', '1983-11-12', 34, 'Male', 'Male', ',  Cebu\", \"San Remegio', '', '', 'Laundry Woman', 'Ernesto Tudtud', 'Teresita Caballero', 'Anselmo Abad', '0', 'Pulpogan, Consolacion, Husband', '\"San Remegio', 'Roman Catholic,including Catholic Charismatic'),
+('1231231239', 'Filipino', 'Married', '1983-11-13', 34, 'Male', 'Male', ',  Cebu\", \"San Remegio', '', '', 'Laundry Woman', 'Ernesto Tudtud', 'Teresita Caballero', 'Anselmo Abad', '0', 'Pulpogan, Consolacion, Husband', '\"San Remegio', 'Roman Catholic,including Catholic Charismatic'),
+('1231231240', 'Filipino', 'Single', '1983-11-14', 34, 'Male', 'Male', ',  Cebu\", \"San Remegio', '', '', 'Laundry Woman', 'Ernesto Tudtud', 'Teresita Caballero', 'Anselmo Abad', '0', 'Pulpogan, Consolacion, Husband', '\"San Remegio', 'Roman Catholic,including Catholic Charismatic'),
+('1231231241', 'Filipino', 'Married', '1983-11-15', 34, 'Female', 'Female', ',  Cebu\", \"San Remegio', '', '', 'Laundry Woman', 'Ernesto Tudtud', 'Teresita Caballero', 'Anselmo Abad', '0', 'Pulpogan, Consolacion, Husband', '\"San Remegio', 'Roman Catholic,including Catholic Charismatic'),
+('1231231242', 'Filipino', 'Widow', '1983-11-16', 34, 'Female', 'Female', ',  Cebu\", \"San Remegio', '', '', 'Laundry Woman', 'Ernesto Tudtud', 'Teresita Caballero', 'Anselmo Abad', '0', 'Pulpogan, Consolacion, Husband', '\"San Remegio', 'Roman Catholic,including Catholic Charismatic'),
+('1231231243', 'Filipino', 'Married', '1983-11-17', 34, 'Female', 'Female', ',  Cebu\", \"San Remegio', '', '', 'Laundry Woman', 'Ernesto Tudtud', 'Teresita Caballero', 'Anselmo Abad', '0', 'Pulpogan, Consolacion, Husband', '\"San Remegio', 'Roman Catholic,including Catholic Charismatic'),
+('1231231244', 'Filipino', 'Widower', '1983-11-18', 34, 'Male', 'Male', ',  Cebu\", \"San Remegio', '', '', 'Laundry Woman', 'Ernesto Tudtud', 'Teresita Caballero', 'Anselmo Abad', '0', 'Pulpogan, Consolacion, Husband', '\"San Remegio', 'Roman Catholic,including Catholic Charismatic'),
+('1231231245', 'Filipino', 'Married', '1983-11-19', 34, 'Male', 'Male', ',  Cebu\", \"San Remegio', '', '', 'Laundry Woman', 'Ernesto Tudtud', 'Teresita Caballero', 'Anselmo Abad', '0', 'Pulpogan, Consolacion, Husband', '\"San Remegio', 'Roman Catholic,including Catholic Charismatic'),
+('1231231246', 'Filipino', 'Single', '1983-11-20', 34, 'Male', 'Male', ',  Cebu\", \"San Remegio', '', '', 'Laundry Woman', 'Ernesto Tudtud', 'Teresita Caballero', 'Anselmo Abad', '0', 'Pulpogan, Consolacion, Husband', '\"San Remegio', 'Roman Catholic,including Catholic Charismatic'),
+('123213', 'Filipino', 'Single', '1997-02-05', 18, 'Male', 'cebu', 'basak,, n/a,, Alcantara', 'cebu ', 'n/a', 'jun', 'norm', 'n/a', 'n/a', '09322130123', 'basak,, n/a,, Alcantara', 'Alcantara', 'Roman Catholic,including Catholic Charismatic'),
+('12345', 'Afghan', 'Single', '1997-02-22', 20, 'Male', 'cebu', 'vista , basak, Cebu City', 'cebu province', 'n/a', 'Jun  Entoma', 'Mama Entoma', 'Cous ', 'Cousin', '09321239123', 'VB, basak, Cebu City', 'Cebu City', 'Buddhist'),
+('F231', 'American', 'Single', '2000-02-12', 18, 'Male', 'cebceb', 'wa koy alamag, basak, Badian', 'n/a', 'n/a', 'n/a', 'n/a', 'n/a', 'n/a', '0', 'saag, wala, Asturias', 'Badian', '');
 
 -- --------------------------------------------------------
 
@@ -1658,7 +1673,8 @@ INSERT INTO `logs` (`id`, `action`, `actor`, `time`, `agent`) VALUES
 (8, 'Log in', 00000000001, '2018-02-13 15:34:49', 'Chrome  v.61.0.3116.0 on Linux'),
 (9, 'Log in', 00000000001, '2018-02-16 07:13:08', 'Chrome  v.63.0.3239.132 on Unknown Windows OS'),
 (10, 'Log in', 00000000001, '2018-02-16 07:20:37', 'Chrome  v.63.0.3239.132 on Unknown Windows OS'),
-(11, 'Log in', 00000000001, '2018-02-16 07:23:15', 'Chrome  v.63.0.3239.132 on Unknown Windows OS');
+(11, 'Log in', 00000000001, '2018-02-16 07:23:15', 'Chrome  v.63.0.3239.132 on Unknown Windows OS'),
+(12, 'Log in', 00000000001, '2018-02-18 06:18:39', 'Firefox  v.58.0 on Unknown Windows OS');
 
 -- --------------------------------------------------------
 
@@ -1769,6 +1785,7 @@ INSERT INTO `user_account` (`user_id`, `username`, `password`, `email`, `user_fn
 
 --
 -- Stand-in structure for view `view_court`
+-- (See below for the actual view)
 --
 CREATE TABLE `view_court` (
 `court_id` int(12)
@@ -2027,7 +2044,7 @@ ALTER TABLE `cs_cases`
 -- AUTO_INCREMENT for table `cs_logs`
 --
 ALTER TABLE `cs_logs`
-  MODIFY `id` int(11) UNSIGNED ZEROFILL NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
+  MODIFY `id` int(11) UNSIGNED ZEROFILL NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
 --
 -- AUTO_INCREMENT for table `cs_reasons`
 --
@@ -2042,7 +2059,7 @@ ALTER TABLE `cs_users`
 -- AUTO_INCREMENT for table `cs_violations`
 --
 ALTER TABLE `cs_violations`
-  MODIFY `id` int(11) UNSIGNED ZEROFILL NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=827;
+  MODIFY `id` int(11) UNSIGNED ZEROFILL NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=828;
 --
 -- AUTO_INCREMENT for table `cs_violations_categories`
 --
@@ -2052,7 +2069,7 @@ ALTER TABLE `cs_violations_categories`
 -- AUTO_INCREMENT for table `editrequest`
 --
 ALTER TABLE `editrequest`
-  MODIFY `editRequestID` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `editRequestID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT for table `inmate`
 --
@@ -2082,7 +2099,7 @@ ALTER TABLE `inmate_conduct_rec`
 -- AUTO_INCREMENT for table `logs`
 --
 ALTER TABLE `logs`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 --
 -- AUTO_INCREMENT for table `municipality`
 --
@@ -2092,7 +2109,7 @@ ALTER TABLE `municipality`
 -- AUTO_INCREMENT for table `temp`
 --
 ALTER TABLE `temp`
-  MODIFY `tempId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+  MODIFY `tempId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
 --
 -- AUTO_INCREMENT for table `user_account`
 --

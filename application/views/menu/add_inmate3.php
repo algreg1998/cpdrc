@@ -1,4 +1,3 @@
-<!DOC<option value=""> Typehtml>
 <html>
     <div id="page-wrapper">
 				<div class="row">
@@ -84,16 +83,25 @@
 									<label><i class="fa fa-arrows-v"></i> <b>Height</b></label>
                                     <div class="row">
                                         <div class="col-md-6">
-                                            <input type="number" id="ft" min="1" autofocus placeholder="ft" class="form-control">
+                                        	<div class="input-group">    
+	                                            <input type="number" id="ft" min="1" autofocus class="form-control">
+	                                            <span class="input-group-addon">ft</span>
+                                            </div>
                                         </div>
                                         <div class="col-md-6">
-                                            <input type="number" id="in" min="1" placeholder="in" class="form-control">
+                                        	<div class="input-group">												
+	                                            <input type="number" id="in" min="1" class="form-control">
+	                                            <span class="input-group-addon">in</span>
+                                            </div>
                                         </div>
                                     </div>
 
                                     <br>
 
-									<input readonly type="number" name="height" min="0" step="0.01" id="cm" placeholder="cm" class="form-control" required   value="<?php if($info!=null){echo $info->height;}?>">
+                                    <div class="input-group">
+										<input readonly type="number" name="height" min="0" step="0.01" id="cm" class="form-control" required   value="<?php if($info!=null){echo $info->height;}?>">
+										<span class="input-group-addon">cm</span>
+									</div>
 
                                     <br>
 
@@ -111,13 +119,19 @@
 									<label><i class="fa fa-tachometer"></i> <b>Weight</b></label>
                                     <div class="row">
                                         <div class="col-md-12">
-                                            <input type="number" id="kg" min="1" placeholder="kg" class="form-control">
+                                        	<div class="input-group">
+                                            	<input type="number" id="kg" min="1" class="form-control">
+                                            	<span class="input-group-addon">kg</span>
+                                            </div>
                                         </div>
                                     </div>
 
                                     <br>
 
-                                    <input readonly type="number" name="weight" min="0" step="0.01" id="lbs" placeholder="lbs" class="form-control" required value="<?php if($info!=null){echo $info->weight;}?>">
+                                    <div class="input-group">
+                                    	<input readonly type="number" name="weight" min="0" step="0.01" id="lbs" class="form-control" required value="<?php if($info!=null){echo $info->weight;}?>">
+                                    	<span class="input-group-addon">lbs</span>
+                                    </div>	
 
                                     <br>
 
