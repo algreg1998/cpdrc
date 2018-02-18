@@ -1030,6 +1030,7 @@ class cpdrc_fw extends CI_Model
 		 			'born' => $key->born_in,
 		 			'home' => $key->home_add,
 		 			'province' => $key->province_add,
+		 			'religion' => $key->religion,
 		 			'occupation' => $key->occupation,
 		 			'father' => $key->father,
 		 			'mother' => $key->mother,
@@ -1043,6 +1044,26 @@ class cpdrc_fw extends CI_Model
 				return $res;
 	 		}
 	 		
+	 	}
+
+	 	public function inmateReleaseInfo($id)
+	 	{	 		
+	 		//query
+	 		$this->db->select('*');
+	 		$this->db->from('inmate_released');
+	 		$this->db->where('inmate_id', $id);
+
+	 		$get = $this->db->get();
+	 		$res =array();
+
+	 		foreach ($get->result() as $release) 
+	 		{
+	 			$res[] = array(
+	 						'id' => $release->inmate_id,
+				 			'date_released' => $release->date_released,
+			 			); 
+				return $res;
+	 		}
 	 	} 	
 	 	//for the table in manage inmate view
 	 	//autho. visitors for the inmate also

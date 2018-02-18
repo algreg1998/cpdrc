@@ -64,8 +64,9 @@ session_start();
 	 		$data['inmate']=$this->cpdrc_fw->inmateinfo($id);
 	 		$data['case']=$this->cpdrc_fw->getcaseinfo($id);
 	 		$data['old'] = $this->cpdrc_fw->getOldCase($id);
+	 		$data['releaseInfo'] = $this->cpdrc_fw->inmateReleaseInfo($id);
 
-			$this->load->view('menu/viewinmate', $data);	
+			$this->load->view('menu/viewinmate', $data);		
 	 	}
 	 	public function setActive()
 	 	{

@@ -43,6 +43,18 @@ function MM_preloadImages() { //v3.0
 							<p class="list-group-item"><b>Full Name:</b> <?=$key['lname'].", ".$key['fname']." ".$key['mi']?></p>
 							<p class="list-group-item"><b>Alias:</b> "<?=$key['alias']?>"</p>
 							<p class="list-group-item"><b>Date registered:</b> <?=$key['date_added']?></p>
+							<?php 
+								if($releaseInfo != NULL)
+								{
+									foreach($releaseInfo as $release)
+									{
+							?>
+										<p class="list-group-item"><b>Date Released:</b> <?=$release['date_released']?></p>
+							<?php 
+									}
+								}
+							?>		
+
 							<p class="list-group-item"><b>Added by:</b> <?=$key['user_lname'].", ".$key['user_fname']." ".$key['user_mi']?></p><br>
 							<?php 
 						 		$attr = array('class' => 'form_horizontal');
@@ -81,6 +93,10 @@ function MM_preloadImages() { //v3.0
 							                    <tr>
 							                    	<td><b>Nationality</b></td>
 							                    	<td><?=$key['nationality']?></td>
+							                    </tr>
+							                    <tr>
+							                    	<td><b>Religion</b></td>
+							                    	<td><?=$key['religion']?></td>
 							                    </tr>
 							                   	<tr>
 							                    	<td><b>Occupation</b></td>
