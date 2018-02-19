@@ -43,6 +43,18 @@
                             </div>
                         </div>
                         <div class="form-group">
+                          <div class="row">
+                              <div class="col-lg-8"></div>
+                              <div class="col-lg-4">
+                                <form action="<?php echo site_url()?>cpdrc/addinmate/add5" method="POST">
+                                  <input name="filename"  class="hidden" value="<?php echo $inmate_info->filename; ?>">
+                                  <input name="id"  class="hidden" value="<?php echo $inmate_info->inmate_id; ?>">
+                                  <input name="formid" class="hidden" value="<?php echo $inmate_info->refForm; ?>">
+                                  
+                                  <button class="btn btn-success" type="submit">Add new Markings</button>
+                                </form>
+                              </div>
+                          </div>
                             <div class="row">
                               <div class="col-lg-8"></div>
                               <div class="col-lg-4"><button type="button" class="btn btn-primary pull-right" data-toggle="collapse" data-target="#demo"><i class="fa fa-print"></i> Print</button></div>

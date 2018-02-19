@@ -38,7 +38,11 @@
                                 <?php if ($this->session->flashdata('error_msg')): ?>
                                     <div class="alert alert-danger">
                                         <button class="close" aria-hidden="true" data-dismiss="alert" type="button">×</button>
-                                        <?php echo $this->session->flashdata('error_msg') ?>
+                                        <?php echo $this->session->flashdata('error_msg');
+                                            if(isset($data)){
+                                                    var_dump($data);
+                                            }
+                                         ?>
                                     </div>
                                 <?php endif ?>
 
