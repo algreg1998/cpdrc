@@ -28,7 +28,13 @@
 											</h1>
 										</div>
 									</div>
+									<?php echo form_close(); 
+                        			if($crimes){?>
 									<a href="<?php echo site_url()?>cpdrc/pages/printCIT"><button class="btn btn-default" ><i class="fa fa-print"></i> Print</button></a>
+									<?php
+
+				                        }
+				                     ?>	
 										<div class="table-responsive">
 						 					<table class="table table-bordered table-hover table-striped tablesorter datatable">
 						 						<thead align="center">

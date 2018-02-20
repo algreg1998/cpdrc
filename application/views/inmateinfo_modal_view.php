@@ -37,11 +37,54 @@
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="col-lg-4 control-label" style="font-size: 16px">Release Date :</label>
+                            <label class="col-lg-4 control-label" style="font-size: 16px">Estimated Release Date :</label>
                             <div class="col-sm-8" style="margin-top: 7px; font-size: 16px">
                                 <?php echo ($reason_info->release_date == NULL) ? "N/A" : mdate("%M %d, %Y",strtotime($reason_info->release_date)) ?>
                             </div>
                         </div>
+                        <div class="form-group">
+                          <div class="row">
+                              <div class="col-lg-8"></div>
+                              <div class="col-lg-4">
+                                <form action="<?php echo site_url()?>cpdrc/addinmate/add5" method="POST">
+                                  <input name="filename"  class="hidden" value="<?php echo $inmate_info->filename; ?>">
+                                  <input name="id"  class="hidden" value="<?php echo $inmate_info->inmate_id; ?>">
+                                  <input name="formid" class="hidden" value="<?php echo $inmate_info->refForm; ?>">
+                                  
+                                  <button class="btn btn-success" type="submit">Add new Markings</button>
+                                </form>
+                              </div>
+                          </div>
+                            <div class="row">
+                              <div class="col-lg-8"></div>
+                              <div class="col-lg-4"><button type="button" class="btn btn-primary pull-right" data-toggle="collapse" data-target="#demo"><i class="fa fa-print"></i> Print</button></div>
+                            </div>
+                            <div class="row">
+                              <div class="col-lg-1"></div>
+                              <div class="col-lg-11" style="padding-top:5px;">
+                                  <div id="demo" class="collapse">
+                                  <form id="id" action="<?php echo site_url()?>search/printCPT" method="post" style="display: inline;">
+                                    <input type="hidden" name="id" id= "id" class="id" value='<?php echo $inmate_info->inmate_id ?>'>
+                                    <div class="row">
+                                      <div class="col-lg-6">
+                                        <input class="form-control" type="text" name="prep" placeholder="Prepared and Verified by:">    
+                                      </div>
+                                      <div class="col-lg-4" style="padding-left:0px;">
+                                        <input class="form-control" type="text" name="app" placeholder="Approved by:">
+                                      </div>
+                                      <div class="col-lg-2">
+                                        <button  id="printCPT" class="btn btn-success pull-right">Submit</button></a>
+                                      </div>
+                                    </div>
+                                  </form>
+                            </div>                   
+                              </div>
+                            </div>
+                            
+                        </div>
+
+
+         
                     </div>
                 </div>  
             </div>
@@ -53,8 +96,8 @@
                             <tr>
                                 <th>Case No</th>
                                 <th>Violation</th>
-                                <th>Level</th>
-                                <th>RA</th>
+                                <!-- <th>Level</th>
+                                <th>RA</th> -->
                                 <th style="width: 80px;" class="text-center">Min (yrs)</th>
                                 <th style="width: 80px;" class="text-center">Max (yrs)</th>
                             </tr>
@@ -64,8 +107,8 @@
                               <tr>
                                   <td style="width: 150px"><?php echo $case->case_no ?></td>
                                   <td><?php echo $case->name ?></td>
-                                  <td><?php echo $case->level ?></td>
-                                  <td><?php echo $case->RepublicAct ?></td>
+                                  <!-- <td><?php //echo $case->level ?></td>
+                                  <td><?php //echo $case->RepublicAct ?></td> -->
                                   <td class="text-center"><?php echo $case->min_year ?></td>
                                   <td class="text-center"><?php echo $case->max_year ?></td>
                               </tr>
@@ -77,12 +120,6 @@
         </div>
     </div>
     <div class="modal-footer">
-
-        <form id="id" action="<?php echo site_url()?>search/printCPT" method="post" style="display: inline;">
-        <input type="hidden" name="id" id= "id" class="id" value='<?php echo $inmate_info->inmate_id ?>'>
-        <!-- <a href="<?php echo site_url()?>search/printCPT"> -->
-        <button id="printCPT" class="btn btn-default" ><i class="fa fa-print"></i> Print</button></a>
-        </form>
             <?php
                 if($reqStat!=null){
              $reqStat =json_decode(json_encode($reqStat));  

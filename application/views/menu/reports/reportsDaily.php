@@ -92,23 +92,23 @@
 									<div class="panel-body" id="section-to-print">
 
 										<div class="table-responsive" >
-						 		<table class="table table-bordered table-hover table-striped tablesorter" style="font-size: 10px;">
-						 					<thead>
-						 						<th style="width:25px">DAY	</th>
-					 							<th style="width:100px">PRISONERS STRENGTH</th>
-					 							<th style="width:100px">PRISONERS RECEIVED</th>
+						 		<table class="text-center table table-bordered table-hover table-striped tablesorter" style="font-size: 10px;">
+						 					<thead >
+						 						<th class='text-center' style="width:25px">DAY	</th>
+					 							<th class='text-center' style="width:100px">PRISONERS STRENGTH</th>
+					 							<th class='text-center' style="width:100px">PRISONERS RECEIVED</th>
 					 							<!-- <th style="width:10px">RELEASED</th> -->
-				 								<th  style="width:10px">SERVED</th>
-					 							<th  style="width:10px">PROATION</th>
-					 							<th  style="width:10px">SHIPPED</th>
-					 							<th  style="width:10px">BONDED</th>
-					 							<th  style="width:10px">ACQUITTED</th>
-					 							<th  style="width:10px">DISMISSED</th>
-					 							<th  style="width:10px">DEAD</th>
-					 							<th  style="width:10px">GCTA</th>
-					 							<th  style="width:10px">OTHERS</th>
-					 							<th  style="width:10px">TOTAL PRISONERS RELEASED</th>
-					 							<th  style="width:10px">TOTAL</th>
+				 								<th  class='text-center' style="width:10px">SERVED</th>
+					 							<th  class='text-center' style="width:10px">PROATION</th>
+					 							<th  class='text-center' style="width:10px">SHIPPED</th>
+					 							<th  class='text-center' style="width:10px">BONDED</th>
+					 							<th  class='text-center' style="width:10px">ACQUITTED</th>
+					 							<th  class='text-center' style="width:10px">DISMISSED</th>
+					 							<th  class='text-center' style="width:10px">DEAD</th>
+					 							<th  class='text-center' style="width:10px">GCTA</th>
+					 							<th  class='text-center' style="width:10px">OTHERS</th>
+					 							<th  class='text-center' style="width:10px">TOTAL PRISONERS RELEASED</th>
+					 							<th  class='text-center' style="width:10px">TOTAL</th>
 					 						</thead>
 						                    <tbody>
 						                    	<?php 

@@ -45,6 +45,12 @@
 
                     foreach($picture as $pic ){}
 					?>
+				    <?php if ($this->session->flashdata('error_msg')): ?>
+                        <div class="alert alert-danger">
+                            <button class="close" aria-hidden="true" data-dismiss="alert" type="button">×</button>
+                            <?php echo $this->session->flashdata('error_msg') ?>
+                        </div>
+                    <?php endif ?>
 					</div>
 				</div>
 
@@ -80,14 +86,13 @@
 			    	<div class="col-md-6 well">
 			   	
 			    		<div class="form-group">
-			    			<div class="row">
+			    			<div style='display: none' class="row">
 			    				<div class="col-md-6">
 			    					<label><i class="fa fa-list-alt"></i> <b>Reference Form ID</b></label>
-			    					<input type="number" name="formid" class="form-control" required autofocus  value="<?php echo $d->ref_formid?>">
+			    					<input type="number" name="formid"   value="<?php echo $d->ref_formid?>">
 			    				</div>
 			    			</div>
 				    		<div class="row">
-				    		<br>
 				    			<div class="col-md-6">
 				    				<label><i class="fa fa-user"></i> <b>Inmate Number</b></label>
 	                    			<input type="text" name="id" class="form-control" required  value="<?php echo $d->inmate_id?>">
@@ -112,13 +117,13 @@
 	                    		</div>
 	                    	</div><br>
 	                    		<label><i class="fa fa-info"></i> <b>First Name</b></label>	
-                    			<input type="text" name="fname" class="form-control" required value="<?php echo $d->inmate_fname?>">
+                    			<input type="text" name="fname" class="form-control" pattern="([A-zA-Z\s]){2,}"  oninvalid="setCustomValidity('Please enter alphabets only')" onchange="try{setCustomValidity('')}catch(e){}" required value="<?php echo $d->inmate_fname?>">
                     			<label><i class="fa fa-info"></i> <b>Last Name</b></label>
-                    			<input type="text" name="lname" class="form-control" required value="<?php echo $d->inmate_lname?>">
+                    			<input type="text" name="lname" class="form-control" pattern="([A-zA-Z\s]){2,}"  oninvalid="setCustomValidity('Please enter alphabets only')" onchange="try{setCustomValidity('')}catch(e){}" required value="<?php echo $d->inmate_lname?>">
                     			<label><i class="fa fa-info"></i> <b>Middle Name</b></label>
-	                    		<input type="text" name="mi" class="form-control" required value="<?php echo $d->inmate_mi?>">
+	                    		<input type="text" name="mi" class="form-control" pattern="([A-zA-Z\s]){2,}"  oninvalid="setCustomValidity('Please enter alphabets only')" onchange="try{setCustomValidity('')}catch(e){}" required value="<?php echo $d->inmate_mi?>">
 	                    		<label><i class="fa fa-info"></i> <b>Aliases</b></label>
-	                    		<textarea rows="3" type="text" name="alias" class="form-control" required><?php echo $d->inmate_alias?></textarea><br>
+	                    		<textarea rows="3" type="text" name="alias" class="form-control"  oninvalid="setCustomValidity('Please enter alphabets only')" onchange="try{setCustomValidity('')}catch(e){}" required><?php echo $d->inmate_alias?></textarea><br>
 	                    		<button class="form-control btn btn-warning" type="submit">Submit Form</button>
                 		</div>
 			    	</div>

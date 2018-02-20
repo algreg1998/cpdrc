@@ -61,28 +61,38 @@
 							</select>
 							<!-- <label><i class="fa fa-file"></i> <b>Crime</b></label>
 							<textarea rows="3" type="text" name="crime" class="form-control" required ></textarea> -->
-							<div style="background-color: hsl(0, 100%, 90%); padding: 10px; opacity:0.6; margin-bottom: 10px;"> 
-								<div class="row">
-									<div class="row"><div class="col-md-12" align="center"><h4 >MAX</h4></div></div>
-									<div class="col-md-4" align="center"><label>DAY:</label>&nbsp;<span id="mad"></span></div>
-									<div class="col-md-4" align="center"><label>MONTH:</label>&nbsp;<span id="mam"></span></div>
-									<div class="col-md-4" align="center"><label>YEAR:</label>&nbsp;<span id="may"></span></div>
+							<br>
+							<div class="panel panel-danger">
+							  <div class="panel-heading"><b>MAXIMUM</b></div>
+							  <div class="panel-body">
+							  	<div class="row">
+									<div class="col-md-4" align="center"><label>MONTH:</label>&nbsp;<h2><span id="mam"></span></h2></div>
+									<div class="col-md-4" align="center"><label>DAY:</label>&nbsp;<h2><span id="mad"></span></h2></div>
+									<div class="col-md-4" align="center"><label>YEAR:</label>&nbsp;<h2><span id="may"></span></h2></div>
 								</div>
-								<br>
-								<div class="row">
-									<div class="row"><div class="col-md-12" align="center"><h4 >MINIMUM</h4></div></div>
-									<div class="col-md-4" align="center"><label>DAY:</label>&nbsp;<span id="mid"></span></div>
-									<div class="col-md-4" align="center"><label>MONTH:</label>&nbsp;<span id="mim"></span></div>
-									<div class="col-md-4" align="center"><label>YEAR:</label>&nbsp;<span id="miy"></span></div>
-								</div>
+							  </div>
 							</div>
+							<div class="panel panel-danger">
+							  <div class="panel-heading"><b>MINIMUM</b></div>
+							  <div class="panel-body">
+							  	<div class="row">
+									<div class="col-md-4" align="center"><label>MONTH:</label>&nbsp;<h2><span id="mim"></span></h2></div>
+									<div class="col-md-4" align="center"><label>DAY:</label>&nbsp;<h2><span id="mid"></span></h2></div>
+									<div class="col-md-4" align="center"><label>YEAR:</label>&nbsp;<h2><span id="miy"></span></h2></div>
+								</div>
+							  </div>
+							</div>
+                            <label><i class="fa fa-sort-numeric-asc"></i> Counts(s)</label><br>
+                            <input type="number" min="0" name="counts" value="0"><br><br>
+
 							<label><i class="fa fa-info"></i> Period of Preventive Imprisonment</label><br>
 							<label>Date Received</label>&nbsp;&nbsp;&nbsp;<input type="date" name="dor"><br>
 							<label>Date Commence</label>&nbsp;&nbsp;&nbsp;<input type="date" name="doc"><br>
 							<!-- <label><i class="fa fa-file-o"></i> <b>Sentence</b></label>
 							<textarea rows="3" type="text" name="sentence" class="form-control" required ></textarea> -->
-							<label><i class="fa fa-info"></i> <b>Commencing</b></label>						
-							<textarea rows="3" type="text" name="commencing" class="form-control" placeholder="Commencing" required ></textarea><br>
+<!--							<label><i class="fa fa-info"></i> <b>Commencing</b></label>						-->
+<!--							<textarea rows="3" type="text" name="commencing" class="form-control" placeholder="Commencing" required ></textarea>-->
+                            <br>
 							<!-- <label><i class="fa fa-calendar"></i> <b>Expected Date of Release</b></label>
 							<div class="row">
 								<div class="col-md-6">
@@ -118,7 +128,7 @@
 									<label class="text-muted">With misconduct records</label><input type="date" id="datebad" name="datebad" class="form-control" placeholder="Date of Released(with bad record)" required ><br>
 								</div>
 							</div> -->
-							<input type="submit" name="submit" value="Add case information" class="btn btn-warning btn-lg form-control">
+							<input type="submit" name="submit" value="Add case information" class="btn btn-warning form-control">
 						</form>
 							
 						</div>
@@ -141,7 +151,7 @@
 									  					<th>Date</th>
 									  					<th>Case number</th>
 									  					<th>Crime</th>
-									  					<th>Sentence</th>
+									  					<th>Counts</th>
 									  				</tr>
 									  			</thead>
 									  			<tbody id="gridBody">
@@ -151,8 +161,8 @@
 									  		         echo "<tr>";
 									  			       echo "<td>".$key['confine']."</td>";
 									  			       echo "<td>".$key['case_no']."</td>";
-									  			       echo "<td>".$key['crime']."</td>";
-									  			       echo "<td>".$key['sentence']."</td>";
+									  			       echo "<td>".$key['name']."</td>";
+									  			       echo "<td>".$key['counts']."</td>";
 									  				 echo "</tr>";
 												}  ?>	
 
@@ -180,20 +190,22 @@
 									  					<th>Date</th>
 									  					<th>Case number</th>
 									  					<th>Crime</th>
-									  					<th>Sentence</th>
+									  					<th>Counts</th>
 									  				</tr>
 									  			</thead>
 									  			<tbody id="gridBody">
 									  	        <?php
-  												foreach ($arc as $key) {
-
-									  		         echo "<tr>";
-									  			       echo "<td>".$key['confine']."</td>";
-									  			       echo "<td>".$key['case_no']."</td>";
-									  			       echo "<td>".$key['crime']."</td>";
-									  			       echo "<td>".$key['sentence']."</td>";
-									  				 echo "</tr>";
-												}  ?>	
+									  	        if (isset($arc)) {
+									  	        	foreach ($arc as $key) {
+										  		         echo "<tr>";
+										  			       echo "<td>".$key['confine']."</td>";
+										  			       echo "<td>".$key['case_no']."</td>";
+										  			       echo "<td>".$key['vioName']."</td>";
+										  			       echo "<td>".$key['counts']."</td>";
+										  				 echo "</tr>";
+													}	
+									  	        }
+  												  ?>	
 
 									  			</tbody>
 									  		</table>

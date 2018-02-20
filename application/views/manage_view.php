@@ -39,25 +39,25 @@
                         </div>
                     <?php endif ?>
                     <div class="dataTable_wrapper table-responsive">
-                        <table class="table table-striped table-bordered table-hover" id="table-releases">
+                        <table class="table table-striped table-bordered table-hover datatable">
                             <thead>
                                 <tr>
                                     <th style="">Violation Name</th>
-                                    <th style="">Description</th>
-                                    <th style="">Republic Act</th>
-                                    <th style="">Lvl</th>
+<!--                                    <th style="">Description</th>-->
+<!--                                    <th style="">Republic Act</th>-->
+<!--                                    <th style="">Lvl</th>-->
                                     <th style="">Min Penalty</th>
                                     <th style="">Max Penalty</th>
                                     <th>Action</th>
                                 </tr>
                             </thead>
-                            <tbody>
+                            <tbody class="text-center">
                                 <?php foreach ($violations as $violation): ?>
                                    <tr class="odd gradeX">
                                         <td><?php echo $violation->name ?></td>
-                                        <td><?php echo $violation->description ?></td>
-                                        <td><?php echo $violation->RepublicAct ?></td>
-                                        <td><?php echo $violation->level ?></td>
+<!--                                        <td>--><?php //echo $violation->description ?><!--</td>-->
+<!--                                        <td>--><?php //echo $violation->RepublicAct ?><!--</td>-->
+<!--                                        <td>--><?php //echo $violation->level ?><!--</td>-->
                                         <td>
                                             <?php $min_pen = array(); ?>
                                             <?php if (intval($violation->min_year) > 0): ?>
@@ -86,7 +86,7 @@
                                         </td>
                                         <td style="text-align:center !important">
                                             <!-- <a data-type="" data-item="<?php echo $violation->name ?>" href="<?php echo base_url('manage/editviolation/'.$violation->id) ?>"><i class="fa fa-edit"></i></a> -->
-                                            <a data-type="delete" data-item="<?php echo $violation->name ?>" href="<?php echo base_url('manage/deleteviolation/'.$violation->id) ?>" class="generalAlertify"><i class="fa fa-trash"></i></a>
+                                            <a data-type="delete" data-item="<?php echo $violation->name ?>" href="<?php echo base_url('manage/deleteviolation/'.$violation->id) ?>" class="generalAlertify"><button class="btn btn-danger"><i class="fa fa-trash"></i> Delete</button></a>
                                         </td>
                                     </tr> 
                                 <?php endforeach ?>

@@ -66,6 +66,48 @@ class cpdrc_fw extends CI_Model
 				
 			return $ins;
 	 	}
+	 	public function getCrimeIndexPrinting($crime) {
+	 		$query = $this->db->query("SELECT * ,inmate.inmate_id,inmate_lname,inmate_fname,case_no,inmate_info.place as 'place',DATE_FORMAT(inmate.datetime_added, '%d-%b-%y') as da ,cs_appearance_schedules.place as 'casp'
+						from inmate , cs_reasons,cs_cases,inmate_info,cs_appearance_schedules
+	 			  WHERE cs_reasons.inmate_id = inmate.inmate_id AND
+	 			  cs_reasons.id = cs_cases.reasons_id AND
+	 			  inmate_info.inmate_id = inmate.inmate_id AND
+	 			 cs_appearance_schedules.reason_id =  cs_reasons.id AND
+	 				 cs_cases.violation_id = '".$crime."' AND
+	 			 	   inmate.status != 'Released'
+                      GROUP by inmate.inmate_id ");
+	 		//echo $this->db->last_query();
+	 		
+	 		$ins = array();
+	 		foreach ($query->result() as $key) {
+	 			$ret = $this->getCrimeCases1($key->inmate_id);
+	 			//echo json_encode($ret);
+
+				// $ins[] = array(
+				// 	'nameOfInmate' => $key->inmate_lname.", ".$key->inmate_fname,
+				// 	'crime' => $ret['vio'],
+				// 	'case_no' => $ret['case'],
+				// 	'court' => $ret['court'],
+				// 	'dateCommitted' =>$key->d,
+				// 	'place' => $key->place,
+				// 	'inmateGender' => "$key->gender"
+				// );
+				$ins[] = array(
+					'nameOfInmate' => $key->inmate_lname.", ".$key->inmate_fname,
+					// 'crime' => $key->name,
+					'crime' =>  $ret['vio'],
+					// 'case_no' => $key->case_no,
+					'case_no' => $ret['case'],
+					// 'court' =>$key->casp,
+					'court' =>$ret['court'],
+					'dateCommitted' => $key->da,
+					'place' => $key->place,
+					'qty' => 1
+				);
+			}
+				
+			return $ins;
+	 	}
 	 	public function getCrimeIndexGeo($place) {
 	 		// $query = $this->db->query("SELECT * ,inmate.inmate_id,inmate_lname,inmate_fname,case_no,inmate_info.place as 'place',DATE_FORMAT(inmate.datetime_added, '%d-%b-%y') as da ,cs_appearance_schedules.place as 'casp'
 	 		// 	from inmate , cs_reasons,cs_cases,inmate_info,cs_appearance_schedules
@@ -164,20 +206,76 @@ class cpdrc_fw extends CI_Model
 			}				
 			return $ins;
 	 	}
+	 	public function getMasterListByGenderPrinting($gender) {
+	 		switch($gender)
+	 		{
+	 			case 'both':
+				 			$query = $this->db->query("SELECT *,inmate.inmate_id,IFNull(court_name,'None') as court_name ,DATE_FORMAT(inmate.datetime_added, '%d-%b-%y') as 'd' from inmate
+				 				LEFT JOIN inmate_info on inmate.inmate_id = inmate_info.inmate_id
+				 				LEFT JOIN cs_reasons on cs_reasons.inmate_id = inmate.inmate_id
+				 				LEFT JOIN cs_cases on cs_reasons.id = cs_cases.reasons_id
+				 				LEFT JOIN cs_violations on cs_cases.violation_id = cs_violations.id
+				 				LEFT JOIN inmate_case_info on inmate_case_info.case_no = cs_cases.case_no
+				 				WHERE inmate.status != 'Released' AND inmate.status = 'Active' AND inmate_info.gender IS NOT NULL                	
+				 				GROUP by inmate.inmate_id");
+			                break;
+
+			    case 'female':
+			    			$query = $this->db->query("SELECT *,inmate.inmate_id,IFNull(court_name,'None') as court_name ,DATE_FORMAT(inmate.datetime_added, '%d-%b-%y') as 'd' from inmate
+			    				LEFT JOIN inmate_info on inmate.inmate_id = inmate_info.inmate_id
+			    				LEFT JOIN cs_reasons on cs_reasons.inmate_id = inmate.inmate_id
+			    				LEFT JOIN cs_cases on cs_reasons.id = cs_cases.reasons_id
+			    				LEFT JOIN cs_violations on cs_cases.violation_id = cs_violations.id
+			    				LEFT JOIN inmate_case_info on inmate_case_info.case_no = cs_cases.case_no
+			    				WHERE inmate.status != 'Released' AND inmate.status = 'Active' AND inmate_info.gender = 'Female'                	
+			    				GROUP by inmate.inmate_id");
+			    			break;
+
+			    case 'male':
+			    			$query = $this->db->query("SELECT *,inmate.inmate_id,IFNull(court_name,'None') as court_name ,DATE_FORMAT(inmate.datetime_added, '%d-%b-%y') as 'd' from inmate
+			    				LEFT JOIN inmate_info on inmate.inmate_id = inmate_info.inmate_id
+			    				LEFT JOIN cs_reasons on cs_reasons.inmate_id = inmate.inmate_id
+			    				LEFT JOIN cs_cases on cs_reasons.id = cs_cases.reasons_id
+			    				LEFT JOIN cs_violations on cs_cases.violation_id = cs_violations.id
+			    				LEFT JOIN inmate_case_info on inmate_case_info.case_no = cs_cases.case_no
+			    				WHERE inmate.status != 'Released' AND inmate.status = 'Active' AND inmate_info.gender = 'Male'                	
+			    				GROUP by inmate.inmate_id");
+			    			break;
+	 		}
+
+	 		$ins = array();
+	 		foreach ($query->result() as $key) {
+	 			//echo $key->inmate_id;
+	 			$ret = $this->getCrimeCases1($key->inmate_id);
+	 			//echo json_encode($ret);
+
+				$ins[] = array(
+					'nameOfInmate' => $key->inmate_lname.", ".$key->inmate_fname,
+					'crime' => $ret['vio'],
+					'case_no' => $ret['case'],
+					'cellNumber' =>$key->cell_no,
+					'court' => $ret['court'],
+					'dateCommitted' =>$key->d,
+					'place' => $key->place,
+					'inmateGender' => "$key->gender"
+				);
+			}				
+			return $ins;
+	 	}
 	 	public function getCrimeCases($id)
 	 	{
 	 		$query = $this->db->query("SELECT cs_cases.case_no, cs_violations.name ,cas.place 
-										from inmate as i, cs_appearance_schedules as cas , inmate_info ,cs_reasons 
-										LEFT JOIN cs_cases on cs_reasons.id = cs_cases.reasons_id
+										from inmate as i, cs_appearance_schedules as cas , inmate_info 
+										LEFT JOIN cs_reasons as cr on cr.inmate_id = inmate_info.inmate_id
+										LEFT JOIN cs_cases on cr.id = cs_cases.reasons_id
 										LEFT JOIN cs_violations on cs_cases.violation_id = cs_violations.id
 										WHERE i.status != 'Released' AND
 										      cs_violations.id is not null AND
-										      cas.reason_id = cs_reasons.id AND
+										      cr.id is not null AND
 										      i.inmate_id = inmate_info.inmate_id AND
-										      cs_reasons.inmate_id = i.inmate_id AND
-										       i.inmate_id =   '".$id."'");
-
-	 		
+										      cr.inmate_id = i.inmate_id AND
+										       i.inmate_id =   '".$id."'
+										  GROUP BY cs_cases.id ASC");
 	 		$case ="";
 	 		$vio ="";
 	 		$court ="";
@@ -189,6 +287,47 @@ class cpdrc_fw extends CI_Model
 					$case .= $key->case_no." / ";
 					$vio .= $key->name." / ";
 					$court .= $key->place." / ";
+				}else{
+					$case .= $key->case_no." ";
+					$vio .= $key->name." ";
+					$court .= $key->place." ";
+				}
+				$cnt++;
+			}	
+			$ins = array(
+					'case'=>$case,
+					'vio'=>$vio,
+					'court'=>$court
+				);		
+			return $ins;
+	 	}
+	 	public function getCrimeCases1($id)
+	 	{
+	 		$query = $this->db->query("SELECT cs_cases.case_no, cs_violations.name ,cas.place 
+										from inmate as i, cs_appearance_schedules as cas , inmate_info 
+										LEFT JOIN cs_reasons as cr on cr.inmate_id = inmate_info.inmate_id
+										LEFT JOIN cs_cases on cr.id = cs_cases.reasons_id
+										LEFT JOIN cs_violations on cs_cases.violation_id = cs_violations.id
+										WHERE i.status != 'Released' AND
+										      cs_violations.id is not null AND
+										      cr.id is not null AND
+										      i.inmate_id = inmate_info.inmate_id AND
+										      cr.inmate_id = i.inmate_id AND
+										       i.inmate_id =   '".$id."'
+										  GROUP BY cs_cases.id ASC");
+
+	 		
+	 		$case ="";
+	 		$vio ="";
+	 		$court ="";
+	 		$cnt =1;
+	 		
+	 		foreach ($query->result() as $key) {
+	 			
+				if($cnt < count($query->result()) ){
+					$case .= $key->case_no." | ";
+					$vio .= $key->name." | ";
+					$court .= $key->place." | ";
 				}else{
 					$case .= $key->case_no." ";
 					$vio .= $key->name." ";
@@ -891,11 +1030,13 @@ class cpdrc_fw extends CI_Model
 		 			'born' => $key->born_in,
 		 			'home' => $key->home_add,
 		 			'province' => $key->province_add,
+		 			'religion' => $key->religion,
 		 			'occupation' => $key->occupation,
 		 			'father' => $key->father,
 		 			'mother' => $key->mother,
 		 			'relative' => $key->relative,
 		 			'relation' => $key->relation,
+		 			'contactpersonnum' => $key->contactpersonnum,
 		 			'address' => $key->address,
 
 		 			'filename' =>$key->filename
@@ -903,6 +1044,26 @@ class cpdrc_fw extends CI_Model
 				return $res;
 	 		}
 	 		
+	 	}
+
+	 	public function inmateReleaseInfo($id)
+	 	{	 		
+	 		//query
+	 		$this->db->select('*');
+	 		$this->db->from('inmate_released');
+	 		$this->db->where('inmate_id', $id);
+
+	 		$get = $this->db->get();
+	 		$res =array();
+
+	 		foreach ($get->result() as $release) 
+	 		{
+	 			$res[] = array(
+	 						'id' => $release->inmate_id,
+				 			'date_released' => $release->date_released,
+			 			); 
+				return $res;
+	 		}
 	 	} 	
 	 	//for the table in manage inmate view
 	 	//autho. visitors for the inmate also
@@ -981,6 +1142,39 @@ class cpdrc_fw extends CI_Model
 				return $case;
 
 	 	}
+	 	public function getcaseinfoPrinting($id)
+	 	{
+
+	 		$this->db->select('*')->from('inmate_case_info')->where('inmate_id', $id)->where('case_status', '0');
+	 		$count=$this->db->get();
+	 		$case = array();
+
+				foreach ($count->result() as $key) {
+					$ret = $this->getCrimeCases1($key->inmate_id);
+	 			//echo json_encode($ret);
+					// 'crime' => $ret['vio'],
+					// 'case_no' => $ret['case'],
+					// 'court' => $ret['court'],
+					
+						$case[] = array(
+							'cid' => $key->cid,
+							'id' => $key->inmate_id,
+			 				// 'case_no' => $key->case_no,
+			 				'case_no' =>$ret['case'],
+				 			// 'court' => $key->court_name,
+				 			'court' => $ret['court'],
+				 			'confine' => $key->date_confinment,
+				 			// 'crime' => $key->crime,
+				 			'crime' => $ret['vio'],
+				 			'sentence' => $key->sentence,
+				 			'commencing' => $key->commencing,
+				 			'expireg' => $key->expire_good,
+				 			'expireb' => $key->expire_bad
+						);	
+				}
+				return $case;
+
+	 	}
 	 	//for case info viewing.. limit to 4 cases only
 	 	public function getcaseinfolimit($id)
 	 	{
@@ -1001,7 +1195,8 @@ class cpdrc_fw extends CI_Model
 				 			'commencing' => $key->commencing,
 				 			'expireg' => $key->expire_good,
 				 			'expireb' => $key->expire_bad,
-				 			'name' => $key->name
+				 			'name' => $key->name,
+				 			'counts' => $key->counts
 						);	
 				}
 				return $case;
@@ -1013,7 +1208,7 @@ class cpdrc_fw extends CI_Model
 
 	 	public function addedcaseinfo($id)
 	 	{
-	 		$this->db->select('*')->from('inmate_case_info')->where('inmate_id', $id)->where('case_status', '1')->order_by('time_added', "desc");
+	 		$this->db->select('*')->from('inmate_case_info')->where('inmate_id', $id)->join('cs_violations cv', 'cv.id = inmate_case_info.crime', 'left')->where('case_status', '1')->order_by('time_added', "desc");
 	 		$count=$this->db->get();
 	 		$case = array();
 
@@ -1027,7 +1222,9 @@ class cpdrc_fw extends CI_Model
 				 			'sentence' => $key->sentence,
 				 			'commencing' => $key->commencing,
 				 			'expireg' => $key->expire_good,
-				 			'expireb' => $key->expire_bad
+				 			'expireb' => $key->expire_bad,
+				 			'counts' => $key->counts,
+				 			'vioName' => $key->name,
 						);	
 				}
 				return $case;

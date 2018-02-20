@@ -434,7 +434,7 @@ class Admin_model extends MY_Model {
         return $res->result();
     }
 
-    public function getAppearanceSchedule($year,$month){
+    public function getAppearanceSchedule($year,$month,$day){
         $res = $this->db->query("
                     SELECT
                         *,
@@ -452,6 +452,7 @@ class Admin_model extends MY_Model {
                         aps.status='Pending' AND
                         YEAR(date)=$year AND
                         MONTH(date)=$month AND
+                        DAY(date)>= $day AND
                         i.status != 'Released'
                         GROUP BY i.inmate_id
                         ORDER BY date ASC
@@ -460,7 +461,7 @@ class Admin_model extends MY_Model {
         return $res->result();
     }
 
-    public function getAppearanceScheduleCount($year,$month){
+    public function getAppearanceScheduleCount($year,$month,$day){
         $res = $this->db->query("
                     SELECT
                         *,
@@ -478,6 +479,7 @@ class Admin_model extends MY_Model {
                         aps.status='Pending' AND
                         YEAR(date)=$year AND
                         MONTH(date)=$month AND
+                        DAY(date)>= $day AND
                         i.status != 'Released' AND
                         aps.is_read = 0
                         GROUP BY i.inmate_id

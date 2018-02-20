@@ -16,7 +16,7 @@ class Notifications extends Admin_Controller {
 		$current_day = mdate("%d",now());
 
 		$release_inmates = $this->admin_model->getReleaseMonth($current_year,$current_month);
-		$appearances = $this->admin_model->getAppearanceSchedule($current_year,$current_month);
+		$appearances = $this->admin_model->getAppearanceSchedule($current_year,$current_month,$current_day);
 		$nearendstay = $this->admin_model->getNearEndofStay($current_year,$current_month,$current_day);
 		$overstaying = $this->admin_model->getOverStayingMonth($current_year,$current_month,$current_day);
 		$editRequest = $this->admin_model->getAllApprovedAndReject($current_year,$current_month,$current_day);

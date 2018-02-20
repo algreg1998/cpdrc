@@ -8,10 +8,10 @@ class Pages extends Admin_Controller
             $this->load->model('cpdrc/cpdrc_fw','',TRUE);
             $this->load->library('session');
             $this->load->library('form_validation');
-      }			
+      }                 
 
       public function index()
-      {	
+      {     
 
                   //number of inmates in cpdrc
             $this->db->select('*')->from('inmate')->where('status', 'Active');
@@ -38,7 +38,7 @@ class Pages extends Admin_Controller
 
             $result=$this->session->userdata('logged_in');
             if(!empty($result['user_id']))
-            {	
+            {     
                   if($result['type'] == "Warden Administrator")
                   {
                               //deleting the unset img of a inmate in the database
@@ -76,7 +76,7 @@ class Pages extends Admin_Controller
 
 
 
-            		     // $this->load->view('cpdrc/home', $value);
+                             // $this->load->view('cpdrc/home', $value);
             }
             else
             {
@@ -150,13 +150,11 @@ class Pages extends Admin_Controller
       {
 
            $a=$this->session->userdata('logged_in');
-
-
            $this->data["cells"] = $this->cpdrc_fw->getAvailableCells();
                         // echo json_encode($this->data["cells"] );
                         // echo $this->db->last_query();
 
-           if(!empty($a['user_id']))
+          if(!empty($a['user_id']))
            {
                               //deleting the unset img of a inmate in the database
             $del = array('img_set' => '0',
@@ -168,7 +166,7 @@ class Pages extends Admin_Controller
             $this->data['css']      = array();
             $this->data['js_top']   = array();
             $this->data['header']   = $this->load->view('admin/header_view',$this->data,TRUE);
-            $this->data['body']     = $this->load->view('menu/add_inmate',NULL,TRUE);
+            $this->data['body']     = $this->load->view('menu/add_inmate',$this->data,TRUE);
             $this->data['footer']   = $this->load->view('footer_view',NULL,TRUE);
             $this->data['js_bottom']= array('vendor/jquery/jquery-3.2.1.min.js');
             $this->data['custom_js']= '<script>
@@ -631,9 +629,7 @@ public function reportsCrimeIndex() {
             $this->data['title']    = 'Table | Violations';
             $this->data['css']      = array(
                                           'vendor/datatables-plugins/integration/bootstrap/3/dataTables.bootstrap.css',
-                                          'vendor/colorbox/css/colorbox.css',
-                                          'vendor/alertify/css/alertify.core.css',
-                                          'vendor/alertify/css/alertify.default.css'
+                                          'vendor/select2/select2.css','vendor/select2/select2-bootstrap.css'
                                           );
             $this->data['js_top']   = array();
             $this->data['header']   = $this->load->view('admin/header_view',$this->data,TRUE);
@@ -644,13 +640,14 @@ public function reportsCrimeIndex() {
                                           'vendor/datatables-plugins/integration/bootstrap/3/dataTables.bootstrap.js',
                                           'vendor/colorbox/js/jquery.colorbox-min.js',
                                           'js/reportsCrimeIndex.js',
-                                          'vendor/alertify/js/alertify.js'
+                                          'vendor/select2/select2.js'
                                           );
             $this->data['custom_js']= '
             
 
             <script type="text/javascript">
             $(function(){
+                  $("#asdasd").select2();
                   $(".nav-graphical").addClass("active");
                   $(".nav-violations").addClass("active");
                   $(".nav-crimeIndex a").addClass("active");
@@ -881,7 +878,7 @@ public function printCrimeIndex()
 
                   $crime = $this->input->post('crime');
                   
-                  $crimeIndex = $this->cpdrc_fw->getCrimeIndex($crime);
+                  $crimeIndex = $this->cpdrc_fw->getCrimeIndexPrinting($crime);
 
                   $pdf = new CIpdf('L','mm','A4');
                   $pdf->AliasNbPages();
@@ -1485,7 +1482,7 @@ public function crimeIndexTabulated()
             public function printMasterList($gender){
                   $this->load->library('MLpdf');
 
-                  $data['master'] = $this->cpdrc_fw->getMasterListByGender($gender);
+                  $data['master'] = $this->cpdrc_fw->getMasterListByGenderPrinting($gender);
                   
                   $pdf = new MLpdf('L','mm','A4');
                    $pdf->AliasNbPages();

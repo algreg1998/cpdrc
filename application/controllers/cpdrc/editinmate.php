@@ -15,7 +15,7 @@ session_start();
 
 			$data['data'] = $this->admin_model->getAllEditReqs();
 			// echo $this->admin_model->db->last_query();
-	   		$this->data['title']    = 'Edit Requests';
+	   		$this->data['title']    = 'Manage Inmate';
             $this->data['css']      = array('');
             $this->data['js_top']   = array();
             $this->data['header']   = $this->load->view('admin/header_view',$this->data,TRUE);
@@ -35,6 +35,34 @@ session_start();
 
 	   	public function editInmate(){
 	   		$inmate_id = $this->input->post("inmate_id");
+	   		$data['data'] = $this->admin_model->get('inmate', array('inmate_id' => $inmate_id));
+            $data['picture'] = $this->admin_model->get('file', array('inmate_id' => $inmate_id));
+	   		$data['cells']= $this->cpdrc_fw->getAvailableCells();
+
+	   		$this->data['title']    = 'Manage Inmate';
+            $this->data['css']      = array('vendor/select2/select2.css','vendor/select2/select2-bootstrap.css');
+            $this->data['js_top']   = array();
+            $this->data['header']   = $this->load->view('admin/header_view',$this->data,TRUE);
+            $this->data['body']     = $this->load->view('menu2/add_inmate',$data,TRUE);
+            $this->data['footer']   = $this->load->view('footer_view',NULL,TRUE);
+            $this->data['js_bottom']= array(
+							'vendor/datatables/media/js/jquery.dataTables.min.js',
+							'vendor/datatables-plugins/integration/bootstrap/3/dataTables.bootstrap.js',
+						'js/editRequest.js'
+						);
+            $this->data['custom_js']= '<script>
+                $(document).ready(function() {
+                    $("#uploadphoto").css("display", "none");
+                    $("#photo").change(function() {
+                        $("#uploadphoto").click();
+                        $("#photo").hide();
+                    });
+                });
+            </script>';
+            $this->load->view('templates',$this->data); 
+	   	}
+	   	public function editInmate1($id){
+	   		$inmate_id = $id;
 	   		$data['data'] = $this->admin_model->get('inmate', array('inmate_id' => $inmate_id));
             $data['picture'] = $this->admin_model->get('file', array('inmate_id' => $inmate_id));
 	   		$data['cells']= $this->cpdrc_fw->getAvailableCells();
@@ -101,6 +129,7 @@ session_start();
 	    	
 	    	$actor=$this->session->userdata('logged_in');
 	    	$user_id = $this->input->post('id');
+	    	$old = $this->input->post('old');
 	    	$form = $this->input->post('formid');
 	    	
 	    	
@@ -118,88 +147,96 @@ session_start();
 	    	$get=$this->cpdrc_fw->checkinmate($user_id);
 	    	$this->data["cells"] = $this->cpdrc_fw->getAvailableCells();
 	    
-    		
-	   		//to db inmate
-	   		$this->db->where('inmate_id', $this->input->post('old'));
-			$this->db->update('inmate', $info); 
-			
-			$editReq = array('inmate_id', $info['inmate_id']);
+	    	if(!$get || $user_id == $old ){
 
-			$this->db->where('inmate_id', $this->input->post('old'));
-			$this->db->update('inmate', $info); 
-			//logs
-			$logData = array(
-					'linked_id' => $user_id,
-					'table_name' => 'inmate',
-					'table_field' => 'inmate_id',
-					'subject' => 'Edit Inmate Information Step 1 ',
-					'reasons' => 'Inmate Information of "'.$info['inmate_fname'].' '.$info['inmate_lname'].'" was updated',
-					'update_by' => $this->session->userdata('user_id'),
-					'action' => 'update',
-					'created_at' => date("Y-m-d h:i:sa"),
-					'status' => 'active'
-				);
-			$this->admin_model->save('cs_logs',$logData);
-            //getting the filename of the inmates photo
-			$filename = $this->cpdrc_fw->getFilename($user_id);
-
-	    	//Step 1 here
-	    	$ar['inmate_id'] = $user_id;
-	    	$ar['step'] = 1;
-	    	$this->cpdrc_fw->insert($ar);
-
-	
-	    	//setting the image of the inmate..
-	    	// $this->db->select('*')->from('file')->where('added_by', $actor['user_id'])->where('img_set', '0');
-
-	    	// $cnt = $this->db->get();
-	    	
-
-		 //    if($cnt->num_rows() == 0)
-		 //    {
-		 //    	$ins = array(
-		 //    	'inmate_id' => $user_id,
-		 //    	'added_by' => $actor['user_id'],
-		 //    	'img_set' => '1' );
-		 //    	$this->db->insert('file', $ins);
-		 //    }
-		 //    else
-		 //    {
-			// 	//update img file to put a inmate id
-			// 	$upd = array('inmate_id' => $user_id,
-			// 		    	'img_set' => '1' );
-			// 	$this->db->where('added_by', $actor['user_id']);
-			// 	$this->db->where('img_set', '0');
-			// 	$this->db->update('file', $upd);
-			// }
-
-			//getting the filename of the inmates photo
-			$filename = $this->cpdrc_fw->getFilename($user_id);
-	// echo $this->cpdrc_fw->db->last_query();
-			//pass all data to the next step
-			$info['formid'] = $info['ref_formid'];
-			$info['id'] = $user_id;
-			$info['name'] = $info['inmate_lname'].", ".$info['inmate_fname']." ".$info['inmate_mi'];
-			$info['filename'] = $filename;
-
-			$query = $this->db->get_where('inmate_info',array('inmate_id'=>$user_id));
-	    	$get = $query->row();
-	        $info['info']=$get;
-
-				$this->data['title']    = 'Manage Inmate';
-                $this->data['css']      = array();
-                $this->data['js_top']   = array();
-                $this->data['header']   = $this->load->view('admin/header_view',$this->data,TRUE);
-                $this->data['body']     = $this->load->view('menu/add_inmate2',$info,TRUE);
-                $this->data['footer']   = $this->load->view('footer_view',NULL,TRUE);
-                $this->data['js_bottom']= array();
-                $this->data['custom_js']= '<script type="text/javascript">
-                      $(function(){
-                      });
-                </script>';
-                $this->load->view('templates',$this->data); 
+		   		//to db inmate
+		   		$this->db->where('inmate_id', $this->input->post('old'));
+				$this->db->update('inmate', $info); 
 				
-	    	// $this->load->view('menu/add_inmate2', $info);
+				$editReq = array('inmate_id', $info['inmate_id']);
+
+				$this->db->where('inmate_id', $this->input->post('old'));
+				$this->db->update('inmate', $info); 
+				//logs
+				$logData = array(
+						'linked_id' => $user_id,
+						'table_name' => 'inmate',
+						'table_field' => 'inmate_id',
+						'subject' => 'Edit Inmate Information Step 1 ',
+						'reasons' => 'Inmate Information of "'.$info['inmate_fname'].' '.$info['inmate_lname'].'" was updated',
+						'update_by' => $this->session->userdata('user_id'),
+						'action' => 'update',
+						'created_at' => date("Y-m-d h:i:sa"),
+						'status' => 'active'
+					);
+				$this->admin_model->save('cs_logs',$logData);
+	            //getting the filename of the inmates photo
+				$filename = $this->cpdrc_fw->getFilename($user_id);
+
+		    	//Step 1 here
+		    	$ar['inmate_id'] = $user_id;
+		    	$ar['step'] = 1;
+		    	$this->cpdrc_fw->insert($ar);
+
+		
+		    	//setting the image of the inmate..
+		    	// $this->db->select('*')->from('file')->where('added_by', $actor['user_id'])->where('img_set', '0');
+
+		    	// $cnt = $this->db->get();
+		    	
+
+			 //    if($cnt->num_rows() == 0)
+			 //    {
+			 //    	$ins = array(
+			 //    	'inmate_id' => $user_id,
+			 //    	'added_by' => $actor['user_id'],
+			 //    	'img_set' => '1' );
+			 //    	$this->db->insert('file', $ins);
+			 //    }
+			 //    else
+			 //    {
+				// 	//update img file to put a inmate id
+				// 	$upd = array('inmate_id' => $user_id,
+				// 		    	'img_set' => '1' );
+				// 	$this->db->where('added_by', $actor['user_id']);
+				// 	$this->db->where('img_set', '0');
+				// 	$this->db->update('file', $upd);
+				// }
+
+				//getting the filename of the inmates photo
+				$filename = $this->cpdrc_fw->getFilename($user_id);
+				// echo $this->cpdrc_fw->db->last_query();
+				//pass all data to the next step
+				$info['formid'] = $info['ref_formid'];
+				$info['id'] = $user_id;
+				$info['name'] = $info['inmate_lname'].", ".$info['inmate_fname']." ".$info['inmate_mi'];
+				$info['filename'] = $filename;
+
+				$query = $this->db->get_where('inmate_info',array('inmate_id'=>$user_id));
+		    	$get = $query->row();
+		        $info['info']=$get;
+
+					$this->data['title']    = 'Manage Inmate';
+	                $this->data['css']      = array('vendor/select2/select2.css','vendor/select2/select2-bootstrap.css');
+	                $this->data['js_top']   = array();
+	                $this->data['header']   = $this->load->view('admin/header_view',$this->data,TRUE);
+	                $this->data['body']     = $this->load->view('menu/add_inmate2',$info,TRUE);
+	                $this->data['footer']   = $this->load->view('footer_view',NULL,TRUE);
+	                $this->data['js_bottom']= array('vendor/select2/select2.js');
+	                $this->data['custom_js']= '<script type="text/javascript">
+	                      $(function(){
+	                      	$("#citizenshipList").select2();
+							$("#religionList").select2();
+							$(".city").select2();
+	                      });
+	                </script>';
+	                $this->load->view('templates',$this->data); 
+				
+	    		// $this->load->view('menu/add_inmate2', $info);
+	    	}else{
+	    	$this->session->set_flashdata('error_msg','You have been redirected here since the Inmate ID you are trying to update already exists.');
+	    	redirect("search");
+	    	}
 	    
 			
 	    }
@@ -224,6 +261,7 @@ session_start();
 		    	$info['mother']=$this->input->post('mother');
 		    	$info['relative']=$this->input->post('relative');
 		    	$info['relation']=$this->input->post('relation');
+		    	$info['religion']=$this->input->post('religion');
 		    	$info['address']=$this->input->post('currentStreet').', '.$this->input->post('currentBrgy').', '.$this->input->post('currentCity');
 
 		    	
@@ -265,8 +303,35 @@ session_start();
 		    		$this->data['footer']   = $this->load->view('footer_view',NULL,TRUE);
 		    		$this->data['js_bottom']= array();
 		    		$this->data['custom_js']= '<script type="text/javascript">
-			    		$(function(){
-			    		});
+			    		$(document).ready(function(){
+                                                        $("#ft").keyup(function(){
+                                                            var feet = $("#ft").val();
+                                                            var inches = $("#in").val();
+                                                            
+                                                            var finalInches = parseInt((feet * 12)) + parseInt(inches);
+                                                            var result_cm = (finalInches * 2.54).toFixed(2);
+                                                            
+                                                            $("#cm").val(result_cm);
+                                                        });
+                                                        
+                                                        $("#in").keyup(function(){
+                                                            var feet = $("#ft").val();
+                                                            var inches = $("#in").val();
+                                                            
+                                                            var finalInches = parseInt((feet * 12)) + parseInt(inches);
+                                                            var result_cm = (finalInches * 2.54).toFixed(2);
+                                                            
+                                                            $("#cm").val(result_cm);
+                                                        });
+                                                        
+                                                        $("#kg").keyup(function(){
+                                                            var kilograms = $("#kg").val();
+                                                            
+                                                            var result_lbs = (parseInt(kilograms) * 2.2).toFixed(2);
+                                                            
+                                                            $("#lbs").val(result_lbs);
+                                                        });
+                                                    });
 			    	</script>';
 		    		$this->load->view('templates',$this->data);
 
@@ -347,14 +412,17 @@ session_start();
 					$inmate['case']=$this->cpdrc_fw->getcaseinfolimit($inmate['id']);
 
 			    	$this->data['title']    = 'Manage Inmate';
-		    		$this->data['css']      = array();
+		    		$this->data['css']      = array('vendor/select2/select2.css','vendor/select2/select2-bootstrap.css');
 		    		$this->data['js_top']   = array();
 		    		$this->data['header']   = $this->load->view('admin/header_view',$this->data,TRUE);
 		    		$this->data['body']     = $this->load->view('menu/add_inmate4',$inmate,TRUE);
 		    		$this->data['footer']   = $this->load->view('footer_view',NULL,TRUE);
-		    		$this->data['js_bottom']= array();
+		    		$this->data['js_bottom']= array('vendor/select2/select2.js');
 		    		$this->data['custom_js']= '<script type="text/javascript">
 			    		$(function(){
+			    			
+                                                    	$("#crimeList").select2();
+                                                    	$("#courtList").select2();
 			    		});
 			    	</script>';
 		    		$this->load->view('templates',$this->data);

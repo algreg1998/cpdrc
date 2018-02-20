@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.5.1
--- http://www.phpmyadmin.net
+-- version 4.6.5.2
+-- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 17, 2017 at 11:17 AM
--- Server version: 10.1.13-MariaDB
--- PHP Version: 7.0.8
+-- Generation Time: Feb 08, 2018 at 06:23 AM
+-- Server version: 10.1.21-MariaDB
+-- PHP Version: 7.1.1
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -242,16 +242,12 @@ INSERT INTO `cs_appearance_schedules` (`id`, `reason_id`, `date`, `place`, `assi
 (00000000127, 00000000127, '0000-00-00 00:00:00', 'RTC Branch 1', '', '', '', 'Pending', 0, '0000-00-00 00:00:00', '0000-00-00 00:00:00', NULL),
 (00000000128, 00000000128, '0000-00-00 00:00:00', 'RTC Branch 2', '', '', '', 'Pending', 0, '0000-00-00 00:00:00', '0000-00-00 00:00:00', NULL),
 (00000000129, 00000000129, '0000-00-00 00:00:00', 'RTC Branch 1', '', '', '', 'Pending', 0, '0000-00-00 00:00:00', '0000-00-00 00:00:00', NULL),
-(00000000130, 00000000129, '0000-00-00 00:00:00', 'RTC Branch 1', '', '', '', 'Pending', 0, '0000-00-00 00:00:00', '0000-00-00 00:00:00', NULL),
-(00000000131, 00000000129, '0000-00-00 00:00:00', 'RTC Branch 1', '', '', '', 'Pending', 0, '0000-00-00 00:00:00', '0000-00-00 00:00:00', NULL),
-(00000000132, 00000000129, '0000-00-00 00:00:00', 'RTC Branch 1', '', '', '', 'Pending', 0, '0000-00-00 00:00:00', '0000-00-00 00:00:00', NULL),
-(00000000133, 00000000133, '0000-00-00 00:00:00', 'RTC Branch 1', '', '', '', 'Pending', 0, '0000-00-00 00:00:00', '0000-00-00 00:00:00', NULL),
-(00000000134, 00000000133, '0000-00-00 00:00:00', 'RTC Branch 1', '', '', '', 'Pending', 0, '0000-00-00 00:00:00', '0000-00-00 00:00:00', NULL),
-(00000000135, 00000000088, '0000-00-00 00:00:00', 'RTC Branch 1', '', '', '', 'Pending', 0, '0000-00-00 00:00:00', '0000-00-00 00:00:00', NULL),
-(00000000136, 00000000133, '0000-00-00 00:00:00', 'RTC Branch 1', '', '', '', 'Pending', 0, '0000-00-00 00:00:00', '0000-00-00 00:00:00', NULL),
-(00000000137, 00000000133, '0000-00-00 00:00:00', 'RTC Branch 1', '', '', '', 'Pending', 0, '0000-00-00 00:00:00', '0000-00-00 00:00:00', NULL),
-(00000000138, 00000000133, '0000-00-00 00:00:00', 'RTC Branch 1', '', '', '', 'Pending', 0, '0000-00-00 00:00:00', '0000-00-00 00:00:00', NULL),
-(00000000139, 00000000133, '0000-00-00 00:00:00', 'RTC Branch 2', '', '', '', 'Pending', 0, '0000-00-00 00:00:00', '0000-00-00 00:00:00', NULL);
+(00000000130, 00000000130, '0000-00-00 00:00:00', 'RTC Branch 1', '', '', '', 'Pending', 0, '0000-00-00 00:00:00', '0000-00-00 00:00:00', NULL),
+(00000000131, 00000000130, '0000-00-00 00:00:00', 'RTC Branch 1', '', '', '', 'Pending', 0, '0000-00-00 00:00:00', '0000-00-00 00:00:00', NULL),
+(00000000132, 00000000130, '0000-00-00 00:00:00', 'RTC Branch 1', '', '', '', 'Pending', 0, '0000-00-00 00:00:00', '0000-00-00 00:00:00', NULL),
+(00000000133, 00000000130, '0000-00-00 00:00:00', 'RTC Branch 1', '', '', '', 'Pending', 0, '0000-00-00 00:00:00', '0000-00-00 00:00:00', NULL),
+(00000000134, 00000000134, '0000-00-00 00:00:00', 'RTC Branch 1', '', '', '', 'Pending', 0, '0000-00-00 00:00:00', '0000-00-00 00:00:00', NULL),
+(00000000135, 00000000134, '0000-00-00 00:00:00', 'RTC Branch 1', '', '', '', 'Pending', 0, '0000-00-00 00:00:00', '0000-00-00 00:00:00', NULL);
 
 -- --------------------------------------------------------
 
@@ -422,23 +418,19 @@ INSERT INTO `cs_cases` (`id`, `reasons_id`, `case_no`, `violation_id`, `created_
 (00000000126, 00000000126, '5780138', 00000000004, 1513265717, NULL, '1', '5', '', '', '', '', 'active', ''),
 (00000000127, 00000000127, '5780139', 00000000003, 1513265725, NULL, '', '1', '', '', '', '', 'active', ''),
 (00000000128, 00000000128, '5780140', 00000000004, 1513265735, NULL, '1', '5', '', '', '', '', 'active', ''),
-(00000000129, 00000000088, '5780100', 00000000003, 1513503921, NULL, '', '1', '', '', '', '', 'active', ''),
-(00000000130, 00000000129, '123', 00000000004, 1513504218, NULL, '1', '5', '', '', '', '', 'active', ''),
-(00000000131, 00000000129, '123', 00000000003, 1513504474, NULL, '', '1', '', '', '', '', 'active', ''),
-(00000000132, 00000000129, '123', 00000000003, 1513504515, NULL, '', '1', '', '', '', '', 'active', ''),
-(00000000133, 00000000129, '123', 00000000003, 1513504583, NULL, '', '1', '', '', '', '', 'active', ''),
-(00000000134, 00000000133, '123', 00000000003, 1513504624, NULL, '', '1', '', '', '', '', 'active', ''),
-(00000000135, 00000000133, '123', 00000000004, 1513504786, NULL, '1', '5', '', '', '', '', 'active', ''),
-(00000000136, 00000000088, '5780101', 00000000003, 1513505045, NULL, '', '1', '', '', '', '', 'active', ''),
-(00000000137, 00000000133, '1234', 00000000003, 1513505082, NULL, '', '1', '', '', '', '', 'active', ''),
-(00000000138, 00000000133, '1234', 00000000004, 1513505089, NULL, '1', '5', '', '', '', '', 'active', ''),
-(00000000139, 00000000133, '1235', 00000000003, 1513505202, NULL, '', '1', '', '', '', '', 'active', ''),
-(00000000140, 00000000133, '1235', 00000000004, 1513505409, NULL, '1', '5', '', '', '', '', 'active', '');
+(00000000129, 00000000129, '123', 00000000003, 1513670465, NULL, '', '1', '', '', '', '', 'active', ''),
+(00000000130, 00000000130, '1241515125', 00000000003, 1513670596, NULL, '', '1', '', '', '', '', 'active', ''),
+(00000000131, 00000000130, '2515125125', 00000000003, 1513670635, NULL, '', '1', '', '', '', '', 'active', ''),
+(00000000132, 00000000130, '152515', 00000000003, 1513670714, NULL, '', '1', '', '', '', '', 'active', ''),
+(00000000133, 00000000130, '152515', 00000000004, 1513670731, NULL, '1', '5', '', '', '', '', 'active', ''),
+(00000000134, 00000000134, '1366136136', 00000000003, 1513670768, NULL, '', '1', '', '', '', '', 'active', ''),
+(00000000135, 00000000134, '1366136136', 00000000004, 1513670787, NULL, '1', '5', '', '', '', '', 'active', '');
 
 -- --------------------------------------------------------
 
 --
 -- Stand-in structure for view `cs_cases_full`
+-- (See below for the actual view)
 --
 CREATE TABLE `cs_cases_full` (
 `case_id` int(11) unsigned zerofill
@@ -493,184 +485,155 @@ CREATE TABLE `cs_logs` (
 --
 
 INSERT INTO `cs_logs` (`id`, `linked_id`, `table_name`, `table_field`, `subject`, `reasons`, `update_by`, `action`, `created_at`, `status`) VALUES
-(00000000001, '04294967295', 'inmate', 'inmate_id', 'Edit Inmate Information Step 1 ', 'Inmate Information of "Asd Gsa)" was updated', 00000000001, 'update', '2017-12-14 09:14:33', 'active'),
-(00000000002, '04294967295', 'inmate', 'inmate_id', 'Edit Inmate Information Step 1 ', 'Inmate Information of "Asd Gsa)" was updated', 00000000001, 'update', '2017-12-14 09:14:46', 'active'),
-(00000000003, '00000000000', 'inmate', 'inmate_id', 'Edit Inmate Information Step 1 ', 'Inmate Information of " )" was updated', 00000000001, 'update', '2017-12-14 09:17:09', 'active'),
-(00000000004, '00000000000', 'inmate', 'inmate_id', 'Edit Inmate Information Step 1 ', 'Inmate Information of " )" was updated', 00000000001, 'update', '2017-12-14 09:22:22', 'active'),
-(00000000005, '04294967295', 'inmate', 'inmate_id', 'Edit Inmate Information Step 1 ', 'Inmate Information of "Asd Gsa)" was updated', 00000000001, 'update', '2017-12-14 09:22:32', 'active'),
-(00000000006, '04294967295', 'inmate', 'inmate_id', 'Edit Inmate Information Step 2 ', 'Inmate Information of " " was updated', 00000000001, 'update', '2017-12-14 09:25:35', 'active'),
-(00000000007, '04294967295', 'inmate', 'inmate_id', 'Edit Inmate Information Step 2 ', 'Inmate Information of " " was updated', 00000000001, 'update', '2017-12-14 09:27:15', 'active'),
-(00000000008, '04294967295', 'inmate', 'inmate_id', 'Edit Inmate Information Step 3 ', 'Inmate Information of " " was updated', 00000000001, 'update', '2017-12-14 09:27:20', 'active'),
-(00000000009, '04294967295', 'inmate', 'inmate_id', 'Edit Inmate Information Step 1 ', 'Inmate Information of "Asd Gsa" was updated', 00000000001, 'update', '2017-12-14 09:28:11', 'active'),
-(00000000010, '04294967295', 'inmate', 'inmate_id', 'Edit Inmate Information Step 2 ', 'Inmate Information of " " was updated', 00000000001, 'update', '2017-12-14 09:28:17', 'active'),
-(00000000011, '04294967295', 'inmate', 'inmate_id', 'Edit Inmate Information Step 2 ', 'Inmate Information of " " was updated', 00000000001, 'update', '2017-12-14 09:28:28', 'active'),
-(00000000012, '04294967295', 'inmate', 'inmate_id', 'Edit Inmate Information Step 2 ', 'Inmate Information of " " was updated', 00000000001, 'update', '2017-12-14 09:28:52', 'active'),
-(00000000013, '04294967295', 'inmate', 'inmate_id', 'Edit Inmate Information Step 2 ', 'Inmate Information of "Asd Gsa" was updated', 00000000001, 'update', '2017-12-14 09:29:14', 'active'),
-(00000000014, '04294967295', 'inmate', 'inmate_id', 'Edit Inmate Information Step 2 ', 'Inmate Information of "Asd Gsa" was updated', 00000000001, 'update', '2017-12-14 09:29:20', 'active'),
-(00000000015, '04294967295', 'inmate', 'inmate_id', 'Edit Inmate Information Step 3 ', 'Inmate Information of "Asd Gsa" was updated', 00000000001, 'update', '2017-12-14 09:30:42', 'active'),
-(00000000016, '04294967295', 'inmate', 'inmate_id', 'Edit Inmate Information Step 3 ', 'Inmate Information of "Asd Gsa" was updated', 00000000001, 'update', '2017-12-14 09:30:42', 'active'),
-(00000000017, '00000000000', 'inmate', 'inmate_id', 'Add Case Information', 'A Case Information of "Asd Gsa" was added', 00000000001, 'insert', '2017-12-14 09:35:53', 'active'),
-(00000000018, '00000000000', 'inmate', 'inmate_id', 'Add Case Information', 'A Case Information of "Asd Gsa" was added', 00000000001, 'insert', '2017-12-14 09:36:06', 'active'),
-(00000000019, '0', 'inmate_case_info', 'id', 'Add Case Information', 'A Case Information of "Asd Gsa" was added', 00000000001, 'insert', '2017-12-14 09:37:43', 'active'),
-(00000000020, '7', 'inmate_case_info', 'id', 'Add Case Information', 'A Case Information of "Asd Gsa" was added', 00000000001, 'insert', '2017-12-14 09:39:23', 'active'),
-(00000000021, '8', 'inmate_case_info', 'id', 'Add Case Information', 'A Case Information of "First Name_501 Last Name_501" was added', 00000000001, 'insert', '2017-12-14 11:14:22', 'active'),
-(00000000022, '9', 'inmate_case_info', 'id', 'Add Case Information', 'A Case Information of "First Name_502 Last Name_502" was added', 00000000001, 'insert', '2017-12-14 11:14:33', 'active'),
-(00000000023, '10', 'inmate_case_info', 'id', 'Add Case Information', 'A Case Information of "First Name_2 Last Name_2" was added', 00000000001, 'insert', '2017-12-14 11:15:46', 'active'),
-(00000000024, '11', 'inmate_case_info', 'id', 'Add Case Information', 'A Case Information of "First Name_3 Last Name_3" was added', 00000000001, 'insert', '2017-12-14 11:15:58', 'active'),
-(00000000025, '12', 'inmate_case_info', 'id', 'Add Case Information', 'A Case Information of "First Name_4 Last Name_4" was added', 00000000001, 'insert', '2017-12-14 11:16:09', 'active'),
-(00000000026, '13', 'inmate_case_info', 'id', 'Add Case Information', 'A Case Information of "First Name_5 Last Name_5" was added', 00000000001, 'insert', '2017-12-14 11:16:19', 'active'),
-(00000000027, '14', 'inmate_case_info', 'id', 'Add Case Information', 'A Case Information of "First Name_6 Last Name_6" was added', 00000000001, 'insert', '2017-12-14 11:16:29', 'active'),
-(00000000028, '15', 'inmate_case_info', 'id', 'Add Case Information', 'A Case Information of "First Name_7 Last Name_7" was added', 00000000001, 'insert', '2017-12-14 11:16:38', 'active'),
-(00000000029, '16', 'inmate_case_info', 'id', 'Add Case Information', 'A Case Information of "First Name_8 Last Name_8" was added', 00000000001, 'insert', '2017-12-14 11:16:48', 'active'),
-(00000000030, '17', 'inmate_case_info', 'id', 'Add Case Information', 'A Case Information of "First Name_9 Last Name_9" was added', 00000000001, 'insert', '2017-12-14 11:16:57', 'active'),
-(00000000031, '18', 'inmate_case_info', 'id', 'Add Case Information', 'A Case Information of "First Name_10 Last Name_10" was added', 00000000001, 'insert', '2017-12-14 11:17:07', 'active'),
-(00000000032, '19', 'inmate_case_info', 'id', 'Add Case Information', 'A Case Information of "First Name_11 Last Name_11" was added', 00000000001, 'insert', '2017-12-14 11:17:50', 'active'),
-(00000000033, '20', 'inmate_case_info', 'id', 'Add Case Information', 'A Case Information of "First Name_12 Last Name_12" was added', 00000000001, 'insert', '2017-12-14 11:18:03', 'active'),
-(00000000034, '21', 'inmate_case_info', 'id', 'Add Case Information', 'A Case Information of "First Name_13 Last Name_13" was added', 00000000001, 'insert', '2017-12-14 11:18:19', 'active'),
-(00000000035, '22', 'inmate_case_info', 'id', 'Add Case Information', 'A Case Information of "First Name_14 Last Name_14" was added', 00000000001, 'insert', '2017-12-14 11:18:29', 'active'),
-(00000000036, '23', 'inmate_case_info', 'id', 'Add Case Information', 'A Case Information of "First Name_15 Last Name_15" was added', 00000000001, 'insert', '2017-12-14 11:18:41', 'active'),
-(00000000037, '24', 'inmate_case_info', 'id', 'Add Case Information', 'A Case Information of "First Name_16 Last Name_16" was added', 00000000001, 'insert', '2017-12-14 11:18:52', 'active'),
-(00000000038, '25', 'inmate_case_info', 'id', 'Add Case Information', 'A Case Information of "First Name_17 Last Name_17" was added', 00000000001, 'insert', '2017-12-14 11:19:03', 'active'),
-(00000000039, '26', 'inmate_case_info', 'id', 'Add Case Information', 'A Case Information of "First Name_18 Last Name_18" was added', 00000000001, 'insert', '2017-12-14 11:19:13', 'active'),
-(00000000040, '27', 'inmate_case_info', 'id', 'Add Case Information', 'A Case Information of "First Name_19 Last Name_19" was added', 00000000001, 'insert', '2017-12-14 11:19:23', 'active'),
-(00000000041, '28', 'inmate_case_info', 'id', 'Add Case Information', 'A Case Information of "First Name_20 Last Name_20" was added', 00000000001, 'insert', '2017-12-14 11:19:33', 'active'),
-(00000000042, '29', 'inmate_case_info', 'id', 'Add Case Information', 'A Case Information of "First Name_21 Last Name_21" was added', 00000000001, 'insert', '2017-12-14 11:19:42', 'active'),
-(00000000043, '30', 'inmate_case_info', 'id', 'Add Case Information', 'A Case Information of "First Name_41 Last Name_41" was added', 00000000001, 'insert', '2017-12-14 11:20:50', 'active'),
-(00000000044, '31', 'inmate_case_info', 'id', 'Add Case Information', 'A Case Information of "First Name_42 Last Name_42" was added', 00000000001, 'insert', '2017-12-14 11:21:03', 'active'),
-(00000000045, '32', 'inmate_case_info', 'id', 'Add Case Information', 'A Case Information of "First Name_43 Last Name_43" was added', 00000000001, 'insert', '2017-12-14 11:21:14', 'active'),
-(00000000046, '33', 'inmate_case_info', 'id', 'Add Case Information', 'A Case Information of "First Name_44 Last Name_44" was added', 00000000001, 'insert', '2017-12-14 11:21:23', 'active'),
-(00000000047, '34', 'inmate_case_info', 'id', 'Add Case Information', 'A Case Information of "First Name_45 Last Name_45" was added', 00000000001, 'insert', '2017-12-14 11:21:34', 'active'),
-(00000000048, '35', 'inmate_case_info', 'id', 'Add Case Information', 'A Case Information of "First Name_46 Last Name_46" was added', 00000000001, 'insert', '2017-12-14 11:21:43', 'active'),
-(00000000049, '36', 'inmate_case_info', 'id', 'Add Case Information', 'A Case Information of "First Name_47 Last Name_47" was added', 00000000001, 'insert', '2017-12-14 11:21:52', 'active'),
-(00000000050, '37', 'inmate_case_info', 'id', 'Add Case Information', 'A Case Information of "First Name_48 Last Name_48" was added', 00000000001, 'insert', '2017-12-14 11:22:03', 'active'),
-(00000000051, '38', 'inmate_case_info', 'id', 'Add Case Information', 'A Case Information of "First Name_49 Last Name_49" was added', 00000000001, 'insert', '2017-12-14 11:22:11', 'active'),
-(00000000052, '39', 'inmate_case_info', 'id', 'Add Case Information', 'A Case Information of "First Name_50 Last Name_50" was added', 00000000001, 'insert', '2017-12-14 11:22:20', 'active'),
-(00000000053, '40', 'inmate_case_info', 'id', 'Add Case Information', 'A Case Information of "First Name_51 Last Name_51" was added', 00000000001, 'insert', '2017-12-14 11:22:29', 'active'),
-(00000000054, '41', 'inmate_case_info', 'id', 'Add Case Information', 'A Case Information of "First Name_52 Last Name_52" was added', 00000000001, 'insert', '2017-12-14 11:22:38', 'active'),
-(00000000055, '42', 'inmate_case_info', 'id', 'Add Case Information', 'A Case Information of "First Name_53 Last Name_53" was added', 00000000001, 'insert', '2017-12-14 11:22:47', 'active'),
-(00000000056, '43', 'inmate_case_info', 'id', 'Add Case Information', 'A Case Information of "First Name_54 Last Name_54" was added', 00000000001, 'insert', '2017-12-14 11:22:58', 'active'),
-(00000000057, '44', 'inmate_case_info', 'id', 'Add Case Information', 'A Case Information of "First Name_55 Last Name_55" was added', 00000000001, 'insert', '2017-12-14 11:23:07', 'active'),
-(00000000058, '45', 'inmate_case_info', 'id', 'Add Case Information', 'A Case Information of "First Name_56 Last Name_56" was added', 00000000001, 'insert', '2017-12-14 11:23:16', 'active'),
-(00000000059, '46', 'inmate_case_info', 'id', 'Add Case Information', 'A Case Information of "First Name_57 Last Name_57" was added', 00000000001, 'insert', '2017-12-14 11:23:25', 'active'),
-(00000000060, '47', 'inmate_case_info', 'id', 'Add Case Information', 'A Case Information of "First Name_58 Last Name_58" was added', 00000000001, 'insert', '2017-12-14 11:23:35', 'active'),
-(00000000061, '48', 'inmate_case_info', 'id', 'Add Case Information', 'A Case Information of "First Name_59 Last Name_59" was added', 00000000001, 'insert', '2017-12-14 11:23:44', 'active'),
-(00000000062, '49', 'inmate_case_info', 'id', 'Add Case Information', 'A Case Information of "First Name_60 Last Name_60" was added', 00000000001, 'insert', '2017-12-14 11:23:54', 'active'),
-(00000000063, '50', 'inmate_case_info', 'id', 'Add Case Information', 'A Case Information of "First Name_61 Last Name_61" was added', 00000000001, 'insert', '2017-12-14 11:24:03', 'active'),
-(00000000064, '51', 'inmate_case_info', 'id', 'Add Case Information', 'A Case Information of "First Name_62 Last Name_62" was added', 00000000001, 'insert', '2017-12-14 11:24:11', 'active'),
-(00000000065, '52', 'inmate_case_info', 'id', 'Add Case Information', 'A Case Information of "First Name_63 Last Name_63" was added', 00000000001, 'insert', '2017-12-14 11:24:21', 'active'),
-(00000000066, '53', 'inmate_case_info', 'id', 'Add Case Information', 'A Case Information of "First Name_64 Last Name_64" was added', 00000000001, 'insert', '2017-12-14 11:24:30', 'active'),
-(00000000067, '54', 'inmate_case_info', 'id', 'Add Case Information', 'A Case Information of "First Name_65 Last Name_65" was added', 00000000001, 'insert', '2017-12-14 11:24:39', 'active'),
-(00000000068, '55', 'inmate_case_info', 'id', 'Add Case Information', 'A Case Information of "First Name_66 Last Name_66" was added', 00000000001, 'insert', '2017-12-14 11:24:49', 'active'),
-(00000000069, '56', 'inmate_case_info', 'id', 'Add Case Information', 'A Case Information of "First Name_67 Last Name_67" was added', 00000000001, 'insert', '2017-12-14 11:24:58', 'active'),
-(00000000070, '57', 'inmate_case_info', 'id', 'Add Case Information', 'A Case Information of "First Name_68 Last Name_68" was added', 00000000001, 'insert', '2017-12-14 11:25:07', 'active'),
-(00000000071, '58', 'inmate_case_info', 'id', 'Add Case Information', 'A Case Information of "First Name_69 Last Name_69" was added', 00000000001, 'insert', '2017-12-14 11:25:15', 'active'),
-(00000000072, '59', 'inmate_case_info', 'id', 'Add Case Information', 'A Case Information of "First Name_70 Last Name_70" was added', 00000000001, 'insert', '2017-12-14 11:25:24', 'active'),
-(00000000073, '60', 'inmate_case_info', 'id', 'Add Case Information', 'A Case Information of "First Name_71 Last Name_71" was added', 00000000001, 'insert', '2017-12-14 11:25:32', 'active'),
-(00000000074, '61', 'inmate_case_info', 'id', 'Add Case Information', 'A Case Information of "First Name_72 Last Name_72" was added', 00000000001, 'insert', '2017-12-14 11:25:41', 'active'),
-(00000000075, '62', 'inmate_case_info', 'id', 'Add Case Information', 'A Case Information of "First Name_73 Last Name_73" was added', 00000000001, 'insert', '2017-12-14 11:25:50', 'active'),
-(00000000076, '63', 'inmate_case_info', 'id', 'Add Case Information', 'A Case Information of "First Name_74 Last Name_74" was added', 00000000001, 'insert', '2017-12-14 11:25:59', 'active'),
-(00000000077, '64', 'inmate_case_info', 'id', 'Add Case Information', 'A Case Information of "First Name_75 Last Name_75" was added', 00000000001, 'insert', '2017-12-14 11:26:08', 'active'),
-(00000000078, '65', 'inmate_case_info', 'id', 'Add Case Information', 'A Case Information of "First Name_76 Last Name_76" was added', 00000000001, 'insert', '2017-12-14 11:26:17', 'active'),
-(00000000079, '66', 'inmate_case_info', 'id', 'Add Case Information', 'A Case Information of "First Name_77 Last Name_77" was added', 00000000001, 'insert', '2017-12-14 11:26:25', 'active'),
-(00000000080, '67', 'inmate_case_info', 'id', 'Add Case Information', 'A Case Information of "First Name_78 Last Name_78" was added', 00000000001, 'insert', '2017-12-14 11:26:33', 'active'),
-(00000000081, '68', 'inmate_case_info', 'id', 'Add Case Information', 'A Case Information of "First Name_79 Last Name_79" was added', 00000000001, 'insert', '2017-12-14 11:26:42', 'active'),
-(00000000082, '69', 'inmate_case_info', 'id', 'Add Case Information', 'A Case Information of "First Name_80 Last Name_80" was added', 00000000001, 'insert', '2017-12-14 11:26:51', 'active'),
-(00000000083, '70', 'inmate_case_info', 'id', 'Add Case Information', 'A Case Information of "First Name_81 Last Name_81" was added', 00000000001, 'insert', '2017-12-14 11:27:00', 'active'),
-(00000000084, '71', 'inmate_case_info', 'id', 'Add Case Information', 'A Case Information of "First Name_82 Last Name_82" was added', 00000000001, 'insert', '2017-12-14 11:27:10', 'active'),
-(00000000085, '72', 'inmate_case_info', 'id', 'Add Case Information', 'A Case Information of "First Name_83 Last Name_83" was added', 00000000001, 'insert', '2017-12-14 11:27:19', 'active'),
-(00000000086, '73', 'inmate_case_info', 'id', 'Add Case Information', 'A Case Information of "First Name_84 Last Name_84" was added', 00000000001, 'insert', '2017-12-14 11:27:28', 'active'),
-(00000000087, '74', 'inmate_case_info', 'id', 'Add Case Information', 'A Case Information of "First Name_85 Last Name_85" was added', 00000000001, 'insert', '2017-12-14 11:27:37', 'active'),
-(00000000088, '75', 'inmate_case_info', 'id', 'Add Case Information', 'A Case Information of "First Name_86 Last Name_86" was added', 00000000001, 'insert', '2017-12-14 11:27:46', 'active'),
-(00000000089, '76', 'inmate_case_info', 'id', 'Add Case Information', 'A Case Information of "First Name_87 Last Name_87" was added', 00000000001, 'insert', '2017-12-14 11:27:55', 'active'),
-(00000000090, '77', 'inmate_case_info', 'id', 'Add Case Information', 'A Case Information of "First Name_88 Last Name_88" was added', 00000000001, 'insert', '2017-12-14 11:28:04', 'active'),
-(00000000091, '78', 'inmate_case_info', 'id', 'Add Case Information', 'A Case Information of "First Name_89 Last Name_89" was added', 00000000001, 'insert', '2017-12-14 11:28:14', 'active'),
-(00000000092, '79', 'inmate_case_info', 'id', 'Add Case Information', 'A Case Information of "First Name_90 Last Name_90" was added', 00000000001, 'insert', '2017-12-14 11:28:24', 'active'),
-(00000000093, '80', 'inmate_case_info', 'id', 'Add Case Information', 'A Case Information of "First Name_91 Last Name_91" was added', 00000000001, 'insert', '2017-12-14 11:28:33', 'active'),
-(00000000094, '81', 'inmate_case_info', 'id', 'Add Case Information', 'A Case Information of "First Name_92 Last Name_92" was added', 00000000001, 'insert', '2017-12-14 11:28:42', 'active'),
-(00000000095, '82', 'inmate_case_info', 'id', 'Add Case Information', 'A Case Information of "First Name_93 Last Name_93" was added', 00000000001, 'insert', '2017-12-14 11:28:51', 'active'),
-(00000000096, '83', 'inmate_case_info', 'id', 'Add Case Information', 'A Case Information of "First Name_94 Last Name_94" was added', 00000000001, 'insert', '2017-12-14 11:29:02', 'active'),
-(00000000097, '84', 'inmate_case_info', 'id', 'Add Case Information', 'A Case Information of "First Name_95 Last Name_95" was added', 00000000001, 'insert', '2017-12-14 11:29:10', 'active'),
-(00000000098, '85', 'inmate_case_info', 'id', 'Add Case Information', 'A Case Information of "First Name_96 Last Name_96" was added', 00000000001, 'insert', '2017-12-14 11:29:19', 'active'),
-(00000000099, '86', 'inmate_case_info', 'id', 'Add Case Information', 'A Case Information of "First Name_97 Last Name_97" was added', 00000000001, 'insert', '2017-12-14 11:29:28', 'active'),
-(00000000100, '87', 'inmate_case_info', 'id', 'Add Case Information', 'A Case Information of "First Name_98 Last Name_98" was added', 00000000001, 'insert', '2017-12-14 11:29:37', 'active'),
-(00000000101, '88', 'inmate_case_info', 'id', 'Add Case Information', 'A Case Information of "First Name_99 Last Name_99" was added', 00000000001, 'insert', '2017-12-14 11:29:46', 'active'),
-(00000000102, '89', 'inmate_case_info', 'id', 'Add Case Information', 'A Case Information of "First Name_100 Last Name_100" was added', 00000000001, 'insert', '2017-12-14 11:29:54', 'active'),
-(00000000103, '90', 'inmate_case_info', 'id', 'Add Case Information', 'A Case Information of "First Name_101 Last Name_101" was added', 00000000001, 'insert', '2017-12-14 11:30:04', 'active'),
-(00000000104, '91', 'inmate_case_info', 'id', 'Add Case Information', 'A Case Information of "First Name_102 Last Name_102" was added', 00000000001, 'insert', '2017-12-14 11:30:12', 'active'),
-(00000000105, '92', 'inmate_case_info', 'id', 'Add Case Information', 'A Case Information of "First Name_103 Last Name_103" was added', 00000000001, 'insert', '2017-12-14 11:30:21', 'active'),
-(00000000106, '93', 'inmate_case_info', 'id', 'Add Case Information', 'A Case Information of "First Name_104 Last Name_104" was added', 00000000001, 'insert', '2017-12-14 11:30:29', 'active'),
-(00000000107, '94', 'inmate_case_info', 'id', 'Add Case Information', 'A Case Information of "First Name_105 Last Name_105" was added', 00000000001, 'insert', '2017-12-14 11:30:38', 'active'),
-(00000000108, '95', 'inmate_case_info', 'id', 'Add Case Information', 'A Case Information of "First Name_106 Last Name_106" was added', 00000000001, 'insert', '2017-12-14 11:30:46', 'active'),
-(00000000109, '96', 'inmate_case_info', 'id', 'Add Case Information', 'A Case Information of "First Name_107 Last Name_107" was added', 00000000001, 'insert', '2017-12-14 11:30:55', 'active'),
-(00000000110, '97', 'inmate_case_info', 'id', 'Add Case Information', 'A Case Information of "First Name_108 Last Name_108" was added', 00000000001, 'insert', '2017-12-14 11:31:04', 'active'),
-(00000000111, '98', 'inmate_case_info', 'id', 'Add Case Information', 'A Case Information of "First Name_109 Last Name_109" was added', 00000000001, 'insert', '2017-12-14 11:31:12', 'active'),
-(00000000112, '99', 'inmate_case_info', 'id', 'Add Case Information', 'A Case Information of "First Name_110 Last Name_110" was added', 00000000001, 'insert', '2017-12-14 11:31:21', 'active'),
-(00000000113, '100', 'inmate_case_info', 'id', 'Add Case Information', 'A Case Information of "First Name_111 Last Name_111" was added', 00000000001, 'insert', '2017-12-14 11:31:30', 'active'),
-(00000000114, '101', 'inmate_case_info', 'id', 'Add Case Information', 'A Case Information of "First Name_112 Last Name_112" was added', 00000000001, 'insert', '2017-12-14 11:31:38', 'active'),
-(00000000115, '102', 'inmate_case_info', 'id', 'Add Case Information', 'A Case Information of "First Name_113 Last Name_113" was added', 00000000001, 'insert', '2017-12-14 11:31:47', 'active'),
-(00000000116, '103', 'inmate_case_info', 'id', 'Add Case Information', 'A Case Information of "First Name_114 Last Name_114" was added', 00000000001, 'insert', '2017-12-14 11:31:56', 'active'),
-(00000000117, '104', 'inmate_case_info', 'id', 'Add Case Information', 'A Case Information of "First Name_115 Last Name_115" was added', 00000000001, 'insert', '2017-12-14 11:32:04', 'active'),
-(00000000118, '105', 'inmate_case_info', 'id', 'Add Case Information', 'A Case Information of "First Name_116 Last Name_116" was added', 00000000001, 'insert', '2017-12-14 11:32:12', 'active'),
-(00000000119, '106', 'inmate_case_info', 'id', 'Add Case Information', 'A Case Information of "First Name_117 Last Name_117" was added', 00000000001, 'insert', '2017-12-14 11:32:21', 'active'),
-(00000000120, '107', 'inmate_case_info', 'id', 'Add Case Information', 'A Case Information of "First Name_118 Last Name_118" was added', 00000000001, 'insert', '2017-12-14 11:32:31', 'active'),
-(00000000121, '108', 'inmate_case_info', 'id', 'Add Case Information', 'A Case Information of "First Name_119 Last Name_119" was added', 00000000001, 'insert', '2017-12-14 11:32:38', 'active'),
-(00000000122, '109', 'inmate_case_info', 'id', 'Add Case Information', 'A Case Information of "First Name_120 Last Name_120" was added', 00000000001, 'insert', '2017-12-14 11:32:47', 'active'),
-(00000000123, '110', 'inmate_case_info', 'id', 'Add Case Information', 'A Case Information of "First Name_121 Last Name_121" was added', 00000000001, 'insert', '2017-12-14 11:32:56', 'active'),
-(00000000124, '111', 'inmate_case_info', 'id', 'Add Case Information', 'A Case Information of "First Name_122 Last Name_122" was added', 00000000001, 'insert', '2017-12-14 11:33:05', 'active'),
-(00000000125, '112', 'inmate_case_info', 'id', 'Add Case Information', 'A Case Information of "First Name_123 Last Name_123" was added', 00000000001, 'insert', '2017-12-14 11:33:13', 'active'),
-(00000000126, '113', 'inmate_case_info', 'id', 'Add Case Information', 'A Case Information of "First Name_124 Last Name_124" was added', 00000000001, 'insert', '2017-12-14 11:33:21', 'active'),
-(00000000127, '114', 'inmate_case_info', 'id', 'Add Case Information', 'A Case Information of "First Name_125 Last Name_125" was added', 00000000001, 'insert', '2017-12-14 11:33:29', 'active'),
-(00000000128, '115', 'inmate_case_info', 'id', 'Add Case Information', 'A Case Information of "First Name_126 Last Name_126" was added', 00000000001, 'insert', '2017-12-14 11:33:38', 'active'),
-(00000000129, '116', 'inmate_case_info', 'id', 'Add Case Information', 'A Case Information of "First Name_127 Last Name_127" was added', 00000000001, 'insert', '2017-12-14 11:33:46', 'active'),
-(00000000130, '117', 'inmate_case_info', 'id', 'Add Case Information', 'A Case Information of "First Name_128 Last Name_128" was added', 00000000001, 'insert', '2017-12-14 11:33:54', 'active'),
-(00000000131, '118', 'inmate_case_info', 'id', 'Add Case Information', 'A Case Information of "First Name_129 Last Name_129" was added', 00000000001, 'insert', '2017-12-14 11:34:03', 'active'),
-(00000000132, '119', 'inmate_case_info', 'id', 'Add Case Information', 'A Case Information of "First Name_130 Last Name_130" was added', 00000000001, 'insert', '2017-12-14 11:34:11', 'active'),
-(00000000133, '120', 'inmate_case_info', 'id', 'Add Case Information', 'A Case Information of "First Name_131 Last Name_131" was added', 00000000001, 'insert', '2017-12-14 11:34:19', 'active'),
-(00000000134, '121', 'inmate_case_info', 'id', 'Add Case Information', 'A Case Information of "First Name_132 Last Name_132" was added', 00000000001, 'insert', '2017-12-14 11:34:26', 'active'),
-(00000000135, '122', 'inmate_case_info', 'id', 'Add Case Information', 'A Case Information of "First Name_133 Last Name_133" was added', 00000000001, 'insert', '2017-12-14 11:34:35', 'active'),
-(00000000136, '123', 'inmate_case_info', 'id', 'Add Case Information', 'A Case Information of "First Name_134 Last Name_134" was added', 00000000001, 'insert', '2017-12-14 11:34:43', 'active'),
-(00000000137, '124', 'inmate_case_info', 'id', 'Add Case Information', 'A Case Information of "First Name_135 Last Name_135" was added', 00000000001, 'insert', '2017-12-14 11:34:52', 'active'),
-(00000000138, '125', 'inmate_case_info', 'id', 'Add Case Information', 'A Case Information of "First Name_136 Last Name_136" was added', 00000000001, 'insert', '2017-12-14 11:35:00', 'active'),
-(00000000139, '126', 'inmate_case_info', 'id', 'Add Case Information', 'A Case Information of "First Name_137 Last Name_137" was added', 00000000001, 'insert', '2017-12-14 11:35:09', 'active'),
-(00000000140, '127', 'inmate_case_info', 'id', 'Add Case Information', 'A Case Information of "First Name_138 Last Name_138" was added', 00000000001, 'insert', '2017-12-14 11:35:18', 'active'),
-(00000000141, '128', 'inmate_case_info', 'id', 'Add Case Information', 'A Case Information of "First Name_139 Last Name_139" was added', 00000000001, 'insert', '2017-12-14 11:35:25', 'active'),
-(00000000142, '129', 'inmate_case_info', 'id', 'Add Case Information', 'A Case Information of "First Name_140 Last Name_140" was added', 00000000001, 'insert', '2017-12-14 11:35:35', 'active'),
-(00000000143, '129', 'cs_cases', 'id', 'Add New Case', 'Case # 5780100 - 1 Year 1 (asdasd) was added to Inmate ID : 5500100', 00000000001, 'add', '0000-00-00 00:00:00', 'active'),
-(00000000144, '130', 'inmate_case_info', 'id', 'Add Case Information', 'A Case Information of "First Name_22 Last Name_22" was added', 00000000001, 'insert', '2017-12-17 05:50:18', 'active'),
-(00000000145, '131', 'inmate_case_info', 'id', 'Add Case Information', 'A Case Information of "First Name_22 Last Name_22" was added', 00000000001, 'insert', '2017-12-17 05:54:34', 'active'),
-(00000000146, '132', 'inmate_case_info', 'id', 'Add Case Information', 'A Case Information of "First Name_22 Last Name_22" was added', 00000000001, 'insert', '2017-12-17 05:55:15', 'active'),
-(00000000147, '133', 'inmate_case_info', 'id', 'Add Case Information', 'A Case Information of "First Name_22 Last Name_22" was added', 00000000001, 'insert', '2017-12-17 05:56:23', 'active'),
-(00000000148, '134', 'inmate_case_info', 'id', 'Add Case Information', 'A Case Information of "First Name_503 Last Name_503" was added', 00000000001, 'insert', '2017-12-17 05:57:04', 'active'),
-(00000000149, '135', 'inmate_case_info', 'id', 'Add Case Information', 'A Case Information of "First Name_503 Last Name_503" was added', 00000000001, 'insert', '2017-12-17 05:59:46', 'active'),
-(00000000150, '5500100', 'inmate', 'inmate_id', 'Edit Inmate Information Step 1 ', 'Inmate Information of "First Name_100 Last Name_100" was updated', 00000000001, 'update', '2017-12-17 06:00:30', 'active'),
-(00000000151, '5500100', 'inmate', 'inmate_id', 'Edit Inmate Information Step 2 ', 'Inmate Information of "First Name_100 Last Name_100" was updated', 00000000001, 'update', '2017-12-17 06:03:04', 'active'),
-(00000000152, '5500100', 'inmate', 'inmate_id', 'Edit Inmate Information Step 3 ', 'Inmate Information of "First Name_100 Last Name_100" was updated', 00000000001, 'update', '2017-12-17 06:03:07', 'active'),
-(00000000153, '5500100', 'inmate', 'inmate_id', 'Edit Inmate Information Step 3 ', 'Inmate Information of "First Name_100 Last Name_100" was updated', 00000000001, 'update', '2017-12-17 06:03:07', 'active'),
-(00000000154, '136', 'inmate_case_info', 'id', 'Add Case Information', 'A Case Information of "First Name_100 Last Name_100" was added', 00000000001, 'insert', '2017-12-17 06:04:05', 'active'),
-(00000000155, '137', 'inmate_case_info', 'id', 'Add Case Information', 'A Case Information of "First Name_503 Last Name_503" was added', 00000000001, 'insert', '2017-12-17 06:04:42', 'active'),
-(00000000156, '138', 'inmate_case_info', 'id', 'Add Case Information', 'A Case Information of "First Name_503 Last Name_503" was added', 00000000001, 'insert', '2017-12-17 06:04:49', 'active'),
-(00000000157, '139', 'inmate_case_info', 'id', 'Add Case Information', 'A Case Information of "First Name_503 Last Name_503" was added', 00000000001, 'insert', '2017-12-17 06:06:42', 'active'),
-(00000000158, '140', 'inmate_case_info', 'id', 'Add Case Information', 'A Case Information of "First Name_503 Last Name_503" was added', 00000000001, 'insert', '2017-12-17 06:10:09', 'active'),
-(00000000159, '51654654654567', 'inmate', 'inmate_id', 'Edit Inmate Information Step 1 ', 'Inmate Information of "Asd Gsa" was updated', 00000000001, 'update', '2017-12-17 06:10:59', 'active'),
-(00000000160, '51654654654567', 'inmate', 'inmate_id', 'Edit Inmate Information Step 2 ', 'Inmate Information of "Asd Gsa" was updated', 00000000001, 'update', '2017-12-17 06:11:05', 'active'),
-(00000000161, '51654654654567', 'inmate', 'inmate_id', 'Edit Inmate Information Step 3 ', 'Inmate Information of "Asd Gsa" was updated', 00000000001, 'update', '2017-12-17 06:11:07', 'active'),
-(00000000162, '51654654654567', 'inmate', 'inmate_id', 'Edit Inmate Information Step 3 ', 'Inmate Information of "Asd Gsa" was updated', 00000000001, 'update', '2017-12-17 06:11:07', 'active'),
-(00000000163, '125', 'inmate', 'inmate_id', 'Edit Inmate Information Step 1 ', 'Inmate Information of "Asd Gsa" was updated', 00000000001, 'update', '2017-12-17 06:12:05', 'active'),
-(00000000164, '125', 'inmate', 'inmate_id', 'Edit Inmate Information Step 2 ', 'Inmate Information of "Asd Gsa" was updated', 00000000001, 'update', '2017-12-17 06:12:17', 'active'),
-(00000000165, '125', 'inmate', 'inmate_id', 'Edit Inmate Information Step 3 ', 'Inmate Information of "Asd Gsa" was updated', 00000000001, 'update', '2017-12-17 06:12:19', 'active'),
-(00000000166, '125', 'inmate', 'inmate_id', 'Edit Inmate Information Step 3 ', 'Inmate Information of "Asd Gsa" was updated', 00000000001, 'update', '2017-12-17 06:12:19', 'active'),
-(00000000167, '125', 'inmate', 'inmate_id', 'Edit Inmate Information Step 1 ', 'Inmate Information of "Asd Gsa" was updated', 00000000001, 'update', '2017-12-17 06:13:47', 'active'),
-(00000000168, '125', 'inmate', 'inmate_id', 'Edit Inmate Information Step 2 ', 'Inmate Information of "Asd Gsa" was updated', 00000000001, 'update', '2017-12-17 06:13:49', 'active'),
-(00000000169, '125', 'inmate', 'inmate_id', 'Edit Inmate Information Step 3 ', 'Inmate Information of "Asd Gsa" was updated', 00000000001, 'update', '2017-12-17 06:13:50', 'active'),
-(00000000170, '125', 'inmate', 'inmate_id', 'Edit Inmate Information Step 3 ', 'Inmate Information of "Asd Gsa" was updated', 00000000001, 'update', '2017-12-17 06:13:50', 'active'),
-(00000000171, '456123789', 'inmate', 'inmate_id', 'Edit Inmate Information Step 1 ', 'Inmate Information of "Asd Gsa" was updated', 00000000001, 'update', '2017-12-17 06:14:32', 'active'),
-(00000000172, '456123789', 'inmate', 'inmate_id', 'Edit Inmate Information Step 2 ', 'Inmate Information of "Asd Gsa" was updated', 00000000001, 'update', '2017-12-17 06:15:24', 'active'),
-(00000000173, '456123789', 'inmate', 'inmate_id', 'Edit Inmate Information Step 3 ', 'Inmate Information of "Asd Gsa" was updated', 00000000001, 'update', '2017-12-17 06:15:26', 'active'),
-(00000000174, '456123789', 'inmate', 'inmate_id', 'Edit Inmate Information Step 3 ', 'Inmate Information of "Asd Gsa" was updated', 00000000001, 'update', '2017-12-17 06:15:26', 'active'),
-(00000000175, '9874651325946132456', 'inmate', 'inmate_id', 'Edit Inmate Information Step 1 ', 'Inmate Information of "Asd Gsa" was updated', 00000000001, 'update', '2017-12-17 06:17:14', 'active'),
-(00000000176, '9874651325946132456', 'inmate', 'inmate_id', 'Edit Inmate Information Step 2 ', 'Inmate Information of "Asd Gsa" was updated', 00000000001, 'update', '2017-12-17 06:17:16', 'active'),
-(00000000177, '9874651325946132456', 'inmate', 'inmate_id', 'Edit Inmate Information Step 3 ', 'Inmate Information of "Asd Gsa" was updated', 00000000001, 'update', '2017-12-17 06:17:19', 'active'),
-(00000000178, '9874651325946132456', 'inmate', 'inmate_id', 'Edit Inmate Information Step 3 ', 'Inmate Information of "Asd Gsa" was updated', 00000000001, 'update', '2017-12-17 06:17:19', 'active');
+(00000000001, '04294967295', 'inmate', 'inmate_id', 'Edit Inmate Information Step 1 ', 'Inmate Information of \"Asd Gsa)\" was updated', 00000000001, 'update', '2017-12-14 09:14:33', 'active'),
+(00000000002, '04294967295', 'inmate', 'inmate_id', 'Edit Inmate Information Step 1 ', 'Inmate Information of \"Asd Gsa)\" was updated', 00000000001, 'update', '2017-12-14 09:14:46', 'active'),
+(00000000003, '00000000000', 'inmate', 'inmate_id', 'Edit Inmate Information Step 1 ', 'Inmate Information of \" )\" was updated', 00000000001, 'update', '2017-12-14 09:17:09', 'active'),
+(00000000004, '00000000000', 'inmate', 'inmate_id', 'Edit Inmate Information Step 1 ', 'Inmate Information of \" )\" was updated', 00000000001, 'update', '2017-12-14 09:22:22', 'active'),
+(00000000005, '04294967295', 'inmate', 'inmate_id', 'Edit Inmate Information Step 1 ', 'Inmate Information of \"Asd Gsa)\" was updated', 00000000001, 'update', '2017-12-14 09:22:32', 'active'),
+(00000000006, '04294967295', 'inmate', 'inmate_id', 'Edit Inmate Information Step 2 ', 'Inmate Information of \" \" was updated', 00000000001, 'update', '2017-12-14 09:25:35', 'active'),
+(00000000007, '04294967295', 'inmate', 'inmate_id', 'Edit Inmate Information Step 2 ', 'Inmate Information of \" \" was updated', 00000000001, 'update', '2017-12-14 09:27:15', 'active'),
+(00000000008, '04294967295', 'inmate', 'inmate_id', 'Edit Inmate Information Step 3 ', 'Inmate Information of \" \" was updated', 00000000001, 'update', '2017-12-14 09:27:20', 'active'),
+(00000000009, '04294967295', 'inmate', 'inmate_id', 'Edit Inmate Information Step 1 ', 'Inmate Information of \"Asd Gsa\" was updated', 00000000001, 'update', '2017-12-14 09:28:11', 'active'),
+(00000000010, '04294967295', 'inmate', 'inmate_id', 'Edit Inmate Information Step 2 ', 'Inmate Information of \" \" was updated', 00000000001, 'update', '2017-12-14 09:28:17', 'active'),
+(00000000011, '04294967295', 'inmate', 'inmate_id', 'Edit Inmate Information Step 2 ', 'Inmate Information of \" \" was updated', 00000000001, 'update', '2017-12-14 09:28:28', 'active'),
+(00000000012, '04294967295', 'inmate', 'inmate_id', 'Edit Inmate Information Step 2 ', 'Inmate Information of \" \" was updated', 00000000001, 'update', '2017-12-14 09:28:52', 'active'),
+(00000000013, '04294967295', 'inmate', 'inmate_id', 'Edit Inmate Information Step 2 ', 'Inmate Information of \"Asd Gsa\" was updated', 00000000001, 'update', '2017-12-14 09:29:14', 'active'),
+(00000000014, '04294967295', 'inmate', 'inmate_id', 'Edit Inmate Information Step 2 ', 'Inmate Information of \"Asd Gsa\" was updated', 00000000001, 'update', '2017-12-14 09:29:20', 'active'),
+(00000000015, '04294967295', 'inmate', 'inmate_id', 'Edit Inmate Information Step 3 ', 'Inmate Information of \"Asd Gsa\" was updated', 00000000001, 'update', '2017-12-14 09:30:42', 'active'),
+(00000000016, '04294967295', 'inmate', 'inmate_id', 'Edit Inmate Information Step 3 ', 'Inmate Information of \"Asd Gsa\" was updated', 00000000001, 'update', '2017-12-14 09:30:42', 'active'),
+(00000000017, '00000000000', 'inmate', 'inmate_id', 'Add Case Information', 'A Case Information of \"Asd Gsa\" was added', 00000000001, 'insert', '2017-12-14 09:35:53', 'active'),
+(00000000018, '00000000000', 'inmate', 'inmate_id', 'Add Case Information', 'A Case Information of \"Asd Gsa\" was added', 00000000001, 'insert', '2017-12-14 09:36:06', 'active'),
+(00000000019, '0', 'inmate_case_info', 'id', 'Add Case Information', 'A Case Information of \"Asd Gsa\" was added', 00000000001, 'insert', '2017-12-14 09:37:43', 'active'),
+(00000000020, '7', 'inmate_case_info', 'id', 'Add Case Information', 'A Case Information of \"Asd Gsa\" was added', 00000000001, 'insert', '2017-12-14 09:39:23', 'active'),
+(00000000021, '8', 'inmate_case_info', 'id', 'Add Case Information', 'A Case Information of \"First Name_501 Last Name_501\" was added', 00000000001, 'insert', '2017-12-14 11:14:22', 'active'),
+(00000000022, '9', 'inmate_case_info', 'id', 'Add Case Information', 'A Case Information of \"First Name_502 Last Name_502\" was added', 00000000001, 'insert', '2017-12-14 11:14:33', 'active'),
+(00000000023, '10', 'inmate_case_info', 'id', 'Add Case Information', 'A Case Information of \"First Name_2 Last Name_2\" was added', 00000000001, 'insert', '2017-12-14 11:15:46', 'active'),
+(00000000024, '11', 'inmate_case_info', 'id', 'Add Case Information', 'A Case Information of \"First Name_3 Last Name_3\" was added', 00000000001, 'insert', '2017-12-14 11:15:58', 'active'),
+(00000000025, '12', 'inmate_case_info', 'id', 'Add Case Information', 'A Case Information of \"First Name_4 Last Name_4\" was added', 00000000001, 'insert', '2017-12-14 11:16:09', 'active'),
+(00000000026, '13', 'inmate_case_info', 'id', 'Add Case Information', 'A Case Information of \"First Name_5 Last Name_5\" was added', 00000000001, 'insert', '2017-12-14 11:16:19', 'active'),
+(00000000027, '14', 'inmate_case_info', 'id', 'Add Case Information', 'A Case Information of \"First Name_6 Last Name_6\" was added', 00000000001, 'insert', '2017-12-14 11:16:29', 'active'),
+(00000000028, '15', 'inmate_case_info', 'id', 'Add Case Information', 'A Case Information of \"First Name_7 Last Name_7\" was added', 00000000001, 'insert', '2017-12-14 11:16:38', 'active'),
+(00000000029, '16', 'inmate_case_info', 'id', 'Add Case Information', 'A Case Information of \"First Name_8 Last Name_8\" was added', 00000000001, 'insert', '2017-12-14 11:16:48', 'active'),
+(00000000030, '17', 'inmate_case_info', 'id', 'Add Case Information', 'A Case Information of \"First Name_9 Last Name_9\" was added', 00000000001, 'insert', '2017-12-14 11:16:57', 'active'),
+(00000000031, '18', 'inmate_case_info', 'id', 'Add Case Information', 'A Case Information of \"First Name_10 Last Name_10\" was added', 00000000001, 'insert', '2017-12-14 11:17:07', 'active'),
+(00000000032, '19', 'inmate_case_info', 'id', 'Add Case Information', 'A Case Information of \"First Name_11 Last Name_11\" was added', 00000000001, 'insert', '2017-12-14 11:17:50', 'active'),
+(00000000033, '20', 'inmate_case_info', 'id', 'Add Case Information', 'A Case Information of \"First Name_12 Last Name_12\" was added', 00000000001, 'insert', '2017-12-14 11:18:03', 'active'),
+(00000000034, '21', 'inmate_case_info', 'id', 'Add Case Information', 'A Case Information of \"First Name_13 Last Name_13\" was added', 00000000001, 'insert', '2017-12-14 11:18:19', 'active'),
+(00000000035, '22', 'inmate_case_info', 'id', 'Add Case Information', 'A Case Information of \"First Name_14 Last Name_14\" was added', 00000000001, 'insert', '2017-12-14 11:18:29', 'active'),
+(00000000036, '23', 'inmate_case_info', 'id', 'Add Case Information', 'A Case Information of \"First Name_15 Last Name_15\" was added', 00000000001, 'insert', '2017-12-14 11:18:41', 'active'),
+(00000000037, '24', 'inmate_case_info', 'id', 'Add Case Information', 'A Case Information of \"First Name_16 Last Name_16\" was added', 00000000001, 'insert', '2017-12-14 11:18:52', 'active'),
+(00000000038, '25', 'inmate_case_info', 'id', 'Add Case Information', 'A Case Information of \"First Name_17 Last Name_17\" was added', 00000000001, 'insert', '2017-12-14 11:19:03', 'active'),
+(00000000039, '26', 'inmate_case_info', 'id', 'Add Case Information', 'A Case Information of \"First Name_18 Last Name_18\" was added', 00000000001, 'insert', '2017-12-14 11:19:13', 'active'),
+(00000000040, '27', 'inmate_case_info', 'id', 'Add Case Information', 'A Case Information of \"First Name_19 Last Name_19\" was added', 00000000001, 'insert', '2017-12-14 11:19:23', 'active'),
+(00000000041, '28', 'inmate_case_info', 'id', 'Add Case Information', 'A Case Information of \"First Name_20 Last Name_20\" was added', 00000000001, 'insert', '2017-12-14 11:19:33', 'active'),
+(00000000042, '29', 'inmate_case_info', 'id', 'Add Case Information', 'A Case Information of \"First Name_21 Last Name_21\" was added', 00000000001, 'insert', '2017-12-14 11:19:42', 'active'),
+(00000000043, '30', 'inmate_case_info', 'id', 'Add Case Information', 'A Case Information of \"First Name_41 Last Name_41\" was added', 00000000001, 'insert', '2017-12-14 11:20:50', 'active'),
+(00000000044, '31', 'inmate_case_info', 'id', 'Add Case Information', 'A Case Information of \"First Name_42 Last Name_42\" was added', 00000000001, 'insert', '2017-12-14 11:21:03', 'active'),
+(00000000045, '32', 'inmate_case_info', 'id', 'Add Case Information', 'A Case Information of \"First Name_43 Last Name_43\" was added', 00000000001, 'insert', '2017-12-14 11:21:14', 'active'),
+(00000000046, '33', 'inmate_case_info', 'id', 'Add Case Information', 'A Case Information of \"First Name_44 Last Name_44\" was added', 00000000001, 'insert', '2017-12-14 11:21:23', 'active'),
+(00000000047, '34', 'inmate_case_info', 'id', 'Add Case Information', 'A Case Information of \"First Name_45 Last Name_45\" was added', 00000000001, 'insert', '2017-12-14 11:21:34', 'active'),
+(00000000048, '35', 'inmate_case_info', 'id', 'Add Case Information', 'A Case Information of \"First Name_46 Last Name_46\" was added', 00000000001, 'insert', '2017-12-14 11:21:43', 'active'),
+(00000000049, '36', 'inmate_case_info', 'id', 'Add Case Information', 'A Case Information of \"First Name_47 Last Name_47\" was added', 00000000001, 'insert', '2017-12-14 11:21:52', 'active'),
+(00000000050, '37', 'inmate_case_info', 'id', 'Add Case Information', 'A Case Information of \"First Name_48 Last Name_48\" was added', 00000000001, 'insert', '2017-12-14 11:22:03', 'active'),
+(00000000051, '38', 'inmate_case_info', 'id', 'Add Case Information', 'A Case Information of \"First Name_49 Last Name_49\" was added', 00000000001, 'insert', '2017-12-14 11:22:11', 'active'),
+(00000000052, '39', 'inmate_case_info', 'id', 'Add Case Information', 'A Case Information of \"First Name_50 Last Name_50\" was added', 00000000001, 'insert', '2017-12-14 11:22:20', 'active'),
+(00000000053, '40', 'inmate_case_info', 'id', 'Add Case Information', 'A Case Information of \"First Name_51 Last Name_51\" was added', 00000000001, 'insert', '2017-12-14 11:22:29', 'active'),
+(00000000054, '41', 'inmate_case_info', 'id', 'Add Case Information', 'A Case Information of \"First Name_52 Last Name_52\" was added', 00000000001, 'insert', '2017-12-14 11:22:38', 'active'),
+(00000000055, '42', 'inmate_case_info', 'id', 'Add Case Information', 'A Case Information of \"First Name_53 Last Name_53\" was added', 00000000001, 'insert', '2017-12-14 11:22:47', 'active'),
+(00000000056, '43', 'inmate_case_info', 'id', 'Add Case Information', 'A Case Information of \"First Name_54 Last Name_54\" was added', 00000000001, 'insert', '2017-12-14 11:22:58', 'active'),
+(00000000057, '44', 'inmate_case_info', 'id', 'Add Case Information', 'A Case Information of \"First Name_55 Last Name_55\" was added', 00000000001, 'insert', '2017-12-14 11:23:07', 'active'),
+(00000000058, '45', 'inmate_case_info', 'id', 'Add Case Information', 'A Case Information of \"First Name_56 Last Name_56\" was added', 00000000001, 'insert', '2017-12-14 11:23:16', 'active'),
+(00000000059, '46', 'inmate_case_info', 'id', 'Add Case Information', 'A Case Information of \"First Name_57 Last Name_57\" was added', 00000000001, 'insert', '2017-12-14 11:23:25', 'active'),
+(00000000060, '47', 'inmate_case_info', 'id', 'Add Case Information', 'A Case Information of \"First Name_58 Last Name_58\" was added', 00000000001, 'insert', '2017-12-14 11:23:35', 'active'),
+(00000000061, '48', 'inmate_case_info', 'id', 'Add Case Information', 'A Case Information of \"First Name_59 Last Name_59\" was added', 00000000001, 'insert', '2017-12-14 11:23:44', 'active'),
+(00000000062, '49', 'inmate_case_info', 'id', 'Add Case Information', 'A Case Information of \"First Name_60 Last Name_60\" was added', 00000000001, 'insert', '2017-12-14 11:23:54', 'active'),
+(00000000063, '50', 'inmate_case_info', 'id', 'Add Case Information', 'A Case Information of \"First Name_61 Last Name_61\" was added', 00000000001, 'insert', '2017-12-14 11:24:03', 'active'),
+(00000000064, '51', 'inmate_case_info', 'id', 'Add Case Information', 'A Case Information of \"First Name_62 Last Name_62\" was added', 00000000001, 'insert', '2017-12-14 11:24:11', 'active'),
+(00000000065, '52', 'inmate_case_info', 'id', 'Add Case Information', 'A Case Information of \"First Name_63 Last Name_63\" was added', 00000000001, 'insert', '2017-12-14 11:24:21', 'active'),
+(00000000066, '53', 'inmate_case_info', 'id', 'Add Case Information', 'A Case Information of \"First Name_64 Last Name_64\" was added', 00000000001, 'insert', '2017-12-14 11:24:30', 'active'),
+(00000000067, '54', 'inmate_case_info', 'id', 'Add Case Information', 'A Case Information of \"First Name_65 Last Name_65\" was added', 00000000001, 'insert', '2017-12-14 11:24:39', 'active'),
+(00000000068, '55', 'inmate_case_info', 'id', 'Add Case Information', 'A Case Information of \"First Name_66 Last Name_66\" was added', 00000000001, 'insert', '2017-12-14 11:24:49', 'active'),
+(00000000069, '56', 'inmate_case_info', 'id', 'Add Case Information', 'A Case Information of \"First Name_67 Last Name_67\" was added', 00000000001, 'insert', '2017-12-14 11:24:58', 'active'),
+(00000000070, '57', 'inmate_case_info', 'id', 'Add Case Information', 'A Case Information of \"First Name_68 Last Name_68\" was added', 00000000001, 'insert', '2017-12-14 11:25:07', 'active'),
+(00000000071, '58', 'inmate_case_info', 'id', 'Add Case Information', 'A Case Information of \"First Name_69 Last Name_69\" was added', 00000000001, 'insert', '2017-12-14 11:25:15', 'active'),
+(00000000072, '59', 'inmate_case_info', 'id', 'Add Case Information', 'A Case Information of \"First Name_70 Last Name_70\" was added', 00000000001, 'insert', '2017-12-14 11:25:24', 'active'),
+(00000000073, '60', 'inmate_case_info', 'id', 'Add Case Information', 'A Case Information of \"First Name_71 Last Name_71\" was added', 00000000001, 'insert', '2017-12-14 11:25:32', 'active'),
+(00000000074, '61', 'inmate_case_info', 'id', 'Add Case Information', 'A Case Information of \"First Name_72 Last Name_72\" was added', 00000000001, 'insert', '2017-12-14 11:25:41', 'active'),
+(00000000075, '62', 'inmate_case_info', 'id', 'Add Case Information', 'A Case Information of \"First Name_73 Last Name_73\" was added', 00000000001, 'insert', '2017-12-14 11:25:50', 'active'),
+(00000000076, '63', 'inmate_case_info', 'id', 'Add Case Information', 'A Case Information of \"First Name_74 Last Name_74\" was added', 00000000001, 'insert', '2017-12-14 11:25:59', 'active'),
+(00000000077, '64', 'inmate_case_info', 'id', 'Add Case Information', 'A Case Information of \"First Name_75 Last Name_75\" was added', 00000000001, 'insert', '2017-12-14 11:26:08', 'active'),
+(00000000078, '65', 'inmate_case_info', 'id', 'Add Case Information', 'A Case Information of \"First Name_76 Last Name_76\" was added', 00000000001, 'insert', '2017-12-14 11:26:17', 'active'),
+(00000000079, '66', 'inmate_case_info', 'id', 'Add Case Information', 'A Case Information of \"First Name_77 Last Name_77\" was added', 00000000001, 'insert', '2017-12-14 11:26:25', 'active'),
+(00000000080, '67', 'inmate_case_info', 'id', 'Add Case Information', 'A Case Information of \"First Name_78 Last Name_78\" was added', 00000000001, 'insert', '2017-12-14 11:26:33', 'active'),
+(00000000081, '68', 'inmate_case_info', 'id', 'Add Case Information', 'A Case Information of \"First Name_79 Last Name_79\" was added', 00000000001, 'insert', '2017-12-14 11:26:42', 'active'),
+(00000000082, '69', 'inmate_case_info', 'id', 'Add Case Information', 'A Case Information of \"First Name_80 Last Name_80\" was added', 00000000001, 'insert', '2017-12-14 11:26:51', 'active'),
+(00000000083, '70', 'inmate_case_info', 'id', 'Add Case Information', 'A Case Information of \"First Name_81 Last Name_81\" was added', 00000000001, 'insert', '2017-12-14 11:27:00', 'active'),
+(00000000084, '71', 'inmate_case_info', 'id', 'Add Case Information', 'A Case Information of \"First Name_82 Last Name_82\" was added', 00000000001, 'insert', '2017-12-14 11:27:10', 'active'),
+(00000000085, '72', 'inmate_case_info', 'id', 'Add Case Information', 'A Case Information of \"First Name_83 Last Name_83\" was added', 00000000001, 'insert', '2017-12-14 11:27:19', 'active'),
+(00000000086, '73', 'inmate_case_info', 'id', 'Add Case Information', 'A Case Information of \"First Name_84 Last Name_84\" was added', 00000000001, 'insert', '2017-12-14 11:27:28', 'active'),
+(00000000087, '74', 'inmate_case_info', 'id', 'Add Case Information', 'A Case Information of \"First Name_85 Last Name_85\" was added', 00000000001, 'insert', '2017-12-14 11:27:37', 'active'),
+(00000000088, '75', 'inmate_case_info', 'id', 'Add Case Information', 'A Case Information of \"First Name_86 Last Name_86\" was added', 00000000001, 'insert', '2017-12-14 11:27:46', 'active'),
+(00000000089, '76', 'inmate_case_info', 'id', 'Add Case Information', 'A Case Information of \"First Name_87 Last Name_87\" was added', 00000000001, 'insert', '2017-12-14 11:27:55', 'active'),
+(00000000090, '77', 'inmate_case_info', 'id', 'Add Case Information', 'A Case Information of \"First Name_88 Last Name_88\" was added', 00000000001, 'insert', '2017-12-14 11:28:04', 'active'),
+(00000000091, '78', 'inmate_case_info', 'id', 'Add Case Information', 'A Case Information of \"First Name_89 Last Name_89\" was added', 00000000001, 'insert', '2017-12-14 11:28:14', 'active'),
+(00000000092, '79', 'inmate_case_info', 'id', 'Add Case Information', 'A Case Information of \"First Name_90 Last Name_90\" was added', 00000000001, 'insert', '2017-12-14 11:28:24', 'active'),
+(00000000093, '80', 'inmate_case_info', 'id', 'Add Case Information', 'A Case Information of \"First Name_91 Last Name_91\" was added', 00000000001, 'insert', '2017-12-14 11:28:33', 'active'),
+(00000000094, '81', 'inmate_case_info', 'id', 'Add Case Information', 'A Case Information of \"First Name_92 Last Name_92\" was added', 00000000001, 'insert', '2017-12-14 11:28:42', 'active'),
+(00000000095, '82', 'inmate_case_info', 'id', 'Add Case Information', 'A Case Information of \"First Name_93 Last Name_93\" was added', 00000000001, 'insert', '2017-12-14 11:28:51', 'active'),
+(00000000096, '83', 'inmate_case_info', 'id', 'Add Case Information', 'A Case Information of \"First Name_94 Last Name_94\" was added', 00000000001, 'insert', '2017-12-14 11:29:02', 'active'),
+(00000000097, '84', 'inmate_case_info', 'id', 'Add Case Information', 'A Case Information of \"First Name_95 Last Name_95\" was added', 00000000001, 'insert', '2017-12-14 11:29:10', 'active'),
+(00000000098, '85', 'inmate_case_info', 'id', 'Add Case Information', 'A Case Information of \"First Name_96 Last Name_96\" was added', 00000000001, 'insert', '2017-12-14 11:29:19', 'active'),
+(00000000099, '86', 'inmate_case_info', 'id', 'Add Case Information', 'A Case Information of \"First Name_97 Last Name_97\" was added', 00000000001, 'insert', '2017-12-14 11:29:28', 'active'),
+(00000000100, '87', 'inmate_case_info', 'id', 'Add Case Information', 'A Case Information of \"First Name_98 Last Name_98\" was added', 00000000001, 'insert', '2017-12-14 11:29:37', 'active'),
+(00000000101, '88', 'inmate_case_info', 'id', 'Add Case Information', 'A Case Information of \"First Name_99 Last Name_99\" was added', 00000000001, 'insert', '2017-12-14 11:29:46', 'active'),
+(00000000102, '89', 'inmate_case_info', 'id', 'Add Case Information', 'A Case Information of \"First Name_100 Last Name_100\" was added', 00000000001, 'insert', '2017-12-14 11:29:54', 'active'),
+(00000000103, '90', 'inmate_case_info', 'id', 'Add Case Information', 'A Case Information of \"First Name_101 Last Name_101\" was added', 00000000001, 'insert', '2017-12-14 11:30:04', 'active'),
+(00000000104, '91', 'inmate_case_info', 'id', 'Add Case Information', 'A Case Information of \"First Name_102 Last Name_102\" was added', 00000000001, 'insert', '2017-12-14 11:30:12', 'active'),
+(00000000105, '92', 'inmate_case_info', 'id', 'Add Case Information', 'A Case Information of \"First Name_103 Last Name_103\" was added', 00000000001, 'insert', '2017-12-14 11:30:21', 'active'),
+(00000000106, '93', 'inmate_case_info', 'id', 'Add Case Information', 'A Case Information of \"First Name_104 Last Name_104\" was added', 00000000001, 'insert', '2017-12-14 11:30:29', 'active'),
+(00000000107, '94', 'inmate_case_info', 'id', 'Add Case Information', 'A Case Information of \"First Name_105 Last Name_105\" was added', 00000000001, 'insert', '2017-12-14 11:30:38', 'active'),
+(00000000108, '95', 'inmate_case_info', 'id', 'Add Case Information', 'A Case Information of \"First Name_106 Last Name_106\" was added', 00000000001, 'insert', '2017-12-14 11:30:46', 'active'),
+(00000000109, '96', 'inmate_case_info', 'id', 'Add Case Information', 'A Case Information of \"First Name_107 Last Name_107\" was added', 00000000001, 'insert', '2017-12-14 11:30:55', 'active'),
+(00000000110, '97', 'inmate_case_info', 'id', 'Add Case Information', 'A Case Information of \"First Name_108 Last Name_108\" was added', 00000000001, 'insert', '2017-12-14 11:31:04', 'active'),
+(00000000111, '98', 'inmate_case_info', 'id', 'Add Case Information', 'A Case Information of \"First Name_109 Last Name_109\" was added', 00000000001, 'insert', '2017-12-14 11:31:12', 'active'),
+(00000000112, '99', 'inmate_case_info', 'id', 'Add Case Information', 'A Case Information of \"First Name_110 Last Name_110\" was added', 00000000001, 'insert', '2017-12-14 11:31:21', 'active'),
+(00000000113, '100', 'inmate_case_info', 'id', 'Add Case Information', 'A Case Information of \"First Name_111 Last Name_111\" was added', 00000000001, 'insert', '2017-12-14 11:31:30', 'active'),
+(00000000114, '101', 'inmate_case_info', 'id', 'Add Case Information', 'A Case Information of \"First Name_112 Last Name_112\" was added', 00000000001, 'insert', '2017-12-14 11:31:38', 'active'),
+(00000000115, '102', 'inmate_case_info', 'id', 'Add Case Information', 'A Case Information of \"First Name_113 Last Name_113\" was added', 00000000001, 'insert', '2017-12-14 11:31:47', 'active'),
+(00000000116, '103', 'inmate_case_info', 'id', 'Add Case Information', 'A Case Information of \"First Name_114 Last Name_114\" was added', 00000000001, 'insert', '2017-12-14 11:31:56', 'active'),
+(00000000117, '104', 'inmate_case_info', 'id', 'Add Case Information', 'A Case Information of \"First Name_115 Last Name_115\" was added', 00000000001, 'insert', '2017-12-14 11:32:04', 'active'),
+(00000000118, '105', 'inmate_case_info', 'id', 'Add Case Information', 'A Case Information of \"First Name_116 Last Name_116\" was added', 00000000001, 'insert', '2017-12-14 11:32:12', 'active'),
+(00000000119, '106', 'inmate_case_info', 'id', 'Add Case Information', 'A Case Information of \"First Name_117 Last Name_117\" was added', 00000000001, 'insert', '2017-12-14 11:32:21', 'active'),
+(00000000120, '107', 'inmate_case_info', 'id', 'Add Case Information', 'A Case Information of \"First Name_118 Last Name_118\" was added', 00000000001, 'insert', '2017-12-14 11:32:31', 'active'),
+(00000000121, '108', 'inmate_case_info', 'id', 'Add Case Information', 'A Case Information of \"First Name_119 Last Name_119\" was added', 00000000001, 'insert', '2017-12-14 11:32:38', 'active'),
+(00000000122, '109', 'inmate_case_info', 'id', 'Add Case Information', 'A Case Information of \"First Name_120 Last Name_120\" was added', 00000000001, 'insert', '2017-12-14 11:32:47', 'active'),
+(00000000123, '110', 'inmate_case_info', 'id', 'Add Case Information', 'A Case Information of \"First Name_121 Last Name_121\" was added', 00000000001, 'insert', '2017-12-14 11:32:56', 'active'),
+(00000000124, '111', 'inmate_case_info', 'id', 'Add Case Information', 'A Case Information of \"First Name_122 Last Name_122\" was added', 00000000001, 'insert', '2017-12-14 11:33:05', 'active'),
+(00000000125, '112', 'inmate_case_info', 'id', 'Add Case Information', 'A Case Information of \"First Name_123 Last Name_123\" was added', 00000000001, 'insert', '2017-12-14 11:33:13', 'active'),
+(00000000126, '113', 'inmate_case_info', 'id', 'Add Case Information', 'A Case Information of \"First Name_124 Last Name_124\" was added', 00000000001, 'insert', '2017-12-14 11:33:21', 'active'),
+(00000000127, '114', 'inmate_case_info', 'id', 'Add Case Information', 'A Case Information of \"First Name_125 Last Name_125\" was added', 00000000001, 'insert', '2017-12-14 11:33:29', 'active'),
+(00000000128, '115', 'inmate_case_info', 'id', 'Add Case Information', 'A Case Information of \"First Name_126 Last Name_126\" was added', 00000000001, 'insert', '2017-12-14 11:33:38', 'active'),
+(00000000129, '116', 'inmate_case_info', 'id', 'Add Case Information', 'A Case Information of \"First Name_127 Last Name_127\" was added', 00000000001, 'insert', '2017-12-14 11:33:46', 'active'),
+(00000000130, '117', 'inmate_case_info', 'id', 'Add Case Information', 'A Case Information of \"First Name_128 Last Name_128\" was added', 00000000001, 'insert', '2017-12-14 11:33:54', 'active'),
+(00000000131, '118', 'inmate_case_info', 'id', 'Add Case Information', 'A Case Information of \"First Name_129 Last Name_129\" was added', 00000000001, 'insert', '2017-12-14 11:34:03', 'active'),
+(00000000132, '119', 'inmate_case_info', 'id', 'Add Case Information', 'A Case Information of \"First Name_130 Last Name_130\" was added', 00000000001, 'insert', '2017-12-14 11:34:11', 'active'),
+(00000000133, '120', 'inmate_case_info', 'id', 'Add Case Information', 'A Case Information of \"First Name_131 Last Name_131\" was added', 00000000001, 'insert', '2017-12-14 11:34:19', 'active'),
+(00000000134, '121', 'inmate_case_info', 'id', 'Add Case Information', 'A Case Information of \"First Name_132 Last Name_132\" was added', 00000000001, 'insert', '2017-12-14 11:34:26', 'active'),
+(00000000135, '122', 'inmate_case_info', 'id', 'Add Case Information', 'A Case Information of \"First Name_133 Last Name_133\" was added', 00000000001, 'insert', '2017-12-14 11:34:35', 'active'),
+(00000000136, '123', 'inmate_case_info', 'id', 'Add Case Information', 'A Case Information of \"First Name_134 Last Name_134\" was added', 00000000001, 'insert', '2017-12-14 11:34:43', 'active'),
+(00000000137, '124', 'inmate_case_info', 'id', 'Add Case Information', 'A Case Information of \"First Name_135 Last Name_135\" was added', 00000000001, 'insert', '2017-12-14 11:34:52', 'active'),
+(00000000138, '125', 'inmate_case_info', 'id', 'Add Case Information', 'A Case Information of \"First Name_136 Last Name_136\" was added', 00000000001, 'insert', '2017-12-14 11:35:00', 'active'),
+(00000000139, '126', 'inmate_case_info', 'id', 'Add Case Information', 'A Case Information of \"First Name_137 Last Name_137\" was added', 00000000001, 'insert', '2017-12-14 11:35:09', 'active'),
+(00000000140, '127', 'inmate_case_info', 'id', 'Add Case Information', 'A Case Information of \"First Name_138 Last Name_138\" was added', 00000000001, 'insert', '2017-12-14 11:35:18', 'active'),
+(00000000141, '128', 'inmate_case_info', 'id', 'Add Case Information', 'A Case Information of \"First Name_139 Last Name_139\" was added', 00000000001, 'insert', '2017-12-14 11:35:25', 'active'),
+(00000000142, '129', 'inmate_case_info', 'id', 'Add Case Information', 'A Case Information of \"First Name_140 Last Name_140\" was added', 00000000001, 'insert', '2017-12-14 11:35:35', 'active'),
+(00000000143, '130', 'inmate_case_info', 'id', 'Add Case Information', 'A Case Information of \"First Name_22 Last Name_22\" was added', 00000000001, 'insert', '2017-12-19 04:01:05', 'active'),
+(00000000144, '131', 'inmate_case_info', 'id', 'Add Case Information', 'A Case Information of \"First Name_503 Last Name_503\" was added', 00000000001, 'insert', '2017-12-19 04:03:16', 'active'),
+(00000000145, '132', 'inmate_case_info', 'id', 'Add Case Information', 'A Case Information of \"First Name_503 Last Name_503\" was added', 00000000001, 'insert', '2017-12-19 04:03:55', 'active'),
+(00000000146, '133', 'inmate_case_info', 'id', 'Add Case Information', 'A Case Information of \"First Name_503 Last Name_503\" was added', 00000000001, 'insert', '2017-12-19 04:05:14', 'active'),
+(00000000147, '134', 'inmate_case_info', 'id', 'Add Case Information', 'A Case Information of \"First Name_503 Last Name_503\" was added', 00000000001, 'insert', '2017-12-19 04:05:31', 'active'),
+(00000000148, '135', 'inmate_case_info', 'id', 'Add Case Information', 'A Case Information of \"Asdf Agasfh\" was added', 00000000001, 'insert', '2017-12-19 04:06:09', 'active'),
+(00000000149, '136', 'inmate_case_info', 'id', 'Add Case Information', 'A Case Information of \"Asdf Agasfh\" was added', 00000000001, 'insert', '2017-12-19 04:06:27', 'active');
 
 -- --------------------------------------------------------
 
@@ -699,12 +662,12 @@ CREATE TABLE `cs_reasons` (
 --
 
 INSERT INTO `cs_reasons` (`id`, `inmate_id`, `status`, `type`, `start_date`, `release_date`, `number_of_years`, `number_of_months`, `number_of_days`, `court_order_number`, `is_read`, `created_on`, `modified_on`) VALUES
-(00000000001, '9874651325946132456', 'Active', 'Detainee', '2017-12-21 00:00:00', '0000-00-00 00:00:00', 0, NULL, NULL, '', 0, 1513254869, NULL),
-(00000000002, '9874651325946132456', 'Active', 'Detainee', '2017-12-28 00:00:00', '0000-00-00 00:00:00', 0, NULL, NULL, '', 0, 1513258268, NULL),
-(00000000003, '9874651325946132456', 'Active', 'Detainee', '2017-12-08 00:00:00', '0000-00-00 00:00:00', 0, NULL, NULL, '', 0, 1513258552, NULL),
-(00000000004, '9874651325946132456', 'Active', 'Detainee', '2017-12-21 00:00:00', '0000-00-00 00:00:00', 0, NULL, NULL, '', 0, 1513258566, NULL),
-(00000000005, '9874651325946132456', 'Active', 'Detainee', '2017-12-07 00:00:00', '0000-00-00 00:00:00', 0, NULL, NULL, '', 0, 1513258662, NULL),
-(00000000006, '9874651325946132456', 'Active', 'Detainee', '2017-12-21 00:00:00', '0000-00-00 00:00:00', 0, NULL, NULL, '', 0, 1513258763, NULL),
+(00000000001, '51654654654567', 'Active', 'Detainee', '2017-12-21 00:00:00', '0000-00-00 00:00:00', 0, NULL, NULL, '', 0, 1513254869, NULL),
+(00000000002, '51654654654567', 'Active', 'Detainee', '2017-12-28 00:00:00', '0000-00-00 00:00:00', 0, NULL, NULL, '', 0, 1513258268, NULL),
+(00000000003, '51654654654567', 'Active', 'Detainee', '2017-12-08 00:00:00', '0000-00-00 00:00:00', 0, NULL, NULL, '', 0, 1513258552, NULL),
+(00000000004, '51654654654567', 'Active', 'Detainee', '2017-12-21 00:00:00', '0000-00-00 00:00:00', 0, NULL, NULL, '', 0, 1513258566, NULL),
+(00000000005, '51654654654567', 'Active', 'Detainee', '2017-12-07 00:00:00', '0000-00-00 00:00:00', 0, NULL, NULL, '', 0, 1513258662, NULL),
+(00000000006, '51654654654567', 'Active', 'Detainee', '2017-12-21 00:00:00', '0000-00-00 00:00:00', 0, NULL, NULL, '', 0, 1513258763, NULL),
 (00000000007, '5500501', 'Active', 'Detainee', '2017-12-04 00:00:00', '0000-00-00 00:00:00', 0, NULL, NULL, '', 0, 1513264461, NULL),
 (00000000008, '5500502', 'Active', 'Detainee', '2017-12-04 00:00:00', '0000-00-00 00:00:00', 0, NULL, NULL, '', 0, 1513264472, NULL),
 (00000000009, '55002', 'Active', 'Detainee', '2017-12-04 00:00:00', '0000-00-00 00:00:00', 0, NULL, NULL, '', 0, 1513264546, NULL),
@@ -827,17 +790,13 @@ INSERT INTO `cs_reasons` (`id`, `inmate_id`, `status`, `type`, `start_date`, `re
 (00000000126, '5500138', 'Active', 'Detainee', '2017-12-04 00:00:00', '0000-00-00 00:00:00', 0, NULL, NULL, '', 0, 1513265717, NULL),
 (00000000127, '5500139', 'Active', 'Detainee', '2017-12-04 00:00:00', '0000-00-00 00:00:00', 0, NULL, NULL, '', 0, 1513265725, NULL),
 (00000000128, '5500140', 'Active', 'Detainee', '2017-12-04 00:00:00', '0000-00-00 00:00:00', 0, NULL, NULL, '', 0, 1513265735, NULL),
-(00000000129, '550022', 'Active', 'Pending', '2017-12-13 00:00:00', '0000-00-00 00:00:00', 0, NULL, NULL, '', 0, 1513504218, NULL),
-(00000000130, '550022', 'Active', 'Pending', '2017-12-27 00:00:00', '0000-00-00 00:00:00', 0, NULL, NULL, '', 0, 1513504474, NULL),
-(00000000131, '550022', 'Active', 'Pending', '2017-12-27 00:00:00', '0000-00-00 00:00:00', 0, NULL, NULL, '', 0, 1513504515, NULL),
-(00000000132, '550022', 'Active', 'Pending', '2017-12-27 00:00:00', '0000-00-00 00:00:00', 0, NULL, NULL, '', 0, 1513504583, NULL),
-(00000000133, '5500503', 'Active', 'Pending', '2017-12-21 00:00:00', '0000-00-00 00:00:00', 0, NULL, NULL, '', 0, 1513504624, NULL),
-(00000000134, '5500503', 'Active', 'Pending', '2017-12-21 00:00:00', '0000-00-00 00:00:00', 0, NULL, NULL, '', 0, 1513504786, NULL),
-(00000000135, '5500100', 'Active', 'Detainee', '2017-12-13 00:00:00', '0000-00-00 00:00:00', 0, NULL, NULL, '', 0, 1513505045, NULL),
-(00000000136, '5500503', 'Active', 'Pending', '2017-12-08 00:00:00', '0000-00-00 00:00:00', 0, NULL, NULL, '', 0, 1513505082, NULL),
-(00000000137, '5500503', 'Active', 'Pending', '2017-12-13 00:00:00', '0000-00-00 00:00:00', 0, NULL, NULL, '', 0, 1513505089, NULL),
-(00000000138, '5500503', 'Active', 'Pending', '2017-12-07 00:00:00', '0000-00-00 00:00:00', 0, NULL, NULL, '', 0, 1513505202, NULL),
-(00000000139, '5500503', 'Active', 'Pending', '2017-12-27 00:00:00', '0000-00-00 00:00:00', 0, NULL, NULL, '', 0, 1513505409, NULL);
+(00000000129, '550022', 'Active', 'Detainee', '2017-12-12 00:00:00', '0000-00-00 00:00:00', 0, NULL, NULL, '', 0, 1513670465, NULL),
+(00000000130, '5500503', 'Active', 'Detainee', '2017-12-19 00:00:00', '0000-00-00 00:00:00', 0, NULL, NULL, '', 0, 1513670596, NULL),
+(00000000131, '5500503', 'Active', 'Detainee', '2017-12-12 00:00:00', '0000-00-00 00:00:00', 0, NULL, NULL, '', 0, 1513670635, NULL),
+(00000000132, '5500503', 'Active', 'Detainee', '2017-12-11 00:00:00', '0000-00-00 00:00:00', 0, NULL, NULL, '', 0, 1513670714, NULL),
+(00000000133, '5500503', 'Active', 'Detainee', '2017-12-13 00:00:00', '0000-00-00 00:00:00', 0, NULL, NULL, '', 0, 1513670731, NULL),
+(00000000134, '147147134135', 'Active', 'Detainee', '2017-12-19 00:00:00', '0000-00-00 00:00:00', 0, NULL, NULL, '', 0, 1513670768, NULL),
+(00000000135, '147147134135', 'Active', 'Detainee', '2017-11-28 00:00:00', '0000-00-00 00:00:00', 0, NULL, NULL, '', 0, 1513670787, NULL);
 
 -- --------------------------------------------------------
 
@@ -858,8 +817,9 @@ CREATE TABLE `cs_sessions` (
 --
 
 INSERT INTO `cs_sessions` (`session_id`, `ip_address`, `user_agent`, `last_activity`, `user_data`) VALUES
-('0823c088f9798745e8a9e9e72b4eb02b', '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.84 Safari/537.36', 1513503884, 'a:5:{s:9:"user_data";s:0:"";s:12:"is_logged_in";b:1;s:9:"user_type";s:20:"Warden Administrator";s:7:"user_id";s:11:"00000000001";s:9:"logged_in";a:6:{s:8:"username";s:5:"admin";s:8:"password";s:128:"08f9ef3c42adfe2fbb0e979604c7eb30aa12705fac8b1a9ead899e67b46fd7348c0041721d2be1d64902b66535380e6ff68ee4ed1e9baebf7a7d3dc4285e5391";s:5:"fname";s:5:"CPDRC";s:5:"lname";s:13:"Administrator";s:4:"type";s:20:"Warden Administrator";s:7:"user_id";s:11:"00000000001";}}'),
-('f102d346eedc1cac493baeb506ef6f64', '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.84 Safari/537.36', 1513504881, 'a:5:{s:9:"user_data";s:0:"";s:12:"is_logged_in";b:1;s:9:"user_type";s:20:"Warden Administrator";s:7:"user_id";s:11:"00000000001";s:9:"logged_in";a:6:{s:8:"username";s:5:"admin";s:8:"password";s:128:"08f9ef3c42adfe2fbb0e979604c7eb30aa12705fac8b1a9ead899e67b46fd7348c0041721d2be1d64902b66535380e6ff68ee4ed1e9baebf7a7d3dc4285e5391";s:5:"fname";s:5:"CPDRC";s:5:"lname";s:13:"Administrator";s:4:"type";s:20:"Warden Administrator";s:7:"user_id";s:11:"00000000001";}}');
+('07547c346672074b3b2877414ac20b57', '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36', 1518066813, 'a:5:{s:9:\"user_data\";s:0:\"\";s:12:\"is_logged_in\";b:1;s:9:\"user_type\";s:20:\"Warden Administrator\";s:7:\"user_id\";s:11:\"00000000001\";s:9:\"logged_in\";a:6:{s:8:\"username\";s:5:\"admin\";s:8:\"password\";s:128:\"08f9ef3c42adfe2fbb0e979604c7eb30aa12705fac8b1a9ead899e67b46fd7348c0041721d2be1d64902b66535380e6ff68ee4ed1e9baebf7a7d3dc4285e5391\";s:5:\"fname\";s:5:\"CPDRC\";s:5:\"lname\";s:13:\"Administrator\";s:4:\"type\";s:20:\"Warden Administrator\";s:7:\"user_id\";s:11:\"00000000001\";}}'),
+('61a804fe68951cf7c569fdd53caf99e6', '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36', 1517821188, 'a:5:{s:9:\"user_data\";s:0:\"\";s:12:\"is_logged_in\";b:1;s:9:\"user_type\";s:20:\"Warden Administrator\";s:7:\"user_id\";s:11:\"00000000001\";s:9:\"logged_in\";a:6:{s:8:\"username\";s:5:\"admin\";s:8:\"password\";s:128:\"08f9ef3c42adfe2fbb0e979604c7eb30aa12705fac8b1a9ead899e67b46fd7348c0041721d2be1d64902b66535380e6ff68ee4ed1e9baebf7a7d3dc4285e5391\";s:5:\"fname\";s:5:\"CPDRC\";s:5:\"lname\";s:13:\"Administrator\";s:4:\"type\";s:20:\"Warden Administrator\";s:7:\"user_id\";s:11:\"00000000001\";}}'),
+('b15d26d48e7fc8f72f07c9ebc292376a', '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36', 1517819785, 'a:5:{s:9:\"user_data\";s:0:\"\";s:12:\"is_logged_in\";b:1;s:9:\"user_type\";s:20:\"Warden Administrator\";s:7:\"user_id\";s:11:\"00000000001\";s:9:\"logged_in\";a:6:{s:8:\"username\";s:5:\"admin\";s:8:\"password\";s:128:\"08f9ef3c42adfe2fbb0e979604c7eb30aa12705fac8b1a9ead899e67b46fd7348c0041721d2be1d64902b66535380e6ff68ee4ed1e9baebf7a7d3dc4285e5391\";s:5:\"fname\";s:5:\"CPDRC\";s:5:\"lname\";s:13:\"Administrator\";s:4:\"type\";s:20:\"Warden Administrator\";s:7:\"user_id\";s:11:\"00000000001\";}}');
 
 -- --------------------------------------------------------
 
@@ -965,7 +925,10 @@ CREATE TABLE `editrequest` (
 --
 
 INSERT INTO `editrequest` (`editRequestID`, `requestedBy`, `inmateId`, `status`, `reason`, `judgedBy`, `addedOn`, `isRead`, `judgedOn`) VALUES
-(8, 1, '9874651325946132456', 'finished', 'sad', 1, '2017-12-17 10:17:23', 1, '2017-12-17 18:17:00');
+(1, 1, '51654654654567', 'finished', 'asdasdasd', 1, '2017-12-14 13:28:08', 1, '2017-12-14 20:47:00'),
+(2, 1, '51654654654567', 'finished', 'asdasd', 1, '2017-12-14 13:28:06', 1, '2017-12-14 20:51:00'),
+(3, 1, '51654654654567', 'finished', 'asf', 1, '2017-12-14 13:28:04', 1, '2017-12-14 20:59:00'),
+(4, 1, '51654654654567', 'approved', 'saf', 1, '2017-12-14 13:27:37', 1, '2017-12-14 21:27:00');
 
 -- --------------------------------------------------------
 
@@ -985,7 +948,7 @@ CREATE TABLE `file` (
 --
 
 INSERT INTO `file` (`inmate_id`, `filename`, `added_by`, `img_set`) VALUES
-('9874651325946132456', '35.jpg', 00000000001, '1'),
+('51654654654567', '12236e5372dfebd21ce149cf129a1ae5.jpg', 00000000001, '1'),
 ('5500501', '192x192.jpg', 00000000001, '1'),
 ('5500502', '192x192.jpg', 00000000001, '1'),
 ('5500503', '192x192.jpg', 00000000001, '1'),
@@ -1109,7 +1072,26 @@ INSERT INTO `file` (`inmate_id`, `filename`, `added_by`, `img_set`) VALUES
 ('5500137', '192x192.jpg', 00000000001, '1'),
 ('5500138', '192x192.jpg', 00000000001, '1'),
 ('5500139', '192x192.jpg', 00000000001, '1'),
-('5500140', '192x192.jpg', 00000000001, '1');
+('5500140', '192x192.jpg', 00000000001, '1'),
+('147147134135', '192x192.jpg', 00000000001, '1'),
+('1231231231', '192x192.jpg', 00000000001, '1'),
+('1231231232', '192x192.jpg', 00000000001, '1'),
+('1231231233', '192x192.jpg', 00000000001, '1'),
+('1231231234', '192x192.jpg', 00000000001, '1'),
+('1231231235', '192x192.jpg', 00000000001, '1'),
+('1231231236', '192x192.jpg', 00000000001, '1'),
+('1231231237', '192x192.jpg', 00000000001, '1'),
+('1231231238', '192x192.jpg', 00000000001, '1'),
+('1231231239', '192x192.jpg', 00000000001, '1'),
+('1231231240', '192x192.jpg', 00000000001, '1'),
+('1231231241', '192x192.jpg', 00000000001, '1'),
+('1231231242', '192x192.jpg', 00000000001, '1'),
+('1231231243', '192x192.jpg', 00000000001, '1'),
+('1231231244', '192x192.jpg', 00000000001, '1'),
+('1231231245', '192x192.jpg', 00000000001, '1'),
+('1231231246', '192x192.jpg', 00000000001, '1'),
+('1251232312', '192x192.jpg', 00000000001, '1'),
+('1251456852', '192x192.jpg', 00000000001, '1');
 
 -- --------------------------------------------------------
 
@@ -1140,8 +1122,28 @@ CREATE TABLE `inmate` (
 --
 
 INSERT INTO `inmate` (`ref_formid`, `inmate_id`, `cell_no`, `inmate_fname`, `inmate_lname`, `inmate_mi`, `inmate_alias`, `status`, `inmate_type`, `date_detained`, `date_convicted`, `date_probation`, `datetime_added`, `is_read`, `added_by`) VALUES
+('001-2017', '1231231231', '546', 'ABAD', 'CABALLERO', 'EVANGELINE', '', 'Pending', 'Pending', '0000-00-00 00:00:00', '0000-00-00 00:00:00', '0000-00-00 00:00:00', '2018-01-30 04:42:14', 0, 00000000001),
+('001-2018', '1231231232', '546', 'ABAD', 'CABALLERO', 'EVANGELINE', '', 'Pending', 'Pending', '0000-00-00 00:00:00', '0000-00-00 00:00:00', '0000-00-00 00:00:00', '2018-01-30 04:42:14', 0, 00000000001),
+('001-2019', '1231231233', '546', 'ABAD', 'CABALLERO', 'EVANGELINE', '', 'Pending', 'Pending', '0000-00-00 00:00:00', '0000-00-00 00:00:00', '0000-00-00 00:00:00', '2018-01-30 04:42:14', 0, 00000000001),
+('001-2020', '1231231234', '546', 'ABAD', 'CABALLERO', 'EVANGELINE', '', 'Pending', 'Pending', '0000-00-00 00:00:00', '0000-00-00 00:00:00', '0000-00-00 00:00:00', '2018-01-30 04:42:14', 0, 00000000001),
+('001-2021', '1231231235', '546', 'ABAD', 'CABALLERO', 'EVANGELINE', '', 'Pending', 'Pending', '0000-00-00 00:00:00', '0000-00-00 00:00:00', '0000-00-00 00:00:00', '2018-01-30 04:42:14', 0, 00000000001),
+('001-2022', '1231231236', '546', 'ABAD', 'CABALLERO', 'EVANGELINE', '', 'Pending', 'Pending', '0000-00-00 00:00:00', '0000-00-00 00:00:00', '0000-00-00 00:00:00', '2018-01-30 04:42:14', 0, 00000000001),
+('001-2023', '1231231237', '546', 'ABAD', 'CABALLERO', 'EVANGELINE', '', 'Pending', 'Pending', '0000-00-00 00:00:00', '0000-00-00 00:00:00', '0000-00-00 00:00:00', '2018-01-30 04:42:14', 0, 00000000001),
+('001-2024', '1231231238', '546', 'ABAD', 'CABALLERO', 'EVANGELINE', '', 'Pending', 'Pending', '0000-00-00 00:00:00', '0000-00-00 00:00:00', '0000-00-00 00:00:00', '2018-01-30 04:42:15', 0, 00000000001),
+('001-2025', '1231231239', '546', 'ABAD', 'CABALLERO', 'EVANGELINE', '', 'Pending', 'Pending', '0000-00-00 00:00:00', '0000-00-00 00:00:00', '0000-00-00 00:00:00', '2018-01-30 04:42:15', 0, 00000000001),
+('001-2026', '1231231240', '546', 'ABAD', 'CABALLERO', 'EVANGELINE', '', 'Pending', 'Pending', '0000-00-00 00:00:00', '0000-00-00 00:00:00', '0000-00-00 00:00:00', '2018-01-30 04:42:15', 0, 00000000001),
+('001-2027', '1231231241', '546', 'ABAD', 'CABALLERO', 'EVANGELINE', '', 'Pending', 'Pending', '0000-00-00 00:00:00', '0000-00-00 00:00:00', '0000-00-00 00:00:00', '2018-01-30 04:42:15', 0, 00000000001),
+('001-2028', '1231231242', '546', 'ABAD', 'CABALLERO', 'EVANGELINE', '', 'Pending', 'Pending', '0000-00-00 00:00:00', '0000-00-00 00:00:00', '0000-00-00 00:00:00', '2018-01-30 04:42:15', 0, 00000000001),
+('001-2029', '1231231243', '546', 'ABAD', 'CABALLERO', 'EVANGELINE', '', 'Pending', 'Pending', '0000-00-00 00:00:00', '0000-00-00 00:00:00', '0000-00-00 00:00:00', '2018-01-30 04:42:15', 0, 00000000001),
+('001-2030', '1231231244', '546', 'ABAD', 'CABALLERO', 'EVANGELINE', '', 'Pending', 'Pending', '0000-00-00 00:00:00', '0000-00-00 00:00:00', '0000-00-00 00:00:00', '2018-01-30 04:42:15', 0, 00000000001),
+('001-2031', '1231231245', '546', 'ABAD', 'CABALLERO', 'EVANGELINE', '', 'Pending', 'Pending', '0000-00-00 00:00:00', '0000-00-00 00:00:00', '0000-00-00 00:00:00', '2018-01-30 04:42:15', 0, 00000000001),
+('001-2032', '1231231246', '546', 'ABAD', 'CABALLERO', 'EVANGELINE', '', 'Pending', 'Pending', '0000-00-00 00:00:00', '0000-00-00 00:00:00', '0000-00-00 00:00:00', '2018-01-30 04:42:15', 0, 00000000001),
+('001-2032', '1251232312', '546', 'ABAD', 'CABALLERO', 'EVANGELINE', '', 'Pending', 'Pending', '0000-00-00 00:00:00', '0000-00-00 00:00:00', '0000-00-00 00:00:00', '2018-01-30 05:36:26', 0, 00000000001),
+('001-2032', '1251456852', '546', 'ABAD', 'CABALLERO', 'EVANGELINE', '', 'Pending', 'Pending', '0000-00-00 00:00:00', '0000-00-00 00:00:00', '0000-00-00 00:00:00', '2018-01-30 05:37:05', 0, 00000000001),
+('135667147', '147147134135', '1', 'Asdf', 'Agasfh', 'Adhasf', 'Adjhadjadfjad', 'Active', 'Detainee', '2017-11-28 00:00:00', '0000-00-00 00:00:00', '0000-00-00 00:00:00', '2017-12-19 08:05:48', 0, 00000000001),
+('123', '51654654654567', '1', 'Asd', 'Gsa', 'Gas', 'Asg', 'Active', 'Detainee', '2017-12-21 00:00:00', '0000-00-00 00:00:00', '0000-00-00 00:00:00', '2017-12-14 12:28:55', 0, 00000000001),
 ('58010', '550010', '2', 'First Name_10', 'Last Name_10', 'Middle Name_10', 'Alias_10', 'Active', 'Detainee', '2017-12-04 00:00:00', '0000-00-00 00:00:00', '0000-00-00 00:00:00', '2017-12-14 15:17:00', 0, 00000000001),
-('580100', '5500100', '2', 'First Name_100', 'Last Name_100', 'Middle Name_100', 'Alias_100', 'Active', 'Detainee', '2017-12-21 00:00:00', '0000-00-00 00:00:00', '0000-00-00 00:00:00', '2017-12-14 15:29:49', 0, 00000000001),
+('580100', '5500100', '2', 'First Name_100', 'Last Name_100', 'Middle Name_100', 'Alias_100', 'Active', 'Detainee', '2017-12-04 00:00:00', '0000-00-00 00:00:00', '0000-00-00 00:00:00', '2017-12-14 15:29:49', 0, 00000000001),
 ('580101', '5500101', '2', 'First Name_101', 'Last Name_101', 'Middle Name_101', 'Alias_101', 'Active', 'Detainee', '2017-12-04 00:00:00', '0000-00-00 00:00:00', '0000-00-00 00:00:00', '2017-12-14 15:29:58', 0, 00000000001),
 ('580102', '5500102', '2', 'First Name_102', 'Last Name_102', 'Middle Name_102', 'Alias_102', 'Active', 'Detainee', '2017-12-04 00:00:00', '0000-00-00 00:00:00', '0000-00-00 00:00:00', '2017-12-14 15:30:06', 0, 00000000001),
 ('580103', '5500103', '2', 'First Name_103', 'Last Name_103', 'Middle Name_103', 'Alias_103', 'Active', 'Detainee', '2017-12-04 00:00:00', '0000-00-00 00:00:00', '0000-00-00 00:00:00', '2017-12-14 15:30:16', 0, 00000000001),
@@ -1162,7 +1164,7 @@ INSERT INTO `inmate` (`ref_formid`, `inmate_id`, `cell_no`, `inmate_fname`, `inm
 ('580117', '5500117', '2', 'First Name_117', 'Last Name_117', 'Middle Name_117', 'Alias_117', 'Active', 'Detainee', '2017-12-04 00:00:00', '0000-00-00 00:00:00', '0000-00-00 00:00:00', '2017-12-14 15:32:16', 0, 00000000001),
 ('580118', '5500118', '2', 'First Name_118', 'Last Name_118', 'Middle Name_118', 'Alias_118', 'Active', 'Detainee', '2017-12-04 00:00:00', '0000-00-00 00:00:00', '0000-00-00 00:00:00', '2017-12-14 15:32:25', 0, 00000000001),
 ('580119', '5500119', '2', 'First Name_119', 'Last Name_119', 'Middle Name_119', 'Alias_119', 'Active', 'Detainee', '2017-12-04 00:00:00', '0000-00-00 00:00:00', '0000-00-00 00:00:00', '2017-12-14 15:32:33', 0, 00000000001),
-('58012', '550012', '2', 'First Name_12', 'Last Name_12', 'Middle Name_12', 'Alias_12', 'Released', 'Detainee', '2017-12-04 00:00:00', '0000-00-00 00:00:00', '0000-00-00 00:00:00', '2017-12-14 15:17:55', 0, 00000000001),
+('58012', '550012', '2', 'First Name_12', 'Last Name_12', 'Middle Name_12', 'Alias_12', 'Active', 'Detainee', '2017-12-04 00:00:00', '0000-00-00 00:00:00', '0000-00-00 00:00:00', '2017-12-14 15:17:55', 0, 00000000001),
 ('580120', '5500120', '2', 'First Name_120', 'Last Name_120', 'Middle Name_120', 'Alias_120', 'Active', 'Detainee', '2017-12-04 00:00:00', '0000-00-00 00:00:00', '0000-00-00 00:00:00', '2017-12-14 15:32:42', 0, 00000000001),
 ('580121', '5500121', '2', 'First Name_121', 'Last Name_121', 'Middle Name_121', 'Alias_121', 'Active', 'Detainee', '2017-12-04 00:00:00', '0000-00-00 00:00:00', '0000-00-00 00:00:00', '2017-12-14 15:32:51', 0, 00000000001),
 ('580122', '5500122', '2', 'First Name_122', 'Last Name_122', 'Middle Name_122', 'Alias_122', 'Active', 'Detainee', '2017-12-04 00:00:00', '0000-00-00 00:00:00', '0000-00-00 00:00:00', '2017-12-14 15:32:59', 0, 00000000001),
@@ -1191,12 +1193,12 @@ INSERT INTO `inmate` (`ref_formid`, `inmate_id`, `cell_no`, `inmate_fname`, `inm
 ('58017', '550017', '2', 'First Name_17', 'Last Name_17', 'Middle Name_17', 'Alias_17', 'Active', 'Detainee', '2017-12-04 00:00:00', '0000-00-00 00:00:00', '0000-00-00 00:00:00', '2017-12-14 15:18:56', 0, 00000000001),
 ('58018', '550018', '2', 'First Name_18', 'Last Name_18', 'Middle Name_18', 'Alias_18', 'Active', 'Detainee', '2017-12-04 00:00:00', '0000-00-00 00:00:00', '0000-00-00 00:00:00', '2017-12-14 15:19:07', 0, 00000000001),
 ('58019', '550019', '2', 'First Name_19', 'Last Name_19', 'Middle Name_19', 'Alias_19', 'Active', 'Detainee', '2017-12-04 00:00:00', '0000-00-00 00:00:00', '0000-00-00 00:00:00', '2017-12-14 15:19:17', 0, 00000000001),
-('5802', '55002', '2', 'First Name_2', 'Last Name_2', 'Middle Name_2', 'Alias_2', 'Released', 'Detainee', '2017-12-04 00:00:00', '0000-00-00 00:00:00', '0000-00-00 00:00:00', '2017-12-14 15:15:40', 0, 00000000001),
+('5802', '55002', '2', 'First Name_2', 'Last Name_2', 'Middle Name_2', 'Alias_2', 'Active', 'Detainee', '2017-12-04 00:00:00', '0000-00-00 00:00:00', '0000-00-00 00:00:00', '2017-12-14 15:15:40', 0, 00000000001),
 ('58020', '550020', '2', 'First Name_20', 'Last Name_20', 'Middle Name_20', 'Alias_20', 'Active', 'Detainee', '2017-12-04 00:00:00', '0000-00-00 00:00:00', '0000-00-00 00:00:00', '2017-12-14 15:19:27', 0, 00000000001),
 ('58021', '550021', '2', 'First Name_21', 'Last Name_21', 'Middle Name_21', 'Alias_21', 'Active', 'Detainee', '2017-12-04 00:00:00', '0000-00-00 00:00:00', '0000-00-00 00:00:00', '2017-12-14 15:19:37', 0, 00000000001),
-('58022', '550022', '2', 'First Name_22', 'Last Name_22', 'Middle Name_22', 'Alias_22', 'Pending', 'Pending', '2017-12-27 00:00:00', '0000-00-00 00:00:00', '0000-00-00 00:00:00', '2017-12-14 15:19:46', 0, 00000000001),
-('5803', '55003', '2', 'First Name_3', 'Last Name_3', 'Middle Name_3', 'Alias_3', 'Released', 'Detainee', '2017-12-04 00:00:00', '0000-00-00 00:00:00', '0000-00-00 00:00:00', '2017-12-14 15:15:52', 0, 00000000001),
-('5804', '55004', '2', 'First Name_4', 'Last Name_4', 'Middle Name_4', 'Alias_4', 'Released', 'Detainee', '2017-12-04 00:00:00', '0000-00-00 00:00:00', '0000-00-00 00:00:00', '2017-12-14 15:16:02', 0, 00000000001),
+('58022', '550022', '2', 'First Name_22', 'Last Name_22', 'Middle Name_22', 'Alias_22', 'Active', 'Detainee', '2017-12-12 00:00:00', '0000-00-00 00:00:00', '0000-00-00 00:00:00', '2017-12-14 15:19:46', 0, 00000000001),
+('5803', '55003', '2', 'First Name_3', 'Last Name_3', 'Middle Name_3', 'Alias_3', 'Active', 'Detainee', '2017-12-04 00:00:00', '0000-00-00 00:00:00', '0000-00-00 00:00:00', '2017-12-14 15:15:52', 0, 00000000001),
+('5804', '55004', '2', 'First Name_4', 'Last Name_4', 'Middle Name_4', 'Alias_4', 'Active', 'Detainee', '2017-12-04 00:00:00', '0000-00-00 00:00:00', '0000-00-00 00:00:00', '2017-12-14 15:16:02', 0, 00000000001),
 ('58041', '550041', '2', 'First Name_41', 'Last Name_41', 'Middle Name_41', 'Alias_41', 'Active', 'Detainee', '2017-12-04 00:00:00', '0000-00-00 00:00:00', '0000-00-00 00:00:00', '2017-12-14 15:20:45', 0, 00000000001),
 ('58042', '550042', '2', 'First Name_42', 'Last Name_42', 'Middle Name_42', 'Alias_42', 'Active', 'Detainee', '2017-12-04 00:00:00', '0000-00-00 00:00:00', '0000-00-00 00:00:00', '2017-12-14 15:20:57', 0, 00000000001),
 ('58043', '550043', '2', 'First Name_43', 'Last Name_43', 'Middle Name_43', 'Alias_43', 'Active', 'Detainee', '2017-12-04 00:00:00', '0000-00-00 00:00:00', '0000-00-00 00:00:00', '2017-12-14 15:21:08', 0, 00000000001),
@@ -1210,7 +1212,7 @@ INSERT INTO `inmate` (`ref_formid`, `inmate_id`, `cell_no`, `inmate_fname`, `inm
 ('58050', '550050', '2', 'First Name_50', 'Last Name_50', 'Middle Name_50', 'Alias_50', 'Active', 'Detainee', '2017-12-04 00:00:00', '0000-00-00 00:00:00', '0000-00-00 00:00:00', '2017-12-14 15:22:14', 0, 00000000001),
 ('580501', '5500501', '2', 'First Name_501', 'Last Name_501', 'Middle Name_501', 'Alias_501', 'Active', 'Detainee', '2017-12-04 00:00:00', '0000-00-00 00:00:00', '0000-00-00 00:00:00', '2017-12-14 15:14:15', 0, 00000000001),
 ('580502', '5500502', '2', 'First Name_502', 'Last Name_502', 'Middle Name_502', 'Alias_502', 'Active', 'Detainee', '2017-12-04 00:00:00', '0000-00-00 00:00:00', '0000-00-00 00:00:00', '2017-12-14 15:14:26', 0, 00000000001),
-('580503', '5500503', '2', 'First Name_503', 'Last Name_503', 'Middle Name_503', 'Alias_503', 'Pending', 'Pending', '2017-12-07 00:00:00', '0000-00-00 00:00:00', '0000-00-00 00:00:00', '2017-12-14 15:14:40', 0, 00000000001),
+('580503', '5500503', '2', 'First Name_503', 'Last Name_503', 'Middle Name_503', 'Alias_503', 'Active', 'Detainee', '2017-12-13 00:00:00', '0000-00-00 00:00:00', '0000-00-00 00:00:00', '2017-12-14 15:14:40', 0, 00000000001),
 ('58051', '550051', '2', 'First Name_51', 'Last Name_51', 'Middle Name_51', 'Alias_51', 'Active', 'Detainee', '2017-12-04 00:00:00', '0000-00-00 00:00:00', '0000-00-00 00:00:00', '2017-12-14 15:22:23', 0, 00000000001),
 ('58052', '550052', '2', 'First Name_52', 'Last Name_52', 'Middle Name_52', 'Alias_52', 'Active', 'Detainee', '2017-12-04 00:00:00', '0000-00-00 00:00:00', '0000-00-00 00:00:00', '2017-12-14 15:22:32', 0, 00000000001),
 ('58053', '550053', '2', 'First Name_53', 'Last Name_53', 'Middle Name_53', 'Alias_53', 'Active', 'Detainee', '2017-12-04 00:00:00', '0000-00-00 00:00:00', '0000-00-00 00:00:00', '2017-12-14 15:22:42', 0, 00000000001),
@@ -1220,7 +1222,7 @@ INSERT INTO `inmate` (`ref_formid`, `inmate_id`, `cell_no`, `inmate_fname`, `inm
 ('58057', '550057', '2', 'First Name_57', 'Last Name_57', 'Middle Name_57', 'Alias_57', 'Active', 'Detainee', '2017-12-04 00:00:00', '0000-00-00 00:00:00', '0000-00-00 00:00:00', '2017-12-14 15:23:19', 0, 00000000001),
 ('58058', '550058', '2', 'First Name_58', 'Last Name_58', 'Middle Name_58', 'Alias_58', 'Active', 'Detainee', '2017-12-04 00:00:00', '0000-00-00 00:00:00', '0000-00-00 00:00:00', '2017-12-14 15:23:29', 0, 00000000001),
 ('58059', '550059', '2', 'First Name_59', 'Last Name_59', 'Middle Name_59', 'Alias_59', 'Active', 'Detainee', '2017-12-04 00:00:00', '0000-00-00 00:00:00', '0000-00-00 00:00:00', '2017-12-14 15:23:38', 0, 00000000001),
-('5806', '55006', '2', 'First Name_6', 'Last Name_6', 'Middle Name_6', 'Alias_6', 'Released', 'Detainee', '2017-12-04 00:00:00', '0000-00-00 00:00:00', '0000-00-00 00:00:00', '2017-12-14 15:16:22', 0, 00000000001),
+('5806', '55006', '2', 'First Name_6', 'Last Name_6', 'Middle Name_6', 'Alias_6', 'Active', 'Detainee', '2017-12-04 00:00:00', '0000-00-00 00:00:00', '0000-00-00 00:00:00', '2017-12-14 15:16:22', 0, 00000000001),
 ('58060', '550060', '2', 'First Name_60', 'Last Name_60', 'Middle Name_60', 'Alias_60', 'Active', 'Detainee', '2017-12-04 00:00:00', '0000-00-00 00:00:00', '0000-00-00 00:00:00', '2017-12-14 15:23:48', 0, 00000000001),
 ('58061', '550061', '2', 'First Name_61', 'Last Name_61', 'Middle Name_61', 'Alias_61', 'Active', 'Detainee', '2017-12-04 00:00:00', '0000-00-00 00:00:00', '0000-00-00 00:00:00', '2017-12-14 15:23:57', 0, 00000000001),
 ('58062', '550062', '2', 'First Name_62', 'Last Name_62', 'Middle Name_62', 'Alias_62', 'Active', 'Detainee', '2017-12-04 00:00:00', '0000-00-00 00:00:00', '0000-00-00 00:00:00', '2017-12-14 15:24:06', 0, 00000000001),
@@ -1242,7 +1244,7 @@ INSERT INTO `inmate` (`ref_formid`, `inmate_id`, `cell_no`, `inmate_fname`, `inm
 ('58077', '550077', '2', 'First Name_77', 'Last Name_77', 'Middle Name_77', 'Alias_77', 'Active', 'Detainee', '2017-12-04 00:00:00', '0000-00-00 00:00:00', '0000-00-00 00:00:00', '2017-12-14 15:26:20', 0, 00000000001),
 ('58078', '550078', '2', 'First Name_78', 'Last Name_78', 'Middle Name_78', 'Alias_78', 'Active', 'Detainee', '2017-12-04 00:00:00', '0000-00-00 00:00:00', '0000-00-00 00:00:00', '2017-12-14 15:26:28', 0, 00000000001),
 ('58079', '550079', '2', 'First Name_79', 'Last Name_79', 'Middle Name_79', 'Alias_79', 'Active', 'Detainee', '2017-12-04 00:00:00', '0000-00-00 00:00:00', '0000-00-00 00:00:00', '2017-12-14 15:26:37', 0, 00000000001),
-('5808', '55008', '2', 'First Name_8', 'Last Name_8', 'Middle Name_8', 'Alias_8', 'Released', 'Detainee', '2017-12-04 00:00:00', '0000-00-00 00:00:00', '0000-00-00 00:00:00', '2017-12-14 15:16:42', 0, 00000000001),
+('5808', '55008', '2', 'First Name_8', 'Last Name_8', 'Middle Name_8', 'Alias_8', 'Active', 'Detainee', '2017-12-04 00:00:00', '0000-00-00 00:00:00', '0000-00-00 00:00:00', '2017-12-14 15:16:42', 0, 00000000001),
 ('58080', '550080', '2', 'First Name_80', 'Last Name_80', 'Middle Name_80', 'Alias_80', 'Active', 'Detainee', '2017-12-04 00:00:00', '0000-00-00 00:00:00', '0000-00-00 00:00:00', '2017-12-14 15:26:45', 0, 00000000001),
 ('58081', '550081', '2', 'First Name_81', 'Last Name_81', 'Middle Name_81', 'Alias_81', 'Active', 'Detainee', '2017-12-04 00:00:00', '0000-00-00 00:00:00', '0000-00-00 00:00:00', '2017-12-14 15:26:54', 0, 00000000001),
 ('58082', '550082', '2', 'First Name_82', 'Last Name_82', 'Middle Name_82', 'Alias_82', 'Active', 'Detainee', '2017-12-04 00:00:00', '0000-00-00 00:00:00', '0000-00-00 00:00:00', '2017-12-14 15:27:03', 0, 00000000001),
@@ -1263,13 +1265,13 @@ INSERT INTO `inmate` (`ref_formid`, `inmate_id`, `cell_no`, `inmate_fname`, `inm
 ('58096', '550096', '2', 'First Name_96', 'Last Name_96', 'Middle Name_96', 'Alias_96', 'Active', 'Detainee', '2017-12-04 00:00:00', '0000-00-00 00:00:00', '0000-00-00 00:00:00', '2017-12-14 15:29:14', 0, 00000000001),
 ('58097', '550097', '2', 'First Name_97', 'Last Name_97', 'Middle Name_97', 'Alias_97', 'Active', 'Detainee', '2017-12-04 00:00:00', '0000-00-00 00:00:00', '0000-00-00 00:00:00', '2017-12-14 15:29:23', 0, 00000000001),
 ('58098', '550098', '2', 'First Name_98', 'Last Name_98', 'Middle Name_98', 'Alias_98', 'Active', 'Detainee', '2017-12-04 00:00:00', '0000-00-00 00:00:00', '0000-00-00 00:00:00', '2017-12-14 15:29:32', 0, 00000000001),
-('58099', '550099', '2', 'First Name_99', 'Last Name_99', 'Middle Name_99', 'Alias_99', 'Active', 'Detainee', '2017-12-04 00:00:00', '0000-00-00 00:00:00', '0000-00-00 00:00:00', '2017-12-14 15:29:40', 0, 00000000001),
-('123', '9874651325946132456', '1', 'Asd', 'Gsa', 'Gas', 'Asg', 'Active', 'Detainee', '2017-12-21 00:00:00', '0000-00-00 00:00:00', '0000-00-00 00:00:00', '2017-12-14 12:28:55', 0, 00000000001);
+('58099', '550099', '2', 'First Name_99', 'Last Name_99', 'Middle Name_99', 'Alias_99', 'Active', 'Detainee', '2017-12-04 00:00:00', '0000-00-00 00:00:00', '0000-00-00 00:00:00', '2017-12-14 15:29:40', 0, 00000000001);
 
 -- --------------------------------------------------------
 
 --
 -- Stand-in structure for view `inmates_full`
+-- (See below for the actual view)
 --
 CREATE TABLE `inmates_full` (
 `inmate_id` varchar(255)
@@ -1351,10 +1353,7 @@ CREATE TABLE `inmate_2d` (
 --
 
 INSERT INTO `inmate_2d` (`id`, `inmate_id`, `x_coor`, `y_coor`, `mark_name`, `mark_desc`, `mark_type`, `mark_filename`, `mark_img_set`, `mark_img_source`, `mark_addedby`, `markType`) VALUES
-(1, '9874651325946132456', 0, 0, 'asd', 'asd', 'B1F', '124004989_81n.jpg', 1, 'malefront.jpg', 00000000000000000001, 'scars'),
-(2, '9874651325946132456', 0, 0, 'asd', 'asd', 'B2F', '8051cb042fae760d7a3c8dcfe502211f.jpg', 1, 'malefront.jpg', 00000000000000000001, 'scars'),
-(3, '9874651325946132456', 0, 0, 'asd', 'asd', 'B1F', 'funny-zoo-animal-portraits-yago-partal-13.jpg', 1, 'malefront.jpg', 00000000000000000001, 'scars'),
-(4, '5500100', 0, 0, 'asd', 'asd', 'G2F', '255888babd56ea9e17394233d36cfb3a.jpg', 1, 'femalefront.jpg', 00000000000000000001, 'scars');
+(1, '51654654654567', 0, 0, 'asd', 'asd', 'B1F', '124004989_81n.jpg', 1, 'malefront.jpg', 00000000000000000001, 'scars');
 
 -- --------------------------------------------------------
 
@@ -1396,6 +1395,26 @@ CREATE TABLE `inmate_build` (
 --
 
 INSERT INTO `inmate_build` (`inmate_id`, `height`, `weight`, `complexion`, `build`, `hair`, `hair_peculiarities`) VALUES
+('1231231231', 0, 5, 'Regular', '56 kgs', 'Brown', 'Black'),
+('1231231232', 0, 5, 'Regular', '56 kgs', 'Brown', 'Black'),
+('1231231233', 0, 5, 'Regular', '56 kgs', 'Brown', 'Black'),
+('1231231234', 0, 5, 'Regular', '56 kgs', 'Brown', 'Black'),
+('1231231235', 0, 5, 'Regular', '56 kgs', 'Brown', 'Black'),
+('1231231236', 0, 5, 'Regular', '56 kgs', 'Brown', 'Black'),
+('1231231237', 0, 5, 'Regular', '56 kgs', 'Brown', 'Black'),
+('1231231238', 0, 5, 'Regular', '56 kgs', 'Brown', 'Black'),
+('1231231239', 0, 5, 'Regular', '56 kgs', 'Brown', 'Black'),
+('1231231240', 0, 5, 'Regular', '56 kgs', 'Brown', 'Black'),
+('1231231241', 0, 5, 'Regular', '56 kgs', 'Brown', 'Black'),
+('1231231242', 0, 5, 'Regular', '56 kgs', 'Brown', 'Black'),
+('1231231243', 0, 5, 'Regular', '56 kgs', 'Brown', 'Black'),
+('1231231244', 0, 5, 'Regular', '56 kgs', 'Brown', 'Black'),
+('1231231245', 0, 5, 'Regular', '56 kgs', 'Brown', 'Black'),
+('1231231246', 0, 5, 'Regular', '56 kgs', 'Brown', 'Black'),
+('1251232312', 0, 5, 'Regular', '56 kgs', 'Brown', 'Black'),
+('1251456852', 0, 5, 'Regular', '56 kgs', 'Brown', 'Black'),
+('147147134135', 2134, 12512, 'adfaf', '513', 'asfasf', 'asfasf'),
+('51654654654567', 12, 123, 'asdas', 'asd', 'asf', 'fasfsaf'),
 ('550010', 167, 155, 'Body_Complexion_10', 'Body_Build_10', 'Hair_10', 'Hair_Pec_10'),
 ('5500100', 167, 155, 'Body_Complexion_100', 'Body_Build_100', 'Hair_100', 'Hair_Pec_100'),
 ('5500101', 167, 155, 'Body_Complexion_101', 'Body_Build_101', 'Hair_101', 'Hair_Pec_101'),
@@ -1519,8 +1538,7 @@ INSERT INTO `inmate_build` (`inmate_id`, `height`, `weight`, `complexion`, `buil
 ('550096', 167, 155, 'Body_Complexion_96', 'Body_Build_96', 'Hair_96', 'Hair_Pec_96'),
 ('550097', 167, 155, 'Body_Complexion_97', 'Body_Build_97', 'Hair_97', 'Hair_Pec_97'),
 ('550098', 167, 155, 'Body_Complexion_98', 'Body_Build_98', 'Hair_98', 'Hair_Pec_98'),
-('550099', 167, 155, 'Body_Complexion_99', 'Body_Build_99', 'Hair_99', 'Hair_Pec_99'),
-('9874651325946132456', 12, 123, 'asdas', 'asd', 'asf', 'fasfsaf');
+('550099', 167, 155, 'Body_Complexion_99', 'Body_Build_99', 'Hair_99', 'Hair_Pec_99');
 
 -- --------------------------------------------------------
 
@@ -1548,26 +1566,26 @@ CREATE TABLE `inmate_case_info` (
 --
 
 INSERT INTO `inmate_case_info` (`cid`, `inmate_id`, `case_no`, `court_name`, `date_confinment`, `crime`, `sentence`, `commencing`, `expire_good`, `expire_bad`, `time_added`, `case_status`) VALUES
-(1, '9874651325946132456', '123', 'RTC Branch 1', '2017-12-21', '00000000003', '0', 'asd', '0000-00-00', '0000-00-00', '2017-12-14 12:34:29', '0'),
-(2, '9874651325946132456', '215215125', 'RTC Branch 1', '2017-12-28', '00000000003', '0', 'asd', '0000-00-00', '0000-00-00', '2017-12-14 13:31:08', '0'),
-(3, '9874651325946132456', '125215125', 'RTC Branch 1', '2017-12-08', '00000000003', '0', 'asd', '0000-00-00', '0000-00-00', '2017-12-14 13:35:52', '0'),
-(4, '9874651325946132456', '1526243', 'RTC Branch 1', '2017-12-21', '00000000003', '0', 'asd', '0000-00-00', '0000-00-00', '2017-12-14 13:36:06', '0'),
-(5, '9874651325946132456', '125512125', 'RTC Branch 1', '2017-12-07', '00000000003', '0', 'asd', '0000-00-00', '0000-00-00', '2017-12-14 13:37:42', '0'),
-(6, '9874651325946132456', '12563225', 'RTC Branch 1', '2017-12-21', '00000000003', '0', 'qwqwwqtw', '0000-00-00', '0000-00-00', '2017-12-14 13:38:45', '0'),
-(7, '9874651325946132456', '12563225', 'RTC Branch 1', '2017-12-21', '00000000003', '0', 'qwqwwqtw', '0000-00-00', '0000-00-00', '2017-12-14 13:39:23', '0'),
+(1, '51654654654567', '123', 'RTC Branch 1', '2017-12-21', '00000000003', '0', 'asd', '0000-00-00', '0000-00-00', '2017-12-14 12:34:29', '0'),
+(2, '51654654654567', '215215125', 'RTC Branch 1', '2017-12-28', '00000000003', '0', 'asd', '0000-00-00', '0000-00-00', '2017-12-14 13:31:08', '0'),
+(3, '51654654654567', '125215125', 'RTC Branch 1', '2017-12-08', '00000000003', '0', 'asd', '0000-00-00', '0000-00-00', '2017-12-14 13:35:52', '0'),
+(4, '51654654654567', '1526243', 'RTC Branch 1', '2017-12-21', '00000000003', '0', 'asd', '0000-00-00', '0000-00-00', '2017-12-14 13:36:06', '0'),
+(5, '51654654654567', '125512125', 'RTC Branch 1', '2017-12-07', '00000000003', '0', 'asd', '0000-00-00', '0000-00-00', '2017-12-14 13:37:42', '0'),
+(6, '51654654654567', '12563225', 'RTC Branch 1', '2017-12-21', '00000000003', '0', 'qwqwwqtw', '0000-00-00', '0000-00-00', '2017-12-14 13:38:45', '0'),
+(7, '51654654654567', '12563225', 'RTC Branch 1', '2017-12-21', '00000000003', '0', 'qwqwwqtw', '0000-00-00', '0000-00-00', '2017-12-14 13:39:23', '0'),
 (8, '5500501', '5780501', 'RTC Branch 1', '2017-12-04', '00000000003', '0', 'Commencing_501', '0000-00-00', '0000-00-00', '2017-12-14 15:14:21', '0'),
 (9, '5500502', '5780502', 'RTC Branch 2', '2017-12-04', '00000000004', '0', 'Commencing_502', '0000-00-00', '0000-00-00', '2017-12-14 15:14:33', '0'),
-(10, '55002', '57802', 'RTC Branch 1', '2017-12-04', '00000000003', '0', 'Commencing_2', '0000-00-00', '0000-00-00', '2017-12-14 15:15:46', '1'),
-(11, '55003', '57803', 'RTC Branch 2', '2017-12-04', '00000000004', '0', 'Commencing_3', '0000-00-00', '0000-00-00', '2017-12-14 15:15:58', '1'),
-(12, '55004', '57804', 'RTC Branch 1', '2017-12-04', '00000000003', '0', 'Commencing_4', '0000-00-00', '0000-00-00', '2017-12-14 15:16:08', '1'),
+(10, '55002', '57802', 'RTC Branch 1', '2017-12-04', '00000000003', '0', 'Commencing_2', '0000-00-00', '0000-00-00', '2017-12-14 15:15:46', '0'),
+(11, '55003', '57803', 'RTC Branch 2', '2017-12-04', '00000000004', '0', 'Commencing_3', '0000-00-00', '0000-00-00', '2017-12-14 15:15:58', '0'),
+(12, '55004', '57804', 'RTC Branch 1', '2017-12-04', '00000000003', '0', 'Commencing_4', '0000-00-00', '0000-00-00', '2017-12-14 15:16:08', '0'),
 (13, '55005', '57805', 'RTC Branch 2', '2017-12-04', '00000000004', '0', 'Commencing_5', '0000-00-00', '0000-00-00', '2017-12-14 15:16:19', '0'),
-(14, '55006', '57806', 'RTC Branch 1', '2017-12-04', '00000000003', '0', 'Commencing_6', '0000-00-00', '0000-00-00', '2017-12-14 15:16:28', '1'),
+(14, '55006', '57806', 'RTC Branch 1', '2017-12-04', '00000000003', '0', 'Commencing_6', '0000-00-00', '0000-00-00', '2017-12-14 15:16:28', '0'),
 (15, '55007', '57807', 'RTC Branch 2', '2017-12-04', '00000000004', '0', 'Commencing_7', '0000-00-00', '0000-00-00', '2017-12-14 15:16:38', '0'),
-(16, '55008', '57808', 'RTC Branch 1', '2017-12-04', '00000000003', '0', 'Commencing_8', '0000-00-00', '0000-00-00', '2017-12-14 15:16:48', '1'),
+(16, '55008', '57808', 'RTC Branch 1', '2017-12-04', '00000000003', '0', 'Commencing_8', '0000-00-00', '0000-00-00', '2017-12-14 15:16:48', '0'),
 (17, '55009', '57809', 'RTC Branch 2', '2017-12-04', '00000000004', '0', 'Commencing_9', '0000-00-00', '0000-00-00', '2017-12-14 15:16:57', '0'),
 (18, '550010', '578010', 'RTC Branch 1', '2017-12-04', '00000000003', '0', 'Commencing_10', '0000-00-00', '0000-00-00', '2017-12-14 15:17:06', '0'),
 (19, '550011', '578011', 'RTC Branch 1', '2017-12-04', '00000000003', '0', 'Commencing_11', '0000-00-00', '0000-00-00', '2017-12-14 15:17:50', '0'),
-(20, '550012', '578012', 'RTC Branch 2', '2017-12-04', '00000000004', '0', 'Commencing_12', '0000-00-00', '0000-00-00', '2017-12-14 15:18:02', '1'),
+(20, '550012', '578012', 'RTC Branch 2', '2017-12-04', '00000000004', '0', 'Commencing_12', '0000-00-00', '0000-00-00', '2017-12-14 15:18:02', '0'),
 (21, '550013', '578013', 'RTC Branch 1', '2017-12-04', '00000000003', '0', 'Commencing_13', '0000-00-00', '0000-00-00', '2017-12-14 15:18:19', '0'),
 (22, '550014', '578014', 'RTC Branch 2', '2017-12-04', '00000000004', '0', 'Commencing_14', '0000-00-00', '0000-00-00', '2017-12-14 15:18:29', '0'),
 (23, '550015', '578015', 'RTC Branch 1', '2017-12-04', '00000000003', '0', 'Commencing_15', '0000-00-00', '0000-00-00', '2017-12-14 15:18:41', '0'),
@@ -1677,17 +1695,13 @@ INSERT INTO `inmate_case_info` (`cid`, `inmate_id`, `case_no`, `court_name`, `da
 (127, '5500138', '5780138', 'RTC Branch 2', '2017-12-04', '00000000004', '0', 'Commencing_138', '0000-00-00', '0000-00-00', '2017-12-14 15:35:17', '0'),
 (128, '5500139', '5780139', 'RTC Branch 1', '2017-12-04', '00000000003', '0', 'Commencing_139', '0000-00-00', '0000-00-00', '2017-12-14 15:35:25', '0'),
 (129, '5500140', '5780140', 'RTC Branch 2', '2017-12-04', '00000000004', '0', 'Commencing_140', '0000-00-00', '0000-00-00', '2017-12-14 15:35:35', '0'),
-(130, '550022', '123', 'RTC Branch 1', '2017-12-13', '00000000004', '0', 'asd', '0000-00-00', '0000-00-00', '2017-12-17 09:50:18', '0'),
-(131, '550022', '123', 'RTC Branch 1', '2017-12-27', '00000000003', '0', 'asd', '0000-00-00', '0000-00-00', '2017-12-17 09:54:34', '0'),
-(132, '550022', '123', 'RTC Branch 1', '2017-12-27', '00000000003', '0', 'asd', '0000-00-00', '0000-00-00', '2017-12-17 09:55:15', '0'),
-(133, '550022', '123', 'RTC Branch 1', '2017-12-27', '00000000003', '0', 'asd', '0000-00-00', '0000-00-00', '2017-12-17 09:56:23', '0'),
-(134, '5500503', '123', 'RTC Branch 1', '2017-12-21', '00000000003', '0', 'asd', '0000-00-00', '0000-00-00', '2017-12-17 09:57:04', '0'),
-(135, '5500503', '123', 'RTC Branch 1', '2017-12-21', '00000000004', '0', 'asd', '0000-00-00', '0000-00-00', '2017-12-17 09:59:46', '0'),
-(136, '5500100', '5780101', 'RTC Branch 1', '2017-12-13', '00000000003', '0', 'asd', '0000-00-00', '0000-00-00', '2017-12-17 10:04:05', '0'),
-(137, '5500503', '1234', 'RTC Branch 1', '2017-12-08', '00000000003', '0', 'asd', '0000-00-00', '0000-00-00', '2017-12-17 10:04:42', '0'),
-(138, '5500503', '1234', 'RTC Branch 1', '2017-12-13', '00000000004', '0', 'asd', '0000-00-00', '0000-00-00', '2017-12-17 10:04:49', '0'),
-(139, '5500503', '1235', 'RTC Branch 1', '2017-12-07', '00000000003', '0', 'asd', '0000-00-00', '0000-00-00', '2017-12-17 10:06:42', '0'),
-(140, '5500503', '1235', 'RTC Branch 2', '2017-12-27', '00000000004', '0', 'asd', '0000-00-00', '0000-00-00', '2017-12-17 10:10:09', '0');
+(130, '550022', '123', 'RTC Branch 1', '2017-12-12', '00000000003', '0', 'asd', '0000-00-00', '0000-00-00', '2017-12-19 08:01:05', '0'),
+(131, '5500503', '1241515125', 'RTC Branch 1', '2017-12-19', '00000000003', '0', 'asd', '0000-00-00', '0000-00-00', '2017-12-19 08:03:16', '0'),
+(132, '5500503', '2515125125', 'RTC Branch 1', '2017-12-12', '00000000003', '0', 'asdasd', '0000-00-00', '0000-00-00', '2017-12-19 08:03:55', '0'),
+(133, '5500503', '152515', 'RTC Branch 1', '2017-12-11', '00000000003', '0', 'ags', '0000-00-00', '0000-00-00', '2017-12-19 08:05:14', '0'),
+(134, '5500503', '152515', 'RTC Branch 1', '2017-12-13', '00000000004', '0', 'asd', '0000-00-00', '0000-00-00', '2017-12-19 08:05:31', '0'),
+(135, '147147134135', '1366136136', 'RTC Branch 1', '2017-12-19', '00000000003', '0', 'agd', '0000-00-00', '0000-00-00', '2017-12-19 08:06:08', '0'),
+(136, '147147134135', '1366136136', 'RTC Branch 1', '2017-11-28', '00000000004', '0', 'asg', '0000-00-00', '0000-00-00', '2017-12-19 08:06:27', '0');
 
 -- --------------------------------------------------------
 
@@ -1768,8 +1782,28 @@ CREATE TABLE `inmate_info` (
 --
 
 INSERT INTO `inmate_info` (`inmate_id`, `nationality`, `status`, `birthdate`, `age`, `gender`, `born_in`, `home_add`, `province_add`, `occupation`, `father`, `mother`, `relative`, `relation`, `address`, `place`) VALUES
+('1231231231', 'Filipino', 'Married', '1983-11-05', 34, 'Female', 'Female', ',  Cebu\", \"San Remegio', '', '', 'Laundry Woman', 'Ernesto Tudtud', 'Teresita Caballero', 'Anselmo Abad', 'Pulpogan, Consolacion, Husband', '\"San Remegio'),
+('1231231232', 'Filipino', 'Married', '1983-11-06', 34, 'Male', 'Male', ',  Cebu\", \"San Remegio', '', '', 'Laundry Woman', 'Ernesto Tudtud', 'Teresita Caballero', 'Anselmo Abad', 'Pulpogan, Consolacion, Husband', '\"San Remegio'),
+('1231231233', 'Filipino', 'Single', '1983-11-07', 34, 'Male', 'Male', ',  Cebu\", \"San Remegio', '', '', 'Laundry Woman', 'Ernesto Tudtud', 'Teresita Caballero', 'Anselmo Abad', 'Pulpogan, Consolacion, Husband', '\"San Remegio'),
+('1231231234', 'Filipino', 'Widow', '1983-11-08', 34, 'Male', 'Male', ',  Cebu\", \"San Remegio', '', '', 'Laundry Woman', 'Ernesto Tudtud', 'Teresita Caballero', 'Anselmo Abad', 'Pulpogan, Consolacion, Husband', '\"San Remegio'),
+('1231231235', 'Filipino', 'Married', '1983-11-09', 34, 'Female', 'Female', ',  Cebu\", \"San Remegio', '', '', 'Laundry Woman', 'Ernesto Tudtud', 'Teresita Caballero', 'Anselmo Abad', 'Pulpogan, Consolacion, Husband', '\"San Remegio'),
+('1231231236', 'Filipino', 'Widower', '1983-11-10', 34, 'Female', 'Female', ',  Cebu\", \"San Remegio', '', '', 'Laundry Woman', 'Ernesto Tudtud', 'Teresita Caballero', 'Anselmo Abad', 'Pulpogan, Consolacion, Husband', '\"San Remegio'),
+('1231231237', 'Filipino', 'Single', '1983-11-11', 34, 'Female', 'Female', ',  Cebu\", \"San Remegio', '', '', 'Laundry Woman', 'Ernesto Tudtud', 'Teresita Caballero', 'Anselmo Abad', 'Pulpogan, Consolacion, Husband', '\"San Remegio'),
+('1231231238', 'Filipino', 'Married', '1983-11-12', 34, 'Male', 'Male', ',  Cebu\", \"San Remegio', '', '', 'Laundry Woman', 'Ernesto Tudtud', 'Teresita Caballero', 'Anselmo Abad', 'Pulpogan, Consolacion, Husband', '\"San Remegio'),
+('1231231239', 'Filipino', 'Married', '1983-11-13', 34, 'Male', 'Male', ',  Cebu\", \"San Remegio', '', '', 'Laundry Woman', 'Ernesto Tudtud', 'Teresita Caballero', 'Anselmo Abad', 'Pulpogan, Consolacion, Husband', '\"San Remegio'),
+('1231231240', 'Filipino', 'Single', '1983-11-14', 34, 'Male', 'Male', ',  Cebu\", \"San Remegio', '', '', 'Laundry Woman', 'Ernesto Tudtud', 'Teresita Caballero', 'Anselmo Abad', 'Pulpogan, Consolacion, Husband', '\"San Remegio'),
+('1231231241', 'Filipino', 'Married', '1983-11-15', 34, 'Female', 'Female', ',  Cebu\", \"San Remegio', '', '', 'Laundry Woman', 'Ernesto Tudtud', 'Teresita Caballero', 'Anselmo Abad', 'Pulpogan, Consolacion, Husband', '\"San Remegio'),
+('1231231242', 'Filipino', 'Widow', '1983-11-16', 34, 'Female', 'Female', ',  Cebu\", \"San Remegio', '', '', 'Laundry Woman', 'Ernesto Tudtud', 'Teresita Caballero', 'Anselmo Abad', 'Pulpogan, Consolacion, Husband', '\"San Remegio'),
+('1231231243', 'Filipino', 'Married', '1983-11-17', 34, 'Female', 'Female', ',  Cebu\", \"San Remegio', '', '', 'Laundry Woman', 'Ernesto Tudtud', 'Teresita Caballero', 'Anselmo Abad', 'Pulpogan, Consolacion, Husband', '\"San Remegio'),
+('1231231244', 'Filipino', 'Widower', '1983-11-18', 34, 'Male', 'Male', ',  Cebu\", \"San Remegio', '', '', 'Laundry Woman', 'Ernesto Tudtud', 'Teresita Caballero', 'Anselmo Abad', 'Pulpogan, Consolacion, Husband', '\"San Remegio'),
+('1231231245', 'Filipino', 'Married', '1983-11-19', 34, 'Male', 'Male', ',  Cebu\", \"San Remegio', '', '', 'Laundry Woman', 'Ernesto Tudtud', 'Teresita Caballero', 'Anselmo Abad', 'Pulpogan, Consolacion, Husband', '\"San Remegio'),
+('1231231246', 'Filipino', 'Single', '1983-11-20', 34, 'Male', 'Male', ',  Cebu\", \"San Remegio', '', '', 'Laundry Woman', 'Ernesto Tudtud', 'Teresita Caballero', 'Anselmo Abad', 'Pulpogan, Consolacion, Husband', '\"San Remegio'),
+('1251232312', 'Filipino', 'Single', '1983-11-20', 34, 'Male', 'Male', ',  Cebu\", \"San Remegio', '', '', 'Laundry Woman', 'Ernesto Tudtud', 'Teresita Caballero', 'Anselmo Abad', 'Pulpogan, Consolacion, Husband', '\"San Remegio'),
+('1251456852', 'Filipino', 'Single', '1983-11-20', 34, 'Male', 'Male', ',  Cebu\", \"San Remegio', '', '', 'Laundry Woman', 'Ernesto Tudtud', 'Teresita Caballero', 'Anselmo Abad', 'Pulpogan, Consolacion, Husband', '\"San Remegio'),
+('147147134135', 'Afghan', 'Single', '2017-12-19', 18, 'Male', 'afh', 'asfh, ahfs, Alcantara', 'asfh', 'ashf', 'ahf', 'afhs', 'ah', 'afh', 'ahf, ahsf, Alcantara', 'Alcantara'),
+('51654654654567', 'Afghan', 'Single', '2017-12-12', 18, 'Male', 'asdags', 'as asd, Alcantara', 'asfasf', 'asf', 'asf', 'asf', 'asf', 'sfa', 'asf asf, Alcantara', 'Alcantara'),
 ('550010', 'Filipino', 'Married', '1990-01-01', 18, 'Female', 'Birthplace_10', 'Home_Street_10 Home_Brgy_10, Bantayan', 'Home_Province_10', 'Occupation_10', 'Name_Father_10', 'Name_Mother_10', 'Name_Relative_10', 'Relation_10', 'Current_Street_10 Current_Brgy_10, Bantayan', 'Bantayan'),
-('5500100', 'Filipino', 'Married', '1990-01-01', 18, 'Female', 'Birthplace_100', 'Current_Brgy_100,, Current_Street_100, Badian', 'Home_Province_100', 'Occupation_100', 'Name_Father_100', 'Name_Mother_100', 'Name_Relative_100', 'Relation_100', 'Current_Brgy_100,, Current_Street_100, Badian', 'Badian'),
+('5500100', 'Filipino', 'Married', '1990-01-01', 18, 'Female', 'Birthplace_100', 'Home_Street_100 Home_Brgy_100, Badian', 'Home_Province_100', 'Occupation_100', 'Name_Father_100', 'Name_Mother_100', 'Name_Relative_100', 'Relation_100', 'Current_Street_100 Current_Brgy_100, Badian', 'Badian'),
 ('5500101', 'Filipino', 'Married', '1990-01-01', 18, 'Male', 'Birthplace_101', 'Home_Street_101 Home_Brgy_101, Balamban', 'Home_Province_101', 'Occupation_101', 'Name_Father_101', 'Name_Mother_101', 'Name_Relative_101', 'Relation_101', 'Current_Street_101 Current_Brgy_101, Balamban', 'Balamban'),
 ('5500102', 'Filipino', 'Married', '1990-01-01', 18, 'Female', 'Birthplace_102', 'Home_Street_102 Home_Brgy_102, Bantayan', 'Home_Province_102', 'Occupation_102', 'Name_Father_102', 'Name_Mother_102', 'Name_Relative_102', 'Relation_102', 'Current_Street_102 Current_Brgy_102, Bantayan', 'Bantayan'),
 ('5500103', 'Filipino', 'Married', '1990-01-01', 18, 'Male', 'Birthplace_103', 'Home_Street_103 Home_Brgy_103, Barili', 'Home_Province_103', 'Occupation_103', 'Name_Father_103', 'Name_Mother_103', 'Name_Relative_103', 'Relation_103', 'Current_Street_103 Current_Brgy_103, Barili', 'Barili'),
@@ -1891,8 +1925,7 @@ INSERT INTO `inmate_info` (`inmate_id`, `nationality`, `status`, `birthdate`, `a
 ('550096', 'Filipino', 'Married', '1990-01-01', 18, 'Female', 'Birthplace_96', 'Home_Street_96 Home_Brgy_96, Alegria', 'Home_Province_96', 'Occupation_96', 'Name_Father_96', 'Name_Mother_96', 'Name_Relative_96', 'Relation_96', 'Current_Street_96 Current_Brgy_96, Alegria', 'Alegria'),
 ('550097', 'Filipino', 'Married', '1990-01-01', 18, 'Male', 'Birthplace_97', 'Home_Street_97 Home_Brgy_97, Aloguinsan', 'Home_Province_97', 'Occupation_97', 'Name_Father_97', 'Name_Mother_97', 'Name_Relative_97', 'Relation_97', 'Current_Street_97 Current_Brgy_97, Aloguinsan', 'Aloguinsan'),
 ('550098', 'Filipino', 'Married', '1990-01-01', 18, 'Female', 'Birthplace_98', 'Home_Street_98 Home_Brgy_98, Argao', 'Home_Province_98', 'Occupation_98', 'Name_Father_98', 'Name_Mother_98', 'Name_Relative_98', 'Relation_98', 'Current_Street_98 Current_Brgy_98, Argao', 'Argao'),
-('550099', 'Filipino', 'Married', '1990-01-01', 18, 'Male', 'Birthplace_99', 'Home_Street_99 Home_Brgy_99, Asturias', 'Home_Province_99', 'Occupation_99', 'Name_Father_99', 'Name_Mother_99', 'Name_Relative_99', 'Relation_99', 'Current_Street_99 Current_Brgy_99, Asturias', 'Asturias'),
-('9874651325946132456', 'Afghan', 'Single', '2017-12-12', 18, 'Male', 'asdags', 'asf,,,,,, asf,,,,, Alcantara', 'asfasf', 'asf', 'asf', 'asf', 'asf', 'sfa', 'asf,,,,,, asf,,,,, Alcantara', 'Alcantara');
+('550099', 'Filipino', 'Married', '1990-01-01', 18, 'Male', 'Birthplace_99', 'Home_Street_99 Home_Brgy_99, Asturias', 'Home_Province_99', 'Occupation_99', 'Name_Father_99', 'Name_Mother_99', 'Name_Relative_99', 'Relation_99', 'Current_Street_99 Current_Brgy_99, Asturias', 'Asturias');
 
 -- --------------------------------------------------------
 
@@ -1908,14 +1941,6 @@ CREATE TABLE `inmate_released` (
   `user_id` bigint(20) UNSIGNED ZEROFILL NOT NULL,
   `record` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `inmate_released`
---
-
-INSERT INTO `inmate_released` (`inmate_id`, `date_released`, `type_released`, `released_info`, `user_id`, `record`) VALUES
-('55004', '2017-12-23', 'SERVED', 'asd', 00000000000000000001, 0),
-('55008', '2017-12-27', 'ACQUITTED', 'asd', 00000000000000000001, 0);
 
 -- --------------------------------------------------------
 
@@ -1995,20 +2020,24 @@ CREATE TABLE `temp` (
 --
 
 INSERT INTO `temp` (`tempId`, `inmate_id`, `step`) VALUES
-(2, '789987879879', '2'),
-(3, '789789798798', '2'),
-(4, '789789798798', '2'),
-(6, '1234564546548485', '2'),
-(7, '1234564546548485', '2'),
-(8, '78978798798', '2'),
-(9, '65465456', '2'),
-(10, '65465456', '2'),
-(11, '5798789798', '2'),
-(12, '5798789798', '2'),
-(13, '5798789798', '2'),
-(22, '5500501', '5'),
-(24, '5500503', '4'),
-(45, '550022', '4');
+(1, '1231231231', '4'),
+(2, '1231231232', '4'),
+(3, '1231231233', '4'),
+(4, '1231231234', '4'),
+(5, '1231231235', '4'),
+(6, '1231231236', '4'),
+(7, '1231231237', '4'),
+(8, '1231231238', '4'),
+(9, '1231231239', '4'),
+(10, '1231231240', '4'),
+(11, '1231231241', '4'),
+(12, '1231231242', '4'),
+(13, '1231231243', '4'),
+(14, '1231231244', '4'),
+(15, '1231231245', '4'),
+(16, '1231231246', '4'),
+(17, '1251232312', '4'),
+(18, '1251456852', '4');
 
 -- --------------------------------------------------------
 
@@ -2052,6 +2081,7 @@ INSERT INTO `user_account` (`user_id`, `username`, `password`, `email`, `user_fn
 
 --
 -- Stand-in structure for view `view_court`
+-- (See below for the actual view)
 --
 CREATE TABLE `view_court` (
 `court_id` int(12)
@@ -2274,7 +2304,8 @@ ALTER TABLE `municipality`
 -- Indexes for table `temp`
 --
 ALTER TABLE `temp`
-  ADD PRIMARY KEY (`tempId`);
+  ADD PRIMARY KEY (`tempId`),
+  ADD KEY `inmate_fk` (`inmate_id`);
 
 --
 -- Indexes for table `user_account`
@@ -2306,7 +2337,7 @@ ALTER TABLE `cs_administrators`
 -- AUTO_INCREMENT for table `cs_appearance_schedules`
 --
 ALTER TABLE `cs_appearance_schedules`
-  MODIFY `id` int(11) UNSIGNED ZEROFILL NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=140;
+  MODIFY `id` int(11) UNSIGNED ZEROFILL NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=136;
 --
 -- AUTO_INCREMENT for table `cs_appearance_schedule_personnels`
 --
@@ -2316,17 +2347,17 @@ ALTER TABLE `cs_appearance_schedule_personnels`
 -- AUTO_INCREMENT for table `cs_cases`
 --
 ALTER TABLE `cs_cases`
-  MODIFY `id` int(11) UNSIGNED ZEROFILL NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=141;
+  MODIFY `id` int(11) UNSIGNED ZEROFILL NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=136;
 --
 -- AUTO_INCREMENT for table `cs_logs`
 --
 ALTER TABLE `cs_logs`
-  MODIFY `id` int(11) UNSIGNED ZEROFILL NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=179;
+  MODIFY `id` int(11) UNSIGNED ZEROFILL NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=150;
 --
 -- AUTO_INCREMENT for table `cs_reasons`
 --
 ALTER TABLE `cs_reasons`
-  MODIFY `id` int(11) UNSIGNED ZEROFILL NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=140;
+  MODIFY `id` int(11) UNSIGNED ZEROFILL NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=136;
 --
 -- AUTO_INCREMENT for table `cs_users`
 --
@@ -2346,12 +2377,12 @@ ALTER TABLE `cs_violations_categories`
 -- AUTO_INCREMENT for table `editrequest`
 --
 ALTER TABLE `editrequest`
-  MODIFY `editRequestID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `editRequestID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 --
 -- AUTO_INCREMENT for table `inmate_2d`
 --
 ALTER TABLE `inmate_2d`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT for table `inmate_auth_visitor`
 --
@@ -2361,7 +2392,7 @@ ALTER TABLE `inmate_auth_visitor`
 -- AUTO_INCREMENT for table `inmate_case_info`
 --
 ALTER TABLE `inmate_case_info`
-  MODIFY `cid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=141;
+  MODIFY `cid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=137;
 --
 -- AUTO_INCREMENT for table `inmate_conduct_rec`
 --
@@ -2381,7 +2412,7 @@ ALTER TABLE `municipality`
 -- AUTO_INCREMENT for table `temp`
 --
 ALTER TABLE `temp`
-  MODIFY `tempId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=52;
+  MODIFY `tempId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 --
 -- AUTO_INCREMENT for table `user_account`
 --
@@ -2427,12 +2458,6 @@ ALTER TABLE `cs_reasons`
 --
 ALTER TABLE `cs_violations`
   ADD CONSTRAINT `cs_violations_ibfk_1` FOREIGN KEY (`violations_category_id`) REFERENCES `cs_violations_categories` (`id`) ON DELETE CASCADE;
-
---
--- Constraints for table `editrequest`
---
-ALTER TABLE `editrequest`
-  ADD CONSTRAINT `fk_in` FOREIGN KEY (`inmateId`) REFERENCES `inmate` (`inmate_id`) ON UPDATE CASCADE;
 
 --
 -- Constraints for table `file`
@@ -2502,6 +2527,12 @@ ALTER TABLE `inmate_transfer`
 --
 ALTER TABLE `logs`
   ADD CONSTRAINT `fk_lg` FOREIGN KEY (`actor`) REFERENCES `user_account` (`user_id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Constraints for table `temp`
+--
+ALTER TABLE `temp`
+  ADD CONSTRAINT `inmate_fk` FOREIGN KEY (`inmate_id`) REFERENCES `inmate` (`inmate_id`) ON UPDATE CASCADE;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

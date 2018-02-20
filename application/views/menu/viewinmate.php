@@ -37,12 +37,24 @@ function MM_preloadImages() { //v3.0
 					<div class="panel-body">
 						<div class="list-group">
 							<p align="center"><img src="<?=base_url()?>uploads/inmate/<?=$key['filename']?>" width="50%" height="50%"/></p>
-							<p class="list-group-item"><b>Reference Form ID:</b> <?=$key['formid']?></p>
+<!--							<p class="list-group-item"><b>Reference Form ID:</b> --><?//=$key['formid']?><!--</p>-->
 							<p class="list-group-item"><b>Inmate number:</b> <?=$key['id']?></p>
 							<p class="list-group-item"><b>Cell number:</b> <?=$key['cell']?></p>
 							<p class="list-group-item"><b>Full Name:</b> <?=$key['lname'].", ".$key['fname']." ".$key['mi']?></p>
 							<p class="list-group-item"><b>Alias:</b> "<?=$key['alias']?>"</p>
 							<p class="list-group-item"><b>Date registered:</b> <?=$key['date_added']?></p>
+							<?php 
+								if($releaseInfo != NULL)
+								{
+									foreach($releaseInfo as $release)
+									{
+							?>
+										<p class="list-group-item"><b>Date Released:</b> <?=$release['date_released']?></p>
+							<?php 
+									}
+								}
+							?>		
+
 							<p class="list-group-item"><b>Added by:</b> <?=$key['user_lname'].", ".$key['user_fname']." ".$key['user_mi']?></p><br>
 							<?php 
 						 		$attr = array('class' => 'form_horizontal');
@@ -81,6 +93,10 @@ function MM_preloadImages() { //v3.0
 							                    <tr>
 							                    	<td><b>Nationality</b></td>
 							                    	<td><?=$key['nationality']?></td>
+							                    </tr>
+							                    <tr>
+							                    	<td><b>Religion</b></td>
+							                    	<td><?=$key['religion']?></td>
 							                    </tr>
 							                   	<tr>
 							                    	<td><b>Occupation</b></td>
@@ -141,6 +157,10 @@ function MM_preloadImages() { //v3.0
 							                    	<td><b>Relation</b></td>
 							                    	<td><?=$key['relation']?></td>
 							                    </tr>
+                                                <tr>
+                                                    <td><b>Contact Person's Number</b></td>
+                                                    <td><?=$key['contactpersonnum']?></td>
+                                                </tr>
 							                    <tr>
 							                    	<td><b>Current Address</b></td>
 							                    	<td><?=$key['address']?></td>

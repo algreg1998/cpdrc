@@ -14,7 +14,7 @@
             </div>
             <div class="panel panel-green">
                 <div class="panel-heading">
-                    Add Violation
+                    Add Court
                 </div>
                 <div class="panel-body">
                     <div class="dataTable_wrapper table-responsive">

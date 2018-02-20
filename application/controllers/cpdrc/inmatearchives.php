@@ -64,8 +64,9 @@ session_start();
 	 		$data['inmate']=$this->cpdrc_fw->inmateinfo($id);
 	 		$data['case']=$this->cpdrc_fw->getcaseinfo($id);
 	 		$data['old'] = $this->cpdrc_fw->getOldCase($id);
+	 		$data['releaseInfo'] = $this->cpdrc_fw->inmateReleaseInfo($id);
 
-			$this->load->view('menu/viewinmate', $data);	
+			$this->load->view('menu/viewinmate', $data);		
 	 	}
 	 	public function setActive()
 	 	{
@@ -76,7 +77,7 @@ session_start();
 			$inmate['gos'] = $this->cpdrc_fw->inmateinfo($id);
 			$inmate['id']=$id;
 			// Retrieve violation data from database
-	    	$violations = $this->admin_model->get('cs_violations',null,FALSE,'name ASC');
+	    	$violations = $this->admin_model->get('cs_violations',array("status"=>'active'),FALSE,'name ASC');
 
 			$vio = array();
 
@@ -132,13 +133,15 @@ session_start();
 				$e['date_confinment']=$this->input->post('confine');
 				$e['crime']=$this->input->post('crime');
 				// $e['sentence']=$this->input->post('sentence');
-				$e['commencing']=$this->input->post('commencing');
+				$e['commencing']= " ";
+                $e['counts']= $this->input->post('counts');
 				// $e['expire_good']=$this->input->post('dategood');
 				// $e['expire_bad']=$this->input->post('datebad');
 
 				$this->db->select('*');
 				$this->db->from('inmate_case_info');
 				$this->db->where("case_no = ".$e['case_no']);
+				$this->db->where("crime = ".$e['crime']);
 
 				$res = $this->db->get()->result();
 				// echo $this->db->last_query();
@@ -155,7 +158,7 @@ session_start();
 				$inmate['id']=$id;
 
 				// Retrieve violation data from database
-		    	$violations = $this->admin_model->get('cs_violations',null,FALSE,'name ASC');
+		    	$violations = $this->admin_model->get('cs_violations',array('status' => 'active' ),FALSE,'name ASC');
 
 				$vio = array();
 				

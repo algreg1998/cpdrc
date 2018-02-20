@@ -2,15 +2,16 @@
 <head>
 	<script type="text/javascript">
 		function getViolation(){
+			
 			var data = null;
-			data = $('#crime').find(':selected').val();
+			data = $('#crimeList').find(':selected').val();
 			
 			$.post('<?php echo site_url();?>cpdrc/addinmate/getViolation/'+data,
 				{},
 				function(data)
 				{
 					var test = JSON.parse(data);
-					
+					console.log(data);
 					if(test['max_day']==""){
 							test['max_day'] =0;
 					}
@@ -94,12 +95,24 @@
 
 				<div class="row">
 					<div class="col-md-5">
-					<?php
-					if(isset($error))
-					{
-						echo "<div class='alert alert-danger alert-dismissible' align='center'> <button type='button' class='close' data-dismiss='alert'><span aria-hidden='true'>&times;</span><span class='sr-only'>Close</span></button>$error</div>";
-					}
-					?>
+					 <?php if ($this->session->flashdata('error_msg')): ?>
+			            <div class="alert alert-danger">
+			                <button class="close" aria-hidden="true" data-dismiss="alert" type="button">×</button>
+			                <?php echo $this->session->flashdata('error_msg') ?>
+			            </div>
+			        <?php endif ?>
+			        <?php if (count($violations) == 0 || count($courts) == 0): ?>
+			            <div class="alert alert-danger">
+			                <button class="close" aria-hidden="true" data-dismiss="alert" type="button">×</button>
+			                <?php if (count($violations) == 0){?>
+			                	No Violations to choose from.
+			                <?php }elseif (count($courts) == 0){?>
+			                	No Courts to choose from.
+			                <?php }else{?>
+			                	No Violations and Courts to choose from.
+			                <?php } ?>
+			            </div>
+			        <?php endif ?>
 					</div>
 				</div>
 				
@@ -118,16 +131,16 @@
 							<div class="row">
 								<div class="col-md-6">
 									<label><i class="fa fa-calendar"></i> <strong>Date of Confinement</strong></label>
-									<input <?php if(count($violations) == 0){ echo "disabled";} ?> id="confine" type="date" name="confine" class="form-control" required >			
+									<input <?php if(count($violations) == 0 || count($courts) == 0){ echo "disabled";} ?> id="confine" type="date" name="confine" class="form-control" required >			
 								</div>
 								<div class="col-md-6">
 									<label><i class="fa fa-sort-numeric-asc"></i> <strong>Case Number</strong></label>
-									<input <?php if(count($violations) == 0){ echo "disabled";} ?> type="text" name="casenum" class="form-control" required ><br>
+									<input <?php if(count($violations) == 0 || count($courts) == 0){ echo "disabled";} ?> type="text" name="casenum" class="form-control" required ><br>
 								</div>
 							</div>
 							<label><i class="fa fa-info"></i> <strong>Court Name</strong></label>
 							<!--input type="text" name="court" class="form-control" required --> <!--Original -->
-							<select <?php if(count($violations) == 0){ echo "disabled";} ?> name="court" class="form-control" required >
+							<select <?php if(count($violations) == 0 || count($courts) == 0){ echo "disabled";} ?> name="court" id="courtList" class="form-control" required >
 								
 								<?php 
 									foreach ($courts as $row) {
@@ -135,39 +148,55 @@
 									}
 								?>
 							</select> 
+							<br><br>
 							<label><i class="fa fa-file"></i> <strong>Crime/Violation</strong></label>
 							<!--textarea rows="3" type="text" name="crime" class="form-control" required ></textarea--><!-- Original -->
-							 <?php if(count($violations) != 0){ 
-								$js = 'onchange="getViolation();"';
-								
-										echo form_dropdown('crime', $violations, '',' onChange="getViolation();" id="crime"  class="form-control" ');
+							 <?php if(count($violations) != 0){
+							 	if((count($courts) != 0)){
+										$js = 'onchange="getViolation();"';
+										
+										echo form_dropdown('crime', $violations, '',' onChange="getViolation();" id="crimeList"  class="form-control" ');
+									}else{
+										echo form_dropdown('crime', $violations, '',' onChange="getViolation();" id="crimeList"  class="form-control" disabled');
+									}
 									}else{
 										echo '<select  disabled id="crime" onchange="getViolation()" name="crime" class="form-control" >
 												<option>No Crimes</option>
 											</select>';
 										}  ?> 
-							<div style="background-color: hsl(0, 100%, 90%); padding: 10px; opacity:0.6; margin-bottom: 10px;"> 
-								<div class="row">
-									<div class="row"><div class="col-md-12" align="center"><h4 >MAX</h4></div></div>
-									<div class="col-md-4" align="center"><label>DAY:</label>&nbsp;<span id="mad"></span></div>
-									<div class="col-md-4" align="center"><label>MONTH:</label>&nbsp;<span id="mam"></span></div>
-									<div class="col-md-4" align="center"><label>YEAR:</label>&nbsp;<span id="may"></span></div>
+							<br>
+							<br>
+							<div class="panel panel-danger">
+							  <div class="panel-heading"><b>MAXIMUM</b></div>
+							  <div class="panel-body">
+							  	<div class="row">
+									<div class="col-md-4" align="center"><label>MONTH:</label>&nbsp;<h2><span id="mam"></span></h2></div>
+									<div class="col-md-4" align="center"><label>DAY:</label>&nbsp;<h2><span id="mad"></span></h2></div>
+									<div class="col-md-4" align="center"><label>YEAR:</label>&nbsp;<h2><span id="may"></span></h2></div>
 								</div>
-								<br>
-								<div class="row">
-									<div class="row"><div class="col-md-12" align="center"><h4 >MINIMUM</h4></div></div>
-									<div class="col-md-4" align="center"><label>DAY:</label>&nbsp;<span id="mid"></span></div>
-									<div class="col-md-4" align="center"><label>MONTH:</label>&nbsp;<span id="mim"></span></div>
-									<div class="col-md-4" align="center"><label>YEAR:</label>&nbsp;<span id="miy"></span></div>
-								</div>
+							  </div>
 							</div>
+							<div class="panel panel-danger">
+							  <div class="panel-heading"><b>MINIMUM</b></div>
+							  <div class="panel-body">
+							  	<div class="row">
+									<div class="col-md-4" align="center"><label>MONTH:</label>&nbsp;<h2><span id="mim"></span></h2></div>
+									<div class="col-md-4" align="center"><label>DAY:</label>&nbsp;<h2><span id="mid"></span></h2></div>
+									<div class="col-md-4" align="center"><label>YEAR:</label>&nbsp;<h2><span id="miy"></span></h2></div>
+								</div>
+							  </div>
+							</div>
+                            <label><i class="fa fa-sort-numeric-asc"></i> Counts(s)</label><br>
+                            <input type="number" min="0" name="counts" value="0"  <?php if(count($violations) == 0 || count($courts) == 0){ echo "disabled";} ?>><br><br>
+
 							<label><i class="fa fa-info"></i> Period of Preventive Imprisonment</label><br>
 							<label>Date Received</label>&nbsp;&nbsp;&nbsp;<input type="date" name="dor"><br>
 							<label>Date Commence</label>&nbsp;&nbsp;&nbsp;<input type="date" name="doc"><br>
-							<label><i class="fa fa-info"></i> <strong>Commencing</strong></label>						
-							<textarea rows="3" <?php if(count($violations) == 0){ echo "disabled";} ?> type="text" name="commencing" class="form-control" placeholder="Commencing" required ></textarea><br>
+<!--							<label><i class="fa fa-info"></i> <strong>Commencing</strong></label>						-->
+<!--							<textarea rows="3" --><?php //if(count($violations) == 0 || count($courts) == 0){ echo "disabled";} ?><!-- type="text" name="commencing" class="form-control" placeholder="Commencing" required ></textarea>-->
+                            <br>
 
-							<button <?php if(count($violations) == 0){ echo "disabled";} ?> class="form-control btn btn-warning" type="submit">Submit Form</button>
+							<button <?php if(count($violations) == 0 || count($courts) == 0){ echo "disabled";} ?> class="form-control btn btn-warning" type="submit">Submit Form</button>
   		<?php echo validation_errors(); ?>
 									</form>
 							 				
@@ -191,18 +220,17 @@
 									  					<th>Date</th>
 									  					<th>Case number</th>
 									  					<th>Crime</th>
-									  					<th>Sentence</th>
+									  					<th>Counts</th>
 									  				</tr>
 									  			</thead>
 									  			<tbody id="gridBody">
 									  	        <?php
   												foreach ($case as $key) {
-
 									  		         echo "<tr>";
 									  			       echo "<td>".$key['confine']."</td>";
 									  			       echo "<td>".$key['case_no']."</td>";
 									  			       echo "<td>".$key['name']."</td>";
-									  			       echo "<td>".$key['sentence']."</td>";
+									  			       echo "<td>".$key['counts']."</td>";
 
 									  				 echo "</tr>";
 												}  ?>	

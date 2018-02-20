@@ -1,3 +1,5 @@
+<?php //var_dump($info); die(); ?>
+
 <!DOCTYPE html>
 <html>
     <div id="page-wrapper">
@@ -65,6 +67,12 @@
 							echo "<div class='alert alert-danger alert-dismissible' align='center'> <button type='button' class='close' data-dismiss='alert'><span aria-hidden='true'>&times;</span><span class='sr-only'>Close</span></button>$data</div>";
 						}
 					?>
+					<?php if ($this->session->flashdata('error_msg')): ?>
+                        <div class="alert alert-danger">
+                            <button class="close" aria-hidden="true" data-dismiss="alert" type="button">×</button>
+                            <?php echo $this->session->flashdata('error_msg') ?>
+                        </div>
+                    <?php endif ?>
 					</div>
 				</div>
 					<?php 
@@ -93,7 +101,7 @@
                         }
 
                         ?>
-						<select name="nationality" class="form-control" required autofocus>
+						<select name="nationality" class="form-control" id="citizenshipList" required autofocus>
 						  <option value="afghan" <?php if($info!=null && $info->nationality=="afghan"){echo "selected";}?>>Afghan</option>
 						  <option value="albanian" <?php if($info!=null && $info->nationality=="albanian"){echo "selected";}?>>Albanian</option>
 						  <option value="algerian" <?php if($info!=null && $info->nationality=="algerian"){echo "selected";}?>>Algerian</option>
@@ -286,7 +294,7 @@
 						  <option value="yemenite" <?php if($info!=null && $info->nationality=="yemenite"){echo "selected";}?>>Yemenite</option>
 						  <option value="zambian" <?php if($info!=null && $info->nationality=="zambian"){echo "selected";}?>>Zambian</option>
 						  <option value="zimbabwean" <?php if($info!=null && $info->nationality=="zimbabwean"){echo "selected";}?>>Zimbabwean</option>
-						</select><br>
+						</select><br><br>
 							<div class="row">
 								<div class="col-md-6">
 									<label><i class="fa fa-files-o"></i> <b>Civil Status</b></label>
@@ -326,7 +334,7 @@
 							</div>
 							<br>
 						<label><i class="fa fa-map-marker"></i> <b>Birthplace</b></label>
-						<input type="text" name="birthplace" class="form-control" required value="<?php if($info!=null){echo $info->born_in;}?>" >
+						<input type="text" name="birthplace" class="form-control"  oninvalid="setCustomValidity('Please enter alphabets only')" onchange="try{setCustomValidity('')}catch(e){}" required value="<?php if($info!=null){echo $info->born_in;}?>" >
 						<br>
 						
 						<!-- <textarea type="text" name="home" class="form-control" required ></textarea> -->
@@ -346,8 +354,8 @@
 								<label> <b>Home Address</b></label>
 							</div>
 							<div class="col-md-6">
-								<label><i class="fa fa-home"></i> <b>City</b></label>
-								<select name="homeCity" class="form-control" required >
+								<label><i class="fa fa-home"></i> <b>Town / City</b></label>
+								<select name="homeCity" class="form-control city" required >
                                     <option value="Alcantara" <?php if($info != null) { if($homeCity == "Alcantara") { echo "selected";} } ?> >Alcantara</option>
                                     <option value="Alcoy" <?php if($info != null) { if($homeCity == "Alcoy") { echo "selected";} } ?> >Alcoy</option>
                                     <option value="Alegria" <?php if($info != null) { if($homeCity == "Alegria") { echo "selected";} } ?> >Alegria</option>
@@ -409,7 +417,7 @@
 							</div>
 							<div class="col-md-12">
 								<label><i class="fa fa-home"></i> <b>Street</b></label>
-								<input  type="text" name="homeStreet" class="form-control" value="<?php if($info!=null) {echo $homeStreet;} ?>" required >
+								<input  type="text" name="homeStreet" class="form-control" value="<?php if($info!=null) {echo $homeStreet;} ?>" oninvalid="setCustomValidity('Please enter alphabets only')" onchange="try{setCustomValidity('')}catch(e){}"  required >
 							</div>
 						</div>
 						<br>
@@ -420,17 +428,50 @@
 					<div class="col-md-1 col-sm-0"></div> <!--Divider-->
 					
 					<div class="col-md-5 col-sm-12 well"><!--RIGHTSIDE-->
+						<label><b>Religion</b></label>
+						  <select name="religion" class="form-control" id="religionList">
+						      <option value="None" <?php echo ($info!= null && $info->religion =="None")?"selected":""; ?>>None                                                             </option> 
+						      <option value="Aglipayan" <?php echo ($info!= null && $info->religion =="Aglipayan")?"selected":""; ?>>Aglipayan                                                        </option>     
+						      <option value="Association of Fundamental Baptist Churches in the Philippine" <?php echo ($info!= null && $info->religion =="Association of Fundamental Baptist Churches in the Philippine")?"selected":""; ?>>Association of Fundamental Baptist Churches in the Philippines </option> 
+						      <option value="Bible Baptist Church" <?php echo ($info!= null && $info->religion =="Bible Baptist Church")?"selected":""; ?>>Bible Baptist Church                                              </option> 
+						      <option value="Buddhist" <?php echo ($info!= null && $info->religion =="Buddhist")?"selected":""; ?>>Buddhist                                                         </option> 
+						      <option value="Church of Christ" <?php echo ($info!= null && $info->religion =="Church of Christ")?"selected":""; ?>>Church of Christ                                                 </option> 
+						      <option value="Church of Jesus Christ of the Latter Day Saints" <?php echo ($info!= null && $info->religion =="Church of Jesus Christ of the Latter Day Saints")?"selected":""; ?>>Church of Jesus Christ of the Latter Day Saints                 </option> 
+						      <option value="Convention of the Philippine Baptist Church" <?php echo ($info!= null && $info->religion =="Convention of the Philippine Baptist Church")?"selected":""; ?>>Convention of the Philippine Baptist Church                      </option> 
+						      <option value="Crusaders of the Divine Church of Christ Inc." <?php echo ($info!= null && $info->religion =="Crusaders of the Divine Church of Christ Inc.")?"selected":""; ?>>Crusaders of the Divine Church of Christ Inc.                   </option> 
+						      <option value="Evangelical Christian Outreach Foundation" <?php echo ($info!= null && $info->religion =="Evangelical Christian Outreach Foundation")?"selected":""; ?>>Evangelical Christian Outreach Foundation                        </option>
+						      <option value="Iglesia Ni Cristo" <?php echo ($info!= null && $info->religion =="Iglesia Ni Cristo")?"selected":""; ?>>Iglesia Ni Cristo                                                 </option>
+						      <option value="Iglesia sa Dios Espiritu Santo Inc." <?php echo ($info!= null && $info->religion =="Iglesia sa Dios Espiritu Santo Inc.")?"selected":""; ?>>Iglesia sa Dios Espiritu Santo Inc.                             </option>
+						      <option value="Islam" <?php echo ($info!= null && $info->religion =="Islam")?"selected":""; ?>>Islam                                                             </option>
+						      <option value="Jehovahs Witnesses" <?php echo ($info!= null && $info->religion =="Jehovahs Witnesses")?"selected":""; ?>>Jehovahs' Witnesses                                              </option>
+						      <option value="Jesus is Lord Church" <?php echo ($info!= null && $info->religion =="Jesus is Lord Church")?"selected":""; ?>>Jesus is Lord Church                                          </option>
+						      <option value="Lutheran Church of the Philippines" <?php echo ($info!= null && $info->religion =="Lutheran Church of the Philippines")?"selected":""; ?>>Lutheran Church of the Philippines                                </option>
+						      <option value="Other Baptists" <?php echo ($info!= null && $info->religion =="Other Baptists")?"selected":""; ?>>Other Baptists                                                     </option>
+						      <option value="Other Protestants" <?php echo ($info!= null && $info->religion =="Other Protestants")?"selected":""; ?>>Other Protestants                                                  </option>    
+						      <option value="Philippine Benevolent Missionaries Association" <?php echo ($info!= null && $info->religion =="Philippine Benevolent Missionaries Association")?"selected":""; ?>>Philippine Benevolent Missionaries Association                   </option> 
+						      <option value="Philippine Independent Catholic Church" <?php echo ($info!= null && $info->religion =="Philippine Independent Catholic Church")?"selected":""; ?>>Philippine Independent Catholic Church                           </option>    
+						      <option value="Roman Catholic,including Catholic Charismatic" <?php echo ($info!= null && $info->religion =="Roman Catholic,including Catholic Charismatic")?"selected":""; ?>>Roman Catholic,including Catholic Charismatic                      </option>  
+						      <option value="Seventh-day Adventist" <?php echo ($info!= null && $info->religion =="Seventh-day Adventist")?"selected":""; ?>>Seventh-day Adventist                                             </option>
+						      <option value="Tribal Religions" <?php echo ($info!= null && $info->religion =="Tribal Religions")?"selected":""; ?>>Tribal Religions                                                   </option>  
+						      <option value="Unión Espiritista Cristiana de Filipinas, Inc." <?php echo ($info!= null && $info->religion =="Unión Espiritista Cristiana de Filipinas, Inc.")?"selected":""; ?>>Unión Espiritista Cristiana de Filipinas, Inc.                   </option>    
+						      <option value="United Church of Christ in the Philippines" <?php echo ($info!= null && $info->religion =="United Church of Christ in the Philippines")?"selected":""; ?>>United Church of Christ in the Philippines                       </option>
+						      <option value="United Pentecostal Church (Philippines) Inc." <?php echo ($info!= null && $info->religion =="United Pentecostal Church (Philippines) Inc.")?"selected":""; ?>>United Pentecostal Church (Philippines) Inc.                    </option>      
+						      <option value="Others" <?php echo ($info!= null && $info->religion =="Others")?"selected":""; ?>> Others </option>
+						  </select>
+						  <br><br>
 						<label><i class="fa fa-briefcase"></i> <b>Occupation</b></label>
-						<input type="text" name="occupation" class="form-control" required value="<?php if($info!=null){echo $info->occupation;}?>"><br>
+						<input type="text" name="occupation" class="form-control" required oninvalid="setCustomValidity('Please enter alphabets only')" onchange="try{setCustomValidity('')}catch(e){}"  value="<?php if($info!=null){echo $info->occupation;}?>"><br>
 						<label><i class="fa fa-male"></i> <b>Father's Name</b></label>
-						<input type="text" name="father" class="form-control" required value="<?php if($info!=null){echo $info->father;}?>">
+						<input type="text" name="father" class="form-control"  oninvalid="setCustomValidity('Please enter alphabets only')" onchange="try{setCustomValidity('')}catch(e){}" required value="<?php if($info!=null){echo $info->father;}?>">
 						<label><i class="fa fa-female"></i> <b>Mother's Name</b></label>
-						<input type="text" name="mother" class="form-control" required value="<?php if($info!=null){echo $info->mother;}?>">
+						<input type="text" name="mother" class="form-control"  oninvalid="setCustomValidity('Please enter alphabets only')" onchange="try{setCustomValidity('')}catch(e){}" required value="<?php if($info!=null){echo $info->mother;}?>">
 						<label><i class="fa fa-user"></i> <b>Relative's Name</b></label>
-						<input type="text" name="relative" class="form-control" required value="<?php if($info!=null){echo $info->relative;}?>">
+						<input type="text" name="relative" class="form-control"  oninvalid="setCustomValidity('Please enter alphabets only')" onchange="try{setCustomValidity('')}catch(e){}"  required value="<?php if($info!=null){echo $info->relative;}?>">
 						<label><i class="fa fa-refresh"></i> <b>Relation</b></label>
-						<input type="text" name="relation" class="form-control" required value="<?php if($info!=null){echo $info->relation;}?>">
-						<!--<label><i class="fa fa-map-marker"></i> <b>Current Address</b></label>
+						<input type="text" name="relation" class="form-control"  oninvalid="setCustomValidity('Please enter alphabets only')" onchange="try{setCustomValidity('')}catch(e){}" required value="<?php if($info!=null){echo $info->relation;}?>">
+                        <label><i class="fa fa-sort-numeric-asc"></i> <b>Contact Person's Number</b></label>
+                        <input type="text" name="contactpersonnum" class="form-control" value="<?php if($info!=null){echo $info->contactpersonnum;} ?>" required>
+                        <!--<label><i class="fa fa-map-marker"></i> <b>Current Address</b></label>
 						 <textarea type="text" name="address" class="form-control" required ></textarea><br> -->
 						<br>
 						<div class="row">
@@ -449,8 +490,8 @@
 								<label> <b>Current Address</b></label>
 							</div>
 							<div class="col-md-6">
-								<label><i class="fa fa-home"></i> <b>City</b></label>
-								<select name="currentCity" class="form-control" required >
+								<label><i class="fa fa-home"></i> <b>Town / City</b></label>
+								<select name="currentCity" class="form-control city" required >
                                     <option value="Alcantara" <?php if($info != null) { if($currentCity == "Alcantara") { echo "selected";} } ?> >Alcantara</option>
                                     <option value="Alcoy" <?php if($info != null) { if($currentCity == "Alcoy") { echo "selected";} } ?> >Alcoy</option>
                                     <option value="Alegria" <?php if($info != null) { if($currentCity == "Alegria") { echo "selected";} } ?> >Alegria</option>
@@ -508,11 +549,11 @@
 							</div>
 							<div class="col-md-6">
 								<label><i class="fa fa-home"></i> <b>Baranggay</b></label>
-								<input type="text" name="currentBrgy" class="form-control" value="<?php if($info!=null) {echo $currentBaranggay;} ?>" required >
+								<input type="text" name="currentBrgy" class="form-control" value="<?php if($info!=null) {echo $currentBaranggay;} ?>" oninvalid="setCustomValidity('Please enter alphabets only')" onchange="try{setCustomValidity('')}catch(e){}"  required >
 							</div>
 							<div class="col-md-12">
 								<label><i class="fa fa-home"></i> <b>Street</b></label>
-								<input type="text" name="currentStreet" class="form-control" value="<?php if($info!=null) {echo $currentStreet;} ?>" required >
+								<input type="text" name="currentStreet" class="form-control" value="<?php if($info!=null) {echo $currentStreet;} ?>" oninvalid="setCustomValidity('Please enter alphabets only')" onchange="try{setCustomValidity('')}catch(e){}"  required >
 							</div>
 						</div>
 						<br>

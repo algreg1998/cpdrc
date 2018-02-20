@@ -18,9 +18,9 @@ session_start();
 	    		}
 	    	$actor=$this->session->userdata('logged_in');
 	    	$user_id=$this->input->post('id');
-	    	$form = $this->input->post('formid');
+	    	$form = " ";
 
-	    	$info['ref_formid'] = $form;
+	    	$info['ref_formid'] = null;
 			$info['inmate_id']=$user_id;
 			$info['cell_no']=$this->input->post('cell');
 			$info['inmate_fname']= ucwords($this->input->post('fname'));
@@ -73,25 +73,25 @@ session_start();
 					//getting the filename of the inmates photo
 					$filename = $this->cpdrc_fw->getFilename($user_id);
 					//pass all data to the next step
-					$info['formid'] = $info['ref_formid'];
-					$info['id'] = $user_id;
-					$info['name'] = $info['inmate_lname'].", ".$info['inmate_fname']." ".$info['inmate_mi'];
-					$info['filename'] = $filename;
-					$info['info'] = null;
+					// $info['formid'] = $info['ref_formid'];
+					// $info['id'] = $user_id;
+					// $info['name'] = $info['inmate_lname'].", ".$info['inmate_fname']." ".$info['inmate_mi'];
+					// $info['filename'] = $filename;
+					// $info['info'] = null;
 
-						$this->data['title']    = 'Manage Inmate';
-                        $this->data['css']      = array();
-                        $this->data['js_top']   = array();
-                        $this->data['header']   = $this->load->view('admin/header_view',$this->data,TRUE);
-                        $this->data['body']     = $this->load->view('menu/add_inmate2',$info,TRUE);
-                        $this->data['footer']   = $this->load->view('footer_view',NULL,TRUE);
-                        $this->data['js_bottom']= array();
-                        $this->data['custom_js']= '<script type="text/javascript">
-                              $(function(){
-                              });
-                        </script>';
-                        $this->load->view('templates',$this->data); 
-						
+					// 	$this->data['title']    = 'Manage Inmate';
+     //                    $this->data['css']      = array();
+     //                    $this->data['js_top']   = array();
+     //                    $this->data['header']   = $this->load->view('admin/header_view',$this->data,TRUE);
+     //                    $this->data['body']     = $this->load->view('menu/add_inmate2',$info,TRUE);
+     //                    $this->data['footer']   = $this->load->view('footer_view',NULL,TRUE);
+     //                    $this->data['js_bottom']= array();
+     //                    $this->data['custom_js']= '<script type="text/javascript">
+     //                          $(function(){
+     //                          });
+     //                    </script>';
+     //                    $this->load->view('templates',$this->data); 
+						redirect("cpdrc/addinmate/profiling/".$user_id);
 			    	// $this->load->view('menu/add_inmate2', $info);
 			    }
 			    else
@@ -111,10 +111,15 @@ session_start();
 			    	$this->data['header']   = $this->load->view('admin/header_view',$this->data,TRUE);
 			    	$this->data['body']     = $this->load->view('menu/add_inmate',$data,TRUE);
 			    	$this->data['footer']   = $this->load->view('footer_view',NULL,TRUE);
-			    	$this->data['js_bottom']= array();
+			    	$this->data['js_bottom']= array('vendor/jquery/jquery-3.2.1.min.js');
 			    	$this->data['custom_js']= '<script type="text/javascript">
-				    	$(function(){
-				    	});
+				    	$(document).ready(function() {
+                $("#uploadphoto").css("display", "none");
+                $("#photo").change(function() {
+                    $("#uploadphoto").click();
+                    $("#photo").hide();
+                });
+            });
 				    </script>';
 			    	$this->load->view('templates',$this->data); 
 			    	// $this->load->view('menu/add_inmate', $data);
@@ -164,55 +169,67 @@ session_start();
 		    	$info['mother']=$this->input->post('mother');
 		    	$info['relative']=$this->input->post('relative');
 		    	$info['relation']=$this->input->post('relation');
+                $info['relation']=$this->input->post('relation');
 		    	$info['address']=$this->input->post('currentStreet').', '.$this->input->post('currentBrgy').', '.$this->input->post('currentCity');
+		    	$info['religion']=$this->input->post('religion');
 
 		    	if($info['age'] < 100 && $info['age'] > 17){
 		    		$this->db->insert('inmate_info', $info);
 		    		//Step 2 --update temporary
 		    		$affectedFields['step'] = 2;
 		    		$this->cpdrc_fw->update($id,$affectedFields);
-
-		    		$data['id'] = $id;
-		    		$data['formid'] = $this->input->post('formid');
-		    		$data['name'] = $this->input->post('name');
-		    		$data['filename'] = $filename;
-		    		$data['info'] = null;
+					
+					redirect("cpdrc/addinmate/profiling/".$id);
 		    		
-		    		$this->data['title']    = 'Manage Inmate';
-		    		$this->data['css']      = array();
-		    		$this->data['js_top']   = array();
-		    		$this->data['header']   = $this->load->view('admin/header_view',$this->data,TRUE);
-		    		$this->data['body']     = $this->load->view('menu/add_inmate3',$data,TRUE);
-		    		$this->data['footer']   = $this->load->view('footer_view',NULL,TRUE);
-		    		$this->data['js_bottom']= array();
-		    		$this->data['custom_js']= '<script type="text/javascript">
-			    		$(function(){
-			    		});
-			    	</script>';
-		    		$this->load->view('templates',$this->data);
-
-		    		// $this->load->view('menu/add_inmate3', $data);
 		    	}
 		    	elseif ($info['age'] < 18) {
-		    		$info['data'] = "<b>Warning!</b> Age must be 18 years old and above.";
-		    		$info['id'] = $id;
-		    		$info['formid'] = $this->input->post('formid');
-		    		$info['name'] = $this->input->post('name');
-		    		$info['filename'] = $filename;
+		    		// $info['data'] = "<b>Warning!</b> Age must be 18 years old and above.";
+		    		$this->session->set_flashdata('error_msg',"<b>Warning!</b> Age must be 18 years old and above.");
+		    		// $info['id'] = $id;
+		    		// $info['formid'] = $this->input->post('formid');
+		    		// $info['name'] = $this->input->post('name');
+		    		// $info['filename'] = $filename;
 
-		    		$this->data['title']    = 'Manage Inmate';
-		    		$this->data['css']      = array();
-		    		$this->data['js_top']   = array();
-		    		$this->data['header']   = $this->load->view('admin/header_view',$this->data,TRUE);
-		    		$this->data['body']     = $this->load->view('menu/add_inmate2',$data,TRUE);
-		    		$this->data['footer']   = $this->load->view('footer_view',NULL,TRUE);
-		    		$this->data['js_bottom']= array();
-		    		$this->data['custom_js']= '<script type="text/javascript">
-			    		$(function(){
-			    		});
-			    	</script>';
-		    		$this->load->view('templates',$this->data);
-
+		    		// $this->data['title']    = 'Manage Inmate';
+		    		// $this->data['css']      = array();
+		    		// $this->data['js_top']   = array();
+		    		// $this->data['header']   = $this->load->view('admin/header_view',$this->data,TRUE);
+		    		// $this->data['body']     = $this->load->view('menu/add_inmate2',$data,TRUE);
+		    		// $this->data['footer']   = $this->load->view('footer_view',NULL,TRUE);
+		    		// $this->data['js_bottom']= array();
+        //             $this->data['custom_js']= '<script type="text/javascript">
+        //                                     $(document).ready(function(){
+        //                                         $("#ft").keyup(function(){
+        //                                             var feet = $("#ft").val();
+        //                                             var inches = $("#in").val();
+                                                    
+        //                                             var finalInches = parseInt((feet * 12)) + parseInt(inches);
+        //                                             var result_cm = (finalInches * 2.54).toFixed(2);
+                                                    
+        //                                             $("#cm").val(result_cm);
+        //                                         });
+                                                
+        //                                         $("#in").keyup(function(){
+        //                                             var feet = $("#ft").val();
+        //                                             var inches = $("#in").val();
+                                                    
+        //                                             var finalInches = parseInt((feet * 12)) + parseInt(inches);
+        //                                             var result_cm = (finalInches * 2.54).toFixed(2);
+                                                    
+        //                                             $("#cm").val(result_cm);
+        //                                         });
+                                                
+        //                                         $("#kg").keyup(function(){
+        //                                             var kilograms = $("#kg").val();
+                                                    
+        //                                             var result_lbs = (parseInt(kilograms) * 2.2).toFixed(2);
+                                                    
+        //                                             $("#lbs").val(result_lbs);
+        //                                         });
+        //                                     });
+        //                                 </script>';
+		    		// $this->load->view('templates',$this->data);
+		    		redirect("cpdrc/addinmate/profiling/".$id);
 		    		// $this->load->view('menu/add_inmate2', $info);		    		
 		    	}
 		    	else{
@@ -230,10 +247,27 @@ session_start();
 		    		$this->data['body']     = $this->load->view('menu/add_inmate2',$info,TRUE);
 		    		$this->data['footer']   = $this->load->view('footer_view',NULL,TRUE);
 		    		$this->data['js_bottom']= array();
-		    		$this->data['custom_js']= '<script type="text/javascript">
-								    		$(function(){
-								    		});
-			    	</script>';
+                    $this->data['custom_js']= '<script type="text/javascript">
+                                            $(document).ready(function(){
+                                                $("#convertHeight").click(function(){
+                                                    var feet = $("#ft").val();
+                                                    var inches = $("#in").val();
+                                                    
+                                                    var finalInches = parseInt((feet * 12)) + parseInt(inches);
+                                                    var result_cm = (finalInches * 2.54).toFixed(2);
+                                                    
+                                                    $("#cm").val(result_cm);
+                                                });
+                                                
+                                                $("#convertWeight").click(function(){
+                                                    var kilograms = $("#kg").val();
+                                                    
+                                                    var result_lbs = (parseInt(kilograms) * 2.2).toFixed(2);
+                                                    
+                                                    $("#lbs").val(result_lbs);
+                                                });
+                                            });
+                                        </script>';
 		    		$this->load->view('templates',$this->data);
 
 		    		// $this->load->view('menu/add_inmate2', $info);
@@ -266,55 +300,55 @@ session_start();
 		    		$affectedFields['step'] = 3;
 		    		$this->cpdrc_fw->update($user_id,$affectedFields);
 
-			    	$inmate['id']=$w['inmate_id'];
-			    	$inmate['formid'] = $this->input->post('formid');
-			    	$inmate['name'] = $this->input->post('name');
-			    	$inmate['filename'] = $this->input->post('filename');
+			  //   	$inmate['id']=$w['inmate_id'];
+			  //   	$inmate['formid'] = $this->input->post('formid');
+			  //   	$inmate['name'] = $this->input->post('name');
+			  //   	$inmate['filename'] = $this->input->post('filename');
 
-			    	// // Retrieve violation data from database
-			    	// $this->db->select('id,name');
-			    	// $query = $this->db->get('cs_violations');
-			    	// $inmate['violations'] = $query->result();
+			  //   	// // Retrieve violation data from database
+			  //   	// $this->db->select('id,name');
+			  //   	// $query = $this->db->get('cs_violations');
+			  //   	// $inmate['violations'] = $query->result();
 
-			    	$violations = $this->admin_model->get('cs_violations',null,FALSE,'name ASC');
+			  //   	$violations = $this->admin_model->get('cs_violations',null,FALSE,'name ASC');
 
-					$vio = array();
-					foreach ($violations as $violation) {
-						if($violation->status == 'active'){
-							if ( in_array($violation->level, array('1','2','3','4','5')) )
-							{
-								$vio[$violation->id] = $violation->name.' (level '.$violation->level.') ' . $violation->RepublicAct;
-							}
-							else
-							{
-								$vio[$violation->id] = $violation->name.' ('.$violation->level.') ' . $violation->RepublicAct;
-							}	
-						}
-					}
-					$inmate['violations'] = $vio;
-			    	if (count($vio)==0) {
-						$data['error'] = "<b>Warning!</b> No more violations to choose from! ";
-					}
-			    	// Retrieve court list from db
-			    	$query = $this->db->get_where('court','court_mun NOT in (SELECT municipality.mun_id FROM municipality WHERE municipality.status ="deleted")AND court.status ="active"');
-			    	$inmate['courts'] = $query->result();
+					// $vio = array();
+					// foreach ($violations as $violation) {
+					// 	if($violation->status == 'active'){
+					// 		if ( in_array($violation->level, array('1','2','3','4','5')) )
+					// 		{
+					// 			$vio[$violation->id] = $violation->name.' (level '.$violation->level.') ' . $violation->RepublicAct;
+					// 		}
+					// 		else
+					// 		{
+					// 			$vio[$violation->id] = $violation->name.' ('.$violation->level.') ' . $violation->RepublicAct;
+					// 		}	
+					// 	}
+					// }
+					// $inmate['violations'] = $vio;
+			  //   	if (count($vio)==0) {
+					// 	$data['error'] = "<b>Warning!</b> No more violations to choose from! ";
+					// }
+			  //   	// Retrieve court list from db
+			  //   	$query = $this->db->get_where('court','court_mun NOT in (SELECT municipality.mun_id FROM municipality WHERE municipality.status ="deleted")AND court.status ="active"');
+			  //   	$inmate['courts'] = $query->result();
 
 			    	
 		    		
-			    	$this->data['title']    = 'Manage Inmate';
-		    		$this->data['css']      = array();
-		    		$this->data['js_top']   = array();
-		    		$this->data['header']   = $this->load->view('admin/header_view',$this->data,TRUE);
-		    		$this->data['body']     = $this->load->view('menu/add_inmate4',$inmate,TRUE);
-		    		$this->data['footer']   = $this->load->view('footer_view',NULL,TRUE);
-		    		$this->data['js_bottom']= array();
-		    		$this->data['custom_js']= '<script type="text/javascript">
-			    		$(function(){
-			    		});
-			    	</script>';
-		    		$this->load->view('templates',$this->data);
+			  //   	$this->data['title']    = 'Manage Inmate';
+		   //  		$this->data['css']      = array();
+		   //  		$this->data['js_top']   = array();
+		   //  		$this->data['header']   = $this->load->view('admin/header_view',$this->data,TRUE);
+		   //  		$this->data['body']     = $this->load->view('menu/add_inmate4',$inmate,TRUE);
+		   //  		$this->data['footer']   = $this->load->view('footer_view',NULL,TRUE);
+		   //  		$this->data['js_bottom']= array();
+		   //  		$this->data['custom_js']= '<script type="text/javascript">
+			  //   		$(function(){
+			  //   		});
+			  //   	</script>';
+		   //  		$this->load->view('templates',$this->data);
 
-
+		    		redirect("cpdrc/addinmate/profiling/".$user_id);
 			    	// $this->load->view('menu/add_inmate4', $inmate);		    		
 		    	// }
 		    	// elseif($w['height'] < 0){ //validate height
@@ -354,24 +388,15 @@ session_start();
 	    	if($this->input->post('id')== NULL){
 	    			redirect("search1");
 	    		}
-				#$cs_reasons['type']=$this->input->post('sentence');
-				#$cs_cases['crime']=$this->input->post('crime'); // Original;
+				
 				$id = $this->input->post('id');
 				// For cs_reasons table
 				$cs_reasons['inmate_id']= $id;
 				$cs_reasons['start_date']=$this->input->post('confine');
-				
-
-				//release date
 				$cs_reasons['release_date']=$this->input->post('dategood');
-				
-
-
 				$cs_reasons['created_on']=time();
 				$cs_reasons['number_of_years']=$this->input->post('max_years');
 				
-				// For cs_cases table
-				//$cs_cases['s_max_year']=$this->input->post('max_years');
 
 				$cs_cases['case_no']=$this->input->post('casenum');
 				$cs_cases['violation_id']=$this->input->post('crime');
@@ -384,37 +409,18 @@ session_start();
 				$cs_cases['s_max_year'] = $violation_info->max_year;
 				$cs_cases['s_max_month'] = $violation_info->max_month;
 				$cs_cases['s_max_day'] = $violation_info->max_day;
-
 				$cs_cases['created_on']=$cs_reasons['created_on'];
+				
 				// For cs_appearance_schedules table
 				$cs_appearance_schedules['reason_id'] = null; // to be assigned a value below
 				$cs_appearance_schedules['place']=$this->input->post('court'); 
 				
-				// Update inmate record in db
 				$inmate['date_detained'] = $this->input->post('confine');
 				
 				$this->db->set('date_detained',$inmate['date_detained']);
 				$this->db->where('inmate_id',$id);
 				$this->db->update('inmate');
 
-				// $e is used for checkcaseinfo()
-				$e['inmate_id']= $id;
-				$e['date_confinment']=$this->input->post('confine');
-				$e['sentence']="";
-				
-				// $e['expire_good']=$this->input->post('dategood');
-				
-				$e['case_no']=$this->input->post('casenum');
-				$e['crime']=$this->input->post('crime');
-				$e['court_name']=$this->input->post('court'); // Stored in cs_appearance_schedules.place
-				// To determine which tables should $e be stored
-				$e['commencing']=$this->input->post('commencing');
-				
-				// $e['expire_bad']=$this->input->post('datebad');
-				
-				#echo('{reasons}'.print_r($cs_reasons));
-				#echo('{case}'.print_r($cs_cases));
-				
 				$data = array('inmate_id'=>$id,
 							  'date_confinment'=>$this->input->post('confine'),
 							  'sentence'=>$this->input->post('sentence'),
@@ -422,40 +428,23 @@ session_start();
 							  'case_no'=>$this->input->post('casenum'),
 							  'crime'=>$this->input->post('crime'),
 							  'court_name'=>$this->input->post('court'),
-							  'commencing'=>$this->input->post('commencing'),
+							  'commencing'=> "",
+							  'counts' => $this->input->post('counts'),
 							  'expire_bad'=>$this->input->post('datebad'));
-				/**/
-				//commented out to enable many violations for 1 case
-				$res = $this->cpdrc_fw->checkcaseinfo($e);
-				//commented out to enable many violations for 1 case end
-				// Debugging only
-				// print_r($res);
-				// echo $this->db->last_query();
 				
-
-				// if($res == FALSE) // original
-				// print_r($res);
-				// die();
 				$reason = $this->admin_model->get('cs_reasons',array('inmate_id'=>$id),TRUE);
-				// echo $this->admin_model->db->last_query()."<br>";
+
 				if($reason){
 					$checker = $this->admin_model->get('cs_cases_full',array('case_no'=>$data['case_no'],'violation_id'=>$data['crime'],'reasons_id'=>$reason->id,'case_status'=>'active'),TRUE);
+				}else{
+					$query = $this->db->insert('cs_reasons',$cs_reasons);
+					$reason = $this->admin_model->get('cs_reasons',array('inmate_id'=>$id),TRUE);
 				}
-			
-			// echo $this->admin_model->db->last_query();
-// echo "<pre>";
-// var_dump($reason);
-// echo $data['case_no']."<br>";
-// echo $data['crime']."<br>";
-// echo $reason->id;
-			// die();
-			if (empty($checker)) {
+				$cs_cases['reasons_id'] = $reason->id;
+				if (empty($checker)) {
 				
-			// }
-				// if($res == 0)
-				// {
-				//commented out to enable many violations for 1 case end
 					$this->db->insert('inmate_case_info', $data); // for insertion
+					
 					$primarykey = $this->db->insert_id();
 					$data = $this->admin_model->get("inmate",array("inmate_id"=>$id));
 					$logData = array(
@@ -471,139 +460,81 @@ session_start();
 						);
 					$this->admin_model->save('cs_logs',$logData);
 
-					$query = $this->db->insert('cs_reasons',$cs_reasons);
-					if($query && ! $this->session->flashdata('update_token')){
-						$reason = $this->db->get_where('cs_reasons',array('inmate_id'=>$cs_reasons['inmate_id']));//temp placement, should be transferred to MODEL
-						// Check DB query at this point
-					
-						$cs_cases['reasons_id'] = $reason->row()->id;
-						$cs_appearance_schedules['reason_id'] = $reason->row()->id;
-						$query = $this->db->insert('cs_cases',$cs_cases);
-						$query = $this->db->insert('cs_appearance_schedules',$cs_appearance_schedules);
-						 $this->session->set_flashdata('update_token', time());
-					}
-					/**/
-					$inmate['case']=$this->cpdrc_fw->getcaseinfolimit($id);
-
-					$inmate['id']=$id;
-					$inmate['formid'] = $this->input->post('formid');
-			    	$inmate['name'] = $this->input->post('name');
-			    	$inmate['filename'] = $this->input->post('filename');
-
-			    	$cases = $this->admin_model->get('cs_cases_full',array('reasons_id'=>$cs_cases['reasons_id'],'case_status'=>'active'),FALSE,'name ASC, level ASC');
-			    	// // Retrieve violation data from database
-			    	// $this->db->select('id,name');
-			    	// $query = $this->db->get('cs_violations');
-			    	// $inmate['violations'] = $query->result();
-			    	$violations = $this->admin_model->get('cs_violations',null,FALSE,'name ASC');
-
-					$vio = array();
-					foreach ($violations as $violation) {
-						if($violation->status == 'active'){
-							if ( in_array($violation->level, array('1','2','3','4','5')) )
-							{
-								$vio[$violation->id] = $violation->name.' (level '.$violation->level.') ' . $violation->RepublicAct;
-							}
-							else
-							{
-								$vio[$violation->id] = $violation->name.' ('.$violation->level.') ' . $violation->RepublicAct;
-							}	
+					$cid = $this->admin_model->save('cs_cases',$cs_cases);
+					//logs
+					$logData = array(
+								'linked_id' => $cid,
+								'table_name' => 'cs_cases',
+								'table_field' => 'id',
+								'subject' => 'Add New Case',
+								'reasons' => 'Case # '.$cs_cases['case_no'].' - '.$violation_info->name.' '.$violation_info->level.' ('.$violation_info->RepublicAct.') was added to Inmate ID : '.$id,
+								'update_by' => $this->session->userdata('user_id'),
+								'action' => 'add',
+								'created_at' => now(),
+								'status' => 'active'
+							);
+					$this->admin_model->save('cs_logs',$logData);
+				
+					$inmate_info = $this->admin_model->get('inmates_full',array('inmate_id'=>$reason->inmate_id),TRUE);
+					$max_res = $this->db->query('
+									SELECT id,violation_id,
+									IF(s_max_year is not NULL, s_max_year, 0) as s_max_year,
+									IF(s_max_month is not NULL, s_max_month, 0) as s_max_month,
+									IF(s_max_day is not NULL, s_max_day, 0) as s_max_day,
+									MAX(( IF(s_max_year is not NULL, s_max_year * 365, 0) + IF(s_max_month is not NULL, s_max_month * 30, 0) + IF(s_max_day is not NULL, s_max_day, 0) )) as max_penalty
+									FROM (`cs_cases`)
+									WHERE `reasons_id` = "'.$reason->id.'" AND status="active" GROUP BY id
+								')->result();
+					$m_id = 0;
+					$m_pen = 0;
+					$number_of_years = 0;
+					$number_of_months = 0;
+					$number_of_days = 0;
+					foreach ($max_res as $max_r) {
+						if ($max_r->max_penalty > $m_pen) {
+							$m_id = $max_r->violation_id;
+							$m_pen = $max_r->max_penalty;
+							$number_of_years = intval($max_r->s_max_year);
+							$number_of_months = intval($max_r->s_max_month);
+							$number_of_days = intval($max_r->s_max_day);
 						}
 					}
+					$max_penalty = $m_pen;
 
-					$inmate['violations'] = $vio;
-					if (count($vio)==0) {
-						$inmate['error'] = "<b>Warning!</b> No more violations to choose from! ";
+					$data = array();
+					$data['created_on'] = now();
+					$data['modified_on'] = 0;
+
+					if ($inmate_info->inmate_type == 'Detainee' || $inmate_info->inmate_type == 'Pending' ) {
+						$s_date = $inmate_info->date_detained;
+					}elseif ($inmate_info->inmate_type == 'Probation') {
+						$s_date = $inmate_info->date_probation;
+					}elseif ($inmate_info->inmate_type == 'Convict') {
+						$s_date = $inmate_info->date_convicted;
 					}
+					
+					$rd = strtotime("+$number_of_days days",strtotime("+$number_of_months months",strtotime("+$number_of_years years", strtotime($s_date))));
+					$data['release_date'] = mdate("%Y-%m-%d",$rd);
+					$data['number_of_years'] = $number_of_years;
+					$data['number_of_months'] = $number_of_months;
+					$data['number_of_days'] = $number_of_days;
+					$where = array('inmate_id'=>$inmate_info->inmate_id);
+					
+					$this->admin_model->update('cs_reasons',$where,$data);
+					
+					$cs_appearance_schedules['reason_id'] = $reason->id;
+					$query = $this->db->insert('cs_appearance_schedules',$cs_appearance_schedules);
+					
 
-			    	// Retrieve court list from db
-			    	// Retrieve court list from db
-			    	$query = $this->db->get_where('court','court_mun NOT in (SELECT municipality.mun_id FROM municipality WHERE municipality.status ="deleted")AND court.status ="active"');
-			    	$inmate['courts'] = $query->result();
-
-
-			    	$this->data['title']    = 'Manage Inmate';
-		    		$this->data['css']      = array();
-		    		$this->data['js_top']   = array();
-		    		$this->data['header']   = $this->load->view('admin/header_view',$this->data,TRUE);
-		    		$this->data['body']     = $this->load->view('menu/add_inmate4',$inmate,TRUE);
-		    		$this->data['footer']   = $this->load->view('footer_view',NULL,TRUE);
-		    		$this->data['js_bottom']= array();
-		    		$this->data['custom_js']= '<script type="text/javascript">
-			    		$(function(){
-			    		});
-			    	</script>';
-		    		$this->load->view('templates',$this->data);
-
-					// $this->load->view('menu/add_inmate4', $inmate);
-					/**/
-					//commented out to enable many violations for 1 case
+					redirect("cpdrc/addinmate/profiling/".$id);
+					
 				}else{
-					$inmate['case']=$this->cpdrc_fw->getcaseinfolimit($id);
-					// echo $this->cpdrc_fw->db->last_query();
 					
 					$inmate['id']=$id;
-					$inmate['formid'] = $this->input->post('formid');
-			    	$inmate['name'] = $this->input->post('name');
-			    	$inmate['filename'] = $this->input->post('filename');
-
-			    	$inmate['error'] = "<b>Warning!</b> Case information already exist. Please check the information in the table below";
-
-			    	$query = $this->db->get_where('cs_reasons',array("inmate_id"=>$id));
-			    	//$this->db->from('court');
-			    	$data['cs_reasons'] = $query->result();
-			    	$cs_res = json_decode(json_encode($data['cs_reasons']));
-			    	if($cs_res){
-						$cases = $this->admin_model->get('cs_cases_full',array('reasons_id'=>$cs_res[0]->id,'case_status'=>'active'),FALSE,'name ASC, level ASC');
-			    	}
-					
-			    	// // Retrieve violation data from database
-			    	// $this->db->select('id,name');
-			    	// $query = $this->db->get('cs_violations');
-			    	// $inmate['violations'] = $query->result();
-			    	$violations = $this->admin_model->get('cs_violations',null,FALSE,'name ASC');
-
-					$vio = array();
-					foreach ($violations as $violation) {
-						if($violation->status == 'active'){
-							if ( in_array($violation->level, array('1','2','3','4','5')) )
-							{
-								$vio[$violation->id] = $violation->name.' (level '.$violation->level.') ' . $violation->RepublicAct;
-							}
-							else
-							{
-								$vio[$violation->id] = $violation->name.' ('.$violation->level.') ' . $violation->RepublicAct;
-							}	
-						}
-					}
-					// if($cs_res){
-					// 	foreach ($cases as $case) {
-					// 		unset($vio[$case->violation_id]);
-					// 	}
-					// }
-					$inmate['violations'] = $vio;
-
-			    	// Retrieve court list from db
-			    	$query = $this->db->get_where('court','court_mun NOT in (SELECT municipality.mun_id FROM municipality WHERE municipality.status ="deleted")AND court.status ="active"');
-			    	$inmate['courts'] = $query->result();
-
-			    	$this->data['title']    = 'Manage Inmate';
-		    		$this->data['css']      = array();
-		    		$this->data['js_top']   = array();
-		    		$this->data['header']   = $this->load->view('admin/header_view',$this->data,TRUE);
-		    		$this->data['body']     = $this->load->view('menu/add_inmate4',$inmate,TRUE);
-		    		$this->data['footer']   = $this->load->view('footer_view',NULL,TRUE);
-		    		$this->data['js_bottom']= array();
-		    		$this->data['custom_js']= '<script type="text/javascript">
-			    		$(function(){
-			    		});
-			    	</script>';
-		    		$this->load->view('templates',$this->data);
-
-					// $this->load->view('menu/add_inmate4', $inmate);
-				}
-				/**/
-				//commented out to enable many violations for 1 case end
+					$this->session->set_flashdata('error_msg','<b>Warning!</b> Case information already exist. Please check the information in the table below');
+			    	redirect("cpdrc/addinmate/profiling/".$id);
+			  	}
+			
 	    }
 	  public function add5() //for the passing of inmate id to 2d model view
 	    {
@@ -690,127 +621,192 @@ session_start();
 	    	// return $query->row();
 	    }
 
-	    public function continue(){
+	    public function profiling($id){
 	    	
-	    	$query = $this->db->get_where('temp',array('inmate_id'=>$this->input->post('inmate_id')));
+	    	$query = $this->db->get_where('temp',array('inmate_id'=>$id));
 	    	$get = $query->row();
-	    	//echo 'menu/add_inmate'.$get->step;
-	    	$step = $get->step;
-			
-			
-			$query = $this->db->get_where('inmates_full',array('inmate_id'=>$this->input->post('inmate_id')));
-	    	$get = $query->row();
-	    	
+	    	if($get){
+	    		//echo 'menu/add_inmate'.$get->step;
+		    	$step = $get->step;
+				
+				
+				$query = $this->db->get_where('inmates_full',array('inmate_id'=>$id));
+		    	$get = $query->row();
+		    	
 
-	    	
-	    	$file = $this->cpdrc_fw->getFilename($this->input->post('inmate_id'));
-	    	
-	    	if(isset($file)){
-	    		$data['filename'] = $file;
-	    	}else{
-	    		$data['filename'] = "asd8.png";
-	    	}
-	    	$data['id'] = $this->input->post('inmate_id');
-			$data['name'] = $get->inmate_lname.", ".$get->inmate_fname." ".$get->inmate_mi;
 
-			$gender =$get->gender;
+		    	
+		    	$file = $this->cpdrc_fw->getFilename($id);
+		    	
+		    	if(isset($file)){
+		    		$data['filename'] = $file;
+		    	}else{
+		    		$data['filename'] = "asd8.png";
+		    	}
+		    	$data['id'] = $id;
+				$data['name'] = $get->inmate_lname.", ".$get->inmate_fname." ".$get->inmate_mi;
 
-			$query = $this->db->get_where('inmate',array('inmate_id'=>$this->input->post('inmate_id')));
-	    	$get = $query->row();
-	    	
-			$data['formid'] = $get->ref_formid;
-if($step == 2){	
-	$query = $this->db->get_where('inmate_info',array('inmate_id'=>$this->input->post('inmate_id')));
-	    	$get = $query->row();
-	$data['info']=$get;
-}
+				$gender =$get->gender;
 
-if($step == 3){	
-	$query = $this->db->get_where('inmate_build',array('inmate_id'=>$this->input->post('inmate_id')));
-	    	$get = $query->row();
-	$data['info']=$get;
-}
+				$query = $this->db->get_where('inmate',array('inmate_id'=>$id));
+		    	$get = $query->row();
+		    	
+				$data['formid'] = $get->ref_formid;
+				if($step == 2){	
+					$query = $this->db->get_where('inmate_info',array('inmate_id'=>$id));
+					    	$get = $query->row();
+					$data['info']=$get;
+				}
 
-			if($step == 4){
-				$query = $this->db->get_where('cs_reasons',array("inmate_id"=>$this->input->post('inmate_id')));
-			    	//$this->db->from('court');
-			    	$data['cs_reasons'] = $query->result();
-			    	$cs_res = json_decode(json_encode($data['cs_reasons']));
-			    	if($cs_res){
-						$cases = $this->admin_model->get('cs_cases_full',array('reasons_id'=>$cs_res[0]->id,'case_status'=>'active'),FALSE,'name ASC, level ASC');
-			    	}
-					
-			    	// // Retrieve violation data from database
-			    	// $this->db->select('id,name');
-			    	// $query = $this->db->get('cs_violations');
-			    	// $inmate['violations'] = $query->result();
-			    	$violations = $this->admin_model->get('cs_violations',null,FALSE,'name ASC');
+				if($step == 3){	
+					$query = $this->db->get_where('inmate_build',array('inmate_id'=>$id));
+					    	$get = $query->row();
+					$data['info']=$get;
+				}
 
-					$vio = array();
-					foreach ($violations as $violation) {
-						if($violation->status == 'active'){
-							if ( in_array($violation->level, array('1','2','3','4','5')) )
-							{
-								$vio[$violation->id] = $violation->name.' (level '.$violation->level.') ' . $violation->RepublicAct;
+				if($step == 4){
+					$query = $this->db->get_where('cs_reasons',array("inmate_id"=>$id));
+				    	//$this->db->from('court');
+				    	$data['cs_reasons'] = $query->result();
+				    	$cs_res = json_decode(json_encode($data['cs_reasons']));
+				    	if($cs_res){
+							$cases = $this->admin_model->get('cs_cases_full',array('reasons_id'=>$cs_res[0]->id,'case_status'=>'active'),FALSE,'name ASC, level ASC');
+				    	}
+						
+				    	// // Retrieve violation data from database
+				    	// $this->db->select('id,name');
+				    	// $query = $this->db->get('cs_violations');
+				    	// $inmate['violations'] = $query->result();
+				    	$violations = $this->admin_model->get('cs_violations',null,FALSE,'name ASC');
+
+						$vio = array();
+						foreach ($violations as $violation) {
+							if($violation->status == 'active'){
+								if ( in_array($violation->level, array('1','2','3','4','5')) )
+								{
+									$vio[$violation->id] = $violation->name.' (level '.$violation->level.') ' . $violation->RepublicAct;
+								}
+								else
+								{
+									$vio[$violation->id] = $violation->name.' ('.$violation->level.') ' . $violation->RepublicAct;
+								}	
 							}
-							else
-							{
-								$vio[$violation->id] = $violation->name.' ('.$violation->level.') ' . $violation->RepublicAct;
-							}	
 						}
-					}
-					$data['violations'] = $vio;
-					if (count($vio)==0) {
-						$data['error'] = "<b>Warning!</b> No more violations to choose from! ";
-					}
-			    	// Retrieve court list from db
-			    	$query = $this->db->get_where('court','court_mun NOT in (SELECT municipality.mun_id FROM municipality WHERE municipality.status ="deleted")AND court.status ="active"');
-			    	//$this->db->from('court');
-			    	$data['courts'] = $query->result();
+						$data['violations'] = $vio;
+						if (count($vio)==0) {
+							$data['error'] = "<b>Warning!</b> No more violations to choose from! ";
+						}
+				    	// Retrieve court list from db
+				    	$query = $this->db->get_where('court','court_mun NOT in (SELECT municipality.mun_id FROM municipality WHERE municipality.status ="deleted")AND court.status ="active"');
+				    	//$this->db->from('court');
+				    	$data['courts'] = $query->result();
 
-					$data['case']=$this->cpdrc_fw->getcaseinfolimit($data['id']);
-					
-			    	
-			}else if($step == 5){
-				$data['marks'] = $this->cpdrc_fw->getMarks($this->input->post('inmate_id'));
-			}
-			
-			$this->data['title']    = 'Manage Inmate';
-			$this->data['css']      = array();
-			$this->data['js_top']   = array();
-			$this->data['header']   = $this->load->view('admin/header_view',$this->data,TRUE);
-			
+						$data['case']=$this->cpdrc_fw->getcaseinfolimit($id);
+						
+				    	
+				}else if($step == 5){
+					$data['marks'] = $this->cpdrc_fw->getMarks($id);
+				}
+				
+				$this->data['title']    = 'Manage Inmate';
+				$this->data['css']      = array('vendor/select2/select2.css','vendor/select2/select2-bootstrap.css');
+				$this->data['js_top']   = array();
+				$this->data['header']   = $this->load->view('admin/header_view',$this->data,TRUE);
+				
 
-			switch ($step) {
-				case 2:
-					$this->data['body']     = $this->load->view('menu/add_inmate2',$data,TRUE);		    		
-					//$this->load->view("menu/add_inmate2", $data);
-					break;
-				case 3:
-					$this->data['body']     = $this->load->view('menu/add_inmate3',$data,TRUE);		    		
-					//$this->load->view("menu/add_inmate3", $data);
-					break;
-				case 4:
-					$this->data['body']     = $this->load->view('menu/add_inmate4',$data,TRUE);		    		
-					//$this->load->view("menu/add_inmate4", $data);
-					break;
-				case 5:
-					if($gender =="Male"){
-						$this->data['body']     = $this->load->view('menu/2d/2dmark',$data,TRUE);		    		
-						//$this->load->view("menu/2d/2dmark", $data);
-					}else if($gender =="Female"){
-						$this->data['body']     = $this->load->view('menu/2d/2dmark2',$data,TRUE);		    		
-						//$this->load->view("menu/2d/2dmark2", $data);
-					}
-					break;
-			}
-			$this->data['footer']   = $this->load->view('footer_view',NULL,TRUE);
-		    		$this->data['js_bottom']= array();
-		    		$this->data['custom_js']= '<script type="text/javascript">
-			    		$(function(){
-			    		});
-			    	</script>';
-		    		$this->load->view('templates',$this->data);
+				switch ($step) {
+					case 2:
+						$this->data['body']     = $this->load->view('menu/add_inmate2',$data,TRUE);		    		
+						//$this->load->view("menu/add_inmate2", $data);
+						break;
+					case 3:
+						$this->data['body']     = $this->load->view('menu/add_inmate3',$data,TRUE);		    		
+						//$this->load->view("menu/add_inmate3", $data);
+						break;
+					case 4:
+						$this->data['body']     = $this->load->view('menu/add_inmate4',$data,TRUE);		    		
+						//$this->load->view("menu/add_inmate4", $data);
+						break;
+					case 5:
+						if($gender =="Male"){
+							$this->data['body']     = $this->load->view('menu/2d/2dmark',$data,TRUE);		    		
+							//$this->load->view("menu/2d/2dmark", $data);
+						}else if($gender =="Female"){
+							$this->data['body']     = $this->load->view('menu/2d/2dmark2',$data,TRUE);		    		
+							//$this->load->view("menu/2d/2dmark2", $data);
+						}
+						break;
+				}
+				$this->data['footer']   = $this->load->view('footer_view',NULL,TRUE);
+			    		$this->data['js_bottom']= array('vendor/select2/select2.js');
+                        $this->data['custom_js']= '<script type="text/javascript">
+                                                    $(document).ready(function(){
+                                                    	$("#citizenshipList").select2();
+                                                    	$("#crimeList").select2();
+                                                    	$("#courtList").select2();
+                                                    	$("#religionList").select2();
+                                                    	$(".city").select2();
+                                                        $("#ft").keyup(function(){
+                                                            var feet = $("#ft").val();
+                                                            var inches = $("#in").val();
+                                                            
+                                                            var finalInches = parseInt((feet * 12)) + parseInt(inches);
+                                                            var result_cm = (finalInches * 2.54).toFixed(2);
+                                                            
+                                                            $("#cm").val(result_cm);
+                                                        });
+                                                        
+                                                        $("#in").keyup(function(){
+                                                            var feet = $("#ft").val();
+                                                            var inches = $("#in").val();
+                                                            
+                                                            var finalInches = parseInt((feet * 12)) + parseInt(inches);
+                                                            var result_cm = (finalInches * 2.54).toFixed(2);
+                                                            
+                                                            $("#cm").val(result_cm);
+                                                        });
+                                                        
+                                                        $("#kg").keyup(function(){
+                                                            var kilograms = $("#kg").val();
+                                                            
+                                                            var result_lbs = (parseInt(kilograms) * 2.2).toFixed(2);
+                                                            
+                                                            $("#lbs").val(result_lbs);
+                                                        });
+                                                        $("#ft").change(function(){
+                                                            var feet = $("#ft").val();
+                                                            var inches = $("#in").val();
+                                                            
+                                                            var finalInches = parseInt((feet * 12)) + parseInt(inches);
+                                                            var result_cm = (finalInches * 2.54).toFixed(2);
+                                                            
+                                                            $("#cm").val(result_cm);
+                                                        });
+                                                        
+                                                        $("#in").change(function(){
+                                                            var feet = $("#ft").val();
+                                                            var inches = $("#in").val();
+                                                            
+                                                            var finalInches = parseInt((feet * 12)) + parseInt(inches);
+                                                            var result_cm = (finalInches * 2.54).toFixed(2);
+                                                            
+                                                            $("#cm").val(result_cm);
+                                                        });
+                                                        
+                                                        $("#kg").change(function(){
+                                                            var kilograms = $("#kg").val();
+                                                            
+                                                            var result_lbs = (parseInt(kilograms) * 2.2).toFixed(2);
+                                                            
+                                                            $("#lbs").val(result_lbs);
+                                                        });
+                                                    });
+                                                </script>';
+			    		$this->load->view('templates',$this->data);
+	    	}else{
+	    		redirect("search1")	;
+	    	}
+	    	
 			
 	    }
 	}

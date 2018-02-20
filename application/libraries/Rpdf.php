@@ -1,9 +1,6 @@
 <?php
 require('FPDF.php');
 
-$con = mysqli_connect('localhost','root','');
-mysqli_select_db($con,'cpdrc-ic');
-
 class Rpdf extends FPDF
 {
 // Page header

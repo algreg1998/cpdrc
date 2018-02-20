@@ -20,7 +20,7 @@ class Admin_Controller extends MY_Controller {
 		$current_day = mdate("%d",now());
 
 		$release_inmatesCount = $this->admin_model->getReleaseMonthCount($current_year,$current_month);
-		$appearancesCount = $this->admin_model->getAppearanceScheduleCount($current_year,$current_month);
+		$appearancesCount = $this->admin_model->getAppearanceScheduleCount($current_year,$current_month,$current_day);
 		$nearendstayCount = $this->admin_model->getNearEndofStayCount($current_year,$current_month,$current_day);
 		$overstayingCount = $this->admin_model->getOverStayingMonthCount($current_year,$current_month,$current_day);
 		$editRequestCount = $this->admin_model->getAllApprovedAndReject($current_year,$current_month,$current_day);

@@ -39,19 +39,19 @@
                         </div>
                     <?php endif ?>
                     <div class="dataTable_wrapper table-responsive">
-                        <table class="table table-striped table-bordered table-hover" id="table-releases">
+                        <table class="table table-striped table-bordered table-hover datatable" >
                             <thead>
                                 <tr>
-                                    <th style="">Cell Id</th>
+<!--                                    <th style="">Cell Id</th>-->
                                     <th style="">Cell Number</th>
                                     <th style="">Capacity</th>
                                     <th></th>
                                 </tr>
                             </thead>
-                            <tbody>
+                            <tbody class="text-center">
                                 <?php foreach ($cells as $cell): ?>
                                    <tr class="odd gradeX">
-                                        <td><?php echo $cell->cellId ?></td>
+<!--                                        <td>--><?php //echo $cell->cellId ?><!--</td>-->
                                         <td><?php echo $cell->cellNumber ?></td>
                                         <td><?php echo $cell->capacity ?></td>
                                         <td>

@@ -81,7 +81,7 @@
 							         ?>
 							        	
 										<div class="table-responsive">
-						 					<table class="table table-bordered table-hover table-striped tablesorter datatable">
+						 					<table class="text-center table table-bordered table-hover table-striped tablesorter datatable">
 						 						<thead text-align="center">
 						 							<th>No.</th>
 						 							<th>NAME OF INMATES</th>
