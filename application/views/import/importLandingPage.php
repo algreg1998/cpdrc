@@ -25,6 +25,7 @@
                                 <?php echo $this->session->flashdata('error_msg') ?>
                             </div>
                         <?php endif ?>
+
                         <div class="alert alert-danger" id="error">
                             <i class="fa fa-times-circle" aria-hidden="true"></i> Sorry, selected file is invalid! Please upload a <strong>CSV</strong> file. </a>
                         </div>

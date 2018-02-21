@@ -64,6 +64,7 @@ class Import extends Admin_Controller {
 		$this->load->view('templates',$this->data);
 	}
 	public function uploadData(){
+
 		$type = $this->input->post("type");
 		switch ($type) {
 			case 'inmate':

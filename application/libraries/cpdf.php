@@ -63,7 +63,7 @@ class cpdf extends FPDF
         $a = json_decode(json_encode($data1));
         $b = json_decode(json_encode($data2));
         $c = json_decode(json_encode($data3));
-        $this->Image(base_url('uploads/inmate/'.$a[0]->filename),130,75,45);
+        $this->Image(base_url('uploads/inmate/'.$a[0]->filename),125,65,65,55);
         $this->Ln(5);
         $this->SetFont('Arial','',10);
         $this->Cell(50,5,"CPDRC Form No.".$a[0]->formid ,0,1,'C');

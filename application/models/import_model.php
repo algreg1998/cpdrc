@@ -14,6 +14,7 @@ class Import_model extends MY_Model {
         $max_row_size = 4096;    /** maximum row size to be used for decoding */
  
         $file =  fopen($_FILES['file']['tmp_name'], 'r');
+
         
         $eval = FALSE;
         $ret = null;
@@ -153,18 +154,21 @@ class Import_model extends MY_Model {
                         $vio_data['description'] = NULL;
 
                         $save = $this->admin_model->save('cs_violations',$vio_data);
+
                     }
                 }
             }
             fclose($file);  
         }
         return $ret;
+
      }
 
     public function filterCases(){
         $fields;            /** columns names retrieved after parsing */ 
         $separator = ';';    /** separator used to explode each line */
         $enclosure = '"';    /** enclosure used to decorate each field */
+
         
         $max_row_size = 4096;    /** maximum row size to be used for decoding */
  
