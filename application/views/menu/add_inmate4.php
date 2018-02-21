@@ -117,6 +117,10 @@
 				</div>
 				
 				<?php 
+
+				 if($this->session->flashdata('case_data')){
+					$case_data = json_decode($this->session->flashdata('case_data'));
+				}
 					$attr = array('class' => 'form_horizontal',
 								'id' => 'myform');
 					echo form_open('cpdrc/addinmate/add4', $attr);
@@ -131,11 +135,11 @@
 							<div class="row">
 								<div class="col-md-6">
 									<label><i class="fa fa-calendar"></i> <strong>Date of Confinement</strong></label>
-									<input <?php if(count($violations) == 0 || count($courts) == 0){ echo "disabled";} ?> id="confine" type="date" name="confine" class="form-control" required >			
+									<input value="<?php if(isset($case_data)){echo $case_data->date_confinment; } ?>" <?php if(count($violations) == 0 || count($courts) == 0){ echo "disabled";} ?> id="confine" type="date" name="confine" class="form-control" required >			
 								</div>
 								<div class="col-md-6">
 									<label><i class="fa fa-sort-numeric-asc"></i> <strong>Case Number</strong></label>
-									<input <?php if(count($violations) == 0 || count($courts) == 0){ echo "disabled";} ?> type="text" name="casenum" class="form-control" required ><br>
+									<input value="<?php if(isset($case_data)){echo $case_data->case_no; } ?>" <?php if(count($violations) == 0 || count($courts) == 0){ echo "disabled";} ?> type="text" name="casenum" class="form-control" required ><br>
 								</div>
 							</div>
 							<label><i class="fa fa-info"></i> <strong>Court Name</strong></label>

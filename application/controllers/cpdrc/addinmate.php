@@ -529,7 +529,7 @@ session_start();
 					redirect("cpdrc/addinmate/profiling/".$id);
 					
 				}else{
-					
+					$this->session->set_flashdata('case_data',json_encode($data));
 					$inmate['id']=$id;
 					$this->session->set_flashdata('error_msg','<b>Warning!</b> Case information already exist. Please check the information in the table below');
 			    	redirect("cpdrc/addinmate/profiling/".$id);
