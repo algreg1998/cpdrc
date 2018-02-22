@@ -93,7 +93,7 @@ class Import extends Admin_Controller {
 				}
 						
 				break;
-			case 'asd':
+			case 'inmateWithCases':
 				
 				$data['result']=$this->Import_model->importInmate();
 				if($data['result']){

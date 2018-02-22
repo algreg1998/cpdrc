@@ -29,7 +29,7 @@ class Import_model extends MY_Model {
                  
                     if($get){
                          $eval = TRUE;
-                         $ret[]="<b>".trim($values[1]."</b>- ".ucwords(trim($values[3])." ".ucwords(trim($values[5])." ".ucwords(trim($values[4]));
+                         $ret[]="<b>".trim($values[1]."</b>- ".ucwords(trim($values[3]))." ".ucwords(trim($values[5]))." ".ucwords(trim($values[4])));
                     }
                 }
             }   
@@ -64,7 +64,7 @@ class Import_model extends MY_Model {
                          $inmate_info['age']=trim($values[10]);
                          $inmate_info['gender']=trim($values[11]);
                          $inmate_info['born_in']=trim($values[11]);
-                         $inmate_info['home_add']=trim($values[14].', '.trim($values[13].', '.trim($values[12]);
+                         $inmate_info['home_add']=trim($values[14]).', '.trim($values[13]).', '.trim($values[12]);
                          $inmate_info['place'] = trim($values[12]);
                          $inmate_info['province_add']=trim($values[16]);
                          $inmate_info['occupation']=trim($values[17]);
@@ -152,9 +152,20 @@ class Import_model extends MY_Model {
                         $vio_data['created_on'] = now();
                         $vio_data['RepublicAct'] = NULL;
                         $vio_data['description'] = NULL;
-
                         $save = $this->admin_model->save('cs_violations',$vio_data);
-
+                         //logs
+                        $logData = array(
+                            'linked_id' => $save,
+                            'table_name' => 'cs_violations',
+                            'table_field' => 'id',
+                            'subject' => 'Add Violaion Information',
+                            'reasons' => 'A Violation Information with the name'.$vio_data['name'].' of was added',
+                            'update_by' => $this->session->userdata('user_id'),
+                            'action' => 'insert',
+                            'created_at' => date("Y-m-d h:i:sa"),
+                            'status' => 'active'
+                        );
+                        $this->admin_model->save('cs_logs',$logData);
                     }
                 }
             }
@@ -164,75 +175,75 @@ class Import_model extends MY_Model {
 
      }
 
-    public function filterCases(){
-        $fields;            /** columns names retrieved after parsing */ 
-        $separator = ';';    /** separator used to explode each line */
-        $enclosure = '"';    /** enclosure used to decorate each field */
+    // public function filterCases(){
+    //     $fields;            /** columns names retrieved after parsing */ 
+    //     $separator = ';';    /** separator used to explode each line */
+    //     $enclosure = '"';    /** enclosure used to decorate each field */
 
         
-        $max_row_size = 4096;    /** maximum row size to be used for decoding */
+    //     $max_row_size = 4096;    /** maximum row size to be used for decoding */
  
-        $file =  fopen($_FILES['file']['tmp_name'], 'r');
+    //     $file =  fopen($_FILES['file']['tmp_name'], 'r');
         
-        $eval = FALSE;
-        $ret = null;
-        $data = null;
-        if($file){
-            $i  =   1;
-            while( ($row = fgetcsv($file, $max_row_size, $separator, $enclosure)) != false ) {
-                if( $row != null ) {
-                    $data[] = $row[0];
-                }
-            }   
+    //     $eval = FALSE;
+    //     $ret = null;
+    //     $data = null;
+    //     if($file){
+    //         $i  =   1;
+    //         while( ($row = fgetcsv($file, $max_row_size, $separator, $enclosure)) != false ) {
+    //             if( $row != null ) {
+    //                 $data[] = $row[0];
+    //             }
+    //         }   
             
-            fclose($file);  
-            foreach ($data as $d) {
-             $values =   explode('/',$d);
+    //         fclose($file);  
+    //         foreach ($data as $d) {
+    //          $values =   explode('/',$d);
                 
-                if(count($values) > 1){
-                    foreach ($values as $key) {
-                        $ret[]= "<b>".$key."<b>";
-                    }    
-                }else{
-                   $ret[]= "<b>".trim($values[0]."<b>");
-                }
-            }
+    //             if(count($values) > 1){
+    //                 foreach ($values as $key) {
+    //                     $ret[]= "<b>".$key."<b>";
+    //                 }    
+    //             }else{
+    //                $ret[]= "<b>".trim($values[0]."<b>");
+    //             }
+    //         }
 
-            for ($i=0; $i <count($ret) ; $i++) { 
-                $values = explode('-',$ret[$i] );
-                $l = count($values)- 2;
-                $r = count($values) - 1;
-                echo "<br>".trim($values[$l]."||".trim($values[$r]);
-                echo "<br>";
-                if(is_numeric(trim($values[$l]) || is_numeric(trim($values[$r]))){
-                    // echo strlen(trim($values[$l]));
-                    echo is_numeric(trim($values[$r]));
-                    echo "<br>";
-                    $index = strlen(trim($values[$l])-2);
-                    if(trim($values[$l][$index] == trim($values[$r][0])){
+    //         for ($i=0; $i <count($ret) ; $i++) { 
+    //             $values = explode('-',$ret[$i] );
+    //             $l = count($values)- 2;
+    //             $r = count($values) - 1;
+    //             echo "<br>".trim($values[$l])."||".trim($values[$r]);
+    //             echo "<br>";
+    //             if(is_numeric(trim($values[$l]) || is_numeric(trim($values[$r]))){
+    //                 // echo strlen(trim($values[$l]));
+    //                 echo is_numeric($values[$r]);
+    //                 echo "<br>";
+    //                 $index = strlen(trim($values[$l])-2);
+    //                 if(trim($values[$l][$index] == trim($values[$r][0])){
                         
-                        echo trim($values[$l][strlen(trim($values[$l])-2]."++" .trim($values[$r][0]);
-                    }
-                }
-                echo "<br>";
+    //                     echo trim($values[$l][strlen(trim($values[$l])-2]."++" .trim($values[$r][0]);
+    //                 }
+    //             }
+    //             echo "<br>";
 
 
 
-                foreach ($values as $key ) {
-                    echo $key."||";
-                }
-                echo "<br>";
-                echo "--------------------------------";
-            }
+    //             foreach ($values as $key ) {
+    //                 echo $key."||";
+    //             }
+    //             echo "<br>";
+    //             echo "--------------------------------";
+    //         }
 
-            // foreach ($ret as $key) {
-            //     echo "<br>".$key;
-            // }
-            die();
+    //         // foreach ($ret as $key) {
+    //         //     echo "<br>".$key;
+    //         // }
+    //         die();
              
-        }
-        return $ret;
-     }
+    //     }
+    //     return $ret;
+    //  }
 
     public function importInmate(){
         $fields;            /** columns names retrieved after parsing */ 
@@ -268,9 +279,9 @@ class Import_model extends MY_Model {
  
                      $arrObj->status=trim($values[7]);
                      $arrObj->nationality= ucwords(trim($values[8]));
-                     $bday = explode('/',trim($values[9]));
+                     $bday = explode('/',$values[9]);
                      $arrObj->birthdate=$bday[2]."-".$bday[0]."-".$bday[1];
-                     
+                     echo $arrObj->inmate_id."<br>";
                     // INMATE_INFO
                      $arrObj->age=trim($values[10]);
                      $arrObj->gender=trim($values[11]);
@@ -283,8 +294,8 @@ class Import_model extends MY_Model {
                      $arrObj->mother=trim($values[19]);
                      $arrObj->relative=trim($values[20]);
                      $arrObj->relation=trim($values[21]);
-                     $arrObj->address=trim($values[24].', '.trim($values[23].', '.trim($values[22]);
-                     
+                     $arrObj->address=trim($values[24]).', '.trim($values[23]).', '.trim($values[22]);
+                    
                      $inmateId = $arrObj->inmate_id;
 
 
@@ -301,10 +312,20 @@ class Import_model extends MY_Model {
 
                     // CS_REASON
                      $arrObj->inmate_id=$inmateId;
-                     $arrObj->start_date        = trim($values[31]);
-                     $arrObj->type              = trim($values[32]);
+                     $arrObj->start_date        = trim($values[32]);
+
+                     $type = trim($values[33]);
+                     if ($type == 'Detainee' || $type == 'Pending' ) {
+                        $arrObj->date_detained = now();
+                    }elseif ($type == 'Probation') {
+                        $arrObj->date_probation =now();
+                    }elseif ($type == 'Convict') {
+                        $arrObj->date_convicted = now();
+                    }
+
+                     $arrObj->type              = $type;
                      $arrObj->created_on        = time();
-                     
+                    // echo $arrObj->type."<br>";
                      // $arrObj->cs_reason_id = ;
                      
                      $v = explode('||', trim($values[34]));
@@ -325,11 +346,11 @@ class Import_model extends MY_Model {
                         
                          $cs_cases['case_no']       = trim($c[$i]);
                          $name                      = trim($v[$i]);
-                         // echo $cs_cases['name'] ;
+                         
                          $violation_info            = $this->admin_model->get('cs_violations',array('name'=>$name),TRUE);
                         
                          $cs_cases['violation_id']   = $violation_info->id;
-
+                         $cs_cases['name'] = $name;
                          $cs_cases['s_min_year']    = $violation_info->min_year;
                          $cs_cases['s_min_month']   = $violation_info->min_month;
                          $cs_cases['s_min_day']     = $violation_info->min_day;
@@ -351,6 +372,7 @@ class Import_model extends MY_Model {
             fclose($file);  
               $chkr = $this->check($array);
             if(!$chkr){
+                // die();
                 foreach ($array as $key) {
                     $inmate = array("ref_formid " => $key->ref_formid, 
                                     "inmate_id" => $key->inmate_id, 
@@ -364,7 +386,7 @@ class Import_model extends MY_Model {
                                 );
 
                     $this->db->insert('inmate', $inmate);
-
+                    
                     $inmate_info = array("inmate_id" => $key->inmate_id ,
                                     "status" => $key->status ,
                                     "nationality" => $key->nationality ,
@@ -385,7 +407,7 @@ class Import_model extends MY_Model {
 
                     $this->db->insert('inmate_info', $inmate_info);
 
-                     $inmate_build = array(
+                    $inmate_build = array(
                                     "inmate_id" => $key->inmate_id ,
                                     "height" => $key->height ,
                                     "weight" => $key->weight ,
@@ -395,7 +417,7 @@ class Import_model extends MY_Model {
                                     "hair_peculiarities" => $key->hair_peculiarities
                         );
      
-                         $this->db->insert('inmate_build', $inmate_build);
+                    $this->db->insert('inmate_build', $inmate_build);
 
                     $cs_reasons = array("inmate_id" => $key->inmate_id , 
                                     "start_date" => $key->start_date , 
@@ -412,7 +434,21 @@ class Import_model extends MY_Model {
                               'court_name'=>$c["court_name"],
                               'counts' => $c["counts"]
                               );
-                        $this->admin_model->save('inmate_case_info', $inmate_case_info); 
+                        $inmate_case_infoID = $this->admin_model->save('inmate_case_info', $inmate_case_info); 
+                        
+                        //logs
+                        $logData = array(
+                            'linked_id' => $inmate_case_infoID,
+                            'table_name' => 'inmate_case_info',
+                            'table_field' => 'id',
+                            'subject' => 'Add Case Information',
+                            'reasons' => 'A Case Information of "'.$key->inmate_fname.' '.$key->inmate_lname.'" was added',
+                            'update_by' => $this->session->userdata('user_id'),
+                            'action' => 'insert',
+                            'created_at' => date("Y-m-d h:i:sa"),
+                            'status' => 'active'
+                        );
+                        $this->admin_model->save('cs_logs',$logData);
 
                         $case = array(
                                 "reasons_id"=>$cs_reason_id,
@@ -426,18 +462,80 @@ class Import_model extends MY_Model {
                                 "s_max_day" => $c["s_max_day"],
                                 "created_on" => $c["created_on"]
                             );
-                        $this->admin_model->save('cs_cases', $case); 
-
-                        $ins = array(
-                             'inmate_id' => $key->inmate_id,
-                             'added_by' => $this->session->userdata('user_id'),
-                             'img_set' => '1' );
-                         $this->db->insert('file', $ins);
-     
-                         $temp['inmate_id'] = $key->inmate_id;
-                         $temp['step'] = 3;
-                         $this->cpdrc_fw->insert($temp);
+                        $cid = $this->admin_model->save('cs_cases', $case); 
+ 
+                        //logs
+                        $logData = array(
+                                    'linked_id' => $cid,
+                                    'table_name' => 'cs_cases',
+                                    'table_field' => 'id',
+                                    'subject' => 'Add New Case',
+                                    'reasons' => 'Case # '.$c["case_no"].' - '.$c["name"].' was added to Inmate ID : '.$key->inmate_id,
+                                    'update_by' => $this->session->userdata('user_id'),
+                                    'action' => 'insert',
+                                    'created_at' => now(),
+                                    'status' => 'active'
+                                );
+                        $this->admin_model->save('cs_logs',$logData);
                     }
+
+                    
+
+                    $max_res = $this->db->query('
+                                    SELECT id,violation_id,
+                                    IF(s_max_year is not NULL, s_max_year, 0) as s_max_year,
+                                    IF(s_max_month is not NULL, s_max_month, 0) as s_max_month,
+                                    IF(s_max_day is not NULL, s_max_day, 0) as s_max_day,
+                                    MAX(( IF(s_max_year is not NULL, s_max_year * 365, 0) + IF(s_max_month is not NULL, s_max_month * 30, 0) + IF(s_max_day is not NULL, s_max_day, 0) )) as max_penalty
+                                    FROM (`cs_cases`)
+                                    WHERE `reasons_id` = "'.$cs_reason_id.'" AND status="active" GROUP BY id
+                                ')->result();
+                    $m_id = 0;
+                    $m_pen = 0;
+                    $number_of_years = 0;
+                    $number_of_months = 0;
+                    $number_of_days = 0;
+                    foreach ($max_res as $max_r) {
+                        if ($max_r->max_penalty > $m_pen) {
+                            $m_id = $max_r->violation_id;
+                            $m_pen = $max_r->max_penalty;
+                            $number_of_years = intval($max_r->s_max_year);
+                            $number_of_months = intval($max_r->s_max_month);
+                            $number_of_days = intval($max_r->s_max_day);
+                        }
+                    }
+                    $max_penalty = $m_pen;
+
+                    $data = array();
+                    $data['created_on'] = now();
+                    $data['modified_on'] = 0;
+
+                    if ($key->type == 'Detainee' || $key->type == 'Pending' ) {
+                        $s_date = $key->date_detained;
+                    }elseif ($key->type == 'Probation') {
+                        $s_date = $key->date_probation;
+                    }elseif ($key->type == 'Convict') {
+                        $s_date = $key->date_convicted;
+                    }
+                    
+                    $rd = strtotime("+$number_of_days days",strtotime("+$number_of_months months",strtotime("+$number_of_years years", strtotime($s_date))));
+                    $data['release_date'] = mdate("%Y-%m-%d",$rd);
+                    $data['number_of_years'] = $number_of_years;
+                    $data['number_of_months'] = $number_of_months;
+                    $data['number_of_days'] = $number_of_days;
+                    $where = array('inmate_id'=>$key->inmate_id);
+                    
+                    $this->admin_model->update('cs_reasons',$where,$data);
+
+                    $ins = array(
+                         'inmate_id' => $key->inmate_id,
+                         'added_by' => $this->session->userdata('user_id'),
+                         'img_set' => '1' );
+                    $this->db->insert('file', $ins);
+ 
+                    $temp['inmate_id'] = $key->inmate_id;
+                    $temp['step'] = 3;
+                    $this->cpdrc_fw->insert($temp);
                 }
                 return $ret;
             }else{
@@ -445,7 +543,7 @@ class Import_model extends MY_Model {
             }
               // echo "<pre>";
               // var_dump($array);
-              die();
+              // die();
         }
         return $ret;
     }
@@ -453,22 +551,9 @@ class Import_model extends MY_Model {
         $ret = array();
 
         foreach ($array as $key) {
-            // $data = array("ref_formid " => $key, 
-            //                 "inmate_id" => $key, 
-            //                 "cell_no" => $key,
-            //                 "inmate_fname" => $key, 
-            //                 "inmate_lname" => $key, 
-            //                 "inmate_mi" => $key, 
-            //                 "inmate_alias" => $key, 
-            //                 "added_by" => $key,
-            //                 "status" => $key,
-            //                 "nationality" => $key, 
-            //                 "birthdate" => $key,
-            //             );
-            
             $get=$this->cpdrc_fw->checkinmate($key->inmate_id);
             if($get){
-                 $ret[]="Inmate number Duplicate<b>".$key->inmate_id."</b>- ".$key->inmate_fname." ".$key->inmate_lname." ".$key->inmate_mi;
+                 $ret[]="Inmate number Duplicate <b>".$key->inmate_id."</b>- ".$key->inmate_fname." ".$key->inmate_lname." ".$key->inmate_mi;
             }
             $cses = array();
             foreach ($key->cases as $c) {
