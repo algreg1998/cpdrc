@@ -103,7 +103,7 @@ class Import extends Admin_Controller {
 					}
 					$this->session->set_flashdata('error_msg','Oops, Something went wrong! Importing canceled. <br><br><ul>'.$msg.'</ul><br>Duplicates detected. Please change to prevent duplicates.');
 				}else{
-					$this->session->set_flashdata('success_msg','Violation Records successfully inserted');
+					$this->session->set_flashdata('success_msg','Inmate Records successfully inserted');
 				}
 				break;
 			// case 'cases':
