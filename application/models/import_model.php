@@ -24,12 +24,12 @@ class Import_model extends MY_Model {
             while( ($row = fgetcsv($file, $max_row_size, $separator, $enclosure)) != false ) {            
                 if( $row != null ) { // skip empty lines
                     $values =   explode(',',$row[0]);
-                    $arrObj['inmate_id']= $values[1];
+                    $arrObj['inmate_id']= trim($values[1]);
                     $get=$this->cpdrc_fw->checkinmate($info['inmate_id']);
                  
                     if($get){
                          $eval = TRUE;
-                         $ret[]="<b>".$values[1]."</b>- ".ucwords($values[3])." ".ucwords($values[5])." ".ucwords($values[4]);
+                         $ret[]="<b>".trim($values[1]."</b>- ".ucwords(trim($values[3])." ".ucwords(trim($values[5])." ".ucwords(trim($values[4]));
                     }
                 }
             }   
@@ -41,48 +41,48 @@ class Import_model extends MY_Model {
                          $values =   explode(',',$row[0]);
                          // echo"<pre>";
                          // var_dump($values);
-                         echo $values[1]."<br>";
+                         echo trim($values[1]."<br>");
                          $info['ref_formid'] = null;
-                         $info['inmate_id']= $values[1];
-                         $info['cell_no']=$values[2];
-                         $info['inmate_fname']= ucwords($values[3]);
-                         $info['inmate_lname']= ucwords($values[5]);
-                         $info['inmate_mi']= ucwords($values[4]);
-                         $info['inmate_alias']= ucwords($values[6]);
+                         $info['inmate_id']= trim($values[1]);
+                         $info['cell_no']=trim($values[2]);
+                         $info['inmate_fname']= ucwords(trim($values[3]));
+                         $info['inmate_lname']= ucwords(trim($values[5]));
+                         $info['inmate_mi']= ucwords(trim($values[4]));
+                         $info['inmate_alias']= ucwords(trim($values[6]));
                          $info['added_by']=$this->session->userdata('user_id');
      
                          $this->db->insert('inmate', $info);
                          $inmateId = $info['inmate_id'];
                          
                          $inmate_info['inmate_id']=$inmateId;
-                         $inmate_info['status']=$values[7];
-                         $inmate_info['nationality']= ucwords($values[8]);
-                         $bday = explode('/',$values[9]);
+                         $inmate_info['status']=trim($values[7]);
+                         $inmate_info['nationality']= ucwords(trim($values[8]));
+                         $bday = explode('/',trim($values[9]));
                          $inmate_info['birthdate']=$bday[2]."-".$bday[0]."-".$bday[1];
                          // echo $bday[2]."-".$bday[1]."-".$bday[0];
                          // die();
-                         $inmate_info['age']=$values[10];
-                         $inmate_info['gender']=$values[11];
-                         $inmate_info['born_in']=$values[11];
-                         $inmate_info['home_add']=$values[14].', '.$values[13].', '.$values[12];
-                         $inmate_info['place'] = $values[12];
-                         $inmate_info['province_add']=$values[16];
-                         $inmate_info['occupation']=$values[17];
-                         $inmate_info['father']=$values[18];
-                         $inmate_info['mother']=$values[19];
-                         $inmate_info['relative']=$values[20];
-                         $inmate_info['relation']=$values[21];
-                         $inmate_info['address']=$values[24].', '.$values[23].', '.$values[22];
+                         $inmate_info['age']=trim($values[10]);
+                         $inmate_info['gender']=trim($values[11]);
+                         $inmate_info['born_in']=trim($values[11]);
+                         $inmate_info['home_add']=trim($values[14].', '.trim($values[13].', '.trim($values[12]);
+                         $inmate_info['place'] = trim($values[12]);
+                         $inmate_info['province_add']=trim($values[16]);
+                         $inmate_info['occupation']=trim($values[17]);
+                         $inmate_info['father']=trim($values[18]);
+                         $inmate_info['mother']=trim($values[19]);
+                         $inmate_info['relative']=trim($values[20]);
+                         $inmate_info['relation']=trim($values[21]);
+                         $inmate_info['address']=trim($values[24]).', '.trim($values[23]).', '.trim($values[22]);
                          $this->db->insert('inmate_info', $inmate_info);
                          // echo $this->db->last_query();
                          // die();
                          $inmate_build['inmate_id']=$inmateId;
-                         $inmate_build['height']=$values[25];
-                         $inmate_build['weight']=$values[26];
-                         $inmate_build['complexion']=$values[28];
-                         $inmate_build['build']=$values[27];
-                         $inmate_build['hair']=$values[29];
-                         $inmate_build['hair_peculiarities']=$values[30];
+                         $inmate_build['height']=trim($values[25]);
+                         $inmate_build['weight']=trim($values[26]);
+                         $inmate_build['complexion']=trim($values[28]);
+                         $inmate_build['build']=trim($values[27]);
+                         $inmate_build['hair']=trim($values[29]);
+                         $inmate_build['hair_peculiarities']=trim($values[30]);
      
                          $this->db->insert('inmate_build', $inmate_build);
      
@@ -121,16 +121,16 @@ class Import_model extends MY_Model {
                 if( $row != null ) { // skip empty lines
                     $values =   explode(',',$row[0]);
                     $where = array(
-                                'name' => trim($values[0]),
+                                'name' => trim(trim($values[0])),
                                 'status' => 'active'
                             );
                     $this->admin_model->db->query("SET collation_connection = 'utf8_general_ci';");
                     $chkr = $this->admin_model->get('cs_violations',$where,TRUE);
                     if (!empty($chkr)) {
                         $eval = TRUE;
-                        $ret[]="<b>".$values[0]."</b>";
+                        $ret[]="<b>".trim($values[0]."</b>");
                     }else{
-                        echo "<br>".$values[0]."</br>";
+                        echo "<br>".trim($values[0]."</br>");
                     }
                 }
             }   
@@ -141,7 +141,7 @@ class Import_model extends MY_Model {
                     if( $row != null ) { // skip empty lines
                         $values =   explode(',',$row[0]);
                         $vio_data['violations_category_id'] = '00000000000' ;
-                        $vio_data['name'] = $values[0];
+                        $vio_data['name'] = trim($values[0]);
                         $vio_data['level'] = 1;
                         $vio_data['min_year'] = 1;
                         $vio_data['min_month'] = 1;
@@ -194,7 +194,7 @@ class Import_model extends MY_Model {
                         $ret[]= "<b>".$key."<b>";
                     }    
                 }else{
-                   $ret[]= "<b>".$values[0]."<b>";
+                   $ret[]= "<b>".trim($values[0]."<b>");
                 }
             }
 
@@ -202,16 +202,16 @@ class Import_model extends MY_Model {
                 $values = explode('-',$ret[$i] );
                 $l = count($values)- 2;
                 $r = count($values) - 1;
-                echo "<br>".$values[$l]."||".$values[$r];
+                echo "<br>".trim($values[$l]."||".trim($values[$r]);
                 echo "<br>";
-                if(is_numeric($values[$l]) || is_numeric($values[$r])){
-                    // echo strlen($values[$l]);
-                    echo is_numeric($values[$r]);
+                if(is_numeric(trim($values[$l]) || is_numeric(trim($values[$r]))){
+                    // echo strlen(trim($values[$l]));
+                    echo is_numeric(trim($values[$r]));
                     echo "<br>";
-                    $index = strlen($values[$l])-2;
-                    if($values[$l][$index] == $values[$r][0]){
+                    $index = strlen(trim($values[$l])-2);
+                    if(trim($values[$l][$index] == trim($values[$r][0])){
                         
-                        echo $values[$l][strlen($values[$l])-2]."++" .$values[$r][0];
+                        echo trim($values[$l][strlen(trim($values[$l])-2]."++" .trim($values[$r][0]);
                     }
                 }
                 echo "<br>";
@@ -258,59 +258,59 @@ class Import_model extends MY_Model {
                     
                     // INMATE
                      $arrObj->ref_formid = null;
-                     $arrObj->inmate_id= $values[1];
-                     $arrObj->cell_no=$values[2];
-                     $arrObj->inmate_fname= ucwords($values[3]);
-                     $arrObj->inmate_lname= ucwords($values[5]);
-                     $arrObj->inmate_mi= ucwords($values[4]);
-                     $arrObj->inmate_alias= ucwords($values[6]);
+                     $arrObj->inmate_id= trim($values[1]);
+                     $arrObj->cell_no=trim($values[2]);
+                     $arrObj->inmate_fname= ucwords(trim($values[3]));
+                     $arrObj->inmate_lname= ucwords(trim($values[5]));
+                     $arrObj->inmate_mi= ucwords(trim($values[4]));
+                     $arrObj->inmate_alias= ucwords(trim($values[6]));
                      $arrObj->added_by=$this->session->userdata('user_id');
  
-                     $arrObj->status=$values[7];
-                     $arrObj->nationality= ucwords($values[8]);
-                     $bday = explode('/',$values[9]);
+                     $arrObj->status=trim($values[7]);
+                     $arrObj->nationality= ucwords(trim($values[8]));
+                     $bday = explode('/',trim($values[9]));
                      $arrObj->birthdate=$bday[2]."-".$bday[0]."-".$bday[1];
                      
                     // INMATE_INFO
-                     $arrObj->age=$values[10];
-                     $arrObj->gender=$values[11];
-                     $arrObj->born_in=$values[11];
-                     $arrObj->home_add=$values[14].', '.$values[13].', '.$values[12];
-                     $arrObj->place = $values[12];
-                     $arrObj->province_add=$values[16];
-                     $arrObj->occupation=$values[17];
-                     $arrObj->father=$values[18];
-                     $arrObj->mother=$values[19];
-                     $arrObj->relative=$values[20];
-                     $arrObj->relation=$values[21];
-                     $arrObj->address=$values[24].', '.$values[23].', '.$values[22];
+                     $arrObj->age=trim($values[10]);
+                     $arrObj->gender=trim($values[11]);
+                     $arrObj->born_in=trim($values[11]);
+                     $arrObj->home_add=trim($values[14]).', '.trim($values[13]).', '.trim($values[12]);
+                     $arrObj->place = trim($values[12]);
+                     $arrObj->province_add=trim($values[16]);
+                     $arrObj->occupation=trim($values[17]);
+                     $arrObj->father=trim($values[18]);
+                     $arrObj->mother=trim($values[19]);
+                     $arrObj->relative=trim($values[20]);
+                     $arrObj->relation=trim($values[21]);
+                     $arrObj->address=trim($values[24].', '.trim($values[23].', '.trim($values[22]);
                      
                      $inmateId = $arrObj->inmate_id;
 
 
                     // INMATE_BUILD
                      $arrObj->inmate_id=$inmateId;
-                     $arrObj->height=$values[25];
-                     $arrObj->weight=$values[26];
-                     $arrObj->complexion=$values[28];
-                     $arrObj->build=$values[27];
-                     $arrObj->hair=$values[29];
-                     $arrObj->hair_peculiarities=$values[30];
+                     $arrObj->height=trim($values[25]);
+                     $arrObj->weight=trim($values[26]);
+                     $arrObj->complexion=trim($values[28]);
+                     $arrObj->build=trim($values[27]);
+                     $arrObj->hair=trim($values[29]);
+                     $arrObj->hair_peculiarities=trim($values[30]);
                         
 
 
                     // CS_REASON
                      $arrObj->inmate_id=$inmateId;
-                     $arrObj->start_date        = $values[31];
-                     $arrObj->type              = $values[32];
+                     $arrObj->start_date        = trim($values[31]);
+                     $arrObj->type              = trim($values[32]);
                      $arrObj->created_on        = time();
                      
                      // $arrObj->cs_reason_id = ;
                      
-                     $v = explode('||', $values[34]);
-                     $c = explode('||', $values[35]);
-                     $cnt = explode('||', $values[36]);
-                     $crtName = explode('||', $values[37]);
+                     $v = explode('||', trim($values[34]));
+                     $c = explode('||', trim($values[35]));
+                     $cnt = explode('||', trim($values[36]));
+                     $crtName = explode('||', trim($values[37]));
                      
                      
                      $cases = array();
@@ -338,7 +338,7 @@ class Import_model extends MY_Model {
                          $cs_cases['s_max_day']     = $violation_info->max_day;
                          $cs_cases['created_on']    = time();
 
-                         $cases[$arrObj->cs_reason_id] = $cs_cases;
+                         $cases[] = $cs_cases;
                      }
                     
 
@@ -360,6 +360,7 @@ class Import_model extends MY_Model {
                                     "inmate_mi" => $key->inmate_mi, 
                                     "inmate_alias" => $key->inmate_alias, 
                                     "added_by" => $key->added_by,
+                                    "inmate_type"=>$key->type
                                 );
 
                     $this->db->insert('inmate', $inmate);
@@ -406,29 +407,39 @@ class Import_model extends MY_Model {
                     
                     foreach ($key->cases as $c) {
                         $inmate_case_info = array('inmate_id'=>$key->inmate_id,
-                              'case_no'=>$c->case_no,
-                              'crime'=>$c->crime,
-                              'court_name'=>$c->court_name,
-                              'counts' => $c->counts
+                              'case_no'=>$c["case_no"],
+                              'crime'=>$c["violation_id"],
+                              'court_name'=>$c["court_name"],
+                              'counts' => $c["counts"]
                               );
                         $this->admin_model->save('inmate_case_info', $inmate_case_info); 
 
                         $case = array(
                                 "reasons_id"=>$cs_reason_id,
-                                "case_no" => $c->case_no,
-                                "violation_id" => $c->violation_id,
-                                "s_min_year" => $c->s_min_year,
-                                "s_min_month" => $c->s_min_month,
-                                "s_min_day" => $c->s_min_day,
-                                "s_max_year" => $c->s_max_year,
-                                "s_max_month" => $c->s_max_month,
-                                "s_max_day" => $c->s_max_day,
-                                "created_on" => $c->created_on
+                                "case_no" => $c["case_no"],
+                                "violation_id" => $c["violation_id"],
+                                "s_min_year" => $c["s_min_year"],
+                                "s_min_month" => $c["s_min_month"],
+                                "s_min_day" => $c["s_min_day"],
+                                "s_max_year" => $c["s_max_year"],
+                                "s_max_month" => $c["s_max_month"],
+                                "s_max_day" => $c["s_max_day"],
+                                "created_on" => $c["created_on"]
                             );
                         $this->admin_model->save('cs_cases', $case); 
+
+                        $ins = array(
+                             'inmate_id' => $key->inmate_id,
+                             'added_by' => $this->session->userdata('user_id'),
+                             'img_set' => '1' );
+                         $this->db->insert('file', $ins);
+     
+                         $temp['inmate_id'] = $key->inmate_id;
+                         $temp['step'] = 3;
+                         $this->cpdrc_fw->insert($temp);
                     }
-                    
                 }
+                return $ret;
             }else{
                 return $chkr;
             }
@@ -442,22 +453,20 @@ class Import_model extends MY_Model {
         $ret = array();
 
         foreach ($array as $key) {
-            $data = array("ref_formid " => $key, 
-                            "inmate_id" => $key, 
-                            "cell_no" => $key,
-                            "inmate_fname" => $key, 
-                            "inmate_lname" => $key, 
-                            "inmate_mi" => $key, 
-                            "inmate_alias" => $key, 
-                            "added_by" => $key,
-                            "status" => $key,
-                            "nationality" => $key, 
-                            "birthdate" => $key,
-                        );
-            $get=$this->cpdrc_fw->checkinmate($key->inmate_id);
+            // $data = array("ref_formid " => $key, 
+            //                 "inmate_id" => $key, 
+            //                 "cell_no" => $key,
+            //                 "inmate_fname" => $key, 
+            //                 "inmate_lname" => $key, 
+            //                 "inmate_mi" => $key, 
+            //                 "inmate_alias" => $key, 
+            //                 "added_by" => $key,
+            //                 "status" => $key,
+            //                 "nationality" => $key, 
+            //                 "birthdate" => $key,
+            //             );
             
-
-
+            $get=$this->cpdrc_fw->checkinmate($key->inmate_id);
             if($get){
                  $ret[]="Inmate number Duplicate<b>".$key->inmate_id."</b>- ".$key->inmate_fname." ".$key->inmate_lname." ".$key->inmate_mi;
             }
@@ -471,8 +480,6 @@ class Import_model extends MY_Model {
                      $ret[]="Case number Duplicate <b>".$key->inmate_id."</b>- ".$key->inmate_fname." ".$key->inmate_lname." ".$key->inmate_mi;
                 }
             }
-            // echo "<pre>";
-            // var_dump($res);
         }
         return $ret;
     }
