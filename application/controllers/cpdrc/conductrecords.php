@@ -39,7 +39,7 @@ session_start();
 	 		$id=$this->input->post('id');
 	 		$data['rec']=$this->cpdrc_fw->myinmate($id);
 	 		$data['view']=$this->cpdrc_fw->viewconrec($id);
-	 		$data['releaseInfo'] = $this->cpdrc_fw->inmateReleaseInfo($id);
+	 		// $data['releaseInfo'] = $this->cpdrc_fw->inmateReleaseInfo($id);
 
 	 		
 	 		$this->load->view('menu/view_conrec', $data);
