@@ -309,7 +309,8 @@ class Import_model extends MY_Model {
                      
                      $v = explode('||', $values[34]);
                      $c = explode('||', $values[35]);
-
+                     $cnt = explode('||', $values[36]);
+                     $crtName = explode('||', $values[37]);
                      
                      
                      $cases = array();
@@ -318,12 +319,16 @@ class Import_model extends MY_Model {
                          $arrObj->cs_reason_id = $i;
 
                          $cs_cases = array();
+                         // $cs_cases['date_confinment']=>$this->input->post('confine'),
+                         $cs_cases['court_name']=$crtName[$i];
+                         $cs_cases['counts'] =$cnt[$i];
+                        
                          $cs_cases['case_no']       = trim($c[$i]);
                          $name                      = trim($v[$i]);
                          // echo $cs_cases['name'] ;
                          $violation_info            = $this->admin_model->get('cs_violations',array('name'=>$name),TRUE);
                         
-                         $cs_cases['crime']   = $violation_info->id;
+                         $cs_cases['violation_id']   = $violation_info->id;
 
                          $cs_cases['s_min_year']    = $violation_info->min_year;
                          $cs_cases['s_min_month']   = $violation_info->min_month;
@@ -355,9 +360,6 @@ class Import_model extends MY_Model {
                                     "inmate_mi" => $key->inmate_mi, 
                                     "inmate_alias" => $key->inmate_alias, 
                                     "added_by" => $key->added_by,
-                                    "status" => $key->status,
-                                    "nationality" => $key->nationality, 
-                                    "birthdate" => $key->birthdate,
                                 );
 
                     $this->db->insert('inmate', $inmate);
@@ -399,11 +401,31 @@ class Import_model extends MY_Model {
                                     "type" => $key->type , 
                                     "created_on" => $key->created_on
                                 );
-                    $query = $this->admin_model->insert('cs_reasons',$cs_reasons);
-                    $cs_reason_id = $this->admin_model->insert_id();
+                    $query = $this->admin_model->save('cs_reasons',$cs_reasons);
+                    $cs_reason_id = $this->admin_model->db->insert_id();
                     
                     foreach ($key->cases as $c) {
-                    
+                        $inmate_case_info = array('inmate_id'=>$key->inmate_id,
+                              'case_no'=>$c->case_no,
+                              'crime'=>$c->crime,
+                              'court_name'=>$c->court_name,
+                              'counts' => $c->counts
+                              );
+                        $this->admin_model->save('inmate_case_info', $inmate_case_info); 
+
+                        $case = array(
+                                "reasons_id"=>$cs_reason_id,
+                                "case_no" => $c->case_no,
+                                "violation_id" => $c->violation_id,
+                                "s_min_year" => $c->s_min_year,
+                                "s_min_month" => $c->s_min_month,
+                                "s_min_day" => $c->s_min_day,
+                                "s_max_year" => $c->s_max_year,
+                                "s_max_month" => $c->s_max_month,
+                                "s_max_day" => $c->s_max_day,
+                                "created_on" => $c->created_on
+                            );
+                        $this->admin_model->save('cs_cases', $case); 
                     }
                     
                 }
