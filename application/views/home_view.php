@@ -2,7 +2,10 @@
 
     <div class="row">
         <div class="col-lg-12">
-            <h3 class="page-header">Prison Data Year 2015
+            <h3 class="page-header">Prison Data Year <?php
+                $current_year = intval(mdate("%Y",now()));
+                echo $current_year;
+             ?>
             </h3>
         </div>
     </div>
@@ -14,7 +17,7 @@
                     <label for="" class="col-sm-4 col-md-4 control-label">Select a Year</label>
                     <div class="col-sm-3 col-md-4">
                         <?php
-                            $current_year = intval(mdate("%Y",now()));
+                            
                             $old_year = $current_year - 120;
                             $date_range = array();
                             for ($i=$current_year; $i >= $old_year ; $i--) { 
