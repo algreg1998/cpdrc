@@ -36,12 +36,12 @@
                          <form action="<?php echo base_url('import/uploadData');?>" method="post" enctype="multipart/form-data" id="importFrm">
                             <input type="file" name="file" id="file" required/><br>
                             <label>Type</label>
-                            <select name="type" class="form-control" style="width: 150px;">
+                            <select name="type" class="form-control" style="width: 250px;">
                                 <option value="inmate">Inmate Records</option>
                                 <option value="violation">Violation Records</option>
                                 <option value="inmateWithCases">Inmate Records with Cases</option>
                                 <!-- <option <var></var>lue="cases">Cases Records</option> -->
-                            </select>
+                            </select><br>
                             <input type="submit" class="btn btn-primary" name="importSubmit" id="importSubmit" value="Import">
                         </form>
                     </div>
