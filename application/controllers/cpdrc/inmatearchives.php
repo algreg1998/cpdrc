@@ -29,12 +29,13 @@ session_start();
 	 		$this->db->where('case_status', '0');
 	 		$this->db->update('inmate_case_info', array('case_status' => '1' ) );
 
-	 		//update the case info status
+	 		//start change the status of the current CS_REASON
 	 		$this->db->where('inmate_id', $id);
 	 		$this->db->where('status', 'Active');
 	 		$this->db->update('cs_reasons', array('status' => 'Done' ) );
-	 		
-	 		redirect('cpdrc/pages/archives', 'refresh');	
+	 		//end change the status of the current CS_REASON
+
+	 		redirect('cpdrc/pages/archives', 'refresh');
 	 	}
 	 	public function released()
 	 	{
@@ -58,13 +59,13 @@ session_start();
 	 		$this->db->where('case_status', '0');
 	 		$this->db->update('inmate_case_info', array('case_status' => '1' ) );
 
-	 		//update the case info status
+	 		//start change the status of the current CS_REASON
 	 		$this->db->where('inmate_id', $id);
 	 		$this->db->where('status', 'Active');
 	 		$this->db->update('cs_reasons', array('status' => 'Done' ) );
+	 		//end change the status of the current CS_REASON
 
-	 		redirect('cpdrc/pages/archives', 'refresh');		 		
-
+	 		redirect('cpdrc/pages/archives', 'refresh');
 	 	}
 	 	public function view()
 	 	{
@@ -135,7 +136,6 @@ session_start();
 	 	}
 	 	public function addNewCase()
 	 	{
-
 			$id = $this->input->post('id');
 
 			$e['inmate_id']= $id;
@@ -311,10 +311,70 @@ session_start();
 		    	//$this->db->from('court');
 		    	$inmate['courts'] = $query->result();
 
-			}else{
-				$this->session->set_flashdata('error_msg','<b>Warning!</b> Case information already exist. Please check the information in the table below');
-			}
-			$this->load->view('menu/add_new_caseinfo', $inmate);
+		    	/*
+					$id = $this->input->post('id');
+
+					$e['inmate_id']= $id;
+					$e['case_no']=$this->input->post('casenum');
+					$e['court_name']=$this->input->post('court');
+					$e['date_confinment']=$this->input->post('confine');
+					$e['crime']=$this->input->post('crime');
+					// $e['sentence']=$this->input->post('sentence');
+					$e['commencing']= " ";
+	                $e['counts']= $this->input->post('counts');
+					// $e['expire_good']=$this->input->post('dategood');
+					// $e['expire_bad']=$this->input->post('datebad');
+
+					$this->db->select('*');
+					$this->db->from('inmate_case_info');
+					$this->db->where("case_no = ".$e['case_no']);
+					$this->db->where("crime = ".$e['crime']);
+
+					$res = $this->db->get()->result();
+					// echo $this->db->last_query();
+					// echo json_encode($res);
+					if(!empty($res)){
+						$this->session->set_flashdata('error_msg','Case is already existing.');
+					}else{
+						$this->db->insert('inmate_case_info', $e);
+					}
+
+
+					$inmate['case']=$this->cpdrc_fw->getcaseinfolimit($id);
+					$inmate['gos'] = $this->cpdrc_fw->inmateinfo($id);
+					$inmate['id']=$id;
+
+					// Retrieve violation data from database
+			    	$violations = $this->admin_model->get('cs_violations',array('status' => 'active' ),FALSE,'name ASC');
+
+					$vio = array();
+					
+					foreach ($violations as $violation) {
+						if ( in_array($violation->level, array('1','2','3','4','5')) )
+						{
+							$vio[$violation->id] = $violation->name.' (level '.$violation->level.') ' . $violation->RepublicAct;
+						}
+						else
+						{
+							$vio[$violation->id] = $violation->name.' ('.$violation->level.') ' . $violation->RepublicAct;
+						}
+					}
+					$inmate['violations'] = $vio;
+					if (count($vio)==0) {
+						$data['error'] = "<b>Warning!</b> No more violations to choose from! ";
+					}
+			    	// $this->db->select('id,name');
+			    	// $query = $this->db->get('cs_violations');
+			    	// $inmate['violations'] = $query->result();
+
+			    	// Retrieve court list from db
+			    	$query = $this->db->get('view_court');
+			    	//$this->db->from('court');
+			    	$inmate['courts'] = $query->result();
+					
+					$this->load->view('menu/add_new_caseinfo', $inmate);
+					
+		    	*/
 	 	}
 	 	public function checkToUpdate()
 	 	{
