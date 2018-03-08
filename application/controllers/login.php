@@ -47,7 +47,7 @@ class Login extends User_Controller {
 					$this->session->set_flashdata('error_msg','User Deactivated please contact Administrator.');
 				}
 			}else{
-				$this->session->set_flashdata('error_msg','Username and Password does not match.');
+				$this->session->set_flashdata('error_msg','Username and password does not match.');
 			}
 
 			redirect(current_url_full());
