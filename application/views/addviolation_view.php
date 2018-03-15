@@ -35,10 +35,15 @@
                                     </div>
                                 <?php endif ?>
 
-                                <?php if ($this->session->flashdata('error_msg')): ?>
+                                <?php 
+
+                                    if($this->session->flashdata('vio_data')){
+                                        $vio_data = json_decode($this->session->flashdata('vio_data'));
+                                    }
+                                if ($this->session->flashdata('error_msg')): ?>
                                     <div class="alert alert-danger">
                                         <button class="close" aria-hidden="true" data-dismiss="alert" type="button">×</button>
-                                        <?php echo $this->session->flashdata('error_msg') ?>
+                                        <?php echo $this->session->flashdata('error_msg');?>
                                     </div>
                                 <?php endif ?>
 
@@ -56,7 +61,7 @@
                                 <div class="form-group">
                                     <label for="name" class="col-sm-2 control-label">Name</label>
                                     <div class="col-lg-7">
-                                        <?php echo form_input('name', set_value('name') ? set_value('name') : '', 'id="name" class="form-control" required'); ?>
+                                        <input autofocus="" type="text" name="name" id="name" class="form-control" required value="<?php if(isset($vio_data)){echo $vio_data->name;}?>">
                                     </div>
                                 </div>
                                 
@@ -85,25 +90,52 @@
                                 <div id="timeInfo" class="form-group">
                                     <label for="time_departed" class="col-sm-2 control-label">Min Penalty</label>
                                     <div class="col-lg-2">
-                                        <?php echo form_input('min_year', set_value('min_year') ? set_value('min_year') : '', 'id="min_year" class="form-control" placeholder="Year"'); ?>
+                                        <div class="input-group">
+                                            <!-- <?php echo form_input('min_year', set_value('min_year') ? set_value('min_year') : '', 'id="min_year" class="form-control"'); ?> -->
+                                            <input type="text" name="min_year" id="min_year" class="form-control" value="<?php if(isset($vio_data)){echo $vio_data->min_year;}?>">
+                                            <span class="input-group-addon">Year(s)</span>
+                                        </div>
                                     </div>
                                     <div class="col-lg-2">
-                                        <?php echo form_input('min_month', set_value('min_month') ? set_value('min_month') : '', 'id="min_month" class="form-control" placeholder="Month"'); ?>
+                                        <div class="input-group">
+                                          <!--   <?php echo form_input('min_month', set_value('min_month') ? set_value('min_month') : '', 'id="min_month" class="form-control"'); ?> -->
+                                            <input type="text" name="min_month" id="min_month" class="form-control" value="<?php if(isset($vio_data)){echo $vio_data->min_month;}?>">
+                                            <span class="input-group-addon">Month(s)</span>
+                                        </div>
                                     </div>
                                     <div class="col-lg-2">
-                                        <?php echo form_input('min_day', set_value('min_day') ? set_value('min_day') : '', 'id="min_day" class="form-control" placeholder="Day"'); ?>
+                                        <div class="input-group">
+                                            <!-- <?php echo form_input('min_day', set_value('min_day') ? set_value('min_day') : '', 'id="min_day" class="form-control"'); ?> -->
+                                             <input type="text" name="min_day" id="min_day" class="form-control" value="<?php if(isset($vio_data)){echo $vio_data->min_day;}?>">
+                                            <span class="input-group-addon">Day(s)</span>
+                                        </div>
                                     </div>
                                 </div>
                                 <div id="timeInfo" class="form-group">
                                     <label for="time_departed" class="col-sm-2 control-label">Max Penalty</label>
                                     <div class="col-lg-2">
-                                        <?php echo form_input('max_year', set_value('max_year') ? set_value('max_year') : '', 'id="max_year" class="form-control" placeholder="Year"'); ?>
+                                    <div class="input-group">
+                                        <!-- <?php echo form_input('max_year', set_value('max_year') ? set_value('max_year') : '', 'id="max_year" class="form-control"'); ?> -->
+                                        <input type="text" name="max_year" id="max_year" class="form-control" value="<?php if(isset($vio_data)){echo $vio_data->max_year;}?>">
+                                        <span class="input-group-addon">Year(s)</span>
+                                    </div>    
+                                        
                                     </div>
                                     <div class="col-lg-2">
-                                        <?php echo form_input('max_month', set_value('max_month') ? set_value('max_month') : '', 'id="max_month" class="form-control" placeholder="Month"'); ?>
+                                    <div class="input-group">
+                                       <!--  <?php echo form_input('max_month', set_value('max_month') ? set_value('max_month') : '', 'id="max_month" class="form-control"'); ?> -->
+                                         <input type="text" name="max_month" id="max_month" class="form-control" value="<?php if(isset($vio_data)){echo $vio_data->max_month;}?>">
+                                        <span class="input-group-addon">Month(s)</span>
+                                    </div>    
+                                        
                                     </div>
                                     <div class="col-lg-2">
-                                        <?php echo form_input('max_day', set_value('max_day') ? set_value('max_day') : '', 'id="max_day" class="form-control" placeholder="Day"'); ?>
+                                    <div class="input-group">
+                                        <!-- <?php echo form_input('max_day', set_value('max_day') ? set_value('max_day') : '', 'id="max_day" class="form-control"'); ?> -->
+                                        <input type="text" name="max_day" id="max_day" class="form-control" value="<?php if(isset($vio_data)){echo $vio_data->max_day;}?>">
+                                        <span class="input-group-addon">Day(s)</span>
+                                    </div>
+                                        
                                     </div>
                                 </div>
                                 <div class="form-group">

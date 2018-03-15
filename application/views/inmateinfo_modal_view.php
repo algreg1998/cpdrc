@@ -43,6 +43,18 @@
                             </div>
                         </div>
                         <div class="form-group">
+                          <div class="row">
+                              <div class="col-lg-8"></div>
+                              <div class="col-lg-4">
+                                <form action="<?php echo site_url()?>cpdrc/addinmate/add5" method="POST">
+                                  <input name="filename"  class="hidden" value="<?php echo $inmate_info->filename; ?>">
+                                  <input name="id"  class="hidden" value="<?php echo $inmate_info->inmate_id; ?>">
+                                  <input name="formid" class="hidden" value="<?php echo $inmate_info->refForm; ?>">
+                                  
+                                  <button class="btn btn-success" type="submit">Add new Markings</button>
+                                </form>
+                              </div>
+                          </div>
                             <div class="row">
                               <div class="col-lg-8"></div>
                               <div class="col-lg-4"><button type="button" class="btn btn-primary pull-right" data-toggle="collapse" data-target="#demo"><i class="fa fa-print"></i> Print</button></div>
@@ -140,13 +152,22 @@
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-        <h4 class="modal-title" id="myModalLabel"><i class="fa fa-exclamation-circle"></i> Edit Request Reason</h4>
+        <h4 class="modal-title" id="myModalLabel"><i class="fa fa-exclamation-circle"></i> Edit Request - Reason</h4>
       </div>
       <div class="modal-body">
         <form>
-            <h2>Reason</h2>
-             <textarea style="width:auto; resize: none; overflow: auto;" name="reason" id="reason" required></textarea>
-    </div>
+          <div class="container">
+            <div class='col-md-1'>
+              <label>Reason:</label>
+            </div>
+
+             <div class='col-md-11 text-left'>
+              <textarea class="form-control" style="width: 40%; height: 300px; resize: none; overflow: auto;" name="reason" id="reason" required></textarea>
+              <small><em>Please input a valid reason on why you want to edit this inmate information.</em></small>
+             </div>
+             
+          </div>
+      </div>
     <div class="modal-footer">
             <button type="button"  class="btn btn-success btn-sm" id="sub">Submit</button>
         </form>
@@ -174,9 +195,19 @@
         $("#myModal4").modal("toggle");
     });
 
-     $("#sub").prop("disabled", true);
+     $("#sub").hide();
+
      $("#reason").keyup(function() {
-         $("#sub").prop("disabled", false);
+        if(($("#reason").val()).trim() == "")
+        {
+          $("#sub").hide();
+         // $("#sub").prop("disabled", true);
+        }
+        else
+        {
+          $("#sub").show();
+          // $("#sub").prop("disabled", false);
+        }
      });
 
      $("#sub").click(function(){

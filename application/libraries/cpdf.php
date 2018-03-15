@@ -63,7 +63,7 @@ class cpdf extends FPDF
         $a = json_decode(json_encode($data1));
         $b = json_decode(json_encode($data2));
         $c = json_decode(json_encode($data3));
-        $this->Image(base_url('uploads/inmate/'.$a[0]->filename),130,75,45);
+        $this->Image(base_url('uploads/inmate/'.$a[0]->filename),125,65,65,55);
         $this->Ln(5);
         $this->SetFont('Arial','',10);
         $this->Cell(50,5,"CPDRC Form No.".$a[0]->formid ,0,1,'C');
@@ -86,26 +86,39 @@ class cpdf extends FPDF
         $this->Cell(15,5,"Crime",0,0,'');
         $this->Cell(30);
         $this->Cell(15,5,":____________________________",0,0,'');
+        $this->SetFont('Arial','',7);
         if(strlen($b[0]->crime) > 36){
             $this->Cell(6.5);
+            $this->SetFont('Arial','',7);
             $this->Cell(15,5,substr($b[0]->crime,0,35),0,1,'C');
             $this->Cell(46);
+            $this->SetFont('Arial','',10);
             $this->Cell(15,5,"____________________________",0,0,'');
             $this->Cell(6.5);
+            $this->SetFont('Arial','',7);
             $this->Cell(15,5,substr($b[0]->crime,35,35),0,1,'C');
             $this->Cell(46);
+            $this->SetFont('Arial','',10);
             $this->Cell(15,5,"____________________________",0,1,'');
             $this->Cell(6.5);
+            $this->SetFont('Arial','',7);
             $this->Cell(15,5,substr($b[0]->crime,70,35),0,1,'C');
+            $this->Ln(-5);
         }else{
             $this->Cell(6.5);
             $this->Cell(15,5,$b[0]->crime,0,1,'C');
             $this->Cell(46);
+            $this->SetFont('Arial','',10);
             $this->Cell(15,5,"____________________________",0,1,'');
             $this->Cell(46);
             $this->Cell(15,5,"____________________________",0,1,'');
         }
-        
+        $this->SetFont('Arial','',10);
+        $this->Cell(15,5,"Case No.",0,0,'');
+        $this->Cell(30);
+        $this->Cell(15,5,":____________________________",0,0,'');
+        $this->Cell(6.5);
+        $this->Cell(15,5,"",0,1,'C');
         $this->Cell(15,5,"Court",0,0,'');
         $this->Cell(30);
         $this->Cell(15,5,":____________________________",0,0,'');
@@ -133,11 +146,11 @@ class cpdf extends FPDF
         $this->Cell(15,5,":____________________________",0,0,'');
         $this->Cell(6.5);
         $this->Cell(15,5,$b[0]->sentence,0,1,'C');
-        $this->Cell(15,5,"Prison No.",0,0,'');
+        $this->Cell(15,5,"Inmate No.",0,0,'');
         $this->Cell(30);
         $this->Cell(15,5,":____________________________",0,0,'');
         $this->Cell(6.5);
-        $this->Cell(15,5,$a[0]->cell,0,0,'C');
+        $this->Cell(15,5,$a[0]->id,0,0,'C');
         $this->Cell(30);
         $this->Cell(15,5,"Height",0,0,'');
         $this->Cell(5);
@@ -165,29 +178,49 @@ class cpdf extends FPDF
         $this->Cell(5);
         $this->Cell(15,5,":____________________________",0,0,'');
         $this->Cell(6.5);
-        $this->Cell(15,5,$a[0]->complexion,0,1,'C');
-        $this->Cell(15,5,"Date of Birth",0,0,'');
+        //$this->SetFont('Arial','',7);
+        $complexion = $a[0]->complexion;
+        if($complexion == "Light skin that always burns and never tans."){
+            $complexion = "Light skin";
+        }else if($complexion == "Fair skin that usually burns, then tans."){
+            $complexion = "Fair skin";
+        }else if($complexion == "Medium skin that may burn, but tans well."){
+            $complexion = "Medium skin";
+        }else if($complexion == "Olive skin that rarely burns and tans well."){
+            $complexion = "Olive skin";
+        }else if($complexion == "Tan brown skin that very rarely burns and tans well."){
+            $complexion = "Tan Brown skin";
+        }else if($complexion == "Black brown skin that never burns and tans very well."){
+            $complexion = "Black Brown skin";
+        }
+        $this->Cell(15,5,$complexion,0,1,'C');
+        $this->Cell(15,5,"Religion",0,0,'');
         $this->Cell(30);
         $this->Cell(15,5,":____________________________",0,0,'');
         $this->Cell(6.5);
-        $this->Cell(15,5,$a[0]->bday,0,0,'C');
+        $this->Cell(15,5,"Religion",0,0,'C');
         $this->Cell(30);
         $this->Cell(15,5,"Hair",0,0,'');
         $this->Cell(5);
         $this->Cell(15,5,":____________________________",0,0,'');
         $this->Cell(6.5);
         $this->Cell(15,5,$a[0]->hair,0,1,'C');
-        $this->Cell(15,5,"Place of Birth",0,0,'');
+        $this->Cell(15,5,"Date of Birth",0,0,'');
         $this->Cell(30);
         $this->Cell(15,5,":____________________________",0,0,'');
         $this->Cell(6.5);
-        $this->Cell(15,5,$a[0]->home,0,0,'C');
+        $this->Cell(15,5,$a[0]->bday,0,0,'C');
         $this->Cell(30);
         $this->Cell(15,5,"Build",0,0,'');
         $this->Cell(5);
         $this->Cell(15,5,":____________________________",0,0,'');
         $this->Cell(6.5);
         $this->Cell(15,5,$a[0]->build,0,1,'C');
+        $this->Cell(15,5,"Place of Birth",0,0,'');
+        $this->Cell(30);
+        $this->Cell(15,5,":____________________________",0,0,'');
+        $this->Cell(6.5);
+        $this->Cell(15,5,$a[0]->home,0,1,'C');
         $this->Cell(15,5,"Present Address",0,0,'');
         $this->Cell(30);
         $this->Cell(15,5,":____________________________",0,0,'');

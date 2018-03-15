@@ -60,14 +60,6 @@ class Manage extends Admin_Controller {
 			$minpenalty = ($min_year*365)+($min_month*30)+$min_day;
 			$maxpenalty = ($max_year*365)+($max_month*30)+$max_day;
 
-			if ($minpenalty > $maxpenalty) {
-				$this->session->set_flashdata('error_msg','Minimum penalty should be less than maximum penalty.');
-				redirect(base_url('manage/addviolation'));
-			} else if (intval($tot) <= 0 && ($lvl !== 'lifetime' && $lvl !== 'none')) {
-				$this->session->set_flashdata('error_msg','Please add some min and max penalty of the violation.');
-				redirect(base_url('manage/addviolation'));
-			}
-
 			$vio_data = $this->admin_model
 						->array_from_post(
 								array(
@@ -84,6 +76,21 @@ class Manage extends Admin_Controller {
 									'max_day'
 								)
 						);
+			if ($minpenalty > $maxpenalty) {
+				$this->session->set_flashdata('error_msg','Violation is already exists.');
+				$this->session->set_flashdata('vio_data',json_encode($vio_data));
+				
+				$this->session->set_flashdata('error_msg','Minimum penalty should be less than maximum penalty.');
+				redirect(base_url('manage/addviolation'));
+			} else if (intval($tot) <= 0 && ($lvl !== 'lifetime' && $lvl !== 'none')) {
+				$this->session->set_flashdata('error_msg','Violation is already exists.');
+				$this->session->set_flashdata('vio_data',json_encode($vio_data));
+				
+				$this->session->set_flashdata('error_msg','Please add some min and max penalty of the violation.');
+				redirect(base_url('manage/addviolation'));
+			}
+
+			
             $vio_data['created_on'] = now();
             $vio_data['RepublicAct'] = NULL;
             $vio_data['description'] = NULL;
@@ -98,6 +105,7 @@ class Manage extends Admin_Controller {
 			$chkr = $this->admin_model->get('cs_violations',$where,TRUE);
 			if (!empty($chkr)) {
 				$this->session->set_flashdata('error_msg','Violation is already exists.');
+				$this->session->set_flashdata('vio_data',json_encode($vio_data));
 				redirect(base_url('manage/addviolation'));
 			}
 			$this->session->set_flashdata('success_msg','Violation was successfully saved.');
@@ -855,7 +863,7 @@ class Manage extends Admin_Controller {
 			//check if name and level exists
 			$where = array('court_name'=>$this->input->post('court_name'),'status'=>'active');
 			$chkr = $this->admin_model->get('court',$where,TRUE);
-			if (!empty($chkr) && $chkr->id !== $id) {
+			if (!empty($chkr) && $chkr->court_id != $id) {
 				$this->session->set_flashdata('error_msg','Court is already existing.');
 				redirect(base_url('manage/editcourt/'.$id));
 			}

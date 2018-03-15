@@ -49,6 +49,8 @@ class Search extends Admin_Controller {
 	public function inmateinfo_modal($inmate_id)
 	{
 		$inmate_info = $this->admin_model->get('inmates_full',array('inmate_id'=>$inmate_id),TRUE);
+		$refForm = $this->admin_model->get_select('inmate',array('inmate_id'=>$inmate_id),"ref_formid");
+		$inmate_info->refForm = $refForm[0]->ref_formid;
 		
 		if (!empty($inmate_info)) {
 			$this->data['inmate_info'] = $inmate_info;

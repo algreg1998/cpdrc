@@ -178,75 +178,58 @@ session_start();
 		    		//Step 2 --update temporary
 		    		$affectedFields['step'] = 2;
 		    		$this->cpdrc_fw->update($id,$affectedFields);
-
-		    		// $data['id'] = $id;
-		    		// $data['formid'] = $this->input->post('formid');
-		    		// $data['name'] = $this->input->post('name');
-		    		// $data['filename'] = $filename;
-		    		// $data['info'] = null;
+					
+					redirect("cpdrc/addinmate/profiling/".$id);
 		    		
+		    	}
+		    	elseif ($info['age'] < 18) {
+		    		// $info['data'] = "<b>Warning!</b> Age must be 18 years old and above.";
+		    		$this->session->set_flashdata('error_msg',"<b>Warning!</b> Age must be 18 years old and above.");
+		    		// $info['id'] = $id;
+		    		// $info['formid'] = $this->input->post('formid');
+		    		// $info['name'] = $this->input->post('name');
+		    		// $info['filename'] = $filename;
+
 		    		// $this->data['title']    = 'Manage Inmate';
 		    		// $this->data['css']      = array();
 		    		// $this->data['js_top']   = array();
 		    		// $this->data['header']   = $this->load->view('admin/header_view',$this->data,TRUE);
-		    		// $this->data['body']     = $this->load->view('menu/add_inmate3',$data,TRUE);
+		    		// $this->data['body']     = $this->load->view('menu/add_inmate2',$data,TRUE);
 		    		// $this->data['footer']   = $this->load->view('footer_view',NULL,TRUE);
 		    		// $this->data['js_bottom']= array();
-		    		// $this->data['custom_js']= '<script type="text/javascript">
-			    	// 	$(function(){
-			    	// 	});
-			    	// </script>';
+        //             $this->data['custom_js']= '<script type="text/javascript">
+        //                                     $(document).ready(function(){
+        //                                         $("#ft").keyup(function(){
+        //                                             var feet = $("#ft").val();
+        //                                             var inches = $("#in").val();
+                                                    
+        //                                             var finalInches = parseInt((feet * 12)) + parseInt(inches);
+        //                                             var result_cm = (finalInches * 2.54).toFixed(2);
+                                                    
+        //                                             $("#cm").val(result_cm);
+        //                                         });
+                                                
+        //                                         $("#in").keyup(function(){
+        //                                             var feet = $("#ft").val();
+        //                                             var inches = $("#in").val();
+                                                    
+        //                                             var finalInches = parseInt((feet * 12)) + parseInt(inches);
+        //                                             var result_cm = (finalInches * 2.54).toFixed(2);
+                                                    
+        //                                             $("#cm").val(result_cm);
+        //                                         });
+                                                
+        //                                         $("#kg").keyup(function(){
+        //                                             var kilograms = $("#kg").val();
+                                                    
+        //                                             var result_lbs = (parseInt(kilograms) * 2.2).toFixed(2);
+                                                    
+        //                                             $("#lbs").val(result_lbs);
+        //                                         });
+        //                                     });
+        //                                 </script>';
 		    		// $this->load->view('templates',$this->data);
 		    		redirect("cpdrc/addinmate/profiling/".$id);
-		    		// $this->load->view('menu/add_inmate3', $data);
-		    	}
-		    	elseif ($info['age'] < 18) {
-		    		$info['data'] = "<b>Warning!</b> Age must be 18 years old and above.";
-		    		$info['id'] = $id;
-		    		$info['formid'] = $this->input->post('formid');
-		    		$info['name'] = $this->input->post('name');
-		    		$info['filename'] = $filename;
-
-		    		$this->data['title']    = 'Manage Inmate';
-		    		$this->data['css']      = array();
-		    		$this->data['js_top']   = array();
-		    		$this->data['header']   = $this->load->view('admin/header_view',$this->data,TRUE);
-		    		$this->data['body']     = $this->load->view('menu/add_inmate2',$data,TRUE);
-		    		$this->data['footer']   = $this->load->view('footer_view',NULL,TRUE);
-		    		$this->data['js_bottom']= array();
-                    $this->data['custom_js']= '<script type="text/javascript">
-                                            $(document).ready(function(){
-                                                $("#ft").keyup(function(){
-                                                    var feet = $("#ft").val();
-                                                    var inches = $("#in").val();
-                                                    
-                                                    var finalInches = parseInt((feet * 12)) + parseInt(inches);
-                                                    var result_cm = (finalInches * 2.54).toFixed(2);
-                                                    
-                                                    $("#cm").val(result_cm);
-                                                });
-                                                
-                                                $("#in").keyup(function(){
-                                                    var feet = $("#ft").val();
-                                                    var inches = $("#in").val();
-                                                    
-                                                    var finalInches = parseInt((feet * 12)) + parseInt(inches);
-                                                    var result_cm = (finalInches * 2.54).toFixed(2);
-                                                    
-                                                    $("#cm").val(result_cm);
-                                                });
-                                                
-                                                $("#kg").keyup(function(){
-                                                    var kilograms = $("#kg").val();
-                                                    
-                                                    var result_lbs = (parseInt(kilograms) * 2.2).toFixed(2);
-                                                    
-                                                    $("#lbs").val(result_lbs);
-                                                });
-                                            });
-                                        </script>';
-		    		$this->load->view('templates',$this->data);
-
 		    		// $this->load->view('menu/add_inmate2', $info);		    		
 		    	}
 		    	else{
@@ -546,7 +529,7 @@ session_start();
 					redirect("cpdrc/addinmate/profiling/".$id);
 					
 				}else{
-					
+					$this->session->set_flashdata('case_data',json_encode($data));
 					$inmate['id']=$id;
 					$this->session->set_flashdata('error_msg','<b>Warning!</b> Case information already exist. Please check the information in the table below');
 			    	redirect("cpdrc/addinmate/profiling/".$id);

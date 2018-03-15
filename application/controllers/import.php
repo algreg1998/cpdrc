@@ -64,16 +64,65 @@ class Import extends Admin_Controller {
 		$this->load->view('templates',$this->data);
 	}
 	public function uploadData(){
-		$data['result']=$this->Import_model->saveData();
-		var_dump($data['result']);
-		if($data['result']){
-			$msg ='';
-			foreach ($data['result'] as $key ) {
-				$msg.= "<li>".$key."</li>";
-			}
-			$this->session->set_flashdata('error_msg','Oops, Something went wrong! Importing canceled. <br><br><ul>'.$msg.'</ul><br>Inmate IDs already exists. Please change to prevent duplicates.');
-		}else{
-			$this->session->set_flashdata('success_msg','Records successfully inserted');
+
+		$type = $this->input->post("type");
+		switch ($type) {
+			case 'inmate':
+				$data['result']=$this->Import_model->saveInmateData();
+				if($data['result']){
+					$msg ='';
+					foreach ($data['result'] as $key ) {
+						$msg.= "<li>".$key."</li>";
+					}
+					$this->session->set_flashdata('error_msg','Oops, Something went wrong! Importing canceled. <br><br><ul>'.$msg.'</ul><br>Inmate IDs already exists. Please change to prevent duplicates.');
+				}else{
+					$this->session->set_flashdata('success_msg','Inmate Records successfully inserted');
+				}
+						
+				break;
+			case 'violation':
+				$data['result']=$this->Import_model->saveViolationData();
+				if($data['result']){
+					$msg ='';
+					foreach ($data['result'] as $key ) {
+						$msg.= "<li>".$key."</li>";
+					}
+					$this->session->set_flashdata('error_msg','Oops, Something went wrong! Importing canceled. <br><br><ul>'.$msg.'</ul><br>Violation names already exists. Please change to prevent duplicates.');
+				}else{
+					$this->session->set_flashdata('success_msg','Violation Records successfully inserted');
+				}
+						
+				break;
+			case 'inmateWithCases':
+				
+				$data['result']=$this->Import_model->importInmate();
+				if($data['result']){
+					$msg ='';
+					foreach ($data['result'] as $key ) {
+						$msg.= "<li>".$key."</li>";
+					}
+					$this->session->set_flashdata('error_msg','Oops, Something went wrong! Importing canceled. <br><br><ul>'.$msg.'</ul><br>Duplicates detected. Please change to prevent duplicates.');
+				}else{
+					$this->session->set_flashdata('success_msg','Inmate Records successfully inserted');
+				}
+				break;
+			// case 'cases':
+			// 	$data['result']=$this->Import_model->filterCases();
+			// 	if($data['result']){
+			// 		$msg ='';
+			// 		foreach ($data['result'] as $key ) {
+			// 			$msg.= "<li>".$key."</li>";
+			// 		}
+			// 		$this->session->set_flashdata('error_msg','Oops, Something went wrong! Importing canceled. <br><br><ul>'.$msg.'</ul><br>Violation names already exists. Please change to prevent duplicates.');
+			// 	}else{
+			// 		$this->session->set_flashdata('success_msg','Violation Records successfully inserted');
+			// 	}
+						
+			// 	break;
+			
+			default:
+				# code...
+				break;
 		}
 		redirect("import/viewImportPage");
 		// $data['query']=$this-> upload_services->get_car_features_info();

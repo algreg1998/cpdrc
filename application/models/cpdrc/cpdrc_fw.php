@@ -987,6 +987,7 @@ class cpdrc_fw extends CI_Model
 	 	{
 	 		//query
 	 		$this->db->select('*');
+	 		$this->db->select('DATE_FORMAT(datetime_added,"%b %d,%Y") as datetime_added',FALSE);
 	 		$this->db->from('inmate');
 	 		$this->db->join('file', 'inmate.inmate_id=file.inmate_id');
 	 		$this->db->join('user_account', 'inmate.added_by=user_account.user_id');
@@ -1030,6 +1031,7 @@ class cpdrc_fw extends CI_Model
 		 			'born' => $key->born_in,
 		 			'home' => $key->home_add,
 		 			'province' => $key->province_add,
+		 			'religion' => $key->religion,
 		 			'occupation' => $key->occupation,
 		 			'father' => $key->father,
 		 			'mother' => $key->mother,
@@ -1043,6 +1045,26 @@ class cpdrc_fw extends CI_Model
 				return $res;
 	 		}
 	 		
+	 	}
+
+	 	public function inmateReleaseInfo($id)
+	 	{	 		
+	 		//query
+	 		$this->db->select('*');
+	 		$this->db->from('inmate_released');
+	 		$this->db->where('inmate_id', $id);
+
+	 		$get = $this->db->get();
+	 		$res =array();
+
+	 		foreach ($get->result() as $release) 
+	 		{
+	 			$res[] = array(
+	 						'id' => $release->inmate_id,
+				 			'date_released' => $release->date_released,
+			 			); 
+				return $res;
+	 		}
 	 	} 	
 	 	//for the table in manage inmate view
 	 	//autho. visitors for the inmate also

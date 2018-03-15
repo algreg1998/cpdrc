@@ -47,8 +47,8 @@ class MLpdf extends FPDF
             $this->SetFont('Arial','',11);
             $this->Ln(10);
             $this->Cell(10,10,'NO.',1,0,'C');
-            $this->Cell(60,10,'NAME OF INMATES.',1,0,'C');
-            $this->Cell(60,10,'CRIME',1,0,'C');
+            $this->Cell(40,10,'NAME OF INMATES',1,0,'C');
+            $this->Cell(80,10,'CRIME',1,0,'C');
             $this->Cell(40,10,'CASE NO.',1,0,'C');
             $this->Cell(20,10,'CELL NO.',1,0,'C');
             $this->Cell(30,10,'COURT',1,0,'C');
@@ -196,11 +196,11 @@ class MLpdf extends FPDF
                 while($x < $ccnt){
                     $this->Ln();
                     $this->Cell(10,10,$b,1,0,'C');
-                    $this->Cell(60,10,$a[$b-1]->nameOfInmate,1,0,'C');
+                    $this->Cell(40,10,$a[$b-1]->nameOfInmate,1,0,'C');
                     if($this->GetStringWidth($crimes[$x]) > 20){
-                         $this->SetFont('Arial','',8);
+                         $this->SetFont('Arial','',7);
                     }
-                    $this->Cell(60,10,$crimes[$x],1,0,'C');
+                    $this->Cell(80,10,$crimes[$x],1,0,'C');
                     $this->SetFont('Arial','',11);
                     $this->Cell(40,10,$cases[$x],1,0,'C');
                     $this->Cell(20,10,$a[$b-1]->cellNumber,1,0,'C');
@@ -209,7 +209,7 @@ class MLpdf extends FPDF
                     // $this->Ln(0);
                     // $this->Cell(200);
                     $this->Cell(30,10,$a[$b-1]->dateCommitted,1,0,'C');
-                    $this->SetFont('Arial','',10);
+                    $this->SetFont('Arial','',8);
                     $this->Cell(20,10,$a[$b-1]->place,1,0,'C');
                     $x++;
                 }

@@ -1,4 +1,3 @@
-<!DOC<option value=""> Typehtml>
 <html>
     <div id="page-wrapper">
 				<div class="row">
@@ -84,16 +83,25 @@
 									<label><i class="fa fa-arrows-v"></i> <b>Height</b></label>
                                     <div class="row">
                                         <div class="col-md-6">
-                                            <input type="number" id="ft" min="1" autofocus placeholder="ft" class="form-control">
+                                        	<div class="input-group">    
+	                                            <input type="number" id="ft" min="1" autofocus class="form-control">
+	                                            <span class="input-group-addon">ft</span>
+                                            </div>
                                         </div>
                                         <div class="col-md-6">
-                                            <input type="number" id="in" min="1" placeholder="in" class="form-control">
+                                        	<div class="input-group">												
+	                                            <input type="number" id="in" min="1" class="form-control">
+	                                            <span class="input-group-addon">in</span>
+                                            </div>
                                         </div>
                                     </div>
 
                                     <br>
 
-									<input readonly type="number" name="height" min="0" step="0.01" id="cm" placeholder="cm" class="form-control" required   value="<?php if($info!=null){echo $info->height;}?>">
+                                    <div class="input-group">
+										<input readonly type="number" name="height" min="0" step="0.01" id="cm" class="form-control" required   value="<?php if($info!=null){echo $info->height;}?>">
+										<span class="input-group-addon">cm</span>
+									</div>
 
                                     <br>
 
@@ -111,13 +119,19 @@
 									<label><i class="fa fa-tachometer"></i> <b>Weight</b></label>
                                     <div class="row">
                                         <div class="col-md-12">
-                                            <input type="number" id="kg" min="1" placeholder="kg" class="form-control">
+                                        	<div class="input-group">
+                                            	<input type="number" id="kg" min="1" class="form-control">
+                                            	<span class="input-group-addon">kg</span>
+                                            </div>
                                         </div>
                                     </div>
 
                                     <br>
 
-                                    <input readonly type="number" name="weight" min="0" step="0.01" id="lbs" placeholder="lbs" class="form-control" required value="<?php if($info!=null){echo $info->weight;}?>">
+                                    <div class="input-group">
+                                    	<input readonly type="number" name="weight" min="0" step="0.01" id="lbs" class="form-control" required value="<?php if($info!=null){echo $info->weight;}?>">
+                                    	<span class="input-group-addon">lbs</span>
+                                    </div>	
 
                                     <br>
 
@@ -146,15 +160,27 @@
 								<option value="Black brown skin that never burns and tans very well." <?php if($info!=null && $info->complexion == "Black brown skin that never burns and tans very well."){echo "selected";}?>> Black brown skin that never burns and tans very well.</option>
 							</select>
 							<label><i class="fa fa-crosshairs"></i> <b>Hair</b></label>
-							<select name="hair" class="form-control">
+							<select name="hair" class="form-control" id="hair">
+								<option value="Black" <?php if($info!=null && $info->hair == "Black"){echo "selected";}?> >Black</option>
+								<option value="Gray" <?php if($info!=null && $info->hair == "Gray"){echo "selected";}?> >Gray</option>
+								<option value="Blonde" <?php if($info!=null && $info->hair == "Blonde"){echo "selected";}?> >Blonde</option>
+								<option value="Others" <?php if($info!=null && $info->hair == "Others"){echo "selected";}?> >Others</option>
+							</select>
+							
+							<div id ="others" hidden>
+								<br><label>Others</label><input type="text">
+								<br><br>
+							</div>
+							
+							<!-- <input type="text" name="hair" class="form-control"  oninvalid="setCustomValidity('Please enter alphabets only')" onchange="try{setCustomValidity('')}catch(e){}" required value="<?php if($info!=null){echo $info->hair;}?>"> -->
+							<label><i class="fa fa-info"></i> <b>Hair Peculiarities</b></label>
+							<select name="hairp" class="form-control">
 								<option value="Straight Hair" <?php if($info!=null && $info->hair == "Straight Hair"){echo "selected";}?> >Straight Hair</option>
 								<option value="Wavy Hair" <?php if($info!=null && $info->hair == "Wavy Hair"){echo "selected";}?> >Wavy Hair</option>
 								<option value="Curly Hair" <?php if($info!=null && $info->hair == "Curly Hair"){echo "selected";}?> >Curly Hair</option>
 								<option value="Coily Hair" <?php if($info!=null && $info->hair == "Coily Hair"){echo "selected";}?> >Coily Hair</option>
 							</select>
-							<!-- <input type="text" name="hair" class="form-control"  oninvalid="setCustomValidity('Please enter alphabets only')" onchange="try{setCustomValidity('')}catch(e){}" required value="<?php if($info!=null){echo $info->hair;}?>"> -->
-							<label><i class="fa fa-info"></i> <b>Hair Peculiarities</b></label>
-							<textarea rows="3" type="text" name="hairp" class="form-control" required ><?php if($info!=null){echo $info->hair_peculiarities;}?></textarea><br>
+							<br><br>
 							<button class="form-control btn btn-warning" type="submit">Submit Form</button>
 			    	</div>
 			    	<div class="col-md-7">
@@ -227,3 +253,16 @@
        <?php $this->load->view('cpdrc/footer'); ?>
   </body>
 </html>
+
+<script>
+	$(document).ready(function () {
+		$("#hair").change(function () {
+			if ($(this).val() == 'Others') {
+				$("#others").show();
+			} else {
+				$("#others").hide();
+			}
+		});
+	});
+		
+</script>
