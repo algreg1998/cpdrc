@@ -57,7 +57,17 @@
                           </div>
                             <div class="row">
                               <div class="col-lg-8"></div>
-                              <div class="col-lg-4"><button type="button" class="btn btn-primary pull-right" data-toggle="collapse" data-target="#demo"><i class="fa fa-print"></i> Print</button></div>
+                              <div class="col-lg-4">
+                                  <br>
+                                  <div class="row">
+                                      <form id="id" action="<?php echo site_url()?>search/viewCarpeta" method="post" style="display: inline;">
+                                        <input type="hidden" name="id" id= "id" class="id" value='<?php echo $inmate_info->inmate_id ?>'>
+                                        <button type="submit" class="btn btn-info" id="viewCarpeta"><i class="fa fa-eye"></i> View</button>
+                                      </form>
+                                      
+                                      <button type="button" class="btn btn-primary" data-toggle="collapse" data-target="#demo"><i class="fa fa-print"></i> Print</button>
+                                  </div>
+                              </div>
                             </div>
                             <div class="row">
                               <div class="col-lg-1"></div>
@@ -115,11 +125,15 @@
                           <?php endforeach; ?>
                         </tbody>
                     </table>
+                <br><br><br><br>
                 </div>
             <div class="clearfix"></div>
         </div>
+
     </div>
+
     <div class="modal-footer">
+
             <?php
                 if($reqStat!=null){
              $reqStat =json_decode(json_encode($reqStat));  
@@ -144,7 +158,7 @@
        
         <a class="btn btn-primary" href="<?php echo base_url('inmate/cases/'.$inmate_info->inmate_id) ?>">Manage Case</a>
         <button type="button" class="colorboxClose btn btn-default" data-dismiss="modal">Close</button>
-       
+
     </div>
 </div>
 <div class="modal fade" id="myModal4" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">

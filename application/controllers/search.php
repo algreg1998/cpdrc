@@ -80,6 +80,31 @@ class Search extends Admin_Controller {
 		$this->load->view('inmateinfo_modal_view',$this->data);
 	}
 
+	public function viewCarpeta()
+	{
+		$id = $this->input->post('id');
+		// echo $id;
+		// die();
+		$data['inmate']=$this->cpdrc_fw->inmateinfo($id);
+		// var_dump($data);
+		// die();
+
+		$this->data['title']	= 'View Carpeta';
+		$this->data['css']		= array();
+		$this->data['js_top']	= array();
+		// $this->data['header'] 	= $this->load->view('admin/header_view',$this->data,TRUE);
+		$this->data['body'] 	= $this->load->view('printView',NULL,TRUE);
+		// $this->data['footer'] 	= $this->load->view('footer_view',NULL,TRUE);
+		// $this->data['js_bottom']= array('js/home.js'
+		// 							);
+		// $this->data['custom_js']= '<script type="text/javascript">
+		// 								$(function(){
+		// 									$(".nav-home a").addClass("active");
+		// 								});
+		// 							</script>';
+		$this->load->view('templates',$this->data);
+	}
+
 	public function printCPT(){
                 // $inmate_info = $this->admin_model->get('inmates_full',array('inmate_id'=>$inmate_id),TRUE);
      //            $this->load->library('cpdf');
