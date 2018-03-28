@@ -85,7 +85,9 @@ class Search extends Admin_Controller {
 		$id = $this->input->post('id');
 		// echo $id;
 		// die();
-		$data['inmate']=$this->cpdrc_fw->inmateinfo($id);
+		$this->data['inmate']=$this->cpdrc_fw->inmateinfo($id);
+		$this->data['case']=$this->cpdrc_fw->getcaseinfo($id);
+		$this->data['old'] = $this->cpdrc_fw->getOldCase($id);
 		// var_dump($data);
 		// die();
 
@@ -93,7 +95,7 @@ class Search extends Admin_Controller {
 		$this->data['css']		= array();
 		$this->data['js_top']	= array();
 		// $this->data['header'] 	= $this->load->view('admin/header_view',$this->data,TRUE);
-		$this->data['body'] 	= $this->load->view('printView',NULL,TRUE);
+		$this->data['body'] 	= $this->load->view('printView',$this->data,TRUE);
 		// $this->data['footer'] 	= $this->load->view('footer_view',NULL,TRUE);
 		// $this->data['js_bottom']= array('js/home.js'
 		// 							);

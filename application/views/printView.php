@@ -1,4 +1,15 @@
-
+<?php
+	foreach($inmate as $inmateData)
+	{
+		// var_dump($inmateData);
+	}
+	// echo"<br><br>";
+	foreach($case as $inmateCase)
+	{
+	// 	var_dump($inmateCase);
+	}
+	// echo"<br><br>";
+?>
 <html>
 <head>
 	<title>printCT</title>
@@ -62,7 +73,8 @@
 	<div class="container">
 		<div class="row">
 			<div class="col-md-2">
-				<img src="<?php echo base_url('uploads/provinceOfCebu.jpg'); ?>">
+				picture here
+				<img src="">
 			</div>
 			<div class="col-md-8">
 				<center>
@@ -77,22 +89,20 @@
 				</center>
 			</div>
 			<div class="col-md-2">
-				<img src="<?php echo base_url('uploads/cpdrc.jpg'); ?>">
+				picture here
 			</div>
 		</div>
 		<br>
 		<div class="row"> <!--form part-->
 			<div class="col-md-7">
-				<h5>CPDRC Form No. <?php //echo $inmate->formid; ?>1</h5>
+				<h5>CPDRC Form No. <?php echo $inmateData['formid']; ?></h5>
 				<br>
 				<div class="col-md-6">
 					<label>Name</label><br>
 					<label>Nickname</label><br>
 					<label>Date of Confinement</label><br>
 					<label>Crime</label><br>
-					<br>
 					<label>Court</label><br>
-					<br>
 					<label>Sentence</label><br>
 					<label>Prison No.</label><br>
 					<label>Class</label><br>
@@ -111,25 +121,23 @@
 					<label>Address</label><br>
 				</div>
 				<div class="col-md-6">
-					<p>: <span> #name </span> </p>
-					<p>: <span>#nickname</span></p>
-					<p>: <span>#datofconfinement</span></p>
-					<p>: <span>#crime1</span></p>
-					<p>: <span>#crime2</span></p>
-					<p>: <span>#court1</span></p>
-					<p>: <span>#court2</span></p>
-					<p>: <span>#sentence</span></p>
+					<p>: <span> <?php echo $inmateData['fname']." ".$inmateData['lname']; ?> </span> </p>
+					<p>: <span><?php echo $inmateData['alias']; ?></span></p>
+					<p>: <span><?php echo $inmateCase['confine']; ?></span></p>
+					<p>: <span>#crime<?php //$inmateCase['crime']; ?></span></p>
+					<p>: <span><?php echo $inmateCase['court']; ?></span></p>
+					<p>: <span><?php echo $inmateCase['sentence']; ?></span></p>
 					<p>: <span>#prisonNo.</span></p>
 					<p>: <span>#class</span></p>
-					<p>: <span>#nationality</span></p>
-					<p>: <span>#religion</span></p>
-					<p>: <span>#dateOfBirth</span></p>
-					<p>: <span>#placeOfBirth</span></p>
-					<p>: <span>#presentAddress</span></p>
+					<p>: <span><?php echo $inmateData['nationality']; ?></span></p>
+					<p>: <span><?php echo $inmateData['religion']; ?></span></p>
+					<p>: <span><?php echo $inmateData['bday']; ?></span></p>
+					<p>: <span><?php echo $inmateData['born']; ?></span></p>
+					<p>: <span>#address<?php //echo $inmateData['address']; ?></span></p>
 					<p>: <span>#civilStatus</span></p>
-					<p>: <span>#occupation</span></p>
-					<p>: <span>#fatherName</span></p>
-					<p>: <span>#motherMaidenName</span></p>
+					<p>: <span><?php echo $inmateData['occupation']; ?></span></p>
+					<p>: <span><?php echo $inmateData['father']; ?></span></p>
+					<p>: <span><?php echo $inmateData['mother']; ?></span></p>
 					<br><br>
 					<p>: <span>#contactPerson</span></p>
 					<p>: <span>#address</span></p>
@@ -146,17 +154,17 @@
 						<br>
 						<label>Height</label><br>
 						<label>Weight</label><br>
-						<label>Complexion</label><br>
+						<label>Complexion</label><br><br><br>
 						<label>Hair</label><br>
 						<label>Build</label><br>
 					</div>
 					<div class="col-md-9">
 						<br>
-						<p>: <span>#height</span></p>
-						<p>: <span>#weight</span></p>
-						<p>: <span>#complexion</span></p>
-						<p>: <span>#hair</span></p>
-						<p>: <span>#build</span></p>
+						<p>: <span><?php echo $inmateData['height']; ?> cm</span></p>
+						<p>: <span><?php echo $inmateData['weight']; ?> lbs</span></p>
+						<p>: <span><?php echo $inmateData['complexion']; ?></span></p><br>
+						<p>: <span><?php echo $inmateData['hair']; ?></span></p>
+						<p>: <span><?php echo $inmateData['build']; ?></span></p>
 					</div>
 				</div>
 			</div>
